@@ -7,10 +7,12 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5002;
+
 connectDB();
 
+app.use(express.json());
 
-app.use("/api/create-account",createAccountRoutes)
+app.use("/api/create-account",createAccountRoutes);
 app.listen(PORT, run);
 
 function run() {
