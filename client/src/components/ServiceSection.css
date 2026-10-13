@@ -1,0 +1,148 @@
+/* dt5 service section styles using the tan and brown colors from the figma prototype */
+
+/* the whole section */
+.svc-section {
+  background: #f9efed; /* light cream background */
+  color: #2f1f04; /* dark brown text */
+  padding: 80px 20px; /* space above, below, and on the sides */
+  text-align: left; /* text lines up on the left by default */
+}
+
+/* keeps the content centered and not too wide */
+.svc-section__inner {
+  max-width: 1100px; /* widest the content can get */
+  margin: 0 auto; /* centers the content on the page */
+}
+
+/* small label above the title */
+.svc-section__eyebrow {
+  text-align: center; /* centers the label */
+  font-size: 12px; /* small text */
+  letter-spacing: 3px; /* spreads the letters apart */
+  text-transform: uppercase; /* shows the label in capital letters */
+  color: #705930; /* medium brown */
+  margin: 0 0 8px; /* small space under the label */
+}
+
+/* section title */
+.svc-section__title {
+  text-align: center; /* centers the title */
+  font-family: 'Playfair Display', Georgia, serif; /* fancy serif font like the prototype */
+  font-weight: 400; /* normal thickness */
+  font-size: 40px; /* big title text */
+  margin: 0 0 12px; /* space under the title */
+}
+
+/* short overview under the title */
+.svc-section__overview {
+  text-align: center; /* centers the overview */
+  max-width: 600px; /* keeps lines from getting too long */
+  margin: 0 auto 48px; /* centers it and adds space before the cards */
+  color: #705930; /* medium brown */
+  line-height: 1.6; /* space between lines */
+}
+
+/* grid that holds the cards */
+.svc-grid {
+  display: grid; /* lays the cards out in a grid */
+  grid-template-columns: repeat(3, 1fr); /* three equal columns on desktop */
+  gap: 24px; /* space between cards */
+}
+
+/* one service card */
+.svc-card {
+  display: flex; /* stacks the card pieces */
+  flex-direction: column; /* stacks them top to bottom */
+  background: #f8eeec; /* card background */
+  border: 1px solid #e5d5c3; /* thin tan border */
+  border-radius: 16px; /* rounded corners */
+  padding: 16px; /* space inside the card */
+  box-shadow: 0 4px 14px rgba(47, 31, 4, 0.06); /* soft shadow */
+}
+
+/* picture at the top of the card */
+.svc-card__image {
+  width: 100%; /* fills the card width */
+  height: 160px; /* fixed picture height */
+  object-fit: cover; /* crops the picture to fit without stretching */
+  border-radius: 12px; /* rounded corners */
+  margin-bottom: 16px; /* space under the picture */
+}
+
+/* placeholder box shown when there is no picture yet */
+.svc-card__image--placeholder {
+  display: flex; /* lets us center the text */
+  align-items: center; /* centers the text up and down */
+  justify-content: center; /* centers the text left and right */
+  background: #e5d5c3; /* tan box */
+  color: #705930; /* medium brown text */
+  font-size: 12px; /* small text */
+  letter-spacing: 2px; /* spreads the letters apart */
+  text-transform: uppercase; /* capital letters */
+}
+
+/* small circle that holds the icon */
+.svc-card__icon {
+  display: inline-flex; /* lets us center the icon */
+  align-items: center; /* centers the icon up and down */
+  justify-content: center; /* centers the icon left and right */
+  width: 40px; /* circle width */
+  height: 40px; /* circle height */
+  border-radius: 50%; /* makes it a circle */
+  background: #ceb690; /* tan circle */
+  font-size: 18px; /* icon size */
+  margin-bottom: 12px; /* space under the icon */
+}
+
+/* service name */
+.svc-card__name {
+  font-family: 'Playfair Display', Georgia, serif; /* fancy serif font */
+  font-weight: 400; /* normal thickness */
+  font-size: 20px; /* name size */
+  margin: 0 0 8px; /* space under the name */
+}
+
+/* short description */
+.svc-card__description {
+  font-size: 14px; /* smaller text */
+  line-height: 1.5; /* space between lines */
+  color: #705930; /* medium brown */
+  margin: 0 0 16px; /* space under the description */
+  flex-grow: 1; /* pushes the link to the bottom so all links line up */
+}
+
+/* book this service link */
+.svc-card__link {
+  font-size: 12px; /* small text */
+  font-weight: 600; /* bold */
+  letter-spacing: 2px; /* spreads the letters apart */
+  text-transform: uppercase; /* capital letters */
+  color: #2f1f04; /* dark brown */
+  text-decoration: none; /* removes the underline */
+}
+
+/* underline the link when you hover or tab to it */
+.svc-card__link:hover,
+.svc-card__link:focus-visible {
+  text-decoration: underline; /* adds the underline back */
+}
+
+/* tablet screens show two cards per row */
+@media (max-width: 900px) {
+  .svc-grid {
+    grid-template-columns: repeat(2, 1fr); /* two equal columns */
+  }
+}
+
+/* phone screens show one card per row */
+@media (max-width: 600px) {
+  .svc-grid {
+    grid-template-columns: 1fr; /* one column */
+  }
+  .svc-section {
+    padding: 56px 16px; /* less space on small screens */
+  }
+  .svc-section__title {
+    font-size: 32px; /* smaller title on small screens */
+  }
+}
