@@ -1,5 +1,6 @@
 import Account from "../models/account-model.js";
-import validateAccount from "../utils/validate-create-account.js";
+import hashPassword from "../utils/password-hash.js";
+import checkPasswordRequirement from "../utils/check-password-requriement.js";
 
 /**
  * Create a New Account
@@ -12,13 +13,16 @@ import validateAccount from "../utils/validate-create-account.js";
  */
 async function createAccount(req, res) {
     try {
-        const { firstName, lastName, email, phoneNumber, password, hasAcceptTerm } = validateAccount(req);
-        const newAccount = Account({firstName,lastName, email, phoneNumber, password, hasAcceptTerm})
+        const { firstName, lastName, email, phoneNumber, password, hasAcceptTerm } = req.body || {};
+        checkPasswordRequirement(password);
+        const hashedPassword = await hashPassword(password);
+        const newAccount = Account({firstName,lastName, email, phoneNumber, password:hashedPassword, hasAcceptTerm});
         await newAccount.save();
-        res.status(201).send({Message: "Received"});
-    } catch (error) {
-        res.status(400).send({Message: `${error}`})
+        res.status(201).send({Message: "Account has Been Created!"});
+    } catch (Error) {
+        res.status(400).send({Message: `${Error}`})
     }
+    
 }
 
 export default createAccount;
