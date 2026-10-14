@@ -2,9 +2,8 @@ import Account from "../models/account-model.js";
 
 async function createAccount(req, res) {
     try {
-        const { firstName, lastName } = req.body || {};
-        console.log(firstName, lastName);
-        const newAccount = Account({firstName,lastName})
+        const { firstName, lastName, email, phoneNumber, password, hasAcceptTerm } = req.body || {};
+        const newAccount = Account({firstName,lastName, email, phoneNumber, password, hasAcceptTerm})
         await newAccount.save();
         res.status(201).send({Message: "Received"});
     } catch (error) {
