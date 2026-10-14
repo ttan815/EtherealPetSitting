@@ -1,7 +1,7 @@
-const createAccountRoutes = require("./routes/create-account-routes.js");
-const express = require("express");
-const connectDB = require("./config/db.js");
-const dotenv = require("dotenv");
+import createAccountRoutes from "./routes/create-account-routes.js";
+import express from "express";
+import connectDB from "./config/db.js";
+import dotenv from "dotenv"
 
 dotenv.config();
 
