@@ -1,0 +1,125 @@
+/* dt6 about section styles using the tan and brown colors from the figma prototype */
+
+/* the whole section */
+.about-section {
+  background: #ceb690; /* tan background */
+  color: #2f1f04; /* dark brown text */
+  padding: 80px 20px; /* space above, below, and on the sides */
+  text-align: left; /* text lines up on the left */
+}
+
+/* keeps the content centered and splits it into two columns */
+.about-section__inner {
+  max-width: 1100px; /* widest the content can get */
+  margin: 0 auto; /* centers the content on the page */
+  display: grid; /* lays out the photo and text side by side */
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: 56px; /* space between the photo and the text */
+  align-items: center; /* lines up the columns in the middle */
+}
+
+/* the owner photo */
+.about-section__photo {
+  width: 100%; /* fills its column */
+  max-width: 400px; /* widest the photo can get */
+  height: 460px; /* photo height */
+  object-fit: cover; /* crops the photo to fit without stretching */
+  border-radius: 200px 200px 24px 24px; /* arch shape from the prototype */
+  display: block; /* lets us center it */
+  margin: 0 auto; /* centers the photo in its column */
+}
+
+/* placeholder box shown when there is no photo yet */
+.about-section__photo--placeholder {
+  display: flex; /* lets us center the text */
+  align-items: center; /* centers the text up and down */
+  justify-content: center; /* centers the text left and right */
+  background: #e5d5c3; /* light tan box */
+  color: #705930; /* medium brown text */
+  font-size: 12px; /* small text */
+  letter-spacing: 2px; /* spreads the letters apart */
+  text-transform: uppercase; /* capital letters */
+}
+
+/* small label above the title */
+.about-section__eyebrow {
+  font-size: 12px; /* small text */
+  letter-spacing: 3px; /* spreads the letters apart */
+  text-transform: uppercase; /* capital letters */
+  color: #705930; /* medium brown */
+  margin: 0 0 8px; /* small space under the label */
+}
+
+/* section title */
+.about-section__title {
+  font-family: 'Playfair Display', Georgia, serif; /* fancy serif font like the prototype */
+  font-weight: 400; /* normal thickness */
+  color: #2f1f04; /* dark brown title so global styles do not override it */
+  font-size: 36px; /* big title text */
+  margin: 0 0 16px; /* space under the title */
+}
+
+/* description of the business */
+.about-section__description {
+  line-height: 1.7; /* space between lines */
+  margin: 0 0 24px; /* space under the description */
+}
+
+/* the quote box */
+.about-section__quote {
+  margin: 0 0 28px; /* space under the quote */
+  padding-left: 16px; /* space between the line and the text */
+  border-left: 2px solid #705930; /* brown line on the left side */
+}
+
+/* the quote text */
+.about-section__quote p {
+  font-family: 'Playfair Display', Georgia, serif; /* fancy serif font */
+  font-style: italic; /* slanted text */
+  font-size: 18px; /* quote size */
+  line-height: 1.5; /* space between lines */
+  margin: 0 0 8px; /* space under the quote */
+}
+
+/* the name under the quote */
+.about-section__quote cite {
+  font-style: normal; /* removes the default slant */
+  font-size: 12px; /* small text */
+  letter-spacing: 2px; /* spreads the letters apart */
+  text-transform: uppercase; /* capital letters */
+  color: #705930; /* medium brown */
+}
+
+/* book an appointment button */
+.about-section__button {
+  display: inline-block; /* lets the button have padding */
+  background: #705930; /* brown button */
+  color: #f9efed; /* light cream text */
+  padding: 12px 28px; /* space inside the button */
+  border-radius: 999px; /* pill shape */
+  text-decoration: none; /* removes the underline */
+  font-weight: 600; /* bold text */
+}
+
+/* darker button when you hover or tab to it */
+.about-section__button:hover,
+.about-section__button:focus-visible {
+  background: #2f1f04; /* dark brown */
+}
+
+/* phone and tablet screens stack the photo above the text */
+@media (max-width: 800px) {
+  .about-section__inner {
+    grid-template-columns: 1fr; /* one column */
+    gap: 32px; /* less space between the photo and text */
+  }
+  .about-section__photo {
+    height: 340px; /* shorter photo on small screens */
+  }
+  .about-section {
+    padding: 56px 16px; /* less space on small screens */
+  }
+  .about-section__title {
+    font-size: 30px; /* smaller title on small screens */
+  }
+}
