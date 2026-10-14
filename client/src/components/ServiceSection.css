@@ -29,6 +29,7 @@
   text-align: center; /* centers the title */
   font-family: 'Playfair Display', Georgia, serif; /* fancy serif font like the prototype */
   font-weight: 400; /* normal thickness */
+  color: #2f1f04; /* dark brown title so global styles do not override it */
   font-size: 40px; /* big title text */
   margin: 0 0 12px; /* space under the title */
 }
@@ -98,6 +99,7 @@
 .svc-card__name {
   font-family: 'Playfair Display', Georgia, serif; /* fancy serif font */
   font-weight: 400; /* normal thickness */
+  color: #2f1f04; /* dark brown title so global styles do not override it */
   font-size: 20px; /* name size */
   margin: 0 0 8px; /* space under the name */
 }
