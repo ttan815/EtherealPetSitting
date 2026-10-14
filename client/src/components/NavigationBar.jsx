@@ -1,0 +1,99 @@
+import { useState } from "react";
+import ProfileMenu from "./ProfileMenu";
+import "./NavigationBar.css";
+
+// Section links every role sees. Each href matches a section id on the home page
+// (<section id="home">, <section id="services">, ...).
+const SECTION_LINKS = [
+  { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
+  { label: "About", href: "#about" },
+  { label: "Reviews", href: "#reviews" },
+];
+
+// role: "visitor" | "customer" | "admin"
+// user: { name: "Example Name" } for logged-in users (used for initials)
+// onLogout: called when the user picks "Log out" in the profile menu
+function NavigationBar({ role = "visitor", user, onLogout }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // mobile menu
+
+  const isVisitor = role === "visitor";
+  const isCustomer = role === "customer";
+  const isAdmin = role === "admin";
+
+  // Visitors are sent to log in before they can book.
+  const bookAppointmentHref = isVisitor ? "/login" : "/book-appointment";
+
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
+
+  return (
+    <header className="navigation-bar">
+      <div className="navigation-inner">
+        <a href="#home" className="navigation-logo" onClick={closeMenu}>
+          <img src="/logo.svg" alt="Ethereal Pet Sitting & Care" />
+        </a>
+
+        <button
+          type="button"
+          className="navigation-toggle"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav className={`navigation-menu ${isMenuOpen ? "is-open" : ""}`}>
+          <ul className="navigation-links">
+            {SECTION_LINKS.map((link) => (
+              <li key={link.label}>
+                <a href={link.href} onClick={closeMenu}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+
+            {isVisitor && (
+              <>
+                <li>
+                  <a href="/login">Log in</a>
+                </li>
+                <li>
+                  <a href="/create-account">Create account</a>
+                </li>
+              </>
+            )}
+
+            {isCustomer && (
+              <li>
+                <a href="/customer-dashboard">My account</a>
+              </li>
+            )}
+          </ul>
+
+          <div className="navigation-actions">
+            {isAdmin ? (
+              <a href="/admin-dashboard" className="navigation-button">
+                Admin dashboard
+              </a>
+            ) : (
+              <a href={bookAppointmentHref} className="navigation-button">
+                Book an appointment
+              </a>
+            )}
+
+            {!isVisitor && (
+              <ProfileMenu role={role} user={user} onLogout={onLogout} />
+            )}
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+export default NavigationBar;
