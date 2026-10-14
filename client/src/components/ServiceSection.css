@@ -129,6 +129,13 @@
   text-decoration: underline; /* adds the underline back */
 }
 
+/* icon image inside the small circle */
+.svc-card__icon img {
+  width: 22px; /* icon width */
+  height: 22px; /* icon height */
+  display: block; /* removes extra space under the image */
+}
+
 /* tablet screens show two cards per row */
 @media (max-width: 900px) {
   .svc-grid {

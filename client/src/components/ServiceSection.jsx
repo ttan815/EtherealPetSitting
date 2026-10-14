@@ -4,6 +4,14 @@
 // bring in the styles for this section
 import './ServiceSection.css';
 
+// bring in the icon image for each service
+import dropInIcon from '../assets/icons/drop-in.svg';
+import wholeDayIcon from '../assets/icons/whole-day.svg';
+import overnightIcon from '../assets/icons/overnight.svg';
+import dogWalkingIcon from '../assets/icons/dog-walking.svg';
+import groomingIcon from '../assets/icons/grooming.svg';
+import medicationIcon from '../assets/icons/medication.svg';
+
 // list of services ethereal pet sitting provides
 // image is null for now so a placeholder box shows until the admin adds pictures
 const DEFAULT_SERVICES = [
@@ -11,7 +19,7 @@ const DEFAULT_SERVICES = [
   {
     id: 'drop-in-care', // unique id used in the booking link
     name: 'Drop-in Care', // service name shown on the card
-    icon: '🏠', // icon shown in the small circle
+    icon: dropInIcon, // icon image shown in the small circle
     description:
       "Quick visits for feeding, potty breaks, and playtime while you're away during the day.", // short description
     image: null, // picture set by the admin later
@@ -20,7 +28,7 @@ const DEFAULT_SERVICES = [
   {
     id: 'whole-day-care', // unique id used in the booking link
     name: 'Whole Day Care', // service name shown on the card
-    icon: '☀️', // icon shown in the small circle
+    icon: wholeDayIcon, // icon image shown in the small circle
     description:
       'Extended care throughout the day with meals, walks, and company, so your pet is never alone for long.', // short description
     image: null, // picture set by the admin later
@@ -29,7 +37,7 @@ const DEFAULT_SERVICES = [
   {
     id: 'overnight-stays', // unique id used in the booking link
     name: 'Overnight Stays', // service name shown on the card
-    icon: '🌙', // icon shown in the small circle
+    icon: overnightIcon, // icon image shown in the small circle
     description:
       'In-home overnight care so your pet can sleep comfortably in their own environment.', // short description
     image: null, // picture set by the admin later
@@ -38,7 +46,7 @@ const DEFAULT_SERVICES = [
   {
     id: 'dog-walking', // unique id used in the booking link
     name: 'Dog Walking', // service name shown on the card
-    icon: '🐾', // icon shown in the small circle
+    icon: dogWalkingIcon, // icon image shown in the small circle
     description:
       'Structured walks to keep your dog active, stimulated, and healthy. Choose your duration.', // short description
     image: null, // picture set by the admin later
@@ -47,7 +55,7 @@ const DEFAULT_SERVICES = [
   {
     id: 'grooming-care', // unique id used in the booking link
     name: 'Grooming Care', // service name shown on the card
-    icon: '✂️', // icon shown in the small circle
+    icon: groomingIcon, // icon image shown in the small circle
     description:
       'Gentle, stress-free nail trims, ear cleaning, and anal gland expression to keep your pet comfortable and healthy.', // short description
     image: null, // picture set by the admin later
@@ -56,7 +64,7 @@ const DEFAULT_SERVICES = [
   {
     id: 'medication', // unique id used in the booking link
     name: 'Medication', // service name shown on the card
-    icon: '💊', // icon shown in the small circle
+    icon: medicationIcon, // icon image shown in the small circle
     description:
       'Safe and timely administration of medications, including pills, drops, and injections, following your care instructions.', // short description
     image: null, // picture set by the admin later
@@ -84,7 +92,8 @@ function ServiceCard({ service, isLoggedIn }) {
 
       {/* small icon for the service, hidden from screen readers since it is decoration */}
       <span className="svc-card__icon" aria-hidden="true">
-        {service.icon}
+        {/* the icon image, alt is empty because the name is already shown below */}
+        <img src={service.icon} alt="" />
       </span>
 
       {/* service name */}
