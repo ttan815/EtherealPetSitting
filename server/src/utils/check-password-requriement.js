@@ -1,4 +1,5 @@
 import { REQUIRE_LENGTH } from "../config/password-policy.js";
+import { hasSymbol, hasCapital, hasNumber } from "./reg-validator.js";
 
 function checkPasswordRequirement(password,retypedPassword) {
     if (password.length < REQUIRE_LENGTH)
@@ -13,21 +14,4 @@ function checkPasswordRequirement(password,retypedPassword) {
         throw new Error("Password Does Not Match!")
 }
 
-/* Helper Function */
-function hasSymbol(password) {
-    const REGEX_SYMBOL = /[^A-Za-z0-9]/;
-    return REGEX_SYMBOL.test(password);
-}
-
-function hasCapital(password) {
-    const REGEX_CAPITAL = /[A-Z]/;
-    return REGEX_CAPITAL.test(password);
-}
-
-function hasNumber(password) {
-    const REGEX_NUMBER = /[0-9]/;
-    return REGEX_NUMBER.test(password);
-}
-
-/* End of Helper Function*/
 export default checkPasswordRequirement;
