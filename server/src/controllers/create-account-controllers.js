@@ -18,49 +18,67 @@ import checkInputFormat from "../utils/create-account-validation.js";
 async function createAccount(req, res) {
     const session = await mongoose.startSession()
     try {
-        await session.withTransaction(saveAccount.bind(null, session,req))
+        await session.withTransaction(createAccountTransaction.bind(null, req));
         res.status(201).send({Message: "Account has Been Created!"});
     } catch (Error) {
         res.status(400).send({Message: `${Error}`})
     } finally {
         await session.endSession();
     }
-    
 }
 
-async function retrieveUserInput(req) {
-    let { firstName, lastName, email, phoneNumber, password, retypedPassword, hasAcceptTerm } = req.body || {};
+/**
+ * Saves Account and Personal Information in one Transaction
+ * 
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("mongoose").ClientSession} session
+ */
+async function createAccountTransaction(req, session) {
+    const accountData = await getAccountData(req.body);
+
+    /* Create a New Account Entity */
+    const newAccount = Account({
+        email:accountData.email,
+        password: accountData.hashedPassword,
+        role: CUSTOMER_ROLE
+    });
+    await newAccount.save({session});
+    /* -------------------------- */
+
+    /* Create a New Personal Information Entity */
+    const newPersonalInfo = PersonalInfo({
+        account_id: newAccount._id,
+        first_name: accountData.firstName,
+        last_name: accountData.lastName,
+        phone_number: accountData.phoneNumber
+    });
+    await newPersonalInfo.save({session});
+    /* -------------------------- */
+}
+
+/**
+ * Validate and Get Account Information
+ * 
+ * @async
+ * @param {object} body
+ * @returns {Promise<Object} Set of Account Information
+ */
+async function getAccountData(body={}) {
+    let { firstName, lastName, email, phoneNumber, password, retypedPassword, hasAcceptTerm } = body;
     
+    /* Validation Section*/
     if(!hasAcceptTerm)
         throw new Error("Please Accept Terms and Condition!");
     await checkInputFormat(firstName, lastName, phoneNumber, email,password)
     await checkPasswordRequirement(password,retypedPassword);
+    /* ---------------- */
 
+    /* Reformat and Hash Password*/
     firstName = firstName.toLowerCase()
     lastName = lastName.toLowerCase()
     const hashedPassword = await hashPassword(password);
     return { firstName, lastName, email, phoneNumber, hashedPassword };
-}
-
-async function saveAccount(session, req) {
-    const { firstName, lastName, email, phoneNumber, hashedPassword } = await retrieveUserInput(req);
-    const newAccount = Account({
-        email:email,
-        password: hashedPassword,
-        role: CUSTOMER_ROLE
-    });
-    
-    await newAccount.save({session});
-
-    const accountId = newAccount._id;
-    const newPersonalInfo = PersonalInfo({
-        account_id: accountId,
-        first_name: firstName,
-        last_name: lastName,
-        phone_number: phoneNumber
-    });
-
-    await newPersonalInfo.save({session});
 }
 
 export default createAccount;
