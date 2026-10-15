@@ -1,6 +1,8 @@
 import Account from "../models/account-model.js";
+import PersonalInfo from "../models/personal-info-model.js";
 import hashPassword from "../utils/password-hash.js";
 import checkPasswordRequirement from "../utils/check-password-requriement.js";
+import { CUSTOMER_ROLE } from "../config/database-constant.js";
 
 /**
  * Create a New Account
@@ -14,17 +16,27 @@ import checkPasswordRequirement from "../utils/check-password-requriement.js";
 async function createAccount(req, res) {
     try {
         const { firstName, lastName, email, phoneNumber, password, hasAcceptTerm } = req.body || {};
+        if(!hasAcceptTerm)
+            throw new Error("Please Accept Terms and Condition!");
         checkPasswordRequirement(password);
         const hashedPassword = await hashPassword(password);
+
         const newAccount = Account({
-            firstName:firstName,
-            lastName: lastName, 
-            email:email, 
-            phoneNumber: phoneNumber, 
-            password: hashedPassword, 
-            hasAcceptTerm: hasAcceptTerm
+            email:email,
+            password: hashedPassword,
+            role: CUSTOMER_ROLE
         });
         await newAccount.save();
+
+        const accountId = newAccount._id;
+        const newPersonalInfo = PersonalInfo({
+            account_id: accountId,
+            first_name: firstName,
+            last_name: lastName,
+            phone_number: phoneNumber
+        });
+        await newPersonalInfo.save();
+
         res.status(201).send({Message: "Account has Been Created!"});
     } catch (Error) {
         res.status(400).send({Message: `${Error}`})
