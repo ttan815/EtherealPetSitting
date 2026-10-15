@@ -15,11 +15,7 @@ import { CUSTOMER_ROLE } from "../config/database-constant.js";
  */
 async function createAccount(req, res) {
     try {
-        const { firstName, lastName, email, phoneNumber, password, hasAcceptTerm } = req.body || {};
-        if(!hasAcceptTerm)
-            throw new Error("Please Accept Terms and Condition!");
-        checkPasswordRequirement(password);
-        const hashedPassword = await hashPassword(password);
+        const { firstName, lastName, email, phoneNumber, hashedPassword } = await retrieveUserInput(req);
 
         const newAccount = Account({
             email:email,
@@ -42,6 +38,15 @@ async function createAccount(req, res) {
         res.status(400).send({Message: `${Error}`})
     }
     
+}
+
+async function retrieveUserInput(req) {
+    const { firstName, lastName, email, phoneNumber, password, retypedPassword, hasAcceptTerm } = req.body || {};
+    if(!hasAcceptTerm)
+        throw new Error("Please Accept Terms and Condition!");
+    checkPasswordRequirement(password,retypedPassword);
+    const hashedPassword = await hashPassword(password);
+    return { firstName, lastName, email, phoneNumber, hashedPassword };
 }
 
 export default createAccount;

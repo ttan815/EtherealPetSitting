@@ -20,7 +20,8 @@ const personalInfoSchema = new mongoose.Schema(
         },
         phone_number: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         address: {
             type: String

@@ -39,6 +39,13 @@
         <br>
 
         <div>
+            <label for="retypedPassword">Retype-Password:</label>
+            <input type="text" id="retypedPassword" name="retypedPassword" required>
+        </div>
+
+        <br>
+
+        <div>
             <label>
                 <input type="checkbox" name="hasAcceptTerm"/>
                     I agree to the terms and conditions
@@ -69,7 +76,9 @@
         email: formData.get("email"),
         phoneNumber: formData.get("phone"),
         password: formData.get("password"),
-        hasAcceptTerm: formData.get("hasAcceptTerm") === "on",
+        retypedPassword: formData.get("retypedPassword"),
+        hasAcceptTerm: formData.get("hasAcceptTerm") === "on"
+        
       };
 
       try {
