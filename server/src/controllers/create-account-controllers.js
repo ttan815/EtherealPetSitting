@@ -16,7 +16,14 @@ async function createAccount(req, res) {
         const { firstName, lastName, email, phoneNumber, password, hasAcceptTerm } = req.body || {};
         checkPasswordRequirement(password);
         const hashedPassword = await hashPassword(password);
-        const newAccount = Account({firstName,lastName, email, phoneNumber, password:hashedPassword, hasAcceptTerm});
+        const newAccount = Account({
+            firstName:firstName,
+            lastName: lastName, 
+            email:email, 
+            phoneNumber: phoneNumber, 
+            password: hashedPassword, 
+            hasAcceptTerm: hasAcceptTerm
+        });
         await newAccount.save();
         res.status(201).send({Message: "Account has Been Created!"});
     } catch (Error) {

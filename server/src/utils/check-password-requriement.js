@@ -11,6 +11,7 @@ function checkPasswordRequirement(password) {
         throw new Error("Password Must Contain at least 1 Number!");
 }
 
+/* Helper Function */
 function hasSymbol(password) {
     const REGEX_SYMBOL = /[^A-Za-z0-9]/;
     return REGEX_SYMBOL.test(password);
