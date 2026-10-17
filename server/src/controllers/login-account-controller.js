@@ -1,15 +1,43 @@
 import mongoose from "mongoose";
 import Account from "../models/account-model";
+import express from "express";
 import { comparePassword } from "../utils/password-hash";
 
-async function loginAccount(req, res, isCreateAccount = false, email = null, password = null) {
-    if (!isCreateAccount) {
-        // If we are logging in not using a created account, take user's username and password from res.
-        ({ email, password } = req.body);
+async function loginAccount(req = null, res = null, isCreateAccount = false, email = null, password = null) {
+    try {
+        if (!isCreateAccount) {
+            // If we are logging in not using a created account, take user's username and password from req.
+            ({ email, password } = req.body);
+        }
+        const account = await validateCredentials(email, password)
+        if (!account) {
+            return res.status(401).send({ Message: "Invalid email or Password." })
+        }
+
+        // Regenerate session on login to prevent session fixation, where hacker
+        req.session.regenerate((err) => {
+            if (err) {
+                return res.status(500).send({ Message: "Failed to Create Session." })
+            }
+            req.session.userId = account._id.toString();
+            if (req.body.rememberMe) {
+                req.session.cookie.maxAge = 1000 * 60 * 60 * 24 // Set session to a day.
+            }
+            else {
+                req.session.cookie.maxAge = null // Session expires on closing of browser.
+            }
+            res.session.save((err) => {
+                if (err) {
+                    return res.status(401).send({ Message: "Failed to Create Session." })
+                }
+                else {
+                    return res.status(200).send({ Message: "Login Successful." })
+                }
+            })
+        })
     }
-    const isValidLoginInfo = await validateCredentials(email, password)
-    if (!isValidLoginInfo) {
-        return res.status(401).send({ Message: "Invalid email or Password." })
+    catch (error) {
+        res.status(500).send({ Message: "Internal Server Error." })
     }
 
 }
@@ -29,5 +57,10 @@ async function validateCredentials(email, password) {
         return false
     }
     const isValid = await comparePassword(password, account.password)
-    return isValid
+    if (!isValid) {
+        return false
+    }
+    return account
 }
+
+export default loginAccount;

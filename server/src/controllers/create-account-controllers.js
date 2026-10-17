@@ -5,6 +5,7 @@ import hashPassword from "../utils/password-hash.js";
 import checkPasswordRequirement from "../utils/check-password-requirement.js";
 import { CUSTOMER_ROLE } from "../config/database-constant.js";
 import checkInputFormat from "../utils/create-account-validation.js";
+import loginAccount from "../controllers/login-account-controller.js"
 
 /**
  * Create a New Account
@@ -25,6 +26,7 @@ async function createAccount(req, res) {
     } finally {
         await session.endSession();
     }
+    return loginAccount(req, res, true, req.body.email, req.body.password)
 }
 
 /**
