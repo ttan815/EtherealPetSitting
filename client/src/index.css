@@ -12,6 +12,8 @@ body,
   min-height: 100%;
 }
 
-body {
-  overflow-x: hidden;
+/* Form controls don't inherit fonts by default */
+button,
+input {
+  font: inherit;
 }

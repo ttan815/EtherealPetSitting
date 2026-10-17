@@ -1,0 +1,69 @@
+/* Two equal halves filling the screen (desktop only for now) */
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.auth-layout-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  background: var(--color-blush);
+}
+
+/* ---------- Top bar ---------- */
+.auth-layout-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-layout-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-layout-logo-name {
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-dark-brown);
+}
+
+.auth-layout-logo-subtitle {
+  margin-top: 3px;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-brown);
+}
+
+.auth-layout-back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-brown);
+  text-decoration: none;
+}
+
+.auth-layout-back-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Content and footer ---------- */
+.auth-layout-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-layout-footer {
+  font-size: 13px;
+  text-align: center;
+  color: var(--color-brown);
+}

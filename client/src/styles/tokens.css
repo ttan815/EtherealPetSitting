@@ -1,0 +1,24 @@
+/* Shared design tokens from the Figma prototype.
+   Variables only - component styles live next to each component. */
+:root {
+  /* Brand colors (names match NavigationBar.css) */
+  --color-blush: #f9efed;
+  --color-cream: #fffdfb;
+  --color-brown: #705930;
+  --color-dark-brown: #2f1f04;
+  --color-ring: #ceb690;
+
+  /* Form colors */
+  --color-input-border: rgba(206, 182, 144, 0.9);
+  --color-placeholder: rgba(112, 89, 48, 0.75);
+  --color-checkbox-border: rgba(112, 89, 48, 0.6);
+
+  /* Fonts (loaded in index.html) */
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Shapes */
+  --radius-input: 12px;
+  --radius-pill: 999px;
+  --shadow-button: 0 3px 8px -2px rgba(47, 31, 4, 0.12);
+}
