@@ -1,0 +1,38 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button-primary {
+  background: var(--color-brown);
+  color: var(--color-blush);
+  box-shadow: var(--shadow-button);
+}
+
+.button-primary:hover {
+  background: var(--color-dark-brown);
+}
+
+.button-outline {
+  background: transparent;
+  border: 1px solid var(--color-brown);
+  color: var(--color-brown);
+}
+
+.button-outline:hover {
+  background: var(--color-cream);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 2px;
+}

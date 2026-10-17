@@ -1,0 +1,99 @@
+.brand-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 64px 48px;
+  overflow: hidden;
+  background: var(--color-brown);
+}
+
+/* Decorative lines are pinned to the corners and sit behind the content */
+.brand-panel-topo {
+  position: absolute;
+  width: 720px;
+  height: 1024px;
+  pointer-events: none;
+}
+
+.brand-panel-topo-top {
+  top: 0;
+  right: 0;
+}
+
+.brand-panel-topo-bottom {
+  bottom: 0;
+  left: 0;
+}
+
+/* ---------- Medallion ---------- */
+/* Layers are positioned exactly as in Figma; the glow and ring SVGs
+   include extra room for their blur/shadow, hence the offsets. */
+.brand-panel-medallion {
+  position: relative;
+  flex-shrink: 0;
+  width: 400px;
+  height: 400px;
+}
+
+.brand-panel-glow,
+.brand-panel-ring,
+.brand-panel-inner-circle,
+.brand-panel-medallion-content {
+  position: absolute;
+}
+
+.brand-panel-glow {
+  top: -90px;
+  left: -90px;
+}
+
+.brand-panel-ring {
+  top: -14px;
+  left: -14px;
+}
+
+.brand-panel-inner-circle {
+  top: 44px;
+  left: 44px;
+}
+
+.brand-panel-medallion-content {
+  top: 80.5px;
+  left: 115px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-dark-brown);
+  white-space: nowrap;
+}
+
+.brand-panel-name {
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.brand-panel-subtitle {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* ---------- Tagline ---------- */
+.brand-panel-tagline {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 40px;
+  line-height: 1.18;
+  text-align: center;
+  color: var(--color-blush);
+}
+
+.brand-panel-tagline em {
+  display: block;
+  color: var(--color-ring);
+}
