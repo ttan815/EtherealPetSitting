@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import Account from "../models/account-model.js";
 import PersonalInfo from "../models/personal-info-model.js";
 import hashPassword from "../utils/password-hash.js";
-import checkPasswordRequirement from "../utils/check-password-requriement.js";
+import checkPasswordRequirement from "../utils/check-password-requirement.js";
 import { CUSTOMER_ROLE } from "../config/database-constant.js";
 import checkInputFormat from "../utils/create-account-validation.js";
 
@@ -19,9 +19,9 @@ async function createAccount(req, res) {
     const session = await mongoose.startSession()
     try {
         await session.withTransaction(createAccountTransaction.bind(null, req));
-        res.status(201).send({Message: "Account has Been Created!"});
+        res.status(201).send({ Message: "Account has Been Created!" });
     } catch (Error) {
-        res.status(400).send({Message: `${Error}`})
+        res.status(400).send({ Message: `${Error}` })
     } finally {
         await session.endSession();
     }
@@ -39,11 +39,11 @@ async function createAccountTransaction(req, session) {
 
     /* Create a New Account Entity */
     const newAccount = Account({
-        email:accountData.email,
+        email: accountData.email,
         password: accountData.hashedPassword,
         role: CUSTOMER_ROLE
     });
-    await newAccount.save({session});
+    await newAccount.save({ session });
     /* -------------------------- */
 
     /* Create a New Personal Information Entity */
@@ -53,7 +53,7 @@ async function createAccountTransaction(req, session) {
         last_name: accountData.lastName,
         phone_number: accountData.phoneNumber
     });
-    await newPersonalInfo.save({session});
+    await newPersonalInfo.save({ session });
     /* -------------------------- */
 }
 
@@ -64,14 +64,14 @@ async function createAccountTransaction(req, session) {
  * @param {object} body
  * @returns {Promise<Object} Set of Account Information
  */
-async function getAccountData(body={}) {
+async function getAccountData(body = {}) {
     let { firstName, lastName, email, phoneNumber, password, retypedPassword, hasAcceptTerm } = body;
-    
+
     /* Validation Section*/
-    if(!hasAcceptTerm)
+    if (!hasAcceptTerm)
         throw new Error("Please Accept Terms and Condition!");
-    await checkInputFormat(firstName, lastName, phoneNumber, email,password)
-    await checkPasswordRequirement(password,retypedPassword);
+    await checkInputFormat(firstName, lastName, phoneNumber, email, password)
+    await checkPasswordRequirement(password, retypedPassword);
     /* ---------------- */
 
     /* Reformat and Hash Password*/
