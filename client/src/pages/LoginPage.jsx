@@ -4,7 +4,7 @@ import PasswordField from "../components/form/PasswordField";
 import Checkbox from "../components/form/Checkbox";
 import Button from "../components/form/Button";
 import mailIcon from "../assets/icons/mail.svg";
-import "./LoginPage.css";
+import "../styles/LoginPage.css";
 
 // Visitor log in screen. UI only: nothing is sent to the server yet.
 function LoginPage() {
