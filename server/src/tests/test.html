@@ -1,0 +1,110 @@
+<!--Remove This File-->
+
+<!DOCTYPE html>
+<html lang='en'>
+    <form id="accountForm">
+        <div>
+            <label for="firstName">First name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="lastName">Last name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="phone">phone:</label>
+            <input type="text" id="phone" name="phone" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="retypedPassword">Retype-Password:</label>
+            <input type="text" id="retypedPassword" name="retypedPassword" required>
+        </div>
+
+        <br>
+
+        <div>
+            <label>
+                <input type="checkbox" name="hasAcceptTerm"/>
+                    I agree to the terms and conditions
+            </label>
+        </div>
+
+        <br>
+
+    <button type="submit">Create</button>
+    </form>
+
+    <p id="message"></p>
+</body>
+</html>
+
+<script>
+    const form = document.getElementById("accountForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+
+      const accountData = {
+        firstName: formData.get("firstName"),
+        lastName: formData.get("lastName"),
+        email: formData.get("email"),
+        phoneNumber: formData.get("phone"),
+        password: formData.get("password"),
+        retypedPassword: formData.get("retypedPassword"),
+        hasAcceptTerm: formData.get("hasAcceptTerm") === "on"
+        
+      };
+
+      try {
+        const response = await fetch(
+          "http://localhost:5002/api/create-account",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(accountData),
+          }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.Message);
+        }
+
+        message.textContent = result.Message;
+        message.style.color = "green";
+        form.reset();
+      } catch (error) {
+        message.textContent = error.message;
+        message.style.color = "red";
+      }
+    });
+  </script>
