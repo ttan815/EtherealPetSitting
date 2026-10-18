@@ -1,25 +1,25 @@
 /* Used Ai to help me build and fix the code */
 
 import { useState } from "react";
-import "../styles/CreateAccount.css";
+import "../styles/CreateAccountPage.css";
 
 // Shared with the Log In page (run download-assets.sh first)
-import iconArrowL from "./assets/icon-arrow-left.svg";
-import topoTopRight from "./assets/topo-top-right.svg";
-import topoBottomLeft from "./assets/topo-bottom-left.svg";
-import glow from "./assets/glow.svg";
-import ring from "./assets/ring.svg";
-import innerCircle from "./assets/inner-circle.svg";
-import logoScriptDog from "./assets/logo-angelena-script-dog.svg";
-import logoDogMark from "./assets/logo-dog-mark.svg";
-import iconMail from "./assets/icon-mail.svg";
-import iconLock from "./assets/icon-lock.svg";
-import iconEye from "./assets/icon-eye.svg";
+import iconArrowL from "../assets/icons/arrow-left.svg";
+import topoTopRight from "../assets/brand/topo-lines-top-right.svg";
+import topoBottomLeft from "../assets/brand/topo-lines-bottom-left.svg";
+import glow from "../assets/affect/glow.svg";
+import ring from "../assets/affect/ring.svg";
+import innerCircle from "../assets/affect/inner-circle.svg";
+import logoScriptDog from "../assets/brand/logo-script-dog.svg";
+import logoDogMark from "../assets/brand/logo-dog-mark.svg";
+import iconMail from "../assets/icons/mail.svg";
+import iconLock from "../assets/icons/lock.svg";
+import iconEye from "../assets/icons/eye.svg";
 // Specific to this page (run download-assets-create-account.sh)
-import iconUser from "./assets/icon-user.svg";
-import iconPhone from "./assets/icon-phone.svg";
-import iconInfo from "./assets/icon-info.svg";
-import checkboxTick from "./assets/checkbox-tick.svg";
+import iconUser from "../assets/icons/user.svg";
+import iconPhone from "../assets/icons/phone.svg";
+import iconInfo from "../assets/icons/info.svg";
+import checkboxTick from "../assets/icons/checkbox-tick.svg";
 
 const DEFAULT_API_URL = "http://localhost:5002/api/create-account";
 
