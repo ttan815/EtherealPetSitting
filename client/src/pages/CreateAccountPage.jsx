@@ -37,8 +37,6 @@ export default function CreateAccount({
   apiUrl = DEFAULT_API_URL,
   onSuccess,
   onLogIn,
-  onTermsClick,
-  onPrivacyClick,
 }) {
   const [form, setForm] = useState(EMPTY_FORM);
   const [showPassword, setShowPassword] = useState(false);
@@ -285,27 +283,20 @@ export default function CreateAccount({
             </div>
 
             <br/>
-            <PolicyConsent>
-              <span className="signup-checkbox">
-                <input
-                  type="checkbox"
-                  name="hasAcceptTerm"
-                  checked={form.hasAcceptTerm}
-                  onChange={setField("hasAcceptTerm")}
-                />
-                {form.hasAcceptTerm && (
-                  <span className="signup-checkbox__tick" aria-hidden="true">
-                    <img src={checkboxTick} alt="" />
-                  </span>
-                )}
-              </span>
-              <span className="signup-terms__text">
-                I agree to the{" "}
-                <a href="#terms" onClick={linkClick(onTermsClick)}>Terms of Service</a>
-                {" "}and{" "}
-                <a href="#privacy" onClick={linkClick(onPrivacyClick)}>Privacy Policy</a>
-              </span>
-            </PolicyConsent>
+            <PolicyConsent
+              checked={form.hasAcceptTerm}
+              onChange={(value) => {
+                setForm((prev) => ({
+                  ...prev,
+                  hasAcceptTerm: value,
+                }));
+
+                if (value) {
+                  setPolicyError("");
+                }
+              }}
+              error={policyError}
+            />
 
             {status && (
               <p
