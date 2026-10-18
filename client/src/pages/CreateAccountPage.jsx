@@ -1,9 +1,9 @@
 /* Used Ai to help me build and fix the code */
 
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import "../styles/CreateAccountPage.css";
 
-// Shared with the Log In page (run download-assets.sh first)
 import iconArrowL from "../assets/icons/arrow-left.svg";
 import topoTopRight from "../assets/brand/topo-lines-top-right.svg";
 import topoBottomLeft from "../assets/brand/topo-lines-bottom-left.svg";
@@ -15,7 +15,6 @@ import logoDogMark from "../assets/brand/logo-dog-mark.svg";
 import iconMail from "../assets/icons/mail.svg";
 import iconLock from "../assets/icons/lock.svg";
 import iconEye from "../assets/icons/eye.svg";
-// Specific to this page (run download-assets-create-account.sh)
 import iconUser from "../assets/icons/user.svg";
 import iconPhone from "../assets/icons/phone.svg";
 import iconInfo from "../assets/icons/info.svg";
@@ -36,7 +35,6 @@ const EMPTY_FORM = {
 export default function CreateAccount({
   apiUrl = DEFAULT_API_URL,
   onSuccess,
-  onBackToHome,
   onLogIn,
   onTermsClick,
   onPrivacyClick,
@@ -46,6 +44,7 @@ export default function CreateAccount({
   const [showRetyped, setShowRetyped] = useState(false);
   const [status, setStatus] = useState(null); // { type: "success" | "error", text }
   const [submitting, setSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const setField = (name) => (e) =>
     setForm((f) => ({
@@ -87,7 +86,7 @@ export default function CreateAccount({
         throw new Error(result.Message || "Something went wrong. Please try again.");
       }
 
-      setStatus({ type: "success", text: result.Message || "Account created." });
+      setStatus({ type: "success", text: result.Message || "Login Successful." });
       setForm(EMPTY_FORM);
       setShowPassword(false);
       setShowRetyped(false);
@@ -148,7 +147,7 @@ export default function CreateAccount({
               <span className="signup-topbar__tag">Pet Sitting &amp; Care</span>
             </div>
           </div>
-          <button type="button" className="signup-back" onClick={onBackToHome}>
+          <button type="button" className="signup-back" onClick={() => navigate("/")}>
             <img src={iconArrowL} alt="" />
             <span>Back to home</span>
           </button>
