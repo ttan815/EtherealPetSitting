@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import "../styles/CreateAccountPage.css";
+import PolicyConsent from "../components/PolicyConsent"
 
 import iconArrowL from "../assets/icons/arrow-left.svg";
 import topoTopRight from "../assets/brand/topo-lines-top-right.svg";
@@ -45,6 +46,7 @@ export default function CreateAccount({
   const [status, setStatus] = useState(null); // { type: "success" | "error", text }
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
+  const [policyError, setPolicyError] = useState("");
 
   const setField = (name) => (e) =>
     setForm((f) => ({
@@ -282,7 +284,8 @@ export default function CreateAccount({
               </div>
             </div>
 
-            <label className="signup-terms">
+            <br/>
+            <PolicyConsent>
               <span className="signup-checkbox">
                 <input
                   type="checkbox"
@@ -302,7 +305,7 @@ export default function CreateAccount({
                 {" "}and{" "}
                 <a href="#privacy" onClick={linkClick(onPrivacyClick)}>Privacy Policy</a>
               </span>
-            </label>
+            </PolicyConsent>
 
             {status && (
               <p
