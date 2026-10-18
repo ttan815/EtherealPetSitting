@@ -1,0 +1,164 @@
+/* dt28 styles for the policy checkbox and the popup */
+
+/* the whole checkbox area */
+.policy-consent {
+  color: #2f1f04; /* dark brown text */
+  font-size: 14px; /* normal small text */
+  text-align: left; /* text lines up on the left */
+}
+
+/* row with the checkbox and the text */
+.policy-consent__row {
+  display: flex; /* puts the checkbox and text side by side */
+  align-items: flex-start; /* lines them up at the top */
+  gap: 8px; /* space between the checkbox and text */
+}
+
+/* the checkbox */
+.policy-consent__row input[type='checkbox'] {
+  margin-top: 3px; /* lines the box up with the text */
+  accent-color: #705930; /* brown checkmark color */
+  width: 16px; /* box width */
+  height: 16px; /* box height */
+  cursor: pointer; /* hand cursor on hover */
+}
+
+/* the i agree text */
+.policy-consent__row label {
+  cursor: pointer; /* hand cursor on hover */
+}
+
+/* the policy names look like links but are buttons since they open a popup */
+.policy-consent__link {
+  background: none; /* no button background */
+  border: none; /* no button border */
+  padding: 0; /* no extra space */
+  font: inherit; /* same font as the text around it */
+  color: #705930; /* medium brown */
+  font-weight: 600; /* bold */
+  text-decoration: underline; /* underline like a link */
+  cursor: pointer; /* hand cursor on hover */
+}
+
+/* darker link when you hover or tab to it */
+.policy-consent__link:hover,
+.policy-consent__link:focus-visible {
+  color: #2f1f04; /* dark brown */
+}
+
+/* error message under the checkbox */
+.policy-consent__error {
+  color: #b3261e; /* red text */
+  font-size: 13px; /* small text */
+  margin: 6px 0 0 24px; /* lines it up under the text */
+}
+
+/* popup styles */
+
+/* dark see through background behind the popup */
+.policy-modal__backdrop {
+  position: fixed; /* stays in place while scrolling */
+  inset: 0; /* covers the whole screen */
+  background: rgba(47, 31, 4, 0.55); /* see through dark brown */
+  display: flex; /* lets us center the popup */
+  align-items: center; /* centers the popup up and down */
+  justify-content: center; /* centers the popup left and right */
+  padding: 16px; /* space around the popup on small screens */
+  z-index: 1000; /* sits on top of everything else */
+}
+
+/* the popup box */
+.policy-modal {
+  background: #f9efed; /* light cream */
+  color: #2f1f04; /* dark brown text */
+  width: 100%; /* fills the space on small screens */
+  max-width: 560px; /* widest the popup can get */
+  max-height: 85vh; /* never taller than most of the screen */
+  border-radius: 16px; /* rounded corners */
+  display: flex; /* stacks the header, body, and footer */
+  flex-direction: column; /* top to bottom */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25); /* shadow under the popup */
+  text-align: left; /* text lines up on the left */
+}
+
+/* top bar with the title and x button */
+.policy-modal__header {
+  display: flex; /* puts the title and x side by side */
+  justify-content: space-between; /* title on the left, x on the right */
+  align-items: center; /* lines them up in the middle */
+  padding: 20px 24px; /* space inside the bar */
+  border-bottom: 1px solid #e5d5c3; /* thin line under the bar */
+}
+
+/* popup title */
+.policy-modal__title {
+  font-family: 'Playfair Display', Georgia, serif; /* fancy serif font */
+  font-weight: 400; /* normal thickness */
+  font-size: 24px; /* title size */
+  color: #2f1f04; /* dark brown so global styles do not override it */
+  margin: 0; /* no extra space */
+}
+
+/* x button */
+.policy-modal__x {
+  background: none; /* no button background */
+  border: none; /* no button border */
+  font-size: 28px; /* big x */
+  line-height: 1; /* no extra height */
+  color: #705930; /* medium brown */
+  cursor: pointer; /* hand cursor on hover */
+}
+
+/* scrollable area with the policy text */
+.policy-modal__body {
+  padding: 16px 24px; /* space inside */
+  overflow-y: auto; /* long policies scroll inside the popup */
+}
+
+/* each section heading */
+.policy-modal__section h3 {
+  font-size: 15px; /* heading size */
+  color: #2f1f04; /* dark brown so global styles do not override it */
+  margin: 12px 0 4px; /* space above and below */
+}
+
+/* each section paragraph */
+.policy-modal__section p {
+  font-size: 14px; /* text size */
+  line-height: 1.6; /* space between lines */
+  margin: 0; /* no extra space */
+  color: #705930; /* medium brown */
+}
+
+/* bullet list inside a section */
+.policy-modal__section ul {
+  margin: 6px 0 0; /* small space above the list */
+  padding-left: 20px; /* indents the bullets */
+  color: #705930; /* medium brown */
+  font-size: 14px; /* text size */
+  line-height: 1.6; /* space between lines */
+}
+
+/* bottom bar with the close button */
+.policy-modal__footer {
+  padding: 16px 24px; /* space inside the bar */
+  border-top: 1px solid #e5d5c3; /* thin line above the bar */
+  text-align: right; /* puts the button on the right */
+}
+
+/* close button */
+.policy-modal__close {
+  background: #705930; /* brown button */
+  color: #f9efed; /* light cream text */
+  border: none; /* no border */
+  padding: 10px 24px; /* space inside the button */
+  border-radius: 999px; /* pill shape */
+  font-weight: 600; /* bold text */
+  cursor: pointer; /* hand cursor on hover */
+}
+
+/* darker button when you hover or tab to it */
+.policy-modal__close:hover,
+.policy-modal__close:focus-visible {
+  background: #2f1f04; /* dark brown */
+}
