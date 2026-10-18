@@ -42,3 +42,12 @@
   outline: 2px solid var(--color-brown);
   outline-offset: 2px;
 }
+
+.checkbox-input-error:not(:checked) {
+  border-color: var(--color-error);
+}
+
+/* Error sits under the label text: 20px box + 10px gap */
+.checkbox-message {
+  margin: 8px 0 0 30px;
+}

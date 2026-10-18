@@ -6,24 +6,18 @@
   max-width: 420px;
 }
 
-.login-page-title {
-  font-family: var(--font-heading);
-  font-size: 40px;
-  font-weight: 400;
-  color: var(--color-dark-brown);
-}
-
-.login-page-subtitle {
-  margin-top: 10px;
-  font-size: 16px;
-  color: var(--color-brown);
-}
-
 .login-page-fields {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin: 36px 0 18px;
+}
+
+/* Password field plus the login error under it (8px gap, like field errors) */
+.login-page-password {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .login-page-link {
@@ -41,20 +35,6 @@
   margin-top: 28px;
 }
 
-/* "New here?" with a line on each side */
 .login-page-divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
   margin: 28px 0 20px;
-  font-size: 14px;
-  color: var(--color-brown);
-}
-
-.login-page-divider::before,
-.login-page-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--color-ring);
 }

@@ -26,6 +26,7 @@
 }
 
 .auth-layout-logo-name {
+  margin: 0;
   font-size: 16px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -33,7 +34,7 @@
 }
 
 .auth-layout-logo-subtitle {
-  margin-top: 3px;
+  margin: 3px 0 0;
   font-size: 9px;
   letter-spacing: 0.3em;
   text-transform: uppercase;

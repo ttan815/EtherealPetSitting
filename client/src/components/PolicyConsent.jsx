@@ -12,6 +12,8 @@
 import { useState } from 'react';
 // bring in the popup
 import PolicyModal from './PolicyModal';
+// shared checkbox so it matches the other forms (and shows errors the same way)
+import Checkbox from './form/Checkbox';
 // bring in the styles
 import './PolicyConsent.css';
 
@@ -37,47 +39,35 @@ export default function PolicyConsent({ checked, onChange, error = '' }) {
   // what the checkbox looks like on the page
   return (
     <div className="policy-consent">
-      {/* row with the checkbox and the text */}
-      <div className="policy-consent__row">
-        {/* the checkbox */}
-        <input
-          id="policy-consent-checkbox"
-          type="checkbox"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-          aria-invalid={error ? 'true' : 'false'}
-          aria-describedby={error ? 'policy-consent-error' : undefined}
-        />
-        {/* text next to the checkbox */}
-        <span>
-          {/* clicking this text also ticks the checkbox */}
-          <label htmlFor="policy-consent-checkbox">I agree to the </label>
-          {/* opens the terms of service popup */}
-          <button
-            type="button"
-            className="policy-consent__link"
-            onClick={() => setOpenPolicy('terms')}
-          >
-            Terms of Service
-          </button>{' '}
-          and{' '}
-          {/* opens the privacy policy popup */}
-          <button
-            type="button"
-            className="policy-consent__link"
-            onClick={() => setOpenPolicy('privacy')}
-          >
-            Privacy Policy
-          </button>
-        </span>
-      </div>
-
-      {/* error message, only shows when there is one */}
-      {error && (
-        <p id="policy-consent-error" className="policy-consent__error" role="alert">
-          {error}
-        </p>
-      )}
+      {/* the checkbox with its text, the error shows under it when there is one */}
+      <Checkbox
+        id="policy-consent-checkbox"
+        checked={isChecked}
+        onChange={handleCheckboxChange}
+        error={error}
+        label={
+          <span>
+            I agree to the{' '}
+            {/* opens the terms of service popup */}
+            <button
+              type="button"
+              className="policy-consent__link"
+              onClick={() => setOpenPolicy('terms')}
+            >
+              Terms of Service
+            </button>{' '}
+            and{' '}
+            {/* opens the privacy policy popup */}
+            <button
+              type="button"
+              className="policy-consent__link"
+              onClick={() => setOpenPolicy('privacy')}
+            >
+              Privacy Policy
+            </button>
+          </span>
+        }
+      />
 
       {/* the popup, it only shows when a policy is picked */}
       <PolicyModal policy={openPolicy} onClose={() => setOpenPolicy(null)} />

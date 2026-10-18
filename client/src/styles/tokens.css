@@ -12,6 +12,7 @@
   --color-input-border: rgba(206, 182, 144, 0.9);
   --color-placeholder: rgba(112, 89, 48, 0.75);
   --color-checkbox-border: rgba(112, 89, 48, 0.6);
+  --color-error: #a2412a;
 
   /* Fonts (loaded in index.html) */
   --font-heading: "Playfair Display", Georgia, serif;
