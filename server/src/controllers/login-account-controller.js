@@ -20,13 +20,13 @@ async function loginAccount(req = null, res = null, isCreateAccount = false, ema
                 return res.status(500).send({ Message: "Failed to Create Session." })
             }
             req.session.userId = account._id.toString();
-            if (req.body.rememberMe) {
+            if (!isCreateAccount && req.body.rememberMe) {
                 req.session.cookie.maxAge = 1000 * 60 * 60 * 24 // Set session to a day.
             }
             else {
                 req.session.cookie.maxAge = null // Session expires on closing of browser.
             }
-            res.session.save((err) => {
+            req.session.save((err) => {
                 if (err) {
                     return res.status(401).send({ Message: "Failed to Create Session." })
                 }
@@ -43,11 +43,11 @@ async function loginAccount(req = null, res = null, isCreateAccount = false, ema
 }
 
 async function validateCredentials(email, password) {
-    if (email == null || password == null || email.length == 0 || password.length == 0) {
-        return false
-    }
     // Ensures inputs are parameters and not Keywords used for MongoDB Querying
     if (typeof email !== "string" || typeof password !== "string") {
+        return false
+    }
+    if (email == null || password == null || email.length == 0 || password.length == 0) {
         return false
     }
     const account = await Account.findOne({
