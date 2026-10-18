@@ -1,31 +1,13 @@
 /* dt28 styles for the policy checkbox and the popup */
 
-/* the whole checkbox area */
+/* the whole checkbox area, the box and error styles come from the shared Checkbox */
 .policy-consent {
-  color: #2f1f04; /* dark brown text */
-  font-size: 14px; /* normal small text */
   text-align: left; /* text lines up on the left */
 }
 
-/* row with the checkbox and the text */
-.policy-consent__row {
-  display: flex; /* puts the checkbox and text side by side */
-  align-items: flex-start; /* lines them up at the top */
-  gap: 8px; /* space between the checkbox and text */
-}
-
-/* the checkbox */
-.policy-consent__row input[type='checkbox'] {
-  margin-top: 3px; /* lines the box up with the text */
-  accent-color: #705930; /* brown checkmark color */
-  width: 16px; /* box width */
-  height: 16px; /* box height */
-  cursor: pointer; /* hand cursor on hover */
-}
-
-/* the i agree text */
-.policy-consent__row label {
-  cursor: pointer; /* hand cursor on hover */
+/* figma uses slightly smaller text here than the login checkbox */
+.policy-consent .checkbox {
+  font-size: 14px;
 }
 
 /* the policy names look like links but are buttons since they open a popup */
@@ -34,23 +16,15 @@
   border: none; /* no button border */
   padding: 0; /* no extra space */
   font: inherit; /* same font as the text around it */
-  color: #705930; /* medium brown */
-  font-weight: 600; /* bold */
-  text-decoration: underline; /* underline like a link */
+  color: var(--color-brown); /* medium brown */
+  font-weight: 500; /* medium, like the figma links */
   cursor: pointer; /* hand cursor on hover */
 }
 
-/* darker link when you hover or tab to it */
+/* underline when you hover or tab to it */
 .policy-consent__link:hover,
 .policy-consent__link:focus-visible {
-  color: #2f1f04; /* dark brown */
-}
-
-/* error message under the checkbox */
-.policy-consent__error {
-  color: #b3261e; /* red text */
-  font-size: 13px; /* small text */
-  margin: 6px 0 0 24px; /* lines it up under the text */
+  text-decoration: underline;
 }
 
 /* popup styles */

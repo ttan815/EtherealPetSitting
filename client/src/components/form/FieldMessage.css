@@ -1,0 +1,21 @@
+/* Sizes and colors from the Figma "Error Message" and "Help" layers */
+.field-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.field-message img {
+  flex-shrink: 0;
+}
+
+.field-message-error {
+  font-weight: 500;
+  color: var(--color-error);
+}
+
+.field-message-hint {
+  color: var(--color-brown);
+}

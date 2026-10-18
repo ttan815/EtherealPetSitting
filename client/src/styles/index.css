@@ -12,6 +12,13 @@ body,
   min-height: 100%;
 }
 
+/* Brand font and text color for the whole site */
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark-brown);
+  -webkit-font-smoothing: antialiased;
+}
+
 /* Form controls don't inherit fonts by default */
 button,
 input {

@@ -1,5 +1,5 @@
 import BrandPanel from "./BrandPanel";
-import { BUSINESS_NAME, BUSINESS_SUBTITLE, SUPPORT_PHONE } from "../../constants/siteInfo";
+import { BUSINESS_NAME, BUSINESS_SUBTITLE, SUPPORT_PHONE } from "../../constants/site-info";
 import logoDogMark from "../../assets/brand/logo-dog-mark.svg";
 import arrowLeftIcon from "../../assets/icons/arrow-left.svg";
 import "../../styles/AuthLayout.css";
@@ -7,10 +7,11 @@ import "../../styles/AuthLayout.css";
 // Shared split layout for Log In, Create Account and Forgot Password.
 // Left: BrandPanel. Right: logo bar, the page's own content, help footer.
 // children: the page content shown in the middle of the right half
-function AuthLayout({ children }) {
+// tagline, taglineEmphasis: passed to BrandPanel (defaults are the login text)
+function AuthLayout({ children, tagline, taglineEmphasis }) {
   return (
     <div className="auth-layout">
-      <BrandPanel />
+      <BrandPanel tagline={tagline} taglineEmphasis={taglineEmphasis} />
 
       <div className="auth-layout-panel">
         <header className="auth-layout-top-bar">
