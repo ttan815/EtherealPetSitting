@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import Account from "../models/account-model";
+import Account from "../models/account-model.js";
 import express from "express";
-import { comparePassword } from "../utils/password-hash";
+import { comparePassword } from "../utils/password-hash.js";
 
 async function loginAccount(req = null, res = null, isCreateAccount = false, email = null, password = null) {
     try {

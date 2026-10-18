@@ -2,6 +2,7 @@ import "../styles/HomePage.css"
 import NavigationBar from "../components/NavigationBar";
 import ServiceSection from "../components/ServiceSection"
 import AboutSection from "../components/AboutSection"
+import Footer from "../components/Footer"
 
 const HomePage = () => {
     return (
@@ -9,6 +10,7 @@ const HomePage = () => {
             <NavigationBar/>
             <ServiceSection/>
             <AboutSection/>
+            <Footer/>
         </main>
     );
 }

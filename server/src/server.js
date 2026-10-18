@@ -32,7 +32,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI
+    mongoUrl: process.env.MONGODB_URI
   }),
   cookie: {
     httpOnly: true,
