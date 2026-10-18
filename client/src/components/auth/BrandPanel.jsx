@@ -5,7 +5,7 @@ import medallionGlow from "../../assets/brand/medallion-glow.svg";
 import medallionRing from "../../assets/brand/medallion-ring.svg";
 import medallionInnerCircle from "../../assets/brand/medallion-inner-circle.svg";
 import logoScriptDog from "../../assets/brand/logo-script-dog.svg";
-import "./BrandPanel.css";
+import "../../styles/BrandPanel.css";
 
 // Brown left half of every auth screen: logo medallion and tagline.
 function BrandPanel() {

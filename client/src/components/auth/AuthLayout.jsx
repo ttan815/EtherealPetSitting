@@ -2,7 +2,7 @@ import BrandPanel from "./BrandPanel";
 import { BUSINESS_NAME, BUSINESS_SUBTITLE, SUPPORT_PHONE } from "../../constants/siteInfo";
 import logoDogMark from "../../assets/brand/logo-dog-mark.svg";
 import arrowLeftIcon from "../../assets/icons/arrow-left.svg";
-import "./AuthLayout.css";
+import "../../styles/AuthLayout.css";
 
 // Shared split layout for Log In, Create Account and Forgot Password.
 // Left: BrandPanel. Right: logo bar, the page's own content, help footer.

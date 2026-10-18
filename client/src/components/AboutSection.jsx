@@ -3,7 +3,7 @@
 // shows the owner photo, a description, a quote from the owner, and a booking button
 
 // bring in the styles for this section
-import './AboutSection.css';
+import '../styles/AboutSection.css';
 
 // the whole about section
 // the logged in flag is false by default so visitors get sent to login

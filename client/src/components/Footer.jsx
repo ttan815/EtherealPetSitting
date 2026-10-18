@@ -1,5 +1,5 @@
 import { QRCodeSVG } from "qrcode.react";
-import "./Footer.css";
+import "../styles/Footer.css";
 
 const QUICK_LINKS = [
   { label: "Home", href: "#home" },

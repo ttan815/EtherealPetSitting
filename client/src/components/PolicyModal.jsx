@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 // bring in the policy text
 import { POLICIES } from './policyContent';
 // bring in the styles shared with the checkbox
-import './PolicyConsent.css';
+import '../styles/PolicyConsent.css';
 
 // policy is either terms, privacy, or null when nothing is open
 // on close is the function that closes the popup

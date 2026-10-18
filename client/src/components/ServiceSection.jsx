@@ -2,7 +2,7 @@
 // shows a title, a short overview, and one card for each service
 
 // bring in the styles for this section
-import './ServiceSection.css';
+import '../styles/ServiceSection.css';
 
 // list of services ethereal pet sitting provides
 // image is null for now so a placeholder box shows until the admin adds pictures

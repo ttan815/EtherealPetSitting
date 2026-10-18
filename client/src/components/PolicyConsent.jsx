@@ -13,7 +13,7 @@ import { useState } from 'react';
 // bring in the popup
 import PolicyModal from './PolicyModal';
 // bring in the styles
-import './PolicyConsent.css';
+import '../styles/PolicyConsent.css';
 
 // checked and on change come from the create account page
 // error is an optional message shown under the checkbox

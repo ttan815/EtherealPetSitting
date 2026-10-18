@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProfileMenu from "./ProfileMenu";
-import "./NavigationBar.css";
+import "../styles/NavigationBar.css";
 
 // Section links every role sees. Each href matches a section id on the home page
 // (<section id="home">, <section id="services">, ...).
