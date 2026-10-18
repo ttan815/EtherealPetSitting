@@ -16,7 +16,7 @@ import { hasPhoneFormat, hasOnlyLetter, hasEmailFormat } from "./reg-validator.j
  * @throws {Error} If Violate Any Format
  */
 function checkInputFormat(firstName, lastName, phoneNumber, email, password) {
-    if( typeof firstName !== "String" ||
+    if( typeof firstName !== "string" ||
         typeof lastName !== "string" ||
         typeof phoneNumber !== "string" ||
         typeof email !== "string" ||
