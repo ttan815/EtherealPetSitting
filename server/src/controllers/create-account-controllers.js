@@ -20,7 +20,6 @@ async function createAccount(req, res) {
     const session = await mongoose.startSession()
     try {
         await session.withTransaction(createAccountTransaction.bind(null, req));
-        res.status(201).send({ Message: "Account has Been Created!" });
     } catch (Error) {
         res.status(400).send({ Message: `${Error}` })
     } finally {
