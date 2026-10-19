@@ -1,153 +1,74 @@
-import "../styles/HomeBannerSection.css"
+import BrandMedallion from "./BrandMedallion";
+import Button from "./form/Button";
+import topoLeft from "../assets/home/hero-topo-left.svg";
+import topoRight from "../assets/home/hero-topo-right.svg";
+import pawIcon from "../assets/icons/paw.svg";
+import cameraIcon from "../assets/icons/camera.svg";
+import cameraLightIcon from "../assets/icons/camera-light.svg";
+import "../styles/HomeBannerSection.css";
 
-export default function Home() {
-    return (
-        <div className="page">
-            {/* HERO */}
-            <main id="home" className="hero">
-                {/* Decorative lines */}
-                <svg
-                    className="background-lines lines-left"
-                    viewBox="0 0 300 300"
-                    aria-hidden="true"
-                >
-                    <ellipse
-                        cx="130"
-                        cy="180"
-                        rx="150"
-                        ry="105"
-                    />
-                    <ellipse
-                        cx="120"
-                        cy="180"
-                        rx="115"
-                        ry="80"
-                    />
-                    <ellipse
-                        cx="110"
-                        cy="180"
-                        rx="80"
-                        ry="55"
-                    />
-                </svg>
-                <svg
-                    className="background-lines lines-right"
-                    viewBox="0 0 380 380"
-                    aria-hidden="true"
-                >
-                    <circle
-                        cx="190"
-                        cy="190"
-                        r="125"
-                    />
-                    <circle
-                        cx="190"
-                        cy="190"
-                        r="165"
-                    />
-                    <circle
-                        cx="190"
-                        cy="190"
-                        r="205"
-                    />
-                </svg>
-                {/* Hero content */}
-                <section className="hero-content">
-                    <p className="eyebrow">
-                        WELCOME TO ANGELENA'S
-                    </p>
-                    <h1 className="hero-title">
-                        Peace of mind
-                        <span>
-                            for your pets.
-                        </span>
-                    </h1>
-                    <p className="hero-description">
-                        Professional personalized care tailored to your
-                        furry friend's unique needs. From drop-in visits
-                        to overnight stays, we treat your pets like family.
-                    </p>
-                    <div className="hero-buttons">
-                        <a
-                            href="#"
-                            className="hero-button primary-button"
-                        >
-                            Book an Appointment
-                        </a>
-                        <a
-                            href="#"
-                            className="hero-button secondary-button"
-                        >
-                            Create Account
-                        </a>
-                    </div>
-                    {/* Rating */}
-                    <div className="rating">
-                        <div className="customer-icons">
-                            <div className="customer">
-                                ♡
-                            </div>
-                            <div className="customer">
-                                ♡
-                            </div>
-                            <div className="customer">
-                                ♡
-                            </div>
-                        </div>
-                        <div className="rating-text">
-                            <span className="rating-title">
-                                Trusted by local families
-                            </span>
-                            <div>
-                                <span className="rating-stars">
-                                    ★★★★★
-                                </span>
-                                <span className="rating-count">
-                                    5.0 · 32 ratings
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                {/* Hero visual */}
-                <section className="hero-visual">
-                    <div className="circle-glow"></div>
-                    <div className="orbit orbit-one"></div>
-                    <div className="orbit orbit-two"></div>
-                    <div className="outer-circle"></div>
-                    <div className="inner-circle">
-                        <div className="pet-logo">
-                            <div className="pet-name">
-                                Angelena's
-                            </div>
-                            <div className="pet-drawing">
-                                <div className="dog-ear"></div>
-                                <div className="dog-head"></div>
-                                <div className="dog-body"></div>
-                                <div className="dog-leg-one"></div>
-                                <div className="dog-leg-two"></div>
-                                <div className="dog-tail"></div>
-                            </div>
-                            <div className="pet-brand">
-                                ETHEREAL
-                            </div>
-                            <div className="pet-subtitle">
-                                PET SITTING & CARE
-                            </div>
-                        </div>
-                    </div>
-                    {/* Pet photo 1 */}
-                    <div className="photo-circle photo-top">
-                        <span>◎</span>
-                        PET PHOTO
-                    </div>
-                    {/* Pet photo 2 */}
-                    <div className="photo-circle photo-bottom">
-                        <span>◎</span>
-                        PET PHOTO
-                    </div>
-                </section>
-            </main>
+// Background colors of the three pet avatars in the "Trusted by" row
+const AVATAR_TONES = ["ring", "blush", "tan"];
+
+// Home page hero (Figma "Hero"): headline, call-to-action buttons and the
+// brand medallion with two pet photo placeholders.
+export default function HomeBannerSection() {
+  return (
+    <section id="home" className="hero" aria-labelledby="hero-title">
+      <img className="hero-topo hero-topo-left" src={topoLeft} alt="" />
+      <img className="hero-topo hero-topo-right" src={topoRight} alt="" />
+
+      <div className="hero-inner">
+        <div className="hero-copy">
+          <p className="hero-eyebrow">Welcome to Angelena&apos;s</p>
+          <h1 id="hero-title" className="hero-title">
+            Peace of mind
+            <em>for your pets.</em>
+          </h1>
+          <p className="hero-description">
+            Professional, personalized care tailored to your furry friend&apos;s unique needs.
+            From drop-in visits to overnight stays, we treat your pets like family.
+          </p>
+
+          <div className="hero-buttons">
+            <Button variant="tan" href="#" className="hero-button">
+              Book an Appointment
+            </Button>
+            <Button variant="outline-light" href="#" className="hero-button">
+              Create Account
+            </Button>
+          </div>
+          <p className="hero-note">A small deposit secures your booking.</p>
+
+          <div className="hero-trust">
+            <div className="hero-avatars" aria-hidden="true">
+              {AVATAR_TONES.map((tone) => (
+                <span key={tone} className={`hero-avatar hero-avatar-${tone}`}>
+                  <img src={pawIcon} alt="" />
+                </span>
+              ))}
+            </div>
+            <div>
+              <p className="hero-trust-title">Trusted by local families</p>
+              <p className="hero-trust-rating">
+                5.0 <span className="hero-trust-stars" aria-label="5 out of 5 stars">★★★★★</span> rating
+              </p>
+            </div>
+          </div>
         </div>
-    );
+
+        {/* Pet photos are placeholders until real photos are added */}
+        <BrandMedallion variant="hero">
+          <div className="hero-photo hero-photo-small" aria-hidden="true">
+            <img src={cameraLightIcon} alt="" />
+            Pet photo
+          </div>
+          <div className="hero-photo hero-photo-large" aria-hidden="true">
+            <img src={cameraIcon} alt="" />
+            Pet photo
+          </div>
+        </BrandMedallion>
+      </div>
+    </section>
+  );
 }
