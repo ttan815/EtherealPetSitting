@@ -1,4 +1,4 @@
-import React from "react";
+import "../styles/HomeBannerSection.css"
 
 export default function Home() {
     return (
