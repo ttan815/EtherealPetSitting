@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import chevronDownIcon from "../assets/icons/chevron-down.svg";
+import dashboardIcon from "../assets/icons/dashboard.svg";
+import logOutIcon from "../assets/icons/log-out.svg";
 
 // Turns "Example Name" into "EN" (falls back to "?")
 function getInitials(name = "") {
@@ -58,20 +61,13 @@ function ProfileMenu({ role, user, onLogout }) {
             getInitials(user?.firstName + " " + user?.lastName)
           )}
         </span>
-        <svg className="profile-chevron" viewBox="0 0 12 8" aria-hidden="true">
-          <path d="M1 1.5 6 6.5 11 1.5" />
-        </svg>
+        <img className="profile-chevron" src={chevronDownIcon} alt="" />
       </button>
 
       {isOpen && (
         <div className="profile-dropdown" role="menu">
           <a href={dashboardHref} className="profile-item" role="menuitem">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
-              <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
-              <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
-              <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
-            </svg>
+            <img src={dashboardIcon} alt="" />
             {dashboardLabel}
           </a>
           <div className="profile-divider" />
@@ -81,11 +77,7 @@ function ProfileMenu({ role, user, onLogout }) {
             role="menuitem"
             onClick={handleLogout}
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M14 5h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-4" />
-              <path d="M11 8l-4 4 4 4" />
-              <path d="M7 12h9" />
-            </svg>
+            <img src={logOutIcon} alt="" />
             Log out
           </button>
         </div>
