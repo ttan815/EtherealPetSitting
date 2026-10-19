@@ -348,9 +348,12 @@ button {
     left: 20%;
     top: 11%;
 }
+/* Figma: the photo's center sits 210px right of and 170px below the
+   medallion's center (left 48%, top 50%), overlapping the ring's edge.
+   56.25px = half the photo's width. */
 .photo-bottom {
-    right: 8%;
-    bottom: 11%;
+    right: calc(52% - 210px - 56.25px);
+    bottom: calc(50% - 170px - 56.25px);
 }
 /* ORBITS */
 .orbit {
