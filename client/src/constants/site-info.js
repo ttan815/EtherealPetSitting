@@ -2,3 +2,4 @@
 export const BUSINESS_NAME = "Ethereal";
 export const BUSINESS_SUBTITLE = "Pet Sitting & Care";
 export const SUPPORT_PHONE = "(510) 461-6392";
+export const SUPPORT_EMAIL = "etherealpetsitting@gmail.com";
