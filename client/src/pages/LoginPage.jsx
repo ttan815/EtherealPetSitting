@@ -4,12 +4,16 @@ import PasswordField from "../components/form/PasswordField";
 import Checkbox from "../components/form/Checkbox";
 import Button from "../components/form/Button";
 import mailIcon from "../assets/icons/mail.svg";
+import { useNavigate } from "react-router";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import "../styles/LoginPage.css";
 
 // Visitor log in screen. UI only: nothing is sent to the server yet.
 function LoginPage() {
   // Stop the browser from reloading the page until login is wired up
+  const navigate = useNavigate()
+  const { refreshSession } = useAuth()
   async function handleSubmit(event) {
     event.preventDefault();
     try {
@@ -24,9 +28,14 @@ function LoginPage() {
             email, password, rememberMe
           }),
         })
+
       if (!response.ok) {
         console.log(response.status)
         return;
+      }
+      const valid = await refreshSession()
+      if (valid) {
+        navigate("/")
       }
     }
     catch (error) {

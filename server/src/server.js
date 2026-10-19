@@ -17,7 +17,7 @@ connectDB();
 // Remove this Later, For Testing
 app.use(
   cors({
-    origin: "http://127.0.0.1:5500",
+    origin: "http://localhost:5173",
     credentials: true, // Tells the browser to include cookies when making a request.
   })
 );
