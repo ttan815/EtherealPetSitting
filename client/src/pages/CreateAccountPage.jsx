@@ -13,7 +13,6 @@ import mailIcon from "../assets/icons/mail.svg";
 import phoneIcon from "../assets/icons/phone.svg";
 import { API_BASE_URL, NETWORK_ERROR_MESSAGE, GENERIC_ERROR_MESSAGE } from "../constants/api";
 import "../styles/CreateAccountPage.css";
-import PolicyConsent from "../components/PolicyConsent"
 
 const DEFAULT_API_URL = `${API_BASE_URL}/create-account`;
 

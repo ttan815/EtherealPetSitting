@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import "../../styles/TextField.css";
-=======
 import FieldMessage from "./FieldMessage";
-import "./TextField.css";
->>>>>>> create-account/error-ui
 
 // Labeled input with a leading icon, matching the Figma "Field" component.
 // id, label: connect the <label> to the input (also used for screen readers)

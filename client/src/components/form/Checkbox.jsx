@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import "../../styles/Checkbox.css";
-=======
 import FieldMessage from "./FieldMessage";
-import "./Checkbox.css";
->>>>>>> create-account/error-ui
 
 // Native checkbox restyled to match Figma, with its label beside it.
 // label: text or elements (e.g. links) shown next to the box

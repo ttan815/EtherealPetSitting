@@ -1,4 +1,4 @@
-import "./AuthDivider.css";
+import "../../styles/AuthDivider.css";
 
 // Short text with a line on each side, e.g. "New here?" between two buttons.
 // className: lets the page add its own spacing

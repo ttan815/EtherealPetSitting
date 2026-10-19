@@ -24,3 +24,9 @@ button,
 input {
   font: inherit;
 }
+
+:root {
+  --color-input-border: #d6cec2;
+  --color-cream: #fffaf2;
+  --radius-input: 8px;
+}

@@ -1,4 +1,4 @@
-import "./AuthHeading.css";
+import "../../styles/AuthHeading.css";
 
 // Big serif title with a short line under it, used at the top of auth forms.
 function AuthHeading({ title, subtitle }) {
