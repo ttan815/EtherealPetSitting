@@ -11,7 +11,7 @@ function ProfileMenu({ role, user, onLogout }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
-  const isAdmin = role === "admin";
+  const isAdmin = role === "admin" || role === "super_admin";
   const dashboardLabel = isAdmin ? "Admin Dashboard" : "My Dashboard";
   const dashboardHref = isAdmin ? "/admin-dashboard" : "/customer-dashboard";
 
@@ -55,7 +55,7 @@ function ProfileMenu({ role, user, onLogout }) {
           {user?.photoUrl ? (
             <img src={user.photoUrl} alt="" />
           ) : (
-            getInitials(user?.name)
+            getInitials(user?.firstName + " " + user?.lastName)
           )}
         </span>
         <svg className="profile-chevron" viewBox="0 0 12 8" aria-hidden="true">

@@ -6,10 +6,19 @@ import Footer from "../components/Footer"
 import ReviewsSection from "../components/ReviewSection";
 import HomeBannerSection from "../components/HomeBannerSection"
 
+import { useAuth } from "../context/AuthContext";
 const HomePage = () => {
+    const { user, loading } = useAuth()
+    if (loading) {
+        return null;
+    }
+    let role = user?.role
+    if (role == null) {
+        role = "visitor"
+    }
     return (
         <main className="home-page">
-            <NavigationBar/>
+            <NavigationBar role={role} user={user} />
             <HomeBannerSection/>
             <ServiceSection/>
             <AboutSection/>

@@ -7,13 +7,17 @@ import Checkbox from "../components/form/Checkbox";
 import Button from "../components/form/Button";
 import FieldMessage from "../components/form/FieldMessage";
 import mailIcon from "../assets/icons/mail.svg";
+import { useNavigate } from "react-router";
 import { useState } from "react";
-import { API_BASE_URL, NETWORK_ERROR_MESSAGE, GENERIC_ERROR_MESSAGE } from "../constants/api";
+import { useAuth } from "../context/AuthContext";
 import "../styles/LoginPage.css";
 
 // Visitor log in screen. Sends the email and password to the server and shows
 // an error under the password field if login fails.
 function LoginPage() {
+  // Stop the browser from reloading the page until login is wired up
+  const navigate = useNavigate()
+  const { refreshSession } = useAuth()
   async function handleSubmit(event) {
     event.preventDefault();
     setLoginError("");
@@ -29,6 +33,7 @@ function LoginPage() {
             email, password, rememberMe
           }),
         })
+
       if (!response.ok) {
         // 401 = wrong email or password. We don't say which one, so the
         // message can't reveal whether an email has an account.
@@ -36,6 +41,10 @@ function LoginPage() {
           ? "Invalid email or password."
           : GENERIC_ERROR_MESSAGE);
         return;
+      }
+      const valid = await refreshSession()
+      if (valid) {
+        navigate("/")
       }
     }
     catch {

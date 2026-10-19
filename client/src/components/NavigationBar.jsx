@@ -19,7 +19,7 @@ function NavigationBar({ role = "visitor", user, onLogout }) {
 
   const isVisitor = role === "visitor";
   const isCustomer = role === "customer";
-  const isAdmin = role === "admin";
+  const isAdmin = role === "admin" || role === "super_admin";
 
   // Visitors are sent to log in before they can book.
   const bookAppointmentHref = isVisitor ? "/login" : "/book-appointment";
