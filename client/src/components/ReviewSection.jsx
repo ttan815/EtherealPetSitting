@@ -1,38 +1,72 @@
+import SectionHeading from "./SectionHeading";
+import Button from "./form/Button";
+import topo1 from "../assets/home/reviews-topo-1.svg";
+import topo2 from "../assets/home/reviews-topo-2.svg";
+import topo3 from "../assets/home/reviews-topo-3.svg";
 import "../styles/ReviewSection.css";
 
+// Placeholder reviews copied from Figma, until real reviews come from the server
+const PLACEHOLDER_REVIEWS = [
+  {
+    id: 1,
+    text: "Angelena took such good care of our pup while we were away. We got updates after every visit and came home to a happy, relaxed dog.",
+    service: "Overnight Stays",
+  },
+  {
+    id: 2,
+    text: "Reliable, kind, and so organized. She remembered every detail of our cat's medication schedule and made us feel completely at ease.",
+    service: "Medication",
+  },
+  {
+    id: 3,
+    text: "Our dog lights up when she arrives. Booking is easy, and we never have to worry about whether our pets are in good hands.",
+    service: "Dog Walking",
+  },
+];
+
+// Home page reviews (Figma "Reviews"): rating summary, review cards, link to all reviews.
 export default function ReviewsSection() {
   return (
-    <section
-      className="reviews-section"
-      aria-labelledby="reviews-heading"
-    >
-      <div className="reviews-decoration" aria-hidden="true">
-        <svg viewBox="0 0 300 300" preserveAspectRatio="none">
-          <path d="M-55 5 C35 -8 93 36 112 84 C136 144 65 177 -55 226" />
-          <path d="M-30 -28 C91 -22 160 39 180 91 C211 170 114 215 -30 278" />
-          <path d="M38 -60 C160 -35 229 30 251 91 C281 174 188 237 38 310" />
-        </svg>
+    <section id="reviews" className="reviews-section" aria-labelledby="reviews-heading">
+      <div className="reviews-topo" aria-hidden="true">
+        <img className="reviews-topo-line reviews-topo-line-1" src={topo1} alt="" />
+        <img className="reviews-topo-line reviews-topo-line-2" src={topo2} alt="" />
+        <img className="reviews-topo-line reviews-topo-line-3" src={topo3} alt="" />
       </div>
 
-      <div className="reviews-content">
-        <p className="reviews-eyebrow">
-          REVIEWS
-        </p>
+      <div className="reviews-inner">
+        <SectionHeading id="reviews-heading" eyebrow="Reviews" title="What Pet Parents Say">
+          <div className="reviews-summary">
+            <p className="reviews-score">5.0</p>
+            <div>
+              <p className="reviews-stars" aria-label="5 out of 5 stars">★★★★★</p>
+              <p className="reviews-summary-note">Average rating from completed visits</p>
+            </div>
+          </div>
+        </SectionHeading>
 
-        <h1 id="reviews-heading">
-          What Pet Parents Say
-        </h1>
+        <ul className="reviews-cards">
+          {PLACEHOLDER_REVIEWS.map((review) => (
+            <li key={review.id} className="reviews-card">
+              <p className="reviews-card-stars" aria-label="5 out of 5 stars">★★★★★</p>
+              <p className="reviews-card-text">{review.text}</p>
+              <div className="reviews-card-reviewer">
+                <span className="reviews-card-avatar" aria-hidden="true">CN</span>
+                <div>
+                  <p className="reviews-card-name">Customer Name</p>
+                  <p className="reviews-card-meta">{review.service} · Verified visit</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
 
-        <button
-          className="reviews-button"
-          type="button"
-        >
-          See All Reviews
-        </button>
-
-        <p className="reviews-footnote">
-          Reviews can be left after a completed visit.
-        </p>
+        <div className="reviews-footer">
+          <Button variant="outline" type="button">
+            See All Reviews
+          </Button>
+          <p className="reviews-footnote">Reviews can be left after a completed visit.</p>
+        </div>
       </div>
     </section>
   );
