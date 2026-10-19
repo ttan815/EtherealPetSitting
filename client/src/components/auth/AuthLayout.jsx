@@ -1,6 +1,6 @@
 import BrandPanel from "./BrandPanel";
-import { BUSINESS_NAME, BUSINESS_SUBTITLE, SUPPORT_PHONE } from "../../constants/site-info";
-import logoDogMark from "../../assets/brand/logo-dog-mark.svg";
+import BrandLogo from "../BrandLogo";
+import { SUPPORT_PHONE } from "../../constants/site-info";
 import arrowLeftIcon from "../../assets/icons/arrow-left.svg";
 import "../../styles/AuthLayout.css";
 
@@ -15,13 +15,7 @@ function AuthLayout({ children, tagline, taglineEmphasis }) {
 
       <div className="auth-layout-panel">
         <header className="auth-layout-top-bar">
-          <div className="auth-layout-logo">
-            <img src={logoDogMark} alt="" />
-            <div>
-              <p className="auth-layout-logo-name">{BUSINESS_NAME}</p>
-              <p className="auth-layout-logo-subtitle">{BUSINESS_SUBTITLE}</p>
-            </div>
-          </div>
+          <BrandLogo />
 
           <a href="/" className="auth-layout-back-link">
             <img src={arrowLeftIcon} alt="" />

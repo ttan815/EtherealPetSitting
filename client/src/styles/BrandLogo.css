@@ -1,0 +1,53 @@
+/* Sizes from the Figma auth top bar (medium) and home navigation bar (large) */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo-mark {
+  display: block;
+  width: auto;
+}
+
+.brand-logo-name,
+.brand-logo-subtitle {
+  margin: 0;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brand-logo-name {
+  color: var(--color-dark-brown);
+}
+
+.brand-logo-subtitle {
+  font-size: 9px;
+  color: var(--color-brown);
+}
+
+/* ---------- Sizes ---------- */
+.brand-logo-medium .brand-logo-mark {
+  height: 40px;
+}
+
+.brand-logo-medium .brand-logo-name {
+  font-size: 16px;
+}
+
+.brand-logo-medium .brand-logo-subtitle {
+  margin-top: 3px;
+}
+
+.brand-logo-large .brand-logo-mark {
+  height: 44px;
+}
+
+.brand-logo-large .brand-logo-name {
+  font-size: 17px;
+}
+
+.brand-logo-large .brand-logo-subtitle {
+  margin-top: 4px;
+}
