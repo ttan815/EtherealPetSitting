@@ -1,125 +1,172 @@
-/* dt6 about section styles using the tan and brown colors from the figma prototype */
+/* dt6 about section styles, sizes and colors from the figma "about" frame */
 
 /* the whole section */
 .about-section {
-  background: #ceb690; /* tan background */
-  color: #2f1f04; /* dark brown text */
-  padding: 80px 20px; /* space above, below, and on the sides */
-  text-align: left; /* text lines up on the left */
+  position: relative; /* lets the background shapes sit behind the content */
+  overflow: hidden; /* keeps the shapes inside the section */
+  background: var(--color-ring); /* tan background */
+  color: var(--color-dark-brown); /* dark brown text */
+  padding: 112px; /* space on every side */
 }
 
-/* keeps the content centered and splits it into two columns */
+/* soft background shapes from the prototype */
+.about-section__shapes {
+  position: absolute; /* fills the section behind the content */
+  inset: 0;
+  pointer-events: none; /* clicks go through to the content */
+}
+
+/* one background shape; heights follow the section like the figma constraints */
+.about-section__shape {
+  position: absolute;
+}
+
+.about-section__shape--1 {
+  top: 105px;
+  left: 0;
+  width: 360px;
+  height: calc(100% - 85px);
+}
+
+.about-section__shape--2 {
+  top: 85px;
+  left: -10px;
+  width: 395px;
+  height: calc(100% - 65px);
+}
+
+.about-section__shape--3 {
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: calc(100% - 138px);
+}
+
+.about-section__shape--4 {
+  top: -10px;
+  right: -10px;
+  width: 395px;
+  height: calc(100% - 103px);
+}
+
+/* keeps the content centered and puts the photo next to the text */
 .about-section__inner {
-  max-width: 1100px; /* widest the content can get */
-  margin: 0 auto; /* centers the content on the page */
-  display: grid; /* lays out the photo and text side by side */
-  grid-template-columns: 1fr 1fr; /* two equal columns */
-  gap: 56px; /* space between the photo and the text */
+  position: relative; /* sits above the background shapes */
+  display: flex; /* lays out the photo and text side by side */
+  flex-wrap: wrap; /* stacks them on small screens */
   align-items: center; /* lines up the columns in the middle */
+  justify-content: center; /* centers both columns */
+  gap: 56px 88px; /* space between the photo and the text */
+  max-width: 1216px; /* widest the content can get */
+  margin: 0 auto; /* centers the content on the page */
+}
+
+/* holds the arch outline and the photo */
+.about-section__photo-wrap {
+  position: relative; /* lets the arch sit behind the photo */
+  flex-shrink: 0; /* keeps the photo from getting squished */
+  width: 470px;
+  height: 540px;
+}
+
+/* shared arch shape for the outline and the photo */
+.about-section__arch,
+.about-section__photo {
+  position: absolute;
+  width: 440px;
+  height: 520px;
+  border-radius: 220px 220px 24px 24px; /* arch shape from the prototype */
+}
+
+/* thin outline, shifted up and right of the photo */
+.about-section__arch {
+  top: 0;
+  left: 30px;
+  border: 1.2px solid rgba(47, 31, 4, 0.45);
 }
 
 /* the owner photo */
 .about-section__photo {
-  width: 100%; /* fills its column */
-  max-width: 400px; /* widest the photo can get */
-  height: 460px; /* photo height */
+  top: 20px;
+  left: 0;
   object-fit: cover; /* crops the photo to fit without stretching */
-  border-radius: 200px 200px 24px 24px; /* arch shape from the prototype */
-  display: block; /* lets us center it */
-  margin: 0 auto; /* centers the photo in its column */
 }
 
 /* placeholder box shown when there is no photo yet */
 .about-section__photo--placeholder {
-  display: flex; /* lets us center the text */
-  align-items: center; /* centers the text up and down */
-  justify-content: center; /* centers the text left and right */
-  background: #e5d5c3; /* light tan box */
-  color: #705930; /* medium brown text */
-  font-size: 12px; /* small text */
-  letter-spacing: 2px; /* spreads the letters apart */
+  display: flex; /* stacks the camera and caption */
+  flex-direction: column;
+  align-items: center; /* centers them left and right */
+  justify-content: center; /* centers them up and down */
+  gap: 12px; /* space between the camera and caption */
+  background: rgba(249, 239, 237, 0.85); /* see through cream box */
+  color: var(--color-muted); /* soft brown caption */
+  font-size: 13px; /* small text */
+  letter-spacing: 0.2em; /* spreads the letters apart */
   text-transform: uppercase; /* capital letters */
 }
 
-/* small label above the title */
-.about-section__eyebrow {
-  font-size: 12px; /* small text */
-  letter-spacing: 3px; /* spreads the letters apart */
-  text-transform: uppercase; /* capital letters */
-  color: #705930; /* medium brown */
-  margin: 0 0 8px; /* small space under the label */
+/* right column with the text */
+.about-section__content {
+  flex: 1 1 320px; /* fills the rest of the row */
+  max-width: 600px; /* keeps lines from getting too long */
 }
 
-/* section title */
-.about-section__title {
-  font-family: 'Playfair Display', Georgia, serif; /* fancy serif font like the prototype */
-  font-weight: 400; /* normal thickness */
-  color: #2f1f04; /* dark brown title so global styles do not override it */
-  font-size: 36px; /* big title text */
-  margin: 0 0 16px; /* space under the title */
+/* the figma title here is slightly smaller than other sections */
+.about-section__heading .section-heading-title {
+  font-size: 42px;
+  line-height: 1.22;
 }
 
 /* description of the business */
 .about-section__description {
-  line-height: 1.7; /* space between lines */
-  margin: 0 0 24px; /* space under the description */
+  margin: 20px 0 0; /* space above the description */
+  font-size: 17px; /* body text size */
+  font-weight: 300; /* light text */
+  line-height: 1.65; /* space between lines */
+  color: rgba(47, 31, 4, 0.85); /* slightly soft dark brown */
 }
 
 /* the quote box */
 .about-section__quote {
-  margin: 0 0 28px; /* space under the quote */
-  padding-left: 16px; /* space between the line and the text */
-  border-left: 2px solid #705930; /* brown line on the left side */
+  display: flex; /* stacks the quote and the name */
+  flex-direction: column;
+  gap: 12px; /* space between the quote and the name */
+  margin: 28px 0 0; /* space above the quote */
+  padding-left: 22px; /* space between the line and the text */
+  border-left: 2px solid var(--color-brown); /* brown line on the left side */
 }
 
 /* the quote text */
 .about-section__quote p {
-  font-family: 'Playfair Display', Georgia, serif; /* fancy serif font */
+  margin: 0;
+  font-family: var(--font-heading); /* serif font */
   font-style: italic; /* slanted text */
-  font-size: 18px; /* quote size */
+  font-size: 22px; /* quote size */
   line-height: 1.5; /* space between lines */
-  margin: 0 0 8px; /* space under the quote */
 }
 
 /* the name under the quote */
 .about-section__quote cite {
   font-style: normal; /* removes the default slant */
   font-size: 12px; /* small text */
-  letter-spacing: 2px; /* spreads the letters apart */
+  letter-spacing: 0.3em; /* spreads the letters apart */
   text-transform: uppercase; /* capital letters */
-  color: #705930; /* medium brown */
+  color: var(--color-brown); /* medium brown */
 }
 
-/* book an appointment button */
+/* book an appointment button, the look comes from the shared button */
 .about-section__button {
-  display: inline-block; /* lets the button have padding */
-  background: #705930; /* brown button */
-  color: #f9efed; /* light cream text */
-  padding: 12px 28px; /* space inside the button */
-  border-radius: 999px; /* pill shape */
-  text-decoration: none; /* removes the underline */
-  font-weight: 600; /* bold text */
+  display: inline-flex; /* only as wide as its text */
+  margin-top: 32px; /* space above the button */
 }
 
-/* darker button when you hover or tab to it */
-.about-section__button:hover,
-.about-section__button:focus-visible {
-  background: #2f1f04; /* dark brown */
-}
-
-/* phone and tablet screens stack the photo above the text */
-@media (max-width: 800px) {
-  .about-section__inner {
-    grid-template-columns: 1fr; /* one column */
-    gap: 32px; /* less space between the photo and text */
-  }
-  .about-section__photo {
-    height: 340px; /* shorter photo on small screens */
-  }
+/* tablet and phone screens get less padding and a smaller photo */
+@media (max-width: 900px) {
   .about-section {
-    padding: 56px 16px; /* less space on small screens */
+    padding: 64px 24px; /* less space on small screens */
   }
-  .about-section__title {
-    font-size: 30px; /* smaller title on small screens */
+  .about-section__photo-wrap {
+    zoom: 0.7; /* shrinks the photo and outline together */
   }
 }
