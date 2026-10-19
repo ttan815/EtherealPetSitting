@@ -19,6 +19,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Keyboard focus ring for every link and button (uses the text color,
+   so it shows on both light and dark sections) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
 /* Form controls don't inherit fonts by default */
 button,
 input {

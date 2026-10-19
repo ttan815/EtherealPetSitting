@@ -7,6 +7,9 @@
   --color-brown: #705930;
   --color-dark-brown: #2f1f04;
   --color-ring: #ceb690;
+  --color-tan: #a48c65;
+  --color-muted: #917d65; /* secondary text, e.g. card descriptions */
+  --color-card-border: rgba(206, 182, 144, 0.7);
 
   /* Form colors */
   --color-input-border: rgba(206, 182, 144, 0.9);
@@ -21,5 +24,6 @@
   /* Shapes */
   --radius-input: 12px;
   --radius-pill: 999px;
+  --radius-card: 28px;
   --shadow-button: 0 3px 8px -2px rgba(47, 31, 4, 0.12);
 }

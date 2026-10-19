@@ -2,6 +2,7 @@ import "../../styles/Button.css";
 
 // Pill-shaped button from Figma.
 // variant: "primary" (filled brown) | "outline" (brown border)
+//   | "tan" (filled tan, for dark backgrounds) | "outline-light" (light border, for dark backgrounds)
 // href: when given, renders a link styled as a button
 // Any other props (type, onClick...) go to the <button> or <a>.
 function Button({ variant = "primary", href, className = "", children, ...props }) {
