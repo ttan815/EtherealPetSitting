@@ -16,15 +16,18 @@ const HomePage = () => {
     if (role == null) {
         role = "visitor"
     }
+    // Nav and footer sit outside <main> so <main> holds only the page content
     return (
-        <main className="home-page">
+        <>
             <NavigationBar role={role} user={user} />
-            <HomeBannerSection/>
-            <ServiceSection/>
-            <AboutSection/>
-            <ReviewsSection />
+            <main className="home-page">
+                <HomeBannerSection/>
+                <ServiceSection/>
+                <AboutSection/>
+                <ReviewsSection />
+            </main>
             <Footer/>
-        </main>
+        </>
     );
 }
 export default HomePage;
