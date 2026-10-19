@@ -1,0 +1,112 @@
+/* Layers are positioned exactly as in Figma; the glow and ring SVGs
+   include extra room for their blur/shadow, hence the negative offsets. */
+.brand-medallion {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.brand-medallion-glow,
+.brand-medallion-ring,
+.brand-medallion-inner-circle,
+.brand-medallion-content {
+  position: absolute;
+}
+
+.brand-medallion-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-dark-brown);
+  white-space: nowrap;
+}
+
+.brand-medallion-logo {
+  display: block;
+}
+
+.brand-medallion-name,
+.brand-medallion-subtitle {
+  margin: 0;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* ---------- Panel (auth pages, Figma "Logo Medallion") ---------- */
+.brand-medallion-panel {
+  width: 400px;
+  height: 400px;
+}
+
+.brand-medallion-panel .brand-medallion-glow {
+  top: -90px;
+  left: -90px;
+}
+
+.brand-medallion-panel .brand-medallion-ring {
+  top: -14px;
+  left: -14px;
+}
+
+.brand-medallion-panel .brand-medallion-inner-circle {
+  top: 44px;
+  left: 44px;
+}
+
+.brand-medallion-panel .brand-medallion-content {
+  top: 80.5px;
+  left: 115px;
+}
+
+.brand-medallion-panel .brand-medallion-logo {
+  width: 170px;
+}
+
+.brand-medallion-panel .brand-medallion-name {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.brand-medallion-panel .brand-medallion-subtitle {
+  margin-top: 12px;
+  font-size: 10px;
+}
+
+/* ---------- Hero (home page, Figma "Brand Medallion") ---------- */
+.brand-medallion-hero {
+  width: 560px;
+  height: 560px;
+}
+
+.brand-medallion-hero .brand-medallion-glow {
+  top: -100px;
+  left: -100px;
+}
+
+.brand-medallion-hero .brand-medallion-ring {
+  top: -14px;
+  left: -14px;
+}
+
+.brand-medallion-hero .brand-medallion-inner-circle {
+  top: 68px;
+  left: 68px;
+}
+
+.brand-medallion-hero .brand-medallion-content {
+  top: 119.5px;
+  left: 160px;
+}
+
+.brand-medallion-hero .brand-medallion-logo {
+  width: 240px;
+}
+
+.brand-medallion-hero .brand-medallion-name {
+  margin-top: 18px;
+  font-size: 15px;
+}
+
+.brand-medallion-hero .brand-medallion-subtitle {
+  margin-top: 14px;
+  font-size: 12px;
+}

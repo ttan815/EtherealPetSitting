@@ -27,6 +27,15 @@
   color: var(--color-brown);
 }
 
+/* Light tone for dark backgrounds (Figma footer logo) */
+.brand-logo-light .brand-logo-name {
+  color: var(--color-blush);
+}
+
+.brand-logo-light .brand-logo-subtitle {
+  color: var(--color-ring);
+}
+
 /* ---------- Sizes ---------- */
 .brand-logo-medium .brand-logo-mark {
   height: 40px;

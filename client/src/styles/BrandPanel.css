@@ -28,70 +28,10 @@
   left: 0;
 }
 
-/* ---------- Medallion ---------- */
-/* Layers are positioned exactly as in Figma; the glow and ring SVGs
-   include extra room for their blur/shadow, hence the offsets. */
-.brand-panel-medallion {
-  position: relative;
-  flex-shrink: 0;
-  width: 400px;
-  height: 400px;
-}
-
-.brand-panel-glow,
-.brand-panel-ring,
-.brand-panel-inner-circle,
-.brand-panel-medallion-content {
-  position: absolute;
-}
-
-.brand-panel-glow {
-  top: -90px;
-  left: -90px;
-}
-
-.brand-panel-ring {
-  top: -14px;
-  left: -14px;
-}
-
-.brand-panel-inner-circle {
-  top: 44px;
-  left: 44px;
-}
-
-.brand-panel-medallion-content {
-  top: 80.5px;
-  left: 115px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  color: var(--color-dark-brown);
-  white-space: nowrap;
-}
-
-.brand-panel-name,
-.brand-panel-subtitle,
-.brand-panel-tagline {
-  margin: 0;
-}
-
-.brand-panel-name {
-  font-size: 13px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-}
-
-.brand-panel-subtitle {
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-}
-
 /* ---------- Tagline ---------- */
 .brand-panel-tagline {
   position: relative;
+  margin: 0;
   font-family: var(--font-heading);
   font-size: 40px;
   line-height: 1.18;
