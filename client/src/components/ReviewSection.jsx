@@ -1,4 +1,4 @@
-import "./Review Section Template.css";
+import "../styles/ReviewSection.css";
 
 export default function ReviewsSection() {
   return (
