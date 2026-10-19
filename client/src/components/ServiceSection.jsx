@@ -1,8 +1,22 @@
 // dt5 service section for the home page
 // shows a title, a short overview, and one card for each service
 
+// bring in the shared section title
+import SectionHeading from './SectionHeading';
+
 // bring in the styles for this section
 import '../styles/ServiceSection.css';
+
+// bring in the camera and arrow icons used on every card
+import cameraIcon from '../assets/icons/camera.svg';
+import arrowIcon from '../assets/icons/arrow-right.svg';
+
+// bring in the soft background shapes from the figma prototype
+import shape1 from '../assets/home/services-shape-1.svg';
+import shape2 from '../assets/home/services-shape-2.svg';
+import shape3 from '../assets/home/services-shape-3.svg';
+import shape4 from '../assets/home/services-shape-4.svg';
+import shape5 from '../assets/home/services-shape-5.svg';
 
 // bring in the icon image for each service
 import dropInIcon from '../assets/icons/drop-in.svg';
@@ -23,6 +37,7 @@ const DEFAULT_SERVICES = [
     description:
       "Quick visits for feeding, potty breaks, and playtime while you're away during the day.", // short description
     image: null, // picture set by the admin later
+    photoLabel: 'Pet at home', // what the placeholder says until there is a picture
   },
   // second service card
   {
@@ -32,6 +47,7 @@ const DEFAULT_SERVICES = [
     description:
       'Extended care throughout the day with meals, walks, and company, so your pet is never alone for long.', // short description
     image: null, // picture set by the admin later
+    photoLabel: 'Pet playing', // what the placeholder says until there is a picture
   },
   // third service card
   {
@@ -41,6 +57,7 @@ const DEFAULT_SERVICES = [
     description:
       'In-home overnight care so your pet can sleep comfortably in their own environment.', // short description
     image: null, // picture set by the admin later
+    photoLabel: 'Pet sleeping', // what the placeholder says until there is a picture
   },
   // fourth service card
   {
@@ -50,6 +67,7 @@ const DEFAULT_SERVICES = [
     description:
       'Structured walks to keep your dog active, stimulated, and healthy. Choose your duration.', // short description
     image: null, // picture set by the admin later
+    photoLabel: 'Dog on a walk', // what the placeholder says until there is a picture
   },
   // fifth service card groups the small grooming services together
   {
@@ -59,6 +77,7 @@ const DEFAULT_SERVICES = [
     description:
       'Gentle, stress-free nail trims, ear cleaning, and anal gland expression to keep your pet comfortable and healthy.', // short description
     image: null, // picture set by the admin later
+    photoLabel: 'Pet being groomed', // what the placeholder says until there is a picture
   },
   // sixth service card
   {
@@ -68,6 +87,7 @@ const DEFAULT_SERVICES = [
     description:
       'Safe and timely administration of medications, including pills, drops, and injections, following your care instructions.', // short description
     image: null, // picture set by the admin later
+    photoLabel: 'Pet being cared for', // what the placeholder says until there is a picture
   },
 ]; // end of the services list
 
@@ -85,8 +105,9 @@ function ServiceCard({ service, isLoggedIn }) {
         <img className="svc-card__image" src={service.image} alt={service.name} />
       ) : (
         <div className="svc-card__image svc-card__image--placeholder">
-          {/* placeholder text until the admin uploads a picture */}
-          <span>Photo coming soon</span>
+          {/* camera icon and caption until the admin uploads a picture */}
+          <img src={cameraIcon} alt="" />
+          <span>{service.photoLabel}</span>
         </div>
       )}
 
@@ -104,7 +125,9 @@ function ServiceCard({ service, isLoggedIn }) {
 
       {/* clickable text that sends the user to booking or login */}
       <a className="svc-card__link" href={bookingLink}>
-        Book this Service &rarr;
+        Book this service
+        {/* arrow is decoration, the text already says where the link goes */}
+        <img src={arrowIcon} alt="" />
       </a>
     </article>
   ); // end of the card
@@ -117,20 +140,25 @@ export default function ServiceSection({ services = DEFAULT_SERVICES, isLoggedIn
   // what the section looks like on the page
   return (
     // id services lets the navigation bar scroll to this section
-    <section id="services" className="svc-section">
+    <section id="services" className="svc-section" aria-labelledby="services-heading">
+      {/* soft background shapes, hidden from screen readers since they are decoration */}
+      <div className="svc-section__shapes" aria-hidden="true">
+        <img className="svc-section__shape svc-section__shape--1" src={shape1} alt="" />
+        <img className="svc-section__shape svc-section__shape--2" src={shape2} alt="" />
+        <img className="svc-section__shape svc-section__shape--3" src={shape3} alt="" />
+        <img className="svc-section__shape svc-section__shape--4" src={shape4} alt="" />
+        <img className="svc-section__shape svc-section__shape--5" src={shape5} alt="" />
+      </div>
+
       {/* keeps the content centered and not too wide */}
       <div className="svc-section__inner">
-        {/* small label above the title */}
-        <p className="svc-section__eyebrow">What We Offer</p>
-
-        {/* section title */}
-        <h2 className="svc-section__title">Our Care Services</h2>
-
-        {/* short overview under the title */}
-        <p className="svc-section__overview">
-          Comprehensive pet care solutions designed to fit seamlessly into your schedule,
-          ensuring your pets are happy, healthy, and safe.
-        </p>
+        {/* small label, title, and short overview */}
+        <SectionHeading
+          id="services-heading"
+          eyebrow="What We Offer"
+          title="Our Care Services"
+          subtitle="Comprehensive pet care solutions designed to fit seamlessly into your schedule, ensuring your pets are happy, healthy, and safe."
+        />
 
         {/* grid that holds all the service cards */}
         <div className="svc-grid">
