@@ -10,6 +10,7 @@ import mailIcon from "../assets/icons/mail.svg";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { API_BASE_URL, NETWORK_ERROR_MESSAGE, GENERIC_ERROR_MESSAGE } from "../constants/api";
 import "../styles/LoginPage.css";
 
 // Visitor log in screen. Sends the email and password to the server and shows
