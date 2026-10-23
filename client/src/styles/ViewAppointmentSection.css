@@ -1,0 +1,14 @@
+
+.view-appointment-section {
+    width: 100%;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 24px 32px;
+    box-sizing: border-box;
+    position: static;
+}
