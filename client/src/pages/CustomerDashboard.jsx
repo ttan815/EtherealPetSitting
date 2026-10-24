@@ -1,4 +1,4 @@
-import AppointmentDetail from "../components/customer-dashboard/view-appointment/AppointmentDetail"
+import AppointmentDetail from "../components/customer-dashboard/view-appointment/appointment-detail/AppointmentDetail"
 import "../styles/customer-dashboard/CustomerDashboard.css"
 
 function CustomerDashboard() {
