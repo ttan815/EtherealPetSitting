@@ -1,4 +1,4 @@
-import ViewAppointmentSection from "../components/customer-dashboard/view-appointment/ViewAppointmentSection";
+import AppointmentDetail from "../components/customer-dashboard/view-appointment/AppointmentDetail"
 import "../styles/customer-dashboard/CustomerDashboard.css"
 
 function CustomerDashboard() {
@@ -7,7 +7,7 @@ function CustomerDashboard() {
             {/*Navigation Bar*/}
             
             {/* Section */}
-            <ViewAppointmentSection/>
+            <AppointmentDetail/>
         </main>
     );
 }
