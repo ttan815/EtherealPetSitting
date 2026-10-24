@@ -5,6 +5,7 @@ import CareInstruction from "./CareInstruction";
 import PaymentInfo from "./PaymentInfo";
 import RescheduleAppointButton from "../../../action-button/RescheduleAppointmentButton";
 import DownloadReceiptButton from "../../../action-button/DownloadReceiptButton";
+import CancelAppointmentButton from "../../../action-button/CancelAppointmentButton";
 
 function AppointmentDetail() {
     return (
@@ -19,13 +20,11 @@ function AppointmentDetail() {
                 <div className="right-segment-panel">
                     <PaymentInfo/>
 
-                <div className="sitter-sidebar-actions">
-                    <RescheduleAppointButton/>
-                    <DownloadReceiptButton/>
-                    <div className="button-cancel-appointment">
-                    <div className="see-all-reviews">Cancel Appointment</div>
+                    <div className="sitter-sidebar-actions">
+                        <RescheduleAppointButton/>
+                        <DownloadReceiptButton/>
+                        <CancelAppointmentButton/>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
