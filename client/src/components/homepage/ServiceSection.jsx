@@ -5,26 +5,26 @@
 import SectionHeading from './SectionHeading';
 
 // bring in the styles for this section
-import '../styles/ServiceSection.css';
+import '../../styles/homepage/ServiceSection.css';
 
 // bring in the camera and arrow icons used on every card
-import cameraIcon from '../assets/icons/camera.svg';
-import arrowIcon from '../assets/icons/arrow-right.svg';
+import cameraIcon from '../../assets/icons/camera.svg';
+import arrowIcon from '../../assets/icons/arrow-right.svg';
 
 // bring in the soft background shapes from the figma prototype
-import shape1 from '../assets/home/services-shape-1.svg';
-import shape2 from '../assets/home/services-shape-2.svg';
-import shape3 from '../assets/home/services-shape-3.svg';
-import shape4 from '../assets/home/services-shape-4.svg';
-import shape5 from '../assets/home/services-shape-5.svg';
+import shape1 from '../../assets/home/services-shape-1.svg';
+import shape2 from '../../assets/home/services-shape-2.svg';
+import shape3 from '../../assets/home/services-shape-3.svg';
+import shape4 from '../../assets/home/services-shape-4.svg';
+import shape5 from '../../assets/home/services-shape-5.svg';
 
 // bring in the icon image for each service
-import dropInIcon from '../assets/icons/drop-in.svg';
-import wholeDayIcon from '../assets/icons/whole-day.svg';
-import overnightIcon from '../assets/icons/overnight.svg';
-import dogWalkingIcon from '../assets/icons/dog-walking.svg';
-import groomingIcon from '../assets/icons/grooming.svg';
-import medicationIcon from '../assets/icons/medication.svg';
+import dropInIcon from '../../assets/icons/drop-in.svg';
+import wholeDayIcon from '../../assets/icons/whole-day.svg';
+import overnightIcon from '../../assets/icons/overnight.svg';
+import dogWalkingIcon from '../../assets/icons/dog-walking.svg';
+import groomingIcon from '../../assets/icons/grooming.svg';
+import medicationIcon from '../../assets/icons/medication.svg';
 
 // list of services ethereal pet sitting provides
 // image is null for now so a placeholder box shows until the admin adds pictures

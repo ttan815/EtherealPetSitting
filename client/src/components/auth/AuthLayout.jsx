@@ -1,8 +1,8 @@
 import BrandPanel from "./BrandPanel";
-import BrandLogo from "../BrandLogo";
+import BrandLogo from "../homepage/BrandLogo";
 import { SUPPORT_PHONE } from "../../constants/site-info";
 import arrowLeftIcon from "../../assets/icons/arrow-left.svg";
-import "../../styles/AuthLayout.css";
+import "../../styles/auth/AuthLayout.css";
 
 // Shared split layout for Log In, Create Account and Forgot Password.
 // Left: BrandPanel. Right: logo bar, the page's own content, help footer.

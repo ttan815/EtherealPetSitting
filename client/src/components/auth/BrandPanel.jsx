@@ -1,7 +1,7 @@
-import BrandMedallion from "../BrandMedallion";
+import BrandMedallion from "../homepage/BrandMedallion";
 import topoLinesTopRight from "../../assets/brand/topo-lines-top-right.svg";
 import topoLinesBottomLeft from "../../assets/brand/topo-lines-bottom-left.svg";
-import "../../styles/BrandPanel.css";
+import "../../styles/homepage/BrandPanel.css";
 
 // Brown left half of every auth screen: logo medallion and tagline.
 // tagline / taglineEmphasis: the two lines under the logo (second is italic)

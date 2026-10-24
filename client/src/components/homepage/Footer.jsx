@@ -1,14 +1,14 @@
 import { QRCodeSVG } from "qrcode.react";
 import BrandLogo from "./BrandLogo";
-import { SUPPORT_EMAIL, SUPPORT_PHONE } from "../constants/site-info";
-import instagramIcon from "../assets/icons/instagram.svg";
-import facebookIcon from "../assets/icons/facebook.svg";
-import emailIcon from "../assets/icons/email.svg";
-import phoneIcon from "../assets/icons/phone-light.svg";
-import topo1 from "../assets/home/footer-topo-1.svg";
-import topo2 from "../assets/home/footer-topo-2.svg";
-import topo3 from "../assets/home/footer-topo-3.svg";
-import "../styles/Footer.css";
+import { SUPPORT_EMAIL, SUPPORT_PHONE } from "../../constants/site-info";
+import instagramIcon from "../../assets/icons/instagram.svg";
+import facebookIcon from "../../assets/icons/facebook.svg";
+import emailIcon from "../../assets/icons/email.svg";
+import phoneIcon from "../../assets/icons/phone-light.svg";
+import topo1 from "../../assets/home/footer-topo-1.svg";
+import topo2 from "../../assets/home/footer-topo-2.svg";
+import topo3 from "../../assets/home/footer-topo-3.svg";
+import "../../styles/homepage/Footer.css";
 
 const QUICK_LINKS = [
   { label: "Home", href: "#home" },

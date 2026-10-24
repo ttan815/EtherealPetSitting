@@ -1,6 +1,6 @@
 import errorIcon from "../../assets/icons/error.svg";
 import infoIcon from "../../assets/icons/info.svg";
-import "../../styles/FieldMessage.css";
+import "../../styles/form/FieldMessage.css";
 
 // Small line of text under a form field, with an icon in front.
 // variant: "error" (red, e.g. a server error) | "hint" (brown help text)

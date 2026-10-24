@@ -1,5 +1,5 @@
-import "../styles/ViewAppointmentHeader.css"
-import "../styles/NavigationBar.css"
+import "../../../styles/customer-dashboard/view-appointment/ViewAppointmentHeader.css"
+import "../../../styles/homepage/NavigationBar.css"
 
 function ViewAppointmentHeader() {
     return(

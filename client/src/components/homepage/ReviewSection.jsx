@@ -1,9 +1,9 @@
 import SectionHeading from "./SectionHeading";
-import Button from "./form/Button";
-import topo1 from "../assets/home/reviews-topo-1.svg";
-import topo2 from "../assets/home/reviews-topo-2.svg";
-import topo3 from "../assets/home/reviews-topo-3.svg";
-import "../styles/ReviewSection.css";
+import Button from "../form/Button";
+import topo1 from "../../assets/home/reviews-topo-1.svg";
+import topo2 from "../../assets/home/reviews-topo-2.svg";
+import topo3 from "../../assets/home/reviews-topo-3.svg";
+import "../../styles/homepage/ReviewSection.css";
 
 // Placeholder reviews copied from Figma, until real reviews come from the server
 const PLACEHOLDER_REVIEWS = [

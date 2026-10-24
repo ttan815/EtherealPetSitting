@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import chevronDownIcon from "../assets/icons/chevron-down.svg";
-import dashboardIcon from "../assets/icons/dashboard.svg";
-import logOutIcon from "../assets/icons/log-out.svg";
+import chevronDownIcon from "../../assets/icons/chevron-down.svg";
+import dashboardIcon from "../../assets/icons/dashboard.svg";
+import logOutIcon from "../../assets/icons/log-out.svg";
 
 // Turns "Example Name" into "EN" (falls back to "?")
 function getInitials(name = "") {

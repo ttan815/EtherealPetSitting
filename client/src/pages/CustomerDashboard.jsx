@@ -1,11 +1,12 @@
-import ViewAppointmentSection from "../components/ViewAppointmentSection";
-import "../styles/CustomerDashboard.css"
+import ViewAppointmentSection from "../components/customer-dashboard/view-appointment/ViewAppointmentSection";
+import "../styles/customer-dashboard/CustomerDashboard.css"
 
 function CustomerDashboard() {
     return (
         <main>
             {/*Navigation Bar*/}
             
+            {/* Section */}
             <ViewAppointmentSection/>
         </main>
     );

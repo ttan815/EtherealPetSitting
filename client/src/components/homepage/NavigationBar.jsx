@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProfileMenu from "./ProfileMenu";
 import BrandLogo from "./BrandLogo";
-import "../styles/NavigationBar.css";
+import "../../styles/homepage/NavigationBar.css";
 
 // Section links every role sees. Each href matches a section id on the home page
 // (<section id="home">, <section id="services">, ...).

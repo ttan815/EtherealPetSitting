@@ -3,7 +3,7 @@ import TextField from "./TextField";
 import lockIcon from "../../assets/icons/lock.svg";
 import eyeIcon from "../../assets/icons/eye.svg";
 import eyeOffIcon from "../../assets/icons/eye-off.svg";
-import "../../styles/PasswordField.css";
+import "../../styles/form/PasswordField.css";
 
 // TextField with a lock icon and a show/hide password toggle.
 // Takes the same props as TextField.

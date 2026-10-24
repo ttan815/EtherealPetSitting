@@ -12,3 +12,16 @@
     box-sizing: border-box;
     position: static;
 }
+
+
+.tab-filter-navigation {
+  display: flex;
+  flex-direction: row;
+  padding-left: 32px;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}

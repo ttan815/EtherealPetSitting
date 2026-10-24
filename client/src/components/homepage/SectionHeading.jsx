@@ -1,4 +1,4 @@
-import "../styles/SectionHeading.css";
+import "../../styles/SectionHeading.css";
 
 // Small uppercase label, serif title and optional intro text that start
 // each home page section (Figma "Section Header").

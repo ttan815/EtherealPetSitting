@@ -4,9 +4,9 @@
 // bring in react tools for side effects and element references
 import { useEffect, useRef } from 'react';
 // bring in the policy text
-import { POLICIES } from '../constants/policyContent.js';
+import { POLICIES } from '../../constants/policyContent.js';
 // bring in the styles shared with the checkbox
-import '../styles/PolicyConsent.css';
+import '../../styles/create-account/PolicyConsent.css';
 
 // policy is either terms, privacy, or null when nothing is open
 // on close is the function that closes the popup
