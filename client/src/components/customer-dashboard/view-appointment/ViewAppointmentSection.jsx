@@ -28,13 +28,19 @@ function MainContent( {setCurrentView} ) {
     );
 }
 
+function Detail( {setCurrentView} ) {
+    return (
+        <AppointmentDetail setCurrentView={setCurrentView}/>
+    );
+}
+
 function ViewAppointmentSection() {
     const [currentView, setCurrentView] = useState("main");
 
     if(currentView === "main")
         return <MainContent setCurrentView={setCurrentView} />;
     else if(currentView === "appointment-detail")
-        return <AppointmentDetail />;
+        return <Detail setCurrentView={setCurrentView}/>;
 }
 
 export default ViewAppointmentSection;

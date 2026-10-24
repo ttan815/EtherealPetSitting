@@ -7,10 +7,10 @@ import RescheduleAppointButton from "../../../action-button/RescheduleAppointmen
 import DownloadReceiptButton from "../../../action-button/DownloadReceiptButton";
 import CancelAppointmentButton from "../../../action-button/CancelAppointmentButton";
 
-function AppointmentDetail() {
+function AppointmentDetail( {setCurrentView} ) {
     return (
         <div className="page-content">
-            <Header/>
+            <Header setCurrentView={setCurrentView}/>
             <div className="content-split-columns">
                 <div className="left-segment-details">
                     <ServiceSchedule/>
