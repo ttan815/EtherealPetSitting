@@ -1,16 +1,21 @@
+import { useState } from "react"
 import ViewAppointmentHeader from "./ViewAppointmentHeader";
 import "../styles/ViewAppointmentSection.css"
 import UpcomingVisitButton from "./UpcomingVisitButton";
+import AppointmentTable from "../components/AppointmentTable"
 
 function ViewAppointmentSection() {
+    const [appointments, setAppointments] = useState([]);
     return(
          <section className="view-appointment-section">
-            <ViewAppointmentHeader />
+            <ViewAppointmentHeader/>
             
             <div className="tab-filter-navigation">
-                <UpcomingVisitButton/>
+                <UpcomingVisitButton onAppointmentsLoaded={setAppointments}/>
             </div>
+
             {/* Appointments table*/}
+            <AppointmentTable appointments={appointments}/>
         </section>
             
     );

@@ -6,3 +6,21 @@
 .appointment-row td {
   white-space: nowrap;
 }
+
+.appointment-row appointment-pet strong {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+
+.appointment-row appointment-pet span {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+}

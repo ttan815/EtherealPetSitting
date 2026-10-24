@@ -1,4 +1,3 @@
-
 import AppointmentStatus from "./AppointmentStatus";
 import AppointmentAction from "./AppointmentAction";
 import "../styles/AppointmentRow.css";
@@ -8,9 +7,9 @@ function AppointmentRow({ appointment }) {
     <tr className="appointment-row">
       <td>
         <div className="appointment-pet">
-          <strong>{appointment.petName}</strong>
+          <strong>{appointment.service}</strong>
           <span>
-            {appointment.service} · {appointment.petType}
+            {appointment.petName} ({appointment.petType})
           </span>
         </div>
       </td>
