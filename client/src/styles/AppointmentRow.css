@@ -1,0 +1,8 @@
+
+.appointment-row {
+  transition: background-color 0.2s ease;
+}
+
+.appointment-row td {
+  white-space: nowrap;
+}

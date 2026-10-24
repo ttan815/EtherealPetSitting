@@ -7,7 +7,7 @@ function ViewAppointmentSection() {
          <section className="view-appointment-section">
             <ViewAppointmentHeader />
             
-            <div class="tab-filter-navigation">
+            <div className="tab-filter-navigation">
                 <UpcomingVisitButton/>
             </div>
             {/* Appointments table*/}

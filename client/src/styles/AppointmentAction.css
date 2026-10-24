@@ -1,0 +1,21 @@
+
+.appointment-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.appointment-action-btn {
+  border: none;
+  background: transparent;
+  color: #333333;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.appointment-action-btn:hover {
+  color: #777777;
+  text-decoration: underline;
+}
