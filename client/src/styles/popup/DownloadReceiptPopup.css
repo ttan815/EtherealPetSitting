@@ -1,0 +1,54 @@
+.toast-receipt-downloaded,
+.toast-receipt-downloaded * {
+  box-sizing: border-box;
+}
+.toast-receipt-downloaded {
+  background: #2f1f04;
+  border-radius: 14px;
+  padding: 14px 20px 14px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  box-shadow: 0px 24px 60px -12px rgba(47, 31, 4, 0.22);
+  overflow: hidden;
+}
+.icon {
+  background: rgba(206, 182, 144, 0.25);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  overflow: hidden;
+}
+.icon-download {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  overflow: visible;
+}
+.receipt-downloaded {
+  color: #f9efed;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.icon-x {
+  opacity: 0.6;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  position: relative;
+  overflow: visible;
+}

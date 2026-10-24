@@ -1,8 +1,9 @@
 import "../../../styles/customer-dashboard/view-appointment/AppointmentAction.css";
 
-function AppointmentAction({ appointment }) {
+function AppointmentAction({ appointment, setCurrentView, setAppointmentId }) {
   function handleViewDetails() {
-    console.log("View appointment:", appointment.id);
+    setAppointmentId(`${appointment.id}`)
+    setCurrentView("appointment-detail");
   }
 
   function handleReschedule() {

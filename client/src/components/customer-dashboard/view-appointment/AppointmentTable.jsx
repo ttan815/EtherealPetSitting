@@ -2,7 +2,7 @@ import AppointmentRow from "./AppointmentRow";
 import "../../../styles/customer-dashboard/view-appointment/AppointmentTable.css";
 
 /**
-* Database Structure:
+* Temp Database Structure:
 * id: 1,
 * petName: "Buddy",
 * service: "Dog Walking",
@@ -13,7 +13,7 @@ import "../../../styles/customer-dashboard/view-appointment/AppointmentTable.css
 * balance: "$0.00",
 * petType: "dog"
 */
-function AppointmentsTable( {appointments}) {
+function AppointmentsTable( {appointments, setCurrentView, setAppointmentId}) {
   return (
     <div className="appointments-table-wrapper">
       <table className="appointments-table">
@@ -33,6 +33,8 @@ function AppointmentsTable( {appointments}) {
             <AppointmentRow
               key={appointment.id}
               appointment={appointment}
+              setCurrentView={setCurrentView}
+              setAppointmentId={setAppointmentId}
             />
           ))}
         </tbody>
