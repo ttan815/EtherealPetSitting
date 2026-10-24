@@ -4,6 +4,7 @@ import ServiceSchedule from "./ServiceSchedule";
 import CareInstruction from "./CareInstruction";
 import PaymentInfo from "./PaymentInfo";
 import RescheduleAppointButton from "../../../action-button/RescheduleAppointmentButton";
+import DownloadReceiptButton from "../../../action-button/DownloadReceiptButton";
 
 function AppointmentDetail() {
     return (
@@ -20,9 +21,7 @@ function AppointmentDetail() {
 
                 <div className="sitter-sidebar-actions">
                     <RescheduleAppointButton/>
-                    <div className="button-download-receipt">
-                    <div className="see-all-reviews">Download Receipt</div>
-                    </div>
+                    <DownloadReceiptButton/>
                     <div className="button-cancel-appointment">
                     <div className="see-all-reviews">Cancel Appointment</div>
                     </div>
