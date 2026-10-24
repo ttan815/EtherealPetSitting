@@ -6,6 +6,7 @@ function CustomerDashboard() {
         <main>
             {/*Navigation Bar*/}
             
+            {/* Section */}
             <ViewAppointmentSection/>
         </main>
     );

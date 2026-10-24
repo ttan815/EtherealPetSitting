@@ -1,6 +1,18 @@
 import AppointmentRow from "./AppointmentRow";
 import "../styles/AppointmentTable.css";
 
+/**
+* Database Structure:
+* id: 1,
+* petName: "Buddy",
+* service: "Dog Walking",
+* date: "Oct 26, 2026",
+* time: "10:00 AM",
+* status: "Confirmed",
+* paymentStatus: "Paid",
+* balance: "$0.00",
+* petType: "dog"
+*/
 function AppointmentsTable( {appointments}) {
   return (
     <div className="appointments-table-wrapper">

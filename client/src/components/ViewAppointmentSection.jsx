@@ -11,6 +11,7 @@ function ViewAppointmentSection() {
          <section className="view-appointment-section">
             <ViewAppointmentHeader/>
             
+            {/* Filter Option */}
             <div className="tab-filter-navigation">
                 <UpcomingVisitButton 
                     onAppointmentsLoaded={setAppointments}
