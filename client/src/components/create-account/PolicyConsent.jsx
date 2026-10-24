@@ -13,9 +13,9 @@ import { useState } from 'react';
 // bring in the popup
 import PolicyModal from './PolicyModal';
 // shared checkbox so it matches the other forms (and shows errors the same way)
-import Checkbox from './form/Checkbox';
+import Checkbox from '../form/Checkbox';
 // bring in the styles
-import '../styles/PolicyConsent.css';
+import '../../styles/create-account/PolicyConsent.css';
 
 // checked and on change come from the create account page
 // error is an optional message shown under the checkbox

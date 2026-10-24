@@ -1,6 +1,6 @@
 import AppointmentStatus from "./AppointmentStatus";
 import AppointmentAction from "./AppointmentAction";
-import "../styles/AppointmentRow.css";
+import "../../../styles/customer-dashboard/view-appointment/AppointmentRow.css";
 
 function AppointmentRow({ appointment }) {
   return (

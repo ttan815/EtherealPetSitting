@@ -1,7 +1,7 @@
-import { BUSINESS_NAME, BUSINESS_SUBTITLE } from "../constants/site-info";
-import logoDogMark from "../assets/brand/logo-dog-mark.svg";
-import logoDogMarkLight from "../assets/brand/logo-dog-mark-light.svg";
-import "../styles/BrandLogo.css";
+import { BUSINESS_NAME, BUSINESS_SUBTITLE } from "../../constants/site-info";
+import logoDogMark from "../../assets/brand/logo-dog-mark.svg";
+import logoDogMarkLight from "../../assets/brand/logo-dog-mark-light.svg";
+import "../../styles/homepage/BrandLogo.css";
 
 // Dog mark with the "ETHEREAL / PET SITTING & CARE" wordmark (Figma "Logo").
 // size: "medium" (auth pages top bar) | "large" (home navigation bar, footer)

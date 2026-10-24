@@ -1,4 +1,4 @@
-import "../../styles/Checkbox.css";
+import "../../styles/form/Checkbox.css";
 import FieldMessage from "./FieldMessage";
 
 // Native checkbox restyled to match Figma, with its label beside it.

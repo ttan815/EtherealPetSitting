@@ -7,12 +7,12 @@ import TextField from "../components/form/TextField";
 import PasswordField from "../components/form/PasswordField";
 import Button from "../components/form/Button";
 import FieldMessage from "../components/form/FieldMessage";
-import PolicyConsent from "../components/PolicyConsent";
+import PolicyConsent from "../components/create-account/PolicyConsent";
 import userIcon from "../assets/icons/user.svg";
 import mailIcon from "../assets/icons/mail.svg";
 import phoneIcon from "../assets/icons/phone.svg";
 import { API_BASE_URL, NETWORK_ERROR_MESSAGE, GENERIC_ERROR_MESSAGE } from "../constants/api";
-import "../styles/CreateAccountPage.css";
+import "../styles/create-account/CreateAccountPage.css";
 
 const DEFAULT_API_URL = `${API_BASE_URL}/create-account`;
 

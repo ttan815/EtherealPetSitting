@@ -1,5 +1,5 @@
 import AppointmentRow from "./AppointmentRow";
-import "../styles/AppointmentTable.css";
+import "../../../styles/customer-dashboard/view-appointment/AppointmentTable.css";
 
 /**
 * Database Structure:

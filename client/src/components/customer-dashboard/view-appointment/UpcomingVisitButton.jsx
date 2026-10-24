@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import "../styles/UpcomingVisitButton.css";
+import "../../../styles/customer-dashboard/view-appointment/UpcomingVisitButton.css";
 
 function UpcomingVisitButton({ onAppointmentsLoaded, activeFilter, setActiveFilter }) {
     const [loading, setLoading] = useState(false);

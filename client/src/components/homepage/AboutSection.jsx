@@ -4,19 +4,19 @@
 
 // bring in the shared section title and button
 import SectionHeading from './SectionHeading';
-import Button from './form/Button';
+import Button from '../form/Button';
 
 // bring in the styles for this section
-import '../styles/AboutSection.css';
+import '../../styles/homepage/AboutSection.css';
 
 // bring in the camera icon for the photo placeholder
-import cameraIcon from '../assets/icons/camera-large.svg';
+import cameraIcon from '../../assets/icons/camera-large.svg';
 
 // bring in the soft background shapes from the figma prototype
-import shape1 from '../assets/home/about-shape-1.svg';
-import shape2 from '../assets/home/about-shape-2.svg';
-import shape3 from '../assets/home/about-shape-3.svg';
-import shape4 from '../assets/home/about-shape-4.svg';
+import shape1 from '../../assets/home/about-shape-1.svg';
+import shape2 from '../../assets/home/about-shape-2.svg';
+import shape3 from '../../assets/home/about-shape-3.svg';
+import shape4 from '../../assets/home/about-shape-4.svg';
 
 // the whole about section
 // the logged in flag is false by default so visitors get sent to login

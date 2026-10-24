@@ -1,8 +1,8 @@
 import { useState } from "react"
 import ViewAppointmentHeader from "./ViewAppointmentHeader";
-import "../styles/ViewAppointmentSection.css"
+import "../../../styles/customer-dashboard/view-appointment/ViewAppointmentSection.css"
 import UpcomingVisitButton from "./UpcomingVisitButton";
-import AppointmentTable from "../components/AppointmentTable"
+import AppointmentTable from "./AppointmentTable"
 
 function ViewAppointmentSection() {
     const [appointments, setAppointments] = useState([]);

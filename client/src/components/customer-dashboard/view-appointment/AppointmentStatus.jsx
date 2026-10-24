@@ -1,4 +1,4 @@
-import "../styles/AppointmentStatus.css";
+import "../../../styles/customer-dashboard/view-appointment/AppointmentStatus.css";
 
 function AppointmentStatus({ status }) {
   const className = status.toLowerCase().replace(/\s+/g, "-");

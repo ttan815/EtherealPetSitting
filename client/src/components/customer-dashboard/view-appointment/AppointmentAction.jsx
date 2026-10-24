@@ -1,4 +1,4 @@
-import "../styles/AppointmentAction.css";
+import "../../../styles/customer-dashboard/view-appointment/AppointmentAction.css";
 
 function AppointmentAction({ appointment }) {
   function handleViewDetails() {

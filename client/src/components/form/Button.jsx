@@ -1,4 +1,4 @@
-import "../../styles/Button.css";
+import "../../styles/form/Button.css";
 
 // Pill-shaped button from Figma.
 // variant: "primary" (filled brown) | "outline" (brown border)

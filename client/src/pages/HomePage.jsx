@@ -1,10 +1,10 @@
-import "../styles/HomePage.css"
-import NavigationBar from "../components/NavigationBar";
-import ServiceSection from "../components/ServiceSection"
-import AboutSection from "../components/AboutSection"
-import Footer from "../components/Footer"
-import ReviewsSection from "../components/ReviewSection";
-import HomeBannerSection from "../components/HomeBannerSection"
+import "../styles/homepage/HomePage.css"
+import NavigationBar from "../components/homepage/NavigationBar";
+import ServiceSection from "../components/homepage/ServiceSection"
+import AboutSection from "../components/homepage/AboutSection"
+import Footer from "../components/homepage/Footer"
+import ReviewsSection from "../components/homepage/ReviewSection";
+import HomeBannerSection from "../components/homepage/HomeBannerSection"
 
 import { useAuth } from "../context/AuthContext";
 const HomePage = () => {

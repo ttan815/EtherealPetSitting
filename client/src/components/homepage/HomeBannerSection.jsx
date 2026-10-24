@@ -1,11 +1,11 @@
 import BrandMedallion from "./BrandMedallion";
-import Button from "./form/Button";
-import topoLeft from "../assets/home/hero-topo-left.svg";
-import topoRight from "../assets/home/hero-topo-right.svg";
-import pawIcon from "../assets/icons/paw.svg";
-import cameraIcon from "../assets/icons/camera.svg";
-import cameraLightIcon from "../assets/icons/camera-light.svg";
-import "../styles/HomeBannerSection.css";
+import Button from "../form/Button";
+import topoLeft from "../../assets/home/hero-topo-left.svg";
+import topoRight from "../../assets/home/hero-topo-right.svg";
+import pawIcon from "../../assets/icons/paw.svg";
+import cameraIcon from "../../assets/icons/camera.svg";
+import cameraLightIcon from "../../assets/icons/camera-light.svg";
+import "../../styles/homepage/HomeBannerSection.css";
 
 // Background colors of the three pet avatars in the "Trusted by" row
 const AVATAR_TONES = ["ring", "blush", "tan"];
