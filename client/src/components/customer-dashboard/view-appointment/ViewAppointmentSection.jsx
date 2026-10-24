@@ -3,12 +3,14 @@ import ViewAppointmentHeader from "./ViewAppointmentHeader";
 import "../../../styles/customer-dashboard/view-appointment/ViewAppointmentSection.css"
 import UpcomingVisitButton from "./UpcomingVisitButton";
 import AppointmentTable from "./AppointmentTable"
+import AppointmentDetail from "./appointment-detail/AppointmentDetail";
 
-function ViewAppointmentSection() {
+function MainContent( {setCurrentView} ) {
     const [appointments, setAppointments] = useState([]);
     const [activeFilter, setActiveFilter] = useState("upcoming");
-    return(
-         <section className="view-appointment-section">
+
+    return (
+        <section className="view-appointment-section">
             <ViewAppointmentHeader/>
             
             {/* Filter Option */}
@@ -21,10 +23,18 @@ function ViewAppointmentSection() {
             </div>
 
             {/* Appointments table*/}
-            <AppointmentTable appointments={appointments}/>
+            <AppointmentTable appointments={appointments} setCurrentView={setCurrentView}/>
         </section>
-            
     );
+}
+
+function ViewAppointmentSection() {
+    const [currentView, setCurrentView] = useState("main");
+
+    if(currentView === "main")
+        return <MainContent setCurrentView={setCurrentView} />;
+    else if(currentView === "appointment-detail")
+        return <AppointmentDetail />;
 }
 
 export default ViewAppointmentSection;
