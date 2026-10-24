@@ -1,0 +1,44 @@
+.tab-pill-active,
+.tab-pill-active * {
+  box-sizing: border-box;
+}
+.tab-pill-active {
+  background: #705930;
+  border-radius: 999px;
+  padding: 9px 20px 9px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.upcoming-visits {
+  color: #f9efed;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.counter-badge {
+  background: rgba(249, 239, 237, 0.2);
+  border-radius: 999px;
+  padding: 1px 8px 1px 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+._3 {
+  color: #fffdfb;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  position: relative;
+}
