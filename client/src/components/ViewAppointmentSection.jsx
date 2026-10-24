@@ -6,12 +6,17 @@ import AppointmentTable from "../components/AppointmentTable"
 
 function ViewAppointmentSection() {
     const [appointments, setAppointments] = useState([]);
+    const [activeFilter, setActiveFilter] = useState("upcoming");
     return(
          <section className="view-appointment-section">
             <ViewAppointmentHeader/>
             
             <div className="tab-filter-navigation">
-                <UpcomingVisitButton onAppointmentsLoaded={setAppointments}/>
+                <UpcomingVisitButton 
+                    onAppointmentsLoaded={setAppointments}
+                    activeFilter={activeFilter}
+                    setActiveFilter={setActiveFilter}
+                />
             </div>
 
             {/* Appointments table*/}

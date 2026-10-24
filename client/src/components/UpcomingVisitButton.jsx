@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import "../styles/UpcomingVisitButton.css";
 
-function UpcomingVisitButton({ onAppointmentsLoaded }) {
+function UpcomingVisitButton({ onAppointmentsLoaded, activeFilter, setActiveFilter }) {
     const [loading, setLoading] = useState(false);
     const [loaded, setLoaded] = useState(false);
 
@@ -42,34 +42,37 @@ function UpcomingVisitButton({ onAppointmentsLoaded }) {
         },
     ];
 
-    function handleClick() {
-        setLoading(true);
-
+    function loadAppointment() {
         // Later, replace this with an API request.
         onAppointmentsLoaded(tempAppointments);
-
         setLoaded(true);
         setLoading(false);
     }
 
+    function handleClick() {
+        setActiveFilter("upcoming")
+        setLoading(true);
+        loadAppointment();
+    }
+
     // Upon Rendered, Automatically Loaded Table with Upcoming Appointment
-    useEffect(() => {handleClick()}, [])
+    useEffect(() => {loadAppointment()}, [])
 
     return (
-        <button
-            className="tab-pill-active"
+        <button className={activeFilter === "upcoming" ? "tab-pill-active": "tab-pill"}
             onClick={handleClick}
             disabled={loading}
         >
-            <div className="upcoming-visits">
+            <div className={activeFilter === "upcoming" ? "upcoming-visits": "upcoming-visits-inactive"}>
                 Upcoming Visits
             </div>
 
-            <div className="counter-badge">
-                <div className="_3">
+            <div className={activeFilter === "upcoming" ? "counter-badge": "counter-badge-inactive"}>
+                <div className={activeFilter === "upcoming" ? "number": "number-inactive"}>
                     {loaded ? tempAppointments.length : 3}
                 </div>
             </div>
+
         </button>
     );
 }
