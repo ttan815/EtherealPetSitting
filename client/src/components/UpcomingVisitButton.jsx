@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "../styles/UpcomingVisitButton.css";
 
 function UpcomingVisitButton({ onAppointmentsLoaded }) {
@@ -51,6 +51,9 @@ function UpcomingVisitButton({ onAppointmentsLoaded }) {
         setLoaded(true);
         setLoading(false);
     }
+
+    // Upon Rendered, Automatically Loaded Table with Upcoming Appointment
+    useEffect(() => {handleClick()}, [])
 
     return (
         <button
