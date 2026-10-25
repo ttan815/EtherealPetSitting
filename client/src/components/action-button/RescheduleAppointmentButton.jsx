@@ -1,10 +1,14 @@
 import "../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 
-function RescheduleAppointButton() {
+function RescheduleAppointButton({ onReschedule }) {
     return (
-        <div className="button-reschedule-appointment">
-            <div className="see-all-reviews">Reschedule Appointment</div>
-        </div>
+        <button
+            type="button"
+            className="button-reschedule-appointment"
+            onClick={onReschedule}
+        >
+            Reschedule Appointment
+        </button>
     );
 }
 

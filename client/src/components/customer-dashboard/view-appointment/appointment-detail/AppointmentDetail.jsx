@@ -32,7 +32,7 @@ function fetchAppointmentId(appointmentId) {
 };
 
 
-function AppointmentDetail( {setCurrentView, appointmentId} ) {
+function AppointmentDetail( {setCurrentView, appointmentId, onReschedule} ) {
     const appointment = fetchAppointmentId(appointmentId);
 
     return (
@@ -48,7 +48,7 @@ function AppointmentDetail( {setCurrentView, appointmentId} ) {
                     <PaymentInfo transactionId={appointment.transactionId}/>
 
                     <div className="sitter-sidebar-actions">
-                        <RescheduleAppointButton/>
+                        <RescheduleAppointButton onReschedule={onReschedule}/>
                         <DownloadReceiptButton/>
                         <CancelAppointmentButton
                             onCancelled={() => setCurrentView("main")}

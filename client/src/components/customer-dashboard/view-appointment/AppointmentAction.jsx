@@ -1,18 +1,20 @@
 import "../../../styles/customer-dashboard/view-appointment/AppointmentAction.css";
 
-function AppointmentAction({ appointment, setCurrentView, setAppointmentId }) {
+function AppointmentAction({ appointment, setCurrentView, setAppointmentId, onReschedule }) {
   function handleViewDetails() {
-    setAppointmentId(`${appointment.id}`)
+    setAppointmentId(`${appointment.id}`);
     setCurrentView("appointment-detail");
   }
 
   function handleReschedule() {
-    console.log("Reschedule appointment:", appointment.id);
+    setAppointmentId(`${appointment.id}`);
+    onReschedule(appointment.id);
   }
 
   return (
     <div className="appointment-actions">
       <button
+        type="button"
         className="appointment-action-btn"
         onClick={handleViewDetails}
       >
@@ -20,6 +22,7 @@ function AppointmentAction({ appointment, setCurrentView, setAppointmentId }) {
       </button>
 
       <button
+        type="button"
         className="appointment-action-btn"
         onClick={handleReschedule}
       >

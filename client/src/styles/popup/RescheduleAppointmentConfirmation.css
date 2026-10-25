@@ -1,0 +1,106 @@
+.reschedule-confirmation-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(47, 31, 4, 0.55);
+}
+
+.popup-reschedule-confirmed,
+.popup-reschedule-confirmed * {
+  box-sizing: border-box;
+}
+.popup-reschedule-confirmed {
+  width: min(100%, 520px);
+  height: auto;
+  min-height: 360px;
+  background: #fffdfb;
+  border-radius: 28px;
+  border-style: solid;
+  border-color: #ceb690;
+  border-width: 1px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
+  height: 430px;
+  position: relative;
+  box-shadow: 0px 24px 60px -12px rgba(47, 31, 4, 0.25);
+}
+
+.reschedule-confirmation-check {
+  display: grid;
+  place-items: center;
+  background: rgba(206, 182, 144, 0.45);
+  color: #705930;
+  font-size: 32px;
+  border-radius: 32px;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+.modal-message-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.modal-message-block p {
+  margin: 0;
+}
+.appointment-rescheduled {
+  color: #2f1f04;
+  text-align: center;
+  font-family: "PlayfairDisplay-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: relative;
+}
+.your-appointment-has-been-successfully-rescheduled-the-business-has-been-notified-of-your-updated-availability {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  line-height: 150%;
+  font-weight: 400;
+  position: relative;
+  align-self: stretch;
+}
+.button-view-my-appointments {
+  border: 0;
+  cursor: pointer;
+  justify-content: center;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: #f9efed;
+  background: #705930;
+  border-radius: 999px;
+  padding: 15px 30px 15px 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0px 3px 8px -2px rgba(47, 31, 4, 0.12);
+  overflow: hidden;
+}
+.book-an-appointment {
+  color: #f9efed;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}

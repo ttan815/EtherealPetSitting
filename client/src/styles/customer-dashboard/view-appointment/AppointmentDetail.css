@@ -237,7 +237,7 @@
   font-weight: 500;
   position: relative;
 }
-._12-00-pm {
+.time {
   color: #2f1f04;
   text-align: left;
   font-family: "Inter-Regular", sans-serif;
@@ -589,7 +589,10 @@
   position: relative;
 }
 .button-reschedule-appointment {
+  width: 100%;
   border-radius: 999px;
+  color: #705930;
+  background: #fffdfb;
   border-style: solid;
   border-color: #705930;
   border-width: 1px;
@@ -603,6 +606,17 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.button-reschedule-appointment:hover,
+.button-reschedule-appointment:focus-visible {
+  background: #f9efed;
+}
+.button-reschedule-appointment:focus-visible {
+  outline: 2px solid #2f1f04;
+  outline-offset: 2px;
 }
 .see-all-reviews {
   color: #705930;
@@ -627,6 +641,7 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  background: #fffdfb;
 }
 .button-cancel-appointment {
   border-radius: 999px;
@@ -645,4 +660,5 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  background: #fffdfb;
 }

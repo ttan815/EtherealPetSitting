@@ -1,0 +1,925 @@
+.modal-reschedule-appointment,
+.modal-reschedule-appointment * {
+  box-sizing: border-box;
+}
+.modal-reschedule-appointment {
+  background: #f9efed;
+  border-radius: 28px;
+  padding: 32px 36px 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 900px;
+  position: relative;
+  box-shadow: 0px 24px 60px -12px rgba(47, 31, 4, 0.25);
+  overflow: hidden;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.reschedule-appointment {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "PlayfairDisplay-Regular", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  position: relative;
+}
+.pick-a-new-date-and-time-your-deposit-carries-over {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.close {
+  background: #fffdfb;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: rgba(206, 182, 144, 0.8);
+  border-width: 1px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.icon-x {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  overflow: visible;
+}
+.current-slot-banner {
+  background: #fffdfb;
+  border-radius: 16px;
+  border-style: solid;
+  border-color: rgba(206, 182, 144, 0.5);
+  border-width: 1px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.warning-symbol-holder {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: visible;
+}
+.current-details-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.current-appointment-drop-in-care-with-mochi {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.scheduled-for-tuesday-october-6-2026-12-00-pm-no-fee-for-rescheduling {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+}
+.pickers-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.date-picker-block {
+  background: #fffdfb;
+  border-radius: 24px;
+  border-style: solid;
+  border-color: rgba(206, 182, 144, 0.5);
+  border-width: 1px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.header-row-calendar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.october-2026 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "PlayfairDisplay-Regular", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  position: relative;
+}
+.pickers-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.chevron-prev {
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  overflow: visible;
+}
+.chevron-next {
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  overflow: visible;
+}
+.days-of-week-headers {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.mon {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  width: 40px;
+}
+.tue {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  width: 40px;
+}
+.wed {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  width: 40px;
+}
+.thu {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  width: 40px;
+}
+.fri {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  width: 40px;
+}
+.sat {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  width: 40px;
+}
+.sun {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  width: 40px;
+}
+.numbers-layout-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.row-week-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+._28 {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  width: 40px;
+}
+._29 {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  width: 40px;
+}
+._30 {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  width: 40px;
+}
+.day-1-active {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+._1 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.day-2-active {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+._2 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.day-3-active {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+._3 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+._4 {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  width: 40px;
+}
+.row-week-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.day-5 {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+._5 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.day-6-selected {
+  background: #705930;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+._6 {
+  color: #f9efed;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+}
+.day-7 {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+._7 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.day-8 {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+._8 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.day-9 {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+._9 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.day-10 {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+._10 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+._11 {
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  width: 40px;
+}
+.time-picker-block {
+  background: #fffdfb;
+  border-radius: 24px;
+  border-style: solid;
+  border-color: rgba(206, 182, 144, 0.5);
+  border-width: 1px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.available-times {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "PlayfairDisplay-Regular", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  position: relative;
+}
+.selected-date-tue-oct-6 {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.morning-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.morning {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  position: relative;
+}
+.time-slots-row {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.time-8-00-am {
+  background: #fffdfb;
+  border-radius: 999px;
+  border-style: solid;
+  border-color: #705930;
+  border-width: 1px;
+  padding: 9px 16px 9px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+._8-00-am {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+}
+.time-10-00-am {
+  background: #fffdfb;
+  border-radius: 999px;
+  border-style: solid;
+  border-color: rgba(206, 182, 144, 0.9);
+  border-width: 1px;
+  padding: 9px 16px 9px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+._10-00-am {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+}
+.afternoon-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.afternoon {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  position: relative;
+}
+.time-12-00-pm-selected {
+  background: #705930;
+  border-radius: 999px;
+  padding: 9px 16px 9px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+._12-00-pm {
+  color: #f9efed;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+}
+.pill-slot-disabled-grey {
+  background: rgba(206, 182, 144, 0.45);
+  border-radius: 999px;
+  padding: 10px 16px 10px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+._3-00-pm {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.action-row-reschedule {
+  padding: 40px 0px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.button-keep-current-appointment {
+  border-radius: 999px;
+  border-style: solid;
+  border-color: #705930;
+  border-width: 1px;
+  padding: 15px 30px 15px 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.see-all-reviews {
+  color: #705930;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.button-confirm-reschedule {
+  background: #705930;
+  border-radius: 999px;
+  padding: 15px 30px 15px 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0px 3px 8px -2px rgba(47, 31, 4, 0.12);
+  overflow: hidden;
+}
+.book-an-appointment {
+  color: #f9efed;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+
+.modal-reschedule-appointment button {
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.modal-reschedule-appointment .close {
+  border: 1px solid rgba(206, 182, 144, 0.8);
+  background: #fffdfb;
+  color: #705930;
+  font-size: 24px;
+}
+
+.modal-reschedule-appointment .time-8-00-am,
+.modal-reschedule-appointment .time-10-00-am,
+.modal-reschedule-appointment .time-12-00-pm-selected {
+  min-height: 40px;
+}
+
+.modal-reschedule-appointment .button-keep-current-appointment {
+  background: #fffdfb;
+  color: #705930;
+}
+
+.modal-reschedule-appointment .button-confirm-reschedule {
+  border: 0;
+  color: #f9efed;
+}
+
+.date-picker-block .chevron-prev,
+.date-picker-block .chevron-next {
+  padding: 0;
+  border: 1px solid rgba(206, 182, 144, 0.8);
+  background: #fffdfb;
+  color: #705930;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.date-picker-weekday {
+  width: 40px;
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.date-picker-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  width: 100%;
+}
+
+.date-picker-day {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  justify-self: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #2f1f04;
+  font: 400 15px "Inter-Regular", sans-serif;
+  cursor: pointer;
+}
+
+.date-picker-day:hover,
+.date-picker-day:focus-visible {
+  background: rgba(206, 182, 144, 0.35);
+}
+
+.date-picker-day--selected,
+.date-picker-day--selected:hover {
+  background: #705930;
+  color: #f9efed;
+}
+
+.date-picker-day--disabled,
+.date-picker-day--disabled:hover {
+  background: transparent;
+  color: rgba(112, 89, 48, 0.4);
+  cursor: not-allowed;
+}
+
+.date-picker-day:focus-visible,
+.date-picker-block .chevron-prev:focus-visible,
+.date-picker-block .chevron-next:focus-visible {
+  outline: 2px solid #2f1f04;
+  outline-offset: 2px;
+}
+
+.employee-availability {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: stretch;
+}
+
+.employee-availability__name {
+  margin: 0;
+  color: #2f1f04;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.employee-availability__times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.employee-availability__time {
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 1px solid rgba(206, 182, 144, 0.9);
+  border-radius: 999px;
+  background: #fffdfb;
+  color: #2f1f04;
+  font: 500 14px "Inter-Medium", sans-serif;
+  cursor: pointer;
+}
+
+.employee-availability__time:hover,
+.employee-availability__time:focus-visible {
+  border-color: #705930;
+}
+
+.employee-availability__time--selected {
+  border-color: #705930;
+  background: #705930;
+  color: #f9efed;
+}
+
+.employee-availability__time:focus-visible {
+  outline: 2px solid #2f1f04;
+  outline-offset: 2px;
+}
+
+.employee-availability-message {
+  margin: 0;
+  color: #705930;
+  font-size: 14px;
+}
+
+.employee-availability-message--error {
+  color: #a2412a;
+}
+
+.button-confirm-reschedule:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

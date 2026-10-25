@@ -2,7 +2,7 @@ import AppointmentStatus from "./AppointmentStatus";
 import AppointmentAction from "./AppointmentAction";
 import "../../../styles/customer-dashboard/view-appointment/AppointmentRow.css";
 
-function AppointmentRow({ appointment, setCurrentView, setAppointmentId}) {
+function AppointmentRow({ appointment, setCurrentView, setAppointmentId, onReschedule}) {
   return (
     <tr className="appointment-row">
       <td>
@@ -35,7 +35,9 @@ function AppointmentRow({ appointment, setCurrentView, setAppointmentId}) {
         <AppointmentAction 
           appointment={appointment} 
           setCurrentView={setCurrentView} 
-          setAppointmentId={setAppointmentId}/>
+          setAppointmentId={setAppointmentId}
+          onReschedule={onReschedule}
+        />
       </td>
     </tr>
   );
