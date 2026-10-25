@@ -9,6 +9,8 @@ import ActionRow from "./ActionRow";
 
 function RescheduleAppointment({ appointmentId, onKeepAppointment, onViewAppointment }) {
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(() => new Date());
+  const [selectedAvailability, setSelectedAvailability] = useState(null);
 
   if (isConfirmed) {
     return (
@@ -24,12 +26,21 @@ function RescheduleAppointment({ appointmentId, onKeepAppointment, onViewAppoint
       <RescheduleHeader onKeepAppointment={onKeepAppointment} />
       <CurrentSlotBanner />
       <div className="pickers-grid">
-        <DatePicker />
-        <TimePicker />
+        <DatePicker
+          onDateChange={(date) => {
+            setSelectedDate(date);
+            setSelectedAvailability(null);
+          }}
+        />
+        <TimePicker
+          selectedDate={selectedDate}
+          onAvailabilitySelect={setSelectedAvailability}
+        />
       </div>
       <ActionRow
         onKeepAppointment={onKeepAppointment}
         onConfirm={() => setIsConfirmed(true)}
+        canConfirm={selectedAvailability !== null}
       />
     </section>
   );

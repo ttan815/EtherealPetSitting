@@ -793,3 +793,133 @@
   border: 0;
   color: #f9efed;
 }
+
+.date-picker-block .chevron-prev,
+.date-picker-block .chevron-next {
+  padding: 0;
+  border: 1px solid rgba(206, 182, 144, 0.8);
+  background: #fffdfb;
+  color: #705930;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.date-picker-weekday {
+  width: 40px;
+  color: #705930;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.date-picker-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  width: 100%;
+}
+
+.date-picker-day {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  justify-self: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #2f1f04;
+  font: 400 15px "Inter-Regular", sans-serif;
+  cursor: pointer;
+}
+
+.date-picker-day:hover,
+.date-picker-day:focus-visible {
+  background: rgba(206, 182, 144, 0.35);
+}
+
+.date-picker-day--selected,
+.date-picker-day--selected:hover {
+  background: #705930;
+  color: #f9efed;
+}
+
+.date-picker-day--disabled,
+.date-picker-day--disabled:hover {
+  background: transparent;
+  color: rgba(112, 89, 48, 0.4);
+  cursor: not-allowed;
+}
+
+.date-picker-day:focus-visible,
+.date-picker-block .chevron-prev:focus-visible,
+.date-picker-block .chevron-next:focus-visible {
+  outline: 2px solid #2f1f04;
+  outline-offset: 2px;
+}
+
+.employee-availability {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: stretch;
+}
+
+.employee-availability__name {
+  margin: 0;
+  color: #2f1f04;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.employee-availability__times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.employee-availability__time {
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 1px solid rgba(206, 182, 144, 0.9);
+  border-radius: 999px;
+  background: #fffdfb;
+  color: #2f1f04;
+  font: 500 14px "Inter-Medium", sans-serif;
+  cursor: pointer;
+}
+
+.employee-availability__time:hover,
+.employee-availability__time:focus-visible {
+  border-color: #705930;
+}
+
+.employee-availability__time--selected {
+  border-color: #705930;
+  background: #705930;
+  color: #f9efed;
+}
+
+.employee-availability__time:focus-visible {
+  outline: 2px solid #2f1f04;
+  outline-offset: 2px;
+}
+
+.employee-availability-message {
+  margin: 0;
+  color: #705930;
+  font-size: 14px;
+}
+
+.employee-availability-message--error {
+  color: #a2412a;
+}
+
+.button-confirm-reschedule:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

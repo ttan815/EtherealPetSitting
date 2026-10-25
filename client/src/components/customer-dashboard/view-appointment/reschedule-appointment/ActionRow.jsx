@@ -1,6 +1,6 @@
 import "../../../../styles/customer-dashboard/view-appointment/RescheduleAppointment.css";
 
-function ActionRow({ onKeepAppointment, onConfirm }) {
+function ActionRow({ onKeepAppointment, onConfirm, canConfirm }) {
   return (
     <div className="action-row-reschedule">
       <button
@@ -14,6 +14,7 @@ function ActionRow({ onKeepAppointment, onConfirm }) {
         type="button"
         className="button-confirm-reschedule"
         onClick={onConfirm}
+        disabled={!canConfirm}
       >
         Confirm Reschedule
       </button>
