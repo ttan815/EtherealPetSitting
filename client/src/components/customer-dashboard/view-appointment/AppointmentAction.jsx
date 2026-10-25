@@ -1,7 +1,8 @@
 import "../../../styles/customer-dashboard/view-appointment/AppointmentAction.css";
 
-function AppointmentAction({ appointment, setCurrentView }) {
+function AppointmentAction({ appointment, setCurrentView, setAppointmentId }) {
   function handleViewDetails() {
+    setAppointmentId(`${appointment.id}`)
     setCurrentView("appointment-detail");
   }
 

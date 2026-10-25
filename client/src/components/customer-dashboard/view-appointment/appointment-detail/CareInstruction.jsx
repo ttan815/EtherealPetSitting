@@ -1,6 +1,6 @@
 import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 
-function CareInstruction() {
+function CareInstruction( {petId} ) {
     return (
         <div className="card-care-instructions">
             <div className="care-instructions-provided">Care Instructions Provided</div>

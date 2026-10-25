@@ -1,7 +1,7 @@
 import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 import ArrowLeft from "../../../../assets/icons/arrow-left.svg";
 
-function Header( {setCurrentView} ) {
+function Header( {setCurrentView, appointment} ) {
     function handleBack() {
         setCurrentView("main");
     }
@@ -19,7 +19,7 @@ function Header( {setCurrentView} ) {
                 <div className="title-status">
                     <div className="appointment-details">Appointment Details</div>
                     <div className="pill-badge">
-                    <div className="confirmed">Confirmed</div>
+                    <div className={appointment.status === "Confirm" ? "confirm" : "pending"}>{appointment.status}</div>
                     </div>
                 </div>
 

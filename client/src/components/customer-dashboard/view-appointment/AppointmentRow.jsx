@@ -2,7 +2,7 @@ import AppointmentStatus from "./AppointmentStatus";
 import AppointmentAction from "./AppointmentAction";
 import "../../../styles/customer-dashboard/view-appointment/AppointmentRow.css";
 
-function AppointmentRow({ appointment, setCurrentView }) {
+function AppointmentRow({ appointment, setCurrentView, setAppointmentId}) {
   return (
     <tr className="appointment-row">
       <td>
@@ -32,7 +32,10 @@ function AppointmentRow({ appointment, setCurrentView }) {
       <td>{appointment.balance}</td>
 
       <td>
-        <AppointmentAction appointment={appointment} setCurrentView={setCurrentView}/>
+        <AppointmentAction 
+          appointment={appointment} 
+          setCurrentView={setCurrentView} 
+          setAppointmentId={setAppointmentId}/>
       </td>
     </tr>
   );

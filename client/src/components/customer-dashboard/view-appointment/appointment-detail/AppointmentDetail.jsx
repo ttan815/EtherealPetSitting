@@ -7,18 +7,45 @@ import RescheduleAppointButton from "../../../action-button/RescheduleAppointmen
 import DownloadReceiptButton from "../../../action-button/DownloadReceiptButton";
 import CancelAppointmentButton from "../../../action-button/CancelAppointmentButton";
 
-function AppointmentDetail( {setCurrentView} ) {
+function fetchAppointmentId(appointmentId) {
+    {/* Fetch here */}
+    /**
+     * Temp Database Structure:
+     * Sitter Assigned: Angelena
+     * service: Dog Walking
+     * petId: 101
+     * date: Oct 26, 2026
+     * time: 10:00 AM
+     * transactionId: 1001
+     */
+    const appointment = {
+        id: appointmentId,
+        sitter: "Owner",
+        service: "Trim",
+        petId: 101,
+        date: "Oct 26, 2026",
+        time: "10:00 AM",
+        transactionId: 1001
+    }
+
+    return appointment;
+};
+
+
+function AppointmentDetail( {setCurrentView, appointmentId} ) {
+    const appointment = fetchAppointmentId(appointmentId);
+
     return (
         <div className="page-content">
-            <Header setCurrentView={setCurrentView}/>
+            <Header setCurrentView={setCurrentView} appointment={appointment}/>
             <div className="content-split-columns">
                 <div className="left-segment-details">
-                    <ServiceSchedule/>
-                    <CareInstruction/>
+                    <ServiceSchedule appointment={appointment}/>
+                    <CareInstruction petId={appointment.petId}/>
                 </div>
 
                 <div className="right-segment-panel">
-                    <PaymentInfo/>
+                    <PaymentInfo transactionId={appointment.transactionId}/>
 
                     <div className="sitter-sidebar-actions">
                         <RescheduleAppointButton/>

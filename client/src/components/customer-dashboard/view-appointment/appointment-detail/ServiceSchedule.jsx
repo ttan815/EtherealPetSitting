@@ -1,6 +1,6 @@
 import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 
-function ServiceSchedule() {
+function ServiceSchedule( {appointment} ) {
     return (
         <div className="card-service-schedule">
             <div className="service-schedule">Service &amp; Schedule</div>
@@ -11,7 +11,7 @@ function ServiceSchedule() {
             </div>
             <div className="row-data-meta">
                 <div className="service-booked">Service Booked</div>
-                <div className="drop-in-care">Drop-in Care</div>
+                <div className="drop-in-care">{appointment.service}</div>
             </div>
             <div className="row-data-meta">
                 <div className="pet-name">Pet Name</div>

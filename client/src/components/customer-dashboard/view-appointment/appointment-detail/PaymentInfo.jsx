@@ -1,6 +1,6 @@
 import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 
-function paymentInfo() {
+function paymentInfo( {transactionId} ) {
     return (
         <div className="card-payment-info">
             <div className="payment-invoicing">Payment &amp; Invoicing</div>
