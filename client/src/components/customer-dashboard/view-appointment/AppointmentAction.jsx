@@ -1,13 +1,13 @@
 import "../../../styles/customer-dashboard/view-appointment/AppointmentAction.css";
 
-function AppointmentAction({ appointment, setCurrentView, setAppointmentId }) {
+function AppointmentAction({ appointment, setCurrentView, setAppointmentId, onReschedule }) {
   function handleViewDetails() {
     setAppointmentId(`${appointment.id}`)
     setCurrentView("appointment-detail");
   }
 
   function handleReschedule() {
-    console.log("Reschedule appointment:", appointment.id);
+    onReschedule(appointment.id);
   }
 
   return (

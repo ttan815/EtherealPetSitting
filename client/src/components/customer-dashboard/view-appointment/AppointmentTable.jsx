@@ -13,7 +13,7 @@ import "../../../styles/customer-dashboard/view-appointment/AppointmentTable.css
 * balance: "$0.00",
 * petType: "dog"
 */
-function AppointmentsTable( {appointments, setCurrentView, setAppointmentId}) {
+function AppointmentsTable( {appointments, setCurrentView, setAppointmentId, onReschedule}) {
   return (
     <div className="appointments-table-wrapper">
       <table className="appointments-table">
@@ -35,6 +35,7 @@ function AppointmentsTable( {appointments, setCurrentView, setAppointmentId}) {
               appointment={appointment}
               setCurrentView={setCurrentView}
               setAppointmentId={setAppointmentId}
+              onReschedule={onReschedule}
             />
           ))}
         </tbody>
