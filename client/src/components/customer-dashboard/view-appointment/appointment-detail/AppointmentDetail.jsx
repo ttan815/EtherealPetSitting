@@ -48,7 +48,7 @@ function AppointmentDetail( {setCurrentView, appointmentId, onReschedule} ) {
                     <PaymentInfo transactionId={appointment.transactionId}/>
 
                     <div className="sitter-sidebar-actions">
-                        <RescheduleAppointButton onClick={onReschedule}/>
+                        <RescheduleAppointButton onReschedule={onReschedule}/>
                         <DownloadReceiptButton/>
                         <CancelAppointmentButton
                             onCancelled={() => setCurrentView("main")}

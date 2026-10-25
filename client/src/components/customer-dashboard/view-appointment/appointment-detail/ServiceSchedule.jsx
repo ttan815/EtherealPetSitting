@@ -23,7 +23,7 @@ function ServiceSchedule( {appointment} ) {
             </div>
             <div className="row-data-meta">
                 <div className="check-in-slot">Check-In Slot</div>
-                <div className="_12-00-pm">12:00 PM</div>
+                <div className="time">12:00 PM</div>
             </div>
             </div>
         </div>
