@@ -631,6 +631,7 @@
 .button-cancel-appointment {
   border-radius: 999px;
   border-style: solid;
+  color: #705930;
   border-color: #705930;
   border-width: 1px;
   padding: 15px 30px 15px 30px;
@@ -643,4 +644,5 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }

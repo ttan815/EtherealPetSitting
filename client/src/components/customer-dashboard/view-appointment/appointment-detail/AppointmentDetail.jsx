@@ -50,7 +50,10 @@ function AppointmentDetail( {setCurrentView, appointmentId} ) {
                     <div className="sitter-sidebar-actions">
                         <RescheduleAppointButton/>
                         <DownloadReceiptButton/>
-                        <CancelAppointmentButton/>
+                        <CancelAppointmentButton
+                            onCancelled={() => setCurrentView("main")}
+                            appointmentId={appointmentId}
+                        />
                     </div>
                 </div>
             </div>
