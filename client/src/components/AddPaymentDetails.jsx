@@ -1,0 +1,139 @@
+import { useState, useEffect } from "react";
+import NavigationBar from "./NavigationBar";
+import '../styles/ReviewPayDeposit.css';
+import { useAuth } from "../context/AuthContext";
+import heroTopoLeft from "../assets/home/hero-topo-left.svg"
+import heroTopoRight from "../assets/home/hero-topo-right.svg"
+import rightArrow from "../assets/icons/arrow-right.svg"
+function AddPaymentDetais() {
+    const { user, loading } = useAuth()
+    const [paymentMethod, setPaymentMethod] = useState("card");
+    const [nameOnCard, setNameOnCard] = useState("");
+    const [cardNumber, setCardNumber] = useState("");
+    const [expiryDate, setExpiryDate] = useState("");
+    const [cvv, setCVV] = useState("");
+    function parseCVV(cvvInput) {
+        if (cvv.length <= 3) {
+            setCVV(cvvInput)
+        }
+        else {
+            setCVV(cvv)
+        }
+    }
+    function parseExpiryDate(expyDateInput) {
+        let cleanedExpyDate = expyDateInput.replace(/\D/g, "");
+        cleanedExpyDate = cleanedExpyDate.slice(0, 4);
+        if (cleanedExpyDate.length > 2) {
+            cleanedExpyDate = cleanedExpyDate.slice(0, 2) + "/" + cleanedExpyDate.slice(2);
+        }
+        setExpiryDate(cleanedExpyDate)
+    }
+    function parseCardNumber(cardNumberInput) {
+        if (cardNumberInput.length < 16) {
+            setCardNumber(cardNumberInput.replace(/\D/g, ""))
+        }
+        else {
+            setCardNumber(cardNumber)
+            return;
+        }
+    }
+    function parseCVV(cvvInput) {
+        setCVV(cvvInput.slice(0, 3).replace(/\D/g, ""))
+    }
+    let role = user?.role
+    if (role == null) {
+        role = "visitor"
+    }
+    return (
+        <>
+            <NavigationBar role={role} user={user} />
+            <div className="sectionHeader">
+                <img
+                    src={heroTopoLeft}
+                    className="ringBottomLeft"
+                    alt=""
+                />
+                <img
+                    src={heroTopoRight}
+                    className="ringBottomRight"
+                    alt=""
+                />
+                <div className="sectionInfoPadding">
+                    <p className="reviewPayDepositTitle">Add Payment Details</p>
+                    <p>Enter your card details to pay your deposit and confirm your appointment with Angelena.</p>
+                </div>
+                <div className="currentStepContainer-payment">
+                    <div className="stepItem">
+                        <span>
+                            <img className="iconCircle-inactive" src={rightArrow} alt="" />
+                        </span>
+                        Select Service
+                    </div>
+                    <div className="stepItem"><span><img className="iconCircle-inactive" src={rightArrow}></img></span>Date & Time</div>
+                    <div className="stepItem"><span><img className="iconCircle-inactive" src={rightArrow}></img></span>Pet & Care Details</div>
+                    <div className="currentStep">
+                        <p className="iconCircle-active">4</p>
+                        <p>Review & Pay</p>
+                    </div>
+                </div>
+            </div>
+            <div className="review-pay-information-container">
+                <div className="infoContainer">
+                    <p className="title-info-card">Card Details</p>
+                    <div className="payment-info">
+                        <p className="payment-input-name">Name on card</p>
+                        <input className="payment-input" onChange={(e) => setNameOnCard(e.target.value)} value={nameOnCard} placeholder="ex. John Wayne"></input>
+                    </div>
+                    <div className="payment-info">
+                        <p className="payment-input-name">Card Number</p>
+                        <input className="payment-input" onChange={(e) => parseCardNumber(e.target.value)} value={cardNumber} placeholder="1234 5678 9012 3456"></input>
+                    </div>
+                    <div className="payment-info">
+                        <div className="expiry-cvv-container">
+                            <div>
+                                <p className="payment-input-name">Expiry date</p>
+                                <input className="payment-input-secrets" onChange={(e) => parseExpiryDate(e.target.value)} value={expiryDate} placeholder="MM/YY"></input>
+                            </div>
+                            <div>
+                                <p className="payment-input-name">CVV</p>
+                                <input className="payment-input-secrets" onChange={(e) => parseCVV(e.target.value)} value={cvv} placeholder="es. 123"></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="spacing-padding">
+                    <div className="infoContainer">
+                        <p className="title-info">Price Details</p>
+                        <div className="flex-info">
+                            <p>Service Fee</p>
+                            <p className="flex-desc">$25.00</p>
+                        </div>
+                        <div className="flex-info">
+                            <p>Required Deposit</p>
+                            <p className="flex-desc">$20.00</p>
+                        </div>
+                        <div className="flex-info">
+                            <p>Remaining Balance (Due after visit)</p>
+                            <p className="flex-desc">$5.00</p>
+                        </div>
+                    </div>
+                    <div className="infoContainer-deposit">
+                        <div className="flex-info">
+                            <p>Your deposit today</p>
+                            <p className="flex-desc-deposit">$20.00</p>
+                        </div>
+                        <div>
+                            <p className="flex-info-spec-deposit">You're booking within 30 days, so your deposit is $20. (Within 60 days: $50. Within 90 days: $100.) The rest is paid after the visit, in cash or online.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="navigation-buttons">
+                <button className="back-btn">Back</button>
+                <button className="pay-deposit-confirm-btn">Pay Deposit & Confirm</button>
+            </div>
+        </>
+    )
+}
+
+export default AddPaymentDetais;
