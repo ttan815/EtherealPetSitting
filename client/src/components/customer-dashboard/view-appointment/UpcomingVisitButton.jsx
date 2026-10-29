@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../../../styles/customer-dashboard/view-appointment/UpcomingVisitButton.css";
 
 function UpcomingVisitButton({ onAppointmentsLoaded, activeFilter, setActiveFilter }) {
@@ -56,19 +56,19 @@ function UpcomingVisitButton({ onAppointmentsLoaded, activeFilter, setActiveFilt
     }
 
     // Upon Rendered, Automatically Loaded Table with Upcoming Appointment
-    useEffect(() => {loadAppointment()}, [])
+    useEffect(() => { loadAppointment() }, [])
 
     return (
-        <button className={activeFilter === "upcoming" ? "tab-pill-active": "tab-pill"}
+        <button className={activeFilter === "upcoming" ? "tab-pill-active" : "tab-pill"}
             onClick={handleClick}
             disabled={loading}
         >
-            <div className={activeFilter === "upcoming" ? "upcoming-visits": "upcoming-visits-inactive"}>
+            <div className={activeFilter === "upcoming" ? "upcoming-visits" : "upcoming-visits-inactive"}>
                 Upcoming Visits
             </div>
 
-            <div className={activeFilter === "upcoming" ? "counter-badge": "counter-badge-inactive"}>
-                <div className={activeFilter === "upcoming" ? "number": "number-inactive"}>
+            <div className={activeFilter === "upcoming" ? "counter-badge" : "counter-badge-inactive"}>
+                <div className={activeFilter === "upcoming" ? "number" : "number-inactive"}>
                     {loaded ? tempAppointments.length : 3}
                 </div>
             </div>

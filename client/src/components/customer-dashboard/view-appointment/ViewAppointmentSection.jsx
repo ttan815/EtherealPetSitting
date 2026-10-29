@@ -1,22 +1,27 @@
 import { useState } from "react"
 import ViewAppointmentHeader from "./ViewAppointmentHeader";
+import PastVisitButton from "./PastVisitButton";
 import "../../../styles/customer-dashboard/view-appointment/ViewAppointmentSection.css"
 import UpcomingVisitButton from "./UpcomingVisitButton";
 import AppointmentTable from "./AppointmentTable"
 import AppointmentDetail from "./appointment-detail/AppointmentDetail";
 import RescheduleAppointment from "./reschedule-appointment/RescheduleAppointment";
 
-function MainContent( {setCurrentView, setAppointmentId, onReschedule} ) {
+function MainContent({ activeFilter, setActiveFilter, setCurrentView, setAppointmentId, onReschedule }) {
     const [appointments, setAppointments] = useState([]);
-    const [activeFilter, setActiveFilter] = useState("upcoming");
 
     return (
         <section className="view-appointment-section">
-            <ViewAppointmentHeader/>
-            
+            <ViewAppointmentHeader />
+
             {/* Filter Option */}
             <div className="tab-filter-navigation">
-                <UpcomingVisitButton 
+                <UpcomingVisitButton
+                    onAppointmentsLoaded={setAppointments}
+                    activeFilter={activeFilter}
+                    setActiveFilter={setActiveFilter}
+                />
+                <PastVisitButton
                     onAppointmentsLoaded={setAppointments}
                     activeFilter={activeFilter}
                     setActiveFilter={setActiveFilter}
@@ -25,6 +30,7 @@ function MainContent( {setCurrentView, setAppointmentId, onReschedule} ) {
 
             {/* Appointments table*/}
             <AppointmentTable
+                activeFilter={activeFilter}
                 appointments={appointments}
                 setCurrentView={setCurrentView}
                 setAppointmentId={setAppointmentId}
@@ -34,9 +40,10 @@ function MainContent( {setCurrentView, setAppointmentId, onReschedule} ) {
     );
 }
 
-function Detail( {setCurrentView, appointmentId, onReschedule} ) {
+function Detail({ activeFilter, setCurrentView, appointmentId, onReschedule }) {
     return (
         <AppointmentDetail
+            activeFilter={activeFilter}
             setCurrentView={setCurrentView}
             appointmentId={appointmentId}
             onReschedule={() => onReschedule(appointmentId, "appointment-detail")}
@@ -48,6 +55,7 @@ function ViewAppointmentSection() {
     const [currentView, setCurrentView] = useState("main");
     const [appointmentId, setAppointmentId] = useState("");
     const [previousView, setPreviousView] = useState("main");
+    const [activeFilter, setActiveFilter] = useState("upcoming");
 
     function handleReschedule(id, returnView) {
         setAppointmentId(`${id}`);
@@ -55,23 +63,26 @@ function ViewAppointmentSection() {
         setCurrentView("reschedule");
     }
 
-    if(currentView === "main")
+    if (currentView === "main")
         return (
             <MainContent
+                activeFilter={activeFilter}
+                setActiveFilter={setActiveFilter}
                 setCurrentView={setCurrentView}
                 setAppointmentId={setAppointmentId}
                 onReschedule={(id) => handleReschedule(id, "main")}
             />
         );
-    else if(currentView === "appointment-detail")
+    else if (currentView === "appointment-detail")
         return (
             <Detail
+                activeFilter={activeFilter}
                 setCurrentView={setCurrentView}
                 appointmentId={appointmentId}
                 onReschedule={handleReschedule}
             />
         );
-    else if(currentView === "reschedule")
+    else if (currentView === "reschedule")
         return (
             <RescheduleAppointment
                 appointmentId={appointmentId}

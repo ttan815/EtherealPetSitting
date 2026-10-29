@@ -13,7 +13,7 @@ import "../../../styles/customer-dashboard/view-appointment/AppointmentTable.css
 * balance: "$0.00",
 * petType: "dog"
 */
-function AppointmentsTable( {appointments, setCurrentView, setAppointmentId, onReschedule}) {
+function AppointmentsTable({ activeFilter, appointments, setCurrentView, setAppointmentId, onReschedule }) {
   return (
     <div className="appointments-table-wrapper">
       <table className="appointments-table">
@@ -32,6 +32,7 @@ function AppointmentsTable( {appointments, setCurrentView, setAppointmentId, onR
           {appointments.map((appointment) => (
             <AppointmentRow
               key={appointment.id}
+              activeFilter={activeFilter}
               appointment={appointment}
               setCurrentView={setCurrentView}
               setAppointmentId={setAppointmentId}

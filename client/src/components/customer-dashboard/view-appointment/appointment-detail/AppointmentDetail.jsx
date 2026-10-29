@@ -8,7 +8,7 @@ import DownloadReceiptButton from "../../../action-button/DownloadReceiptButton"
 import CancelAppointmentButton from "../../../action-button/CancelAppointmentButton";
 
 function fetchAppointmentId(appointmentId) {
-    {/* Fetch here */}
+    {/* Fetch here */ }
     /**
      * Temp Database Structure:
      * Sitter Assigned: Angelena
@@ -32,24 +32,24 @@ function fetchAppointmentId(appointmentId) {
 };
 
 
-function AppointmentDetail( {setCurrentView, appointmentId, onReschedule} ) {
+function AppointmentDetail({ activeFilter, setCurrentView, appointmentId, onReschedule }) {
     const appointment = fetchAppointmentId(appointmentId);
 
     return (
         <div className="page-content">
-            <Header setCurrentView={setCurrentView} appointment={appointment}/>
+            <Header setCurrentView={setCurrentView} appointment={appointment} />
             <div className="content-split-columns">
                 <div className="left-segment-details">
-                    <ServiceSchedule appointment={appointment}/>
-                    <CareInstruction petId={appointment.petId}/>
+                    <ServiceSchedule appointment={appointment} />
+                    <CareInstruction petId={appointment.petId} />
                 </div>
 
                 <div className="right-segment-panel">
-                    <PaymentInfo transactionId={appointment.transactionId}/>
+                    <PaymentInfo transactionId={appointment.transactionId} />
 
                     <div className="sitter-sidebar-actions">
-                        <RescheduleAppointButton onReschedule={onReschedule}/>
-                        <DownloadReceiptButton/>
+                        <RescheduleAppointButton onReschedule={onReschedule} />
+                        <DownloadReceiptButton />
                         <CancelAppointmentButton
                             onCancelled={() => setCurrentView("main")}
                             appointmentId={appointmentId}
