@@ -1,0 +1,115 @@
+/* Selectable service card on booking step 1 (Figma "Service / ...") */
+.booking-service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 320px;
+  padding: 28px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 20px;
+  background: var(--color-blush);
+  color: var(--color-brown);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover: lift the card a little and nudge the arrow */
+.booking-service-card:hover {
+  border-color: var(--color-ring);
+  box-shadow: 0 12px 24px -12px rgba(47, 31, 4, 0.2);
+  transform: translateY(-3px);
+}
+
+.booking-service-card:hover .booking-service-card-action img {
+  transform: translateX(3px);
+}
+
+/* Figma shows the selected card with the lighter cream background;
+   the tan border makes it stand out a little more */
+.booking-service-card.is-selected {
+  border-color: var(--color-tan);
+  background: var(--color-cream);
+}
+
+.booking-service-card:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 3px;
+}
+
+.booking-service-card-body,
+.booking-service-card-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.booking-service-card-body {
+  gap: 12px;
+}
+
+.booking-service-card-footer {
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.booking-service-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-ring);
+}
+
+.booking-service-card-icon img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.booking-service-card-name {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  color: var(--color-dark-brown);
+}
+
+.booking-service-card-description {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.booking-service-card-action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-transform: uppercase;
+}
+
+.booking-service-card-action img {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+/* Keep the color change but skip the movement for users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .booking-service-card,
+  .booking-service-card-action img {
+    transition: none;
+  }
+
+  .booking-service-card:hover,
+  .booking-service-card:hover .booking-service-card-action img {
+    transform: none;
+  }
+}
+
+/* Phones: one card per row, so let each card shrink to its content */
+@media (max-width: 600px) {
+  .booking-service-card {
+    min-height: 0;
+  }
+}

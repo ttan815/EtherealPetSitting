@@ -53,6 +53,13 @@
   background: rgba(249, 239, 237, 0.1);
 }
 
+/* Faded and not clickable, e.g. "Continue" before a choice is made */
+.button:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+  pointer-events: none; /* no clicks or variant hover color */
+}
+
 .button:focus-visible {
   outline: 2px solid var(--color-brown);
   outline-offset: 2px;

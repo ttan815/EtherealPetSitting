@@ -23,7 +23,7 @@ import shape4 from '../assets/home/about-shape-4.svg';
 // the owner photo can be passed in later, otherwise a placeholder box shows
 export default function AboutSection({ isLoggedIn = false, ownerPhoto = null }) {
   // customers go to the booking page, visitors go to the login page
-  const bookingLink = isLoggedIn ? '/booking' : '/login';
+  const bookingLink = isLoggedIn ? '/book-appointment' : '/login';
 
   // what the section looks like on the page
   return (

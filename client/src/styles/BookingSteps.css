@@ -1,0 +1,55 @@
+/* Numbered step tracker in the booking title band (Figma "BookingSteps") */
+.booking-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 92px; /* Figma: 48px gap plus a 32px spacer after each step's 12px gap */
+  margin: 0;
+  padding: 32px 0;
+  list-style: none;
+}
+
+.booking-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: rgba(249, 239, 237, 0.88);
+}
+
+.booking-step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid rgba(249, 239, 237, 0.55);
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.booking-step.is-current .booking-step-number {
+  border-color: var(--color-blush);
+  background: var(--color-blush);
+  color: var(--color-dark-brown);
+}
+
+.booking-step.is-current .booking-step-label {
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .booking-steps {
+    gap: 16px 32px;
+  }
+}
+
+/* Phones: stack the steps on the left */
+@media (max-width: 600px) {
+  .booking-steps {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 0 0;
+  }
+}

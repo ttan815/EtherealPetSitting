@@ -1,0 +1,69 @@
+/* Page frame shared by every booking step (Figma "Content Container") */
+.booking-layout {
+  background: var(--color-blush);
+}
+
+.booking-layout-content {
+  position: relative;
+  overflow: hidden; /* clips the soft circles at the page edges */
+  padding: 48px 112px 80px;
+}
+
+.booking-layout-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.booking-layout-shape {
+  position: absolute;
+  display: block;
+}
+
+.booking-layout-shape-left {
+  bottom: -100px;
+  left: -160px;
+}
+
+.booking-layout-shape-right {
+  top: -120px;
+  right: -220px;
+}
+
+.booking-layout-inner {
+  position: relative; /* sits above the circles */
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+/* Bottom row: back action on the left, continue on the right */
+.booking-layout-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .booking-layout-content {
+    padding: 40px 24px 64px;
+  }
+}
+
+/* Phones: stack the buttons, continue on top */
+@media (max-width: 600px) {
+  .booking-layout-content {
+    padding: 32px 16px 56px;
+  }
+
+  .booking-layout-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    padding-top: 16px;
+  }
+}
