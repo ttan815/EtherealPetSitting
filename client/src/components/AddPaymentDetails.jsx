@@ -5,6 +5,8 @@ import { useAuth } from "../context/AuthContext";
 import heroTopoLeft from "../assets/home/hero-topo-left.svg"
 import heroTopoRight from "../assets/home/hero-topo-right.svg"
 import rightArrow from "../assets/icons/arrow-right.svg"
+import circleBackground from "../assets/home/hero-inner-circle.svg"
+import Footer from "./Footer";
 function AddPaymentDetais() {
     const { user, loading } = useAuth()
     const [paymentMethod, setPaymentMethod] = useState("card");
@@ -127,11 +129,22 @@ function AddPaymentDetais() {
                         </div>
                     </div>
                 </div>
+                <img
+                    src={circleBackground}
+                    className="circleRight"
+                    alt=""
+                />
             </div>
             <div className="navigation-buttons">
+                <img
+                    src={circleBackground}
+                    className="circleLeft"
+                    alt=""
+                />
                 <button className="back-btn">Back</button>
                 <button className="pay-deposit-confirm-btn">Pay Deposit & Confirm</button>
             </div>
+            <Footer></Footer>
         </>
     )
 }

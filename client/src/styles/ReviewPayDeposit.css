@@ -21,6 +21,28 @@
     max-width: 750px;
 }
 
+.circleLeft {
+    position: absolute;
+    bottom: 0px;
+    left: -140px;
+    top: 0px;
+    width: 300px;
+    opacity: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.circleRight {
+    position: absolute;
+    bottom: 0px;
+    left: 1100px;
+    top: -150px;
+    width: 400px;
+    opacity: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
 .ringBottomLeft {
     position: absolute;
     bottom: 0px;
@@ -123,16 +145,20 @@
     gap: 30px;
     background-color: #f9efed;
     align-items: start;
+    position: relative;
+    overflow: hidden;
 }
 
 .infoContainer {
     background-color: #fffdfb;
     padding: 15px;
+    z-index: 15;
     border-radius: 15px;
     border: 1px solid #d6ccc1;
 }
 
 .infoContainer-deposit {
+    z-index: 15;
     background-color: #fefaf8;
     padding: 15px;
     border-radius: 15px;
@@ -212,6 +238,8 @@
     padding-right: 80px;
     padding-bottom: 80px;
     padding-top: 60px;
+    position: relative;
+    overflow: hidden;
 }
 
 .back-btn {
@@ -225,6 +253,7 @@
     background: transparent;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 15;
 }
 
 .back-btn:hover {
