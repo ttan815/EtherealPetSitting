@@ -1,0 +1,27 @@
+/* shared star row styles */
+
+/* the row of stars */
+.star-rating {
+  display: inline-flex; /* stars side by side */
+  gap: 2px; /* small space between stars */
+  line-height: 1; /* no extra height */
+}
+
+/* one empty star */
+.star {
+  color: #e2d6c4; /* light tan for empty stars */
+}
+
+/* one filled star */
+.star-filled {
+  color: #e8b04b; /* gold for filled stars */
+}
+
+/* clickable stars look like plain stars, not buttons */
+.star-rating-pick button {
+  padding: 0; /* no extra space */
+  border: none; /* no border */
+  background: none; /* no background */
+  font-size: inherit; /* same size as the row */
+  cursor: pointer; /* hand cursor on hover */
+}

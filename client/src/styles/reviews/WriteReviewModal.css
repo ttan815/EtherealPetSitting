@@ -1,0 +1,106 @@
+/* dt280 write a review popup styles from the figma */
+
+/* dark see through background */
+.write-review-backdrop {
+  position: fixed; /* covers the screen */
+  inset: 0; /* all four sides */
+  display: flex; /* lets us center the popup */
+  align-items: center; /* centers up and down */
+  justify-content: center; /* centers left and right */
+  padding: 16px; /* space on small screens */
+  background: rgba(47, 31, 4, 0.55); /* see through dark brown */
+  z-index: 1000; /* on top of everything */
+}
+
+/* the popup box */
+.write-review-modal {
+  display: flex; /* stacks the pieces */
+  flex-direction: column; /* top to bottom */
+  gap: 12px; /* space between pieces */
+  width: 100%; /* fills small screens */
+  max-width: 480px; /* widest it can get */
+  padding: 32px 40px; /* space inside */
+  background: var(--color-blush); /* light popup */
+  border-radius: 16px; /* rounded corners */
+}
+
+/* question and label text */
+.write-review-heading {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif text */
+  font-weight: 400; /* normal thickness */
+  font-size: 17px; /* text size */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* comment box */
+.write-review-textarea {
+  min-height: 180px; /* tall box */
+  padding: 10px; /* space inside */
+  border: 1px solid var(--color-dark-brown); /* thin border */
+  border-radius: 8px; /* rounded corners */
+  background: transparent; /* no fill */
+  font-family: var(--font-heading); /* serif text */
+  font-size: 15px; /* text size */
+  resize: vertical; /* can only grow taller */
+}
+
+/* characters left text */
+.write-review-counter {
+  margin: -6px 0 0; /* tucks under the box */
+  text-align: right; /* on the right */
+  font-family: var(--font-heading); /* serif text */
+  font-size: 12px; /* small text */
+}
+
+/* cancel and post row */
+.write-review-actions {
+  display: grid; /* two equal buttons */
+  grid-template-columns: 1fr 1fr; /* half and half */
+  gap: 8px; /* space between them */
+}
+
+/* both buttons share these */
+.write-review-cancel,
+.write-review-post {
+  padding: 10px 20px; /* space inside */
+  border: none; /* no border */
+  border-radius: var(--radius-pill); /* pill shape */
+  font-family: var(--font-heading); /* serif text */
+  font-size: 17px; /* text size */
+  color: var(--color-dark-brown); /* dark brown */
+  cursor: pointer; /* hand cursor on hover */
+}
+
+/* cancel button */
+.write-review-cancel {
+  background: #d4b896; /* light tan */
+}
+
+/* post and okay buttons */
+.write-review-post {
+  background: #c49a5a; /* darker gold */
+}
+
+/* error and thank you screens */
+.write-review-message {
+  display: flex; /* stacks the pieces */
+  flex-direction: column; /* top to bottom */
+  align-items: center; /* centered */
+  gap: 12px; /* space between pieces */
+  text-align: center; /* centered text */
+  font-family: var(--font-heading); /* serif text */
+}
+
+/* error and thank you titles */
+.write-review-message-title {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif text */
+  font-weight: 400; /* normal thickness */
+  font-size: 24px; /* title size */
+}
+
+/* message text */
+.write-review-message p {
+  margin: 0; /* no extra space */
+}
