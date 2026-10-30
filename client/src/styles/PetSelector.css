@@ -1,0 +1,165 @@
+/* "Select a Pet(s)" row on booking step 3 (Figma "Select a Pet(s)") */
+.pet-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(206, 182, 144, 0.6);
+}
+
+.pet-selector-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pet-selector-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-dark-brown);
+}
+
+.pet-selector-count {
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(206, 182, 144, 0.4);
+  color: var(--color-brown);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pet-selector-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.pet-selector-hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-brown);
+}
+
+/* One pet chip: the switch button plus an optional "×" inside the same pill */
+.pet-chip {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(206, 182, 144, 0.9);
+  border-radius: var(--radius-pill);
+  background: var(--color-cream);
+  transition: border-color 0.15s ease;
+}
+
+.pet-chip:hover {
+  border-color: var(--color-brown);
+}
+
+.pet-chip.is-active {
+  border-color: var(--color-brown);
+  background: var(--color-brown);
+}
+
+.pet-chip-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px 9px 10px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pet-chip-photo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(206, 182, 144, 0.5);
+}
+
+.pet-chip.is-active .pet-chip-photo {
+  background: var(--color-blush);
+}
+
+.pet-chip-photo img,
+.pet-chip-done {
+  display: block;
+}
+
+.pet-chip-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.pet-chip-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-dark-brown);
+}
+
+.pet-chip-subtitle {
+  font-size: 12px;
+  color: var(--color-brown);
+}
+
+.pet-chip.is-active .pet-chip-name {
+  color: var(--color-blush);
+}
+
+.pet-chip.is-active .pet-chip-subtitle {
+  color: var(--color-ring);
+}
+
+/* "×" sits at the end of the pill */
+.pet-chip-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin: 0 12px 0 -6px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--color-brown);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pet-chip-remove:hover {
+  background: rgba(206, 182, 144, 0.4);
+}
+
+.pet-chip.is-active .pet-chip-remove {
+  color: var(--color-blush);
+}
+
+.pet-chip.is-active .pet-chip-remove:hover {
+  background: rgba(249, 239, 237, 0.18);
+}
+
+/* Dashed "+ New pet" / "+ Luna" chips */
+.pet-chip-add {
+  padding: 9px 16px;
+  border: 1.2px dashed rgba(112, 89, 48, 0.6);
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--color-brown);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.pet-chip-add:hover {
+  border-color: var(--color-brown);
+  background: var(--color-cream);
+}

@@ -1,5 +1,5 @@
 // PLACEHOLDER: fake sitter schedules so the Date & Time step has something to show.
-// Replace getAvailableTimes with a call to the availability API once it exists.
+// BACKEND: replace getAvailableTimes with a call to the availability API once it exists.
 
 // workDays: 0 = Sunday ... 6 = Saturday
 // times: start times in minutes after midnight (540 = 9:00 AM)

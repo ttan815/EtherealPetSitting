@@ -1,5 +1,9 @@
-// "$25 / visit", or "$— / day" while the price is a placeholder (startingPrice is null)
+// "$25", or "$—" while the price is a placeholder (startingPrice is null)
+export function formatStartingAmount(service) {
+  return `$${service.startingPrice ?? "—"}`;
+}
+
+// "$25 / visit", or "$— / day"
 export function formatServicePrice(service) {
-  const amount = service.startingPrice ?? "—";
-  return `$${amount} / ${service.priceUnit}`;
+  return `${formatStartingAmount(service)} / ${service.priceUnit}`;
 }

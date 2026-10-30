@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate, useNavigate, useSearchParams } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import BookingLayout from "../components/booking/BookingLayout";
 import SelectedServiceBanner from "../components/booking/SelectedServiceBanner";
 import AvailabilityFilters from "../components/booking/AvailabilityFilters";
@@ -15,6 +15,7 @@ import {
   TIME_OF_DAY_GROUPS,
   TIME_OF_DAY_OPTIONS,
 } from "../constants/booking-filters";
+import { useBooking } from "../hooks/useBooking";
 import {
   addDays,
   addMonths,
@@ -24,7 +25,6 @@ import {
   getToday,
 } from "../utils/calendar-dates";
 import { getAvailableTimes } from "../utils/placeholder-availability";
-import { getServiceIdsFromQuery, toServiceQuery } from "../utils/service-query";
 import "../styles/SelectDateTimePage.css";
 
 // Bookable days for a Date dropdown choice: starts tomorrow, lasts `days` days
@@ -39,30 +39,29 @@ function isTimeInPartOfDay(time, partOfDay) {
 
 // Step 2 of booking: pick a sitter, a day and a time
 // (Figma "Customer - Select Date & Time (with filters & sitter)").
+// The sitter, day and time are saved in the booking; the date range and time-of-day filters only live here.
 export default function SelectDateTimePage() {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const { booking, updateBooking } = useBooking();
   const [filters, setFilters] = useState(DEFAULT_AVAILABILITY_FILTERS);
-  const [selectedDateKey, setSelectedDateKey] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
   const [shownMonth, setShownMonth] = useState(null); // null = first month of the date range
 
-  // Step 1 passes the services in the URL; without any there is nothing to book
-  const serviceIds = getServiceIdsFromQuery(searchParams);
-  if (serviceIds.length === 0) {
+  // Nothing to book without services from step 1
+  if (booking.serviceIds.length === 0) {
     return <Navigate to="/book-appointment" replace />;
   }
-  const services = BOOKING_SERVICES.filter((service) => serviceIds.includes(service.id));
+  const services = BOOKING_SERVICES.filter((service) => booking.serviceIds.includes(service.id));
 
   // Only sitters who offer every picked service can be chosen
   const sitters = BOOKING_SITTERS.filter(
-    (sitter) => !sitter.serviceIds || serviceIds.every((serviceId) => sitter.serviceIds.includes(serviceId))
+    (sitter) => !sitter.serviceIds || booking.serviceIds.every((serviceId) => sitter.serviceIds.includes(serviceId))
   );
-  const selectedSitter = sitters.find((sitter) => sitter.id === filters.sitterId);
-  const isNoPreference = filters.sitterId === NO_PREFERENCE_SITTER_ID;
+  // Falls back to "No preference" if the services changed and the saved sitter no longer fits
+  const selectedSitter = sitters.find((sitter) => sitter.id === booking.sitterId) ?? sitters[0];
+  const isNoPreference = selectedSitter.id === NO_PREFERENCE_SITTER_ID;
   const scheduleSitterIds = isNoPreference
     ? sitters.filter((sitter) => sitter.id !== NO_PREFERENCE_SITTER_ID).map((sitter) => sitter.id)
-    : [filters.sitterId];
+    : [selectedSitter.id];
 
   const dateRangeOption = DATE_RANGE_OPTIONS.find((option) => option.id === filters.dateRangeId);
   const dateRange = getDateRange(dateRangeOption);
@@ -81,11 +80,11 @@ export default function SelectDateTimePage() {
   }
 
   // A picked day or time stops counting once a filter hides it
-  const pickedDate = selectedDateKey ? fromDateKey(selectedDateKey) : null;
+  const pickedDate = booking.dateKey ? fromDateKey(booking.dateKey) : null;
   const selectedDate = pickedDate && isDateAvailable(pickedDate) ? pickedDate : null;
   const openTimes = selectedDate ? getOpenTimes(selectedDate) : [];
-  const activeTime = openTimes.includes(selectedTime) ? selectedTime : null;
-  const canContinue = selectedDate !== null && activeTime !== null;
+  const selectedTime = openTimes.includes(booking.time) ? booking.time : null;
+  const canContinue = selectedDate !== null && selectedTime !== null;
 
   const timeGroups = TIME_OF_DAY_GROUPS.map((group) => ({
     ...group,
@@ -105,20 +104,23 @@ export default function SelectDateTimePage() {
   });
   const sitterOptions = sitters.map((sitter) => ({ value: sitter.id, label: sitter.shortName }));
 
-  function selectDate(dateKey) {
-    setSelectedDateKey(dateKey);
-    setSelectedTime(null);
+  // The filter card edits the sitter too, so split it back out into the booking
+  function changeFilters({ sitterId, ...nextFilters }) {
+    setFilters(nextFilters);
+    updateBooking({ sitterId });
   }
 
-  // TODO (later ticket): go to step 3, Pet & Care Details, with the services, sitter, date and time
-  function continueToPetDetails() {}
+  function clearFilters() {
+    setFilters(DEFAULT_AVAILABILITY_FILTERS);
+    updateBooking({ sitterId: NO_PREFERENCE_SITTER_ID });
+  }
 
   const actions = (
     <>
-      <Button variant="outline" type="button" onClick={() => navigate(`/book-appointment?${toServiceQuery(serviceIds)}`)}>
+      <Button variant="outline" type="button" onClick={() => navigate("/book-appointment")}>
         Back
       </Button>
-      <Button type="button" disabled={!canContinue} onClick={continueToPetDetails}>
+      <Button type="button" disabled={!canContinue} onClick={() => navigate("/book-appointment/pet-details")}>
         Continue to Pet Details
       </Button>
     </>
@@ -134,17 +136,17 @@ export default function SelectDateTimePage() {
       <SelectedServiceBanner services={services} />
 
       <AvailabilityFilters
-        filters={filters}
+        filters={{ ...filters, sitterId: selectedSitter.id }}
         dateRangeOptions={dateRangeOptions}
         sitterOptions={sitterOptions}
-        onChange={setFilters}
-        onClear={() => setFilters(DEFAULT_AVAILABILITY_FILTERS)}
+        onChange={changeFilters}
+        onClear={clearFilters}
       />
 
       <SitterPicker
         sitters={sitters}
-        selectedSitterId={filters.sitterId}
-        onSelect={(sitterId) => setFilters({ ...filters, sitterId })}
+        selectedSitterId={selectedSitter.id}
+        onSelect={(sitterId) => updateBooking({ sitterId })}
       />
 
       <div className="select-date-time-columns">
@@ -154,16 +156,16 @@ export default function SelectDateTimePage() {
           canGoToNextMonth={calendarMonth < lastMonth}
           onMonthChange={(months) => setShownMonth(addMonths(calendarMonth, months))}
           isDateAvailable={isDateAvailable}
-          selectedDateKey={selectedDate ? selectedDateKey : null}
-          onSelectDate={selectDate}
+          selectedDateKey={selectedDate ? booking.dateKey : null}
+          onSelectDate={(dateKey) => updateBooking({ dateKey, time: null })}
         />
 
         <AvailableTimes
           selectedDate={selectedDate}
           sitterLabel={isNoPreference ? "Any available" : selectedSitter.shortName}
           timeGroups={timeGroups}
-          selectedTime={activeTime}
-          onSelectTime={setSelectedTime}
+          selectedTime={selectedTime}
+          onSelectTime={(time) => updateBooking({ time })}
         />
       </div>
     </BookingLayout>

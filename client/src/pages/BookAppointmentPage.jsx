@@ -4,16 +4,22 @@ import BookingLayout from "../components/booking/BookingLayout";
 import BookingServiceCard from "../components/booking/BookingServiceCard";
 import Button from "../components/form/Button";
 import { BOOKING_SERVICES } from "../constants/booking-services";
-import { getServiceIdsFromQuery, toServiceQuery } from "../utils/service-query";
+import { useBooking } from "../hooks/useBooking";
+import { getServiceIdsFromQuery } from "../utils/service-query";
 import arrowBackIcon from "../assets/booking/arrow-back.svg";
 import "../styles/BookAppointmentPage.css";
 
 // Step 1 of booking: the customer picks one or more services (Figma "Customer - Book a Service").
-// Services in the URL (e.g. from the home page "Book this service") start out selected.
+// Starts with the services in the URL (e.g. from the home page "Book this service"),
+// otherwise with the ones already in the booking (e.g. after "Back" from step 2).
 export default function BookAppointmentPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [selectedServiceIds, setSelectedServiceIds] = useState(() => getServiceIdsFromQuery(searchParams));
+  const { booking, updateBooking } = useBooking();
+  const [selectedServiceIds, setSelectedServiceIds] = useState(() => {
+    const serviceIdsFromUrl = getServiceIdsFromQuery(searchParams);
+    return serviceIdsFromUrl.length > 0 ? serviceIdsFromUrl : booking.serviceIds;
+  });
   const hasSelectedService = selectedServiceIds.length > 0;
 
   function toggleService(serviceId) {
@@ -23,7 +29,8 @@ export default function BookAppointmentPage() {
   }
 
   function continueToDateTime() {
-    navigate(`/book-appointment/date-time?${toServiceQuery(selectedServiceIds)}`);
+    updateBooking({ serviceIds: selectedServiceIds });
+    navigate("/book-appointment/date-time");
   }
 
   const actions = (

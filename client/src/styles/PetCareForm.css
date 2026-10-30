@@ -1,0 +1,13 @@
+/* Care form on booking step 3; the fields themselves use TextField / TextAreaField styles */
+.pet-care-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* New pet: name, type & breed, age side by side, wrapping on small screens */
+.pet-care-form-basics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
