@@ -1,0 +1,6 @@
+/* Extra rules for TextAreaField; the label and box come from TextField.css */
+.text-area-field-input {
+  font-family: inherit; /* browsers give <textarea> a monospace font by default */
+  min-height: 90px; /* box is 120px tall in Figma with its padding */
+  resize: vertical;
+}

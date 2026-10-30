@@ -1,0 +1,94 @@
+/* Month calendar on booking step 2 */
+.availability-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.availability-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.availability-calendar-arrows {
+  display: flex;
+  gap: 16px;
+}
+
+.availability-calendar-arrows button {
+  display: block;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.availability-calendar-arrows button:hover:not(:disabled) {
+  background: rgba(206, 182, 144, 0.25);
+}
+
+.availability-calendar-arrows button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.availability-calendar-arrows img {
+  display: block;
+}
+
+/* 7 columns; the first row holds the weekday names */
+.availability-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px 0;
+  justify-items: center;
+}
+
+.availability-calendar-weekday {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-brown);
+}
+
+/* Days that can't be picked: plain text at the top of the cell (Figma) */
+.availability-calendar-day {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  font-size: 15px;
+  color: var(--color-brown);
+}
+
+.availability-calendar-day.is-available {
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(206, 182, 144, 0.35);
+  color: var(--color-dark-brown);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.availability-calendar-day.is-available:hover {
+  background: rgba(206, 182, 144, 0.65);
+}
+
+.availability-calendar-day.is-selected,
+.availability-calendar-day.is-selected:hover {
+  background: var(--color-brown);
+  color: var(--color-blush);
+}
+
+@media (max-width: 600px) {
+  .availability-calendar-day {
+    width: 36px;
+    height: 36px;
+  }
+}

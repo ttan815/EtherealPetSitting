@@ -1,0 +1,46 @@
+/* Summary strip at the top of booking step 3 */
+.booking-summary-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 16px;
+  background: var(--color-cream);
+  font-size: 15px;
+}
+
+.booking-summary-strip-item {
+  display: flex;
+  gap: 12px;
+}
+
+/* Thin divider between the two items */
+.booking-summary-strip-item + .booking-summary-strip-item {
+  padding-left: 24px;
+  border-left: 1px solid var(--color-card-border);
+}
+
+.booking-summary-strip dt {
+  font-weight: 500;
+  color: var(--color-dark-brown);
+}
+
+.booking-summary-strip dd {
+  margin: 0;
+  color: var(--color-brown);
+}
+
+@media (max-width: 600px) {
+  .booking-summary-strip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-summary-strip-item + .booking-summary-strip-item {
+    padding-left: 0;
+    border-left: none;
+  }
+}

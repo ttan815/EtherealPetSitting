@@ -1,0 +1,15 @@
+/* Booking step 3: Pet & Care Details. The page frame is in BookingLayout.css */
+
+/* One big card: pet chips on top, the selected pet's form below */
+.pet-care-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+}
+
+@media (max-width: 900px) {
+  .pet-care-details {
+    padding: 20px;
+  }
+}

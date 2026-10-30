@@ -29,6 +29,11 @@
   font-weight: 500;
 }
 
+.booking-step-done {
+  display: block;
+  flex-shrink: 0;
+}
+
 .booking-step.is-current .booking-step-number {
   border-color: var(--color-blush);
   background: var(--color-blush);

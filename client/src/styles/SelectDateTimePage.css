@@ -1,0 +1,16 @@
+/* Booking step 2: Select Date & Time. The page frame is in BookingLayout.css */
+
+/* Calendar on the left, available times on the right */
+.select-date-time-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  gap: 40px;
+}
+
+@media (max-width: 900px) {
+  .select-date-time-columns {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
