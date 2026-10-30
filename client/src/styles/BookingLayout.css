@@ -39,6 +39,26 @@
   margin: 0 auto;
 }
 
+/* Rounded cream card used for the sections inside a step (filters, calendar, ...) */
+.booking-panel {
+  min-width: 0;
+  margin: 0; /* also used on <fieldset> */
+  padding: 28px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 24px;
+  background: var(--color-cream);
+}
+
+.booking-panel-title {
+  margin: 0;
+  padding: 0; /* also used on <legend> */
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-dark-brown);
+}
+
 /* Bottom row: back action on the left, continue on the right */
 .booking-layout-actions {
   display: flex;
@@ -52,6 +72,10 @@
 @media (max-width: 900px) {
   .booking-layout-content {
     padding: 40px 24px 64px;
+  }
+
+  .booking-panel {
+    padding: 20px;
   }
 }
 

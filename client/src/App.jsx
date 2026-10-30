@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import CreateAccount from "./pages/CreateAccountPage";
 import BookAppointmentPage from "./pages/BookAppointmentPage";
+import SelectDateTimePage from "./pages/SelectDateTimePage";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/create-account" element={<CreateAccount/>}/>
         <Route path="/book-appointment" element={<BookAppointmentPage/>}/>
+        <Route path="/book-appointment/date-time" element={<SelectDateTimePage/>}/>
 
       </Routes>
     </div>

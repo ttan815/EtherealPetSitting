@@ -1,21 +1,17 @@
 import arrowIcon from "../../assets/booking/arrow-select.svg";
+import { formatServicePrice } from "../../utils/format-service-price";
 import "../../styles/BookingServiceCard.css";
 
-// "From $25 / visit", or "From $— / day" while the price is a placeholder
-function formatStartingPrice(startingPrice, priceUnit) {
-  const amount = startingPrice ?? "—";
-  return `From $${amount} / ${priceUnit}`;
-}
-
 // Selectable service card on step 1 of booking (Figma "Service / ...").
-// The whole card is one toggle button; aria-pressed tells screen readers it is picked.
-function BookingServiceCard({ service, isSelected, onSelect }) {
+// The whole card is one toggle button: clicking picks it, clicking again un-picks it.
+// aria-pressed tells screen readers whether it is picked.
+function BookingServiceCard({ service, isSelected, onToggle }) {
   return (
     <button
       type="button"
       className={`booking-service-card ${isSelected ? "is-selected" : ""}`.trim()}
       aria-pressed={isSelected}
-      onClick={() => onSelect(service.id)}
+      onClick={() => onToggle(service.id)}
     >
       <span className="booking-service-card-body">
         <span className="booking-service-card-icon" aria-hidden="true">
@@ -27,7 +23,7 @@ function BookingServiceCard({ service, isSelected, onSelect }) {
 
       <span className="booking-service-card-footer">
         <span className="booking-service-card-price">
-          {formatStartingPrice(service.startingPrice, service.priceUnit)}
+          From {formatServicePrice(service)}
         </span>
         <span className="booking-service-card-action">
           Select this

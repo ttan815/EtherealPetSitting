@@ -1,0 +1,49 @@
+/* Selected-service banner at the top of booking step 2 */
+.selected-service-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 16px;
+  background: var(--color-cream);
+}
+
+.selected-service-banner-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-ring);
+}
+
+.selected-service-banner-icon img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.selected-service-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.selected-service-banner-name,
+.selected-service-banner-details {
+  margin: 0;
+}
+
+.selected-service-banner-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-dark-brown);
+}
+
+.selected-service-banner-details {
+  font-size: 14px;
+  color: var(--color-brown);
+}
