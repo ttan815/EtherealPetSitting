@@ -1,4 +1,5 @@
 import ViewAppointmentSection from "../components/customer-dashboard/view-appointment/ViewAppointmentSection";
+import ManagePet from "../components/customer-dashboard/manage-pet/ManagePet"
 import "../styles/customer-dashboard/CustomerDashboard.css"
 
 function CustomerDashboard() {
@@ -7,7 +8,8 @@ function CustomerDashboard() {
             {/*Navigation Bar*/}
             
             {/* Section */}
-            <ViewAppointmentSection/>
+            <ManagePet/>
+
         </main>
     );
 }

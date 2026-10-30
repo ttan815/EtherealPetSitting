@@ -1,0 +1,131 @@
+/* dt41 manage pet information page styles from the figma */
+
+/* the whole page content area */
+.manage-pet-page {
+  display: flex; /* stacks the page pieces */
+  flex-direction: column; /* top to bottom */
+  gap: 28px; /* space between pieces */
+  padding: 40px; /* space around the content */
+  background: var(--color-blush); /* light page background */
+  min-height: 100%; /* fills the area next to the sidebar */
+}
+
+/* top row with the title and the buttons */
+.manage-pet-header {
+  display: flex; /* title and buttons side by side */
+  justify-content: space-between; /* title left, buttons right */
+  align-items: flex-start; /* lines them up at the top */
+  gap: 24px; /* space between them */
+}
+
+/* page title */
+.manage-pet-title {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif heading font */
+  font-weight: 400; /* normal thickness */
+  font-size: 34px; /* big title */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* line under the title */
+.manage-pet-subtitle {
+  margin: 6px 0 0; /* small space above */
+  font-size: 14px; /* small text */
+  color: var(--color-brown); /* medium brown */
+}
+
+/* bell and add button row */
+.manage-pet-actions {
+  display: flex; /* side by side */
+  align-items: center; /* lines them up in the middle */
+  gap: 14px; /* space between them */
+  flex-shrink: 0; /* keeps the buttons from squishing */
+}
+
+/* round bell button */
+.manage-pet-bell {
+  display: flex; /* lets us center the icon */
+  align-items: center; /* centers up and down */
+  justify-content: center; /* centers left and right */
+  width: 44px; /* circle width */
+  height: 44px; /* circle height */
+  border-radius: 50%; /* makes it a circle */
+  border: 1px solid var(--color-card-border); /* thin tan border */
+  background: var(--color-cream); /* light circle */
+  cursor: pointer; /* hand cursor on hover */
+}
+
+/* bell icon size */
+.manage-pet-bell img {
+  width: 20px; /* icon width */
+  height: 20px; /* icon height */
+}
+
+/* add a pet button, uses the team button styles plus these */
+.manage-pet-add {
+  padding: 13px 30px; /* button size */
+  font-size: 13px; /* small text */
+  letter-spacing: 0.12em; /* spreads the letters apart */
+  text-transform: uppercase; /* capital letters like figma */
+}
+
+/* your pets heading row */
+.manage-pet-section-heading {
+  display: flex; /* heading and badge side by side */
+  justify-content: space-between; /* heading left, badge right */
+  align-items: flex-end; /* lines them up at the bottom */
+  gap: 16px; /* space between them */
+}
+
+/* your pets title */
+.manage-pet-section-title {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif heading font */
+  font-weight: 400; /* normal thickness */
+  font-size: 24px; /* section title size */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* line under the your pets title */
+.manage-pet-section-subtitle {
+  margin: 4px 0 0; /* small space above */
+  font-size: 13px; /* small text */
+  color: var(--color-brown); /* medium brown */
+}
+
+/* pet count badge */
+.manage-pet-count {
+  flex-shrink: 0; /* keeps the badge from squishing */
+  padding: 4px 12px; /* space inside the badge */
+  border-radius: var(--radius-pill); /* pill shape */
+  background: #efe3cf; /* light tan */
+  font-size: 12px; /* small text */
+  color: var(--color-brown); /* medium brown */
+}
+
+/* two column grid of pet cards */
+.manage-pet-grid {
+  display: grid; /* grid layout */
+  grid-template-columns: repeat(2, 1fr); /* two equal columns */
+  gap: 24px; /* space between cards */
+}
+
+/* message when there are no pets */
+.manage-pet-empty {
+  margin: 0; /* no extra space */
+  font-size: 14px; /* small text */
+  color: var(--color-muted); /* soft brown */
+}
+
+/* smaller screens stack everything into one column */
+@media (max-width: 900px) {
+  .manage-pet-page {
+    padding: 24px 16px; /* less space on small screens */
+  }
+  .manage-pet-header {
+    flex-direction: column; /* title above the buttons */
+  }
+  .manage-pet-grid {
+    grid-template-columns: 1fr; /* one card per row */
+  }
+}

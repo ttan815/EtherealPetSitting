@@ -1,0 +1,156 @@
+/* dt92 pet card styles, sizes and colors from the figma manage pet information page */
+
+/* the whole card */
+.pet-card {
+  display: flex; /* stacks the card pieces */
+  flex-direction: column; /* top to bottom */
+  gap: 20px; /* space between each piece */
+  padding: 24px; /* space inside the card */
+  background: var(--color-cream); /* light card background */
+  border: 1px solid var(--color-card-border); /* thin tan border */
+  border-radius: var(--radius-card); /* rounded corners */
+  box-shadow: 0 16px 40px -12px rgba(47, 31, 4, 0.08); /* soft shadow */
+}
+
+/* top row with the name and the badge */
+.pet-card-header {
+  display: flex; /* puts the name and badge side by side */
+  justify-content: space-between; /* name left, badge right */
+  align-items: flex-start; /* lines them up at the top */
+  gap: 12px; /* space between them */
+}
+
+/* pet name */
+.pet-card-name {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif heading font */
+  font-weight: 400; /* normal thickness */
+  font-size: 26px; /* big name */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* breed and age under the name */
+.pet-card-subtitle {
+  margin: 4px 0 0; /* small space above */
+  font-size: 13px; /* small text */
+  color: var(--color-brown); /* medium brown */
+}
+
+/* green profile complete badge */
+.pet-card-badge {
+  flex-shrink: 0; /* keeps the badge from squishing */
+  padding: 4px 10px; /* space inside the badge */
+  border-radius: var(--radius-pill); /* pill shape */
+  background: #e6efe2; /* light green */
+  font-size: 11px; /* small text */
+  color: #4f6b45; /* dark green text */
+}
+
+/* round photo frame */
+.pet-card-photo {
+  display: flex; /* lets us center what is inside */
+  align-items: center; /* centers up and down */
+  justify-content: center; /* centers left and right */
+  width: 108px; /* circle width */
+  height: 108px; /* circle height */
+  border-radius: 50%; /* makes it a circle */
+  border: 1px solid var(--color-ring); /* thin tan ring */
+  padding: 4px; /* gap between the ring and the photo */
+  background: var(--color-blush); /* shows behind the placeholder */
+  overflow: hidden; /* keeps the photo inside the circle */
+}
+
+/* the real photo fills the circle */
+.pet-card-photo img {
+  width: 100%; /* fills the width */
+  height: 100%; /* fills the height */
+  border-radius: 50%; /* round photo */
+  object-fit: cover; /* crops without stretching */
+}
+
+/* paw placeholder is smaller and not cropped */
+.pet-card-photo .pet-card-photo-placeholder {
+  width: 40px; /* small paw */
+  height: 40px; /* small paw */
+  border-radius: 0; /* no rounding needed */
+  object-fit: contain; /* shows the whole paw */
+  opacity: 0.7; /* a little faded */
+}
+
+/* list of info rows */
+.pet-card-info {
+  display: flex; /* stacks the rows */
+  flex-direction: column; /* top to bottom */
+  gap: 14px; /* space between rows */
+  margin: 0; /* removes default list space */
+  padding: 0; /* removes default list indent */
+  list-style: none; /* removes bullet points */
+}
+
+/* one info row */
+.pet-card-info-row {
+  display: flex; /* puts the icon and text side by side */
+  align-items: center; /* lines them up in the middle */
+  gap: 12px; /* space between icon and text */
+}
+
+/* round tan circle around each icon */
+.pet-card-info-icon {
+  display: flex; /* lets us center the icon */
+  align-items: center; /* centers up and down */
+  justify-content: center; /* centers left and right */
+  flex-shrink: 0; /* keeps the circle from squishing */
+  width: 34px; /* circle width */
+  height: 34px; /* circle height */
+  border-radius: 50%; /* makes it a circle */
+  background: var(--color-blush); /* light circle */
+  border: 1px solid var(--color-card-border); /* thin border */
+}
+
+/* icon size inside the circle */
+.pet-card-info-icon img {
+  width: 18px; /* icon width */
+  height: 18px; /* icon height */
+}
+
+/* small uppercase label like diet */
+.pet-card-info-label {
+  margin: 0; /* no extra space */
+  font-size: 10px; /* tiny text */
+  font-weight: 600; /* bold */
+  letter-spacing: 0.08em; /* spreads the letters apart */
+  text-transform: uppercase; /* capital letters */
+  color: var(--color-brown); /* medium brown */
+}
+
+/* the info text */
+.pet-card-info-value {
+  margin: 2px 0 0; /* tiny space above */
+  font-size: 13px; /* small text */
+  line-height: 1.5; /* space between lines */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* bottom row with the date and button */
+.pet-card-footer {
+  display: flex; /* puts the date and button side by side */
+  justify-content: space-between; /* date left, button right */
+  align-items: center; /* lines them up in the middle */
+  gap: 12px; /* space between them */
+  margin-top: auto; /* pushes the footer to the bottom of the card */
+}
+
+/* last updated text */
+.pet-card-updated {
+  margin: 0; /* no extra space */
+  font-size: 12px; /* small text */
+  color: var(--color-muted); /* soft brown */
+}
+
+/* edit info button, uses the team button styles plus these */
+.pet-card-edit {
+  padding: 11px 26px; /* a bit smaller than the default button */
+  font-size: 12px; /* small text */
+  letter-spacing: 0.12em; /* spreads the letters apart */
+  text-transform: uppercase; /* capital letters like figma */
+}
