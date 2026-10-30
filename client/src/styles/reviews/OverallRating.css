@@ -1,0 +1,102 @@
+/* dt278 overall rating styles from the figma reviews page */
+
+/* the whole box */
+.overall-rating {
+  display: grid; /* two sides */
+  grid-template-columns: 1fr 1.4fr; /* left side a bit smaller */
+  gap: 32px; /* space between sides */
+  padding: 40px; /* space inside */
+  background: #f3e8e3; /* light blush box */
+  border-radius: 16px; /* rounded corners */
+}
+
+/* left side with the big number */
+.overall-rating-summary {
+  display: flex; /* stacks the pieces */
+  flex-direction: column; /* top to bottom */
+  align-items: center; /* centered */
+  justify-content: center; /* centered up and down */
+  gap: 6px; /* space between pieces */
+  border-right: 1px solid var(--color-card-border); /* line between the two sides */
+  padding-right: 32px; /* space before the line */
+}
+
+/* overall rating title */
+.overall-rating-title {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif heading font */
+  font-weight: 400; /* normal thickness */
+  font-size: 30px; /* title size */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* the average number */
+.overall-rating-score {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif number */
+  font-size: 36px; /* big number */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* how many reviews */
+.overall-rating-count {
+  margin: 8px 0 0; /* space above */
+  font-family: var(--font-heading); /* serif text */
+  font-size: 24px; /* medium size */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* right side with the bars */
+.overall-rating-bars {
+  display: flex; /* stacks the rows */
+  flex-direction: column; /* top to bottom */
+  gap: 14px; /* space between rows */
+}
+
+/* one bar row */
+.overall-rating-row {
+  display: grid; /* label and bar side by side */
+  grid-template-columns: 90px 1fr; /* fixed label width */
+  align-items: center; /* lines them up */
+  gap: 16px; /* space between label and bar */
+}
+
+/* 5 stars, 4 stars, and so on */
+.overall-rating-label {
+  font-family: var(--font-heading); /* serif text */
+  font-size: 22px; /* label size */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* empty bar */
+.overall-rating-bar {
+  height: 22px; /* bar height */
+  border-radius: var(--radius-pill); /* rounded ends */
+  background: #e5d5c3; /* light tan */
+  overflow: hidden; /* keeps the fill inside */
+}
+
+/* filled part of the bar */
+.overall-rating-bar-fill {
+  height: 100%; /* fills the bar height */
+  background: #8f7b62; /* darker brown */
+  border-radius: var(--radius-pill); /* rounded ends */
+}
+
+/* write a review button sits on the right */
+.overall-rating-write {
+  align-self: flex-end; /* pushes it to the right */
+  margin-top: 8px; /* space above */
+  letter-spacing: 0.08em; /* spreads the letters apart */
+}
+
+/* small screens stack the two sides */
+@media (max-width: 800px) {
+  .overall-rating {
+    grid-template-columns: 1fr; /* one column */
+  }
+  .overall-rating-summary {
+    border-right: none; /* no side line */
+    padding-right: 0; /* no extra space */
+  }
+}

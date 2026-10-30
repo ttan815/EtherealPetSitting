@@ -1,0 +1,77 @@
+/* dt279 review card styles from the figma reviews page */
+
+/* the whole card */
+.review-card {
+  position: relative; /* lets the menu sit in the corner */
+  display: flex; /* circle and text side by side */
+  gap: 24px; /* space between them */
+  padding: 28px 32px; /* space inside the card */
+  background: var(--color-blush); /* light card */
+  border-radius: 16px; /* rounded corners */
+}
+
+/* round initials circle */
+.review-card-avatar {
+  display: flex; /* lets us center the letters */
+  align-items: center; /* centers up and down */
+  justify-content: center; /* centers left and right */
+  flex-shrink: 0; /* keeps the circle from squishing */
+  width: 72px; /* circle width */
+  height: 72px; /* circle height */
+  border-radius: 50%; /* makes it a circle */
+  background: #dcdcdc; /* light gray like figma */
+  font-family: var(--font-heading); /* serif letters */
+  font-size: 26px; /* big letters */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* everything next to the circle */
+.review-card-body {
+  flex: 1; /* takes the rest of the space */
+}
+
+/* pet name */
+.review-card-name {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif heading font */
+  font-weight: 400; /* normal thickness */
+  font-size: 26px; /* big name */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* stars and date row */
+.review-card-meta {
+  display: flex; /* side by side */
+  align-items: center; /* lines them up */
+  gap: 20px; /* space between stars and date */
+  margin-top: 6px; /* small space above */
+}
+
+/* the date */
+.review-card-date {
+  font-size: 15px; /* small text */
+  letter-spacing: 0.08em; /* spreads the letters apart */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* the comment */
+.review-card-text {
+  margin: 12px 0 0; /* space above */
+  max-width: 560px; /* keeps lines from getting too long */
+  font-size: 15px; /* normal text */
+  line-height: 1.5; /* space between lines */
+  letter-spacing: 0.04em; /* spreads the letters apart a little */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* three dots in the top right */
+.review-card-menu {
+  position: absolute; /* placed in the corner */
+  top: 20px; /* from the top */
+  right: 24px; /* from the right */
+  border: none; /* no border */
+  background: none; /* no background */
+  font-size: 20px; /* dot size */
+  color: var(--color-dark-brown); /* dark brown */
+  cursor: pointer; /* hand cursor on hover */
+}

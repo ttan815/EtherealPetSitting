@@ -62,7 +62,7 @@ export default function ReviewsSection() {
         </ul>
 
         <div className="reviews-footer">
-          <Button variant="outline" type="button">
+          <Button variant="outline" type="button" href="/reviews">
             See All Reviews
           </Button>
           <p className="reviews-footnote">Reviews can be left after a completed visit.</p>

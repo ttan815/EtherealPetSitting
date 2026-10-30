@@ -1,0 +1,40 @@
+/* dt277 reviews page layout */
+
+/* the whole page area between the nav and footer */
+.reviews-page {
+  display: flex; /* stacks the pieces */
+  flex-direction: column; /* top to bottom */
+  gap: 40px; /* space between pieces */
+  max-width: 900px; /* widest the content gets */
+  margin: 0 auto; /* centers the content */
+  padding: 56px 24px 96px; /* space around the content */
+}
+
+/* page title area */
+.reviews-page-header {
+  text-align: center; /* centered */
+}
+
+/* reviews title */
+.reviews-page-title {
+  margin: 0; /* no extra space */
+  font-family: var(--font-heading); /* serif heading font */
+  font-weight: 400; /* normal thickness */
+  font-size: 64px; /* very big title */
+  color: var(--color-dark-brown); /* dark brown */
+}
+
+/* line under the title */
+.reviews-page-subtitle {
+  margin: 4px 0 0; /* small space above */
+  font-family: var(--font-heading); /* serif text */
+  font-size: 28px; /* large text */
+  color: var(--color-muted); /* soft brown */
+}
+
+/* list of review cards */
+.reviews-page-list {
+  display: flex; /* stacks the cards */
+  flex-direction: column; /* top to bottom */
+  gap: 32px; /* space between cards */
+}
