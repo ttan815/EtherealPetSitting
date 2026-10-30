@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import CreateAccount from "./pages/CreateAccountPage";
 import CustomerDashboard  from "./pages/CustomerDashboard";
 import ReviewsPage from "./pages/ReviewsPage";
+import BookAppointmentPage from "./pages/BookAppointmentPage";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/create-account" element={<CreateAccount/>}/>
         <Route path="/customer-dashboard" element={<CustomerDashboard/>}/>
         <Route path="/reviews" element={<ReviewsPage/>}/>
+        <Route path="/book-appointment" element={<BookAppointmentPage/>}/>
 
       </Routes>
     </div>

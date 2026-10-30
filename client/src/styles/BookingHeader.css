@@ -1,0 +1,105 @@
+/* Brown title band shared by every booking step (Figma "Title Band") */
+.booking-header {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-brown);
+  color: var(--color-blush);
+  padding: 56px 112px 48px;
+}
+
+/* Topographic lines; offsets are the Figma positions in a 1440px frame */
+.booking-header-topo {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.booking-header-topo-line {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.booking-header-topo-line-1 {
+  top: 56px;
+  right: -111px;
+}
+
+.booking-header-topo-line-2 {
+  top: -18px;
+  right: -206px;
+}
+
+.booking-header-topo-line-3 {
+  top: -92px;
+  right: -301px;
+}
+
+.booking-header-topo-line-4 {
+  top: -167px;
+  right: -396px;
+}
+
+.booking-header-topo-line-5 {
+  top: 326px;
+  left: -116px;
+}
+
+.booking-header-topo-line-6 {
+  top: 263px;
+  left: -185px;
+}
+
+.booking-header-inner {
+  position: relative; /* sits above the topo lines */
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+.booking-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.booking-header-step {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.booking-header-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.booking-header-description {
+  max-width: 720px;
+  margin: 0;
+  font-size: 17px;
+  color: rgba(249, 239, 237, 0.88);
+}
+
+@media (max-width: 900px) {
+  .booking-header {
+    padding: 48px 24px 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .booking-header {
+    padding: 40px 16px 24px;
+  }
+
+  .booking-header-title {
+    font-size: 34px;
+  }
+}

@@ -1,0 +1,37 @@
+/* Book appointment step 1: Select Service. The page frame is in BookingLayout.css */
+.book-appointment-services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* "Return to Dashboard" text button */
+.book-appointment-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-brown);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.book-appointment-back:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .book-appointment-services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .book-appointment-services {
+    grid-template-columns: 1fr;
+  }
+}

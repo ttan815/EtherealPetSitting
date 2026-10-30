@@ -95,7 +95,7 @@ const DEFAULT_SERVICES = [
 // service holds the card info and the logged in flag tells us if the user is a customer
 function ServiceCard({ service, isLoggedIn }) {
   // customers go to the booking page with this service picked, visitors go to the login page
-  const bookingLink = isLoggedIn ? `/booking?service=${service.id}` : '/login';
+  const bookingLink = isLoggedIn ? `/book-appointment?service=${service.id}` : '/login';
 
   // what the card looks like on the page
   return (
