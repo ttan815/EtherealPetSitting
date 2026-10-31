@@ -1,11 +1,14 @@
-import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path' // Bring in the path module
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 5173,
-    strictPort: true,
+  resolve: {
+    alias: {
+      // This forces lucide-react and all other packages to use your root React instance
+      'react': path.resolve(import.meta.dirname, './node_modules/react'),
+      'react-dom': path.resolve(import.meta.dirname, './node_modules/react-dom'),
+    },
   },
 })
