@@ -1,0 +1,288 @@
+
+* {
+    box-sizing: border-box;
+}
+
+.overViewContainer {
+    padding: 15px;
+    margin: 15px;
+    background-color: #f9efed;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.additionalTaskTitle {
+    font-size: 32px;
+    margin-bottom: 0px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+}
+
+.additionalTaskDesc {
+    font-size: 15px;
+    margin-top: 0px;
+}
+
+.summaryContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.summaryTitle {
+    font-size: 24px;
+    margin-bottom: 0px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.summaryDesc {
+    margin-top: 0px;
+    font-size: 14px;
+    color: #84704c;
+}
+
+.summaryIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background-color: #ceb690;
+}
+.summaryIcon-bell{
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+}
+
+.summaryIcon-complete {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background-color: #e5ece1;
+}
+
+.individualSummaryContainer {
+    border: 1px solid #ceb690;
+    padding: 12px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+    background-color: #fffdfb;
+}
+
+.taskInputIndividualSummaryContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+}
+
+.flex-info-task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    font-weight: 600;
+    align-items: center;
+}
+
+.task-line-overlay {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #84704c;
+}
+
+.taskForSitter {
+    margin-top: 15px;
+}
+
+.taskForSitterContainer {
+    background-color: #fffdfb;
+    border-radius: 20px;
+    border: 1px solid #d6ccc1;
+    padding: 12px;
+}
+
+.additionalInfoContainer {
+    background-color: #fffdfb;
+    border-radius: 20px;
+    border: 1px solid #d6ccc1;
+    padding: 12px;
+    position: relative;
+}
+
+.taskInputField {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #d6ccc1;
+}
+
+.taskInputField:focus {
+    outline: none;
+}
+
+.task-input-container {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    gap: 12px;
+    width: 100%;
+}
+
+.taskTitleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.totalNumberOfTasks {
+    background-color: #e5ece1;
+    padding: 5px;
+    border-radius: 999px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #4f694e;
+}
+
+.taskForSitterAndAdditionalInfoContainer {
+    display: grid;
+    grid-template-columns: 6.5fr 2.5fr;
+    gap: 15px;
+    align-items: start;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.strike-through {
+    text-decoration: line-through;
+    color: #84704c;
+}
+
+.bookingNoteContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background-color: #eee3d0;
+    border-radius: 16px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.bookingNoteIcon {
+    color: #886c34;
+    font-size: 20px;
+    line-height: 1.2;
+    flex-shrink: 0;
+}
+
+.bookingNoteText {
+    color: #705930;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.lastUpdateText {
+    text-align: center;
+    font-size: 12px;
+}
+
+.additionalInfoTextAreaContainer {
+    position: relative;
+    width: 100%;
+}
+
+.additionalInfoInput {
+    display: block;
+    width: 100%;
+    height: 150px;
+    resize: none;
+    overflow-y: auto;
+    padding: 12px;
+    padding-bottom: 35px;
+    border: 1px solid #d6ccc1;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.characterCount {
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+    font-size: 12px;
+    color: #84704c;
+    pointer-events: none;
+}
+
+.pay-deposit-confirm-btn {
+    background-color: #705930;
+    color: #f9efed;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px #705930 solid;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pay-deposit-confirm-btn:hover {
+    background-color: #2f1f04;
+}
+
+.flex-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #84704c;
+    height: 40px;
+    align-items: center;
+}
+
+.flex-desc {
+    color: black;
+}
+
+.titleAndBellContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 1000px) {
+    .summaryContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .individualSummaryContainer {
+        width: 100%;
+        flex: none;
+    }
+
+    .taskForSitterAndAdditionalInfoContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .taskInputIndividualSummaryContainer {
+        width: 100%;
+        flex: none;
+    }
+}
