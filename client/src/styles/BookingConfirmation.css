@@ -1,0 +1,250 @@
+* {
+    box-sizing: border-box;
+}
+.sectionHeader {
+    background-color: #705930;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 100;
+    color: #f9efed;
+    position: relative;
+    overflow: hidden;
+}
+
+.reviewPayDepositTitle {
+    font-size: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.bookingConfirmedContainerDesc {
+    padding-left: 80px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    padding-right: 80px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.bookingConfirmed-Arrow {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    background-color: #ceb690;
+}
+
+.thankYouNote {
+    max-width: 512px;
+}
+
+.circleLeft {
+    position: absolute;
+    bottom: 0px;
+    left: -140px;
+    top: 0px;
+    width: 300px;
+    opacity: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.circleRight {
+    position: absolute;
+    bottom: 0px;
+    left: 1100px;
+    top: -150px;
+    width: 400px;
+    opacity: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.ringBottomLeft {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    top: -50px;
+    width: 900px;
+    pointer-events: none;
+}
+
+.ringBottomRight {
+    position: absolute;
+    width: 1300px;
+    right: 0;
+    pointer-events: none;
+}
+
+.review-pay-information-container {
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    background-color: #f9efed;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoContainer {
+    background-color: #fffdfb;
+    padding: 15px;
+    z-index: 15;
+    border-radius: 20px;
+    border: 1px solid #d6ccc1;
+    max-width: 512px;
+    width: 100%;
+}
+
+.confirmation-number {
+    font-weight: 500;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    gap: 16px;
+    color: #705930;
+}
+
+.fake-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #705930;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.appointmentMsgAddToCal {
+    font-size: 14px;
+}
+
+.flex-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #84704c;
+    height: 40px;
+    align-items: center;
+}
+
+.title-info {
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 10px;
+}
+
+.flex-desc {
+    color: black;
+}
+
+.line-overlay {
+    width: 100%;
+    margin-top: 10px;
+    border-top: 1px solid #84704c;
+}
+
+.return-to-dashboard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background: none;
+    color: #84704c;
+}
+
+.bookingConfirmed-Arrow {
+    width: 24px;
+    height: 24px;
+    background: none;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    background-color: #f9efed;
+    padding-bottom: 80px;
+    padding-top: 60px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.back-btn {
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 35px;
+    color: #84704c;
+    border: 1px #84704c solid;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 15;
+}
+.navigation-buttons button {
+    position: relative;
+    z-index: 2;
+}
+
+.back-btn:hover {
+    background-color: #705930;
+    color: #f9efed;
+}
+
+.pay-deposit-confirm-btn {
+    background-color: #705930;
+    color: #f9efed;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px #705930 solid;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pay-deposit-confirm-btn:hover {
+    background-color: #2f1f04;
+}
+
+@media (max-width: 450px) {
+    .review-pay-information-container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .flex-info {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 850px) {
+    .navigation-buttons{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
