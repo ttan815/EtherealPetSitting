@@ -26,13 +26,13 @@ const NAV_ITEMS = [
 export default function CustomerSidebarNav({ activeSection, onSelect }) {
   return (
     <nav aria-label="Customer navigation">
-      <div className="sidebar-brand">
+      <a className="sidebar-brand" href="/">
         <img src="/sidebar-logo.svg" alt="" className="sidebar-logo" />
         <div className="brand-text">
           <p className="brand-title">Ethereal</p>
           <p className="brand-subtitle">Customer Care</p>
         </div>
-      </div>
+      </a>
 
       <p className="sidebar-section-label">Your Care Space</p>
 
