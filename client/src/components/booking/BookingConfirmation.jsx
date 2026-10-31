@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 import "../styles/BookingConfirmation.css";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import heroTopoLeft from "../assets/home/hero-topo-left.svg";
 import heroTopoRight from "../assets/home/hero-topo-right.svg";
 import rightArrow from "../assets/icons/arrow-right.svg";

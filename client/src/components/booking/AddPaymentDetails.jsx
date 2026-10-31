@@ -1,15 +1,47 @@
 import { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 import '../styles/ReviewPayDeposit.css';
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import heroTopoLeft from "../assets/home/hero-topo-left.svg"
 import heroTopoRight from "../assets/home/hero-topo-right.svg"
 import rightArrow from "../assets/icons/arrow-right.svg"
 import circleBackground from "../assets/home/hero-inner-circle.svg"
 import Footer from "./Footer";
-function ReviewPayDeposit() {
+function AddPaymentDetais() {
     const { user, loading } = useAuth()
     const [paymentMethod, setPaymentMethod] = useState("card");
+    const [nameOnCard, setNameOnCard] = useState("");
+    const [cardNumber, setCardNumber] = useState("");
+    const [expiryDate, setExpiryDate] = useState("");
+    const [cvv, setCVV] = useState("");
+    function parseCVV(cvvInput) {
+        if (cvv.length <= 3) {
+            setCVV(cvvInput)
+        }
+        else {
+            setCVV(cvv)
+        }
+    }
+    function parseExpiryDate(expyDateInput) {
+        let cleanedExpyDate = expyDateInput.replace(/\D/g, "");
+        cleanedExpyDate = cleanedExpyDate.slice(0, 4);
+        if (cleanedExpyDate.length > 2) {
+            cleanedExpyDate = cleanedExpyDate.slice(0, 2) + "/" + cleanedExpyDate.slice(2);
+        }
+        setExpiryDate(cleanedExpyDate)
+    }
+    function parseCardNumber(cardNumberInput) {
+        if (cardNumberInput.length < 16) {
+            setCardNumber(cardNumberInput.replace(/\D/g, ""))
+        }
+        else {
+            setCardNumber(cardNumber)
+            return;
+        }
+    }
+    function parseCVV(cvvInput) {
+        setCVV(cvvInput.slice(0, 3).replace(/\D/g, ""))
+    }
     let role = user?.role
     if (role == null) {
         role = "visitor"
@@ -29,11 +61,10 @@ function ReviewPayDeposit() {
                     alt=""
                 />
                 <div className="sectionInfoPadding">
-                    <p>STEP 4 OF 4</p>
-                    <p className="reviewPayDepositTitle">Review & Pay Deposit</p>
-                    <p>Verify your booking details and make a secure deposit to confirm your pet care appointment with Angelena.</p>
+                    <p className="reviewPayDepositTitle">Add Payment Details</p>
+                    <p>Enter your card details to pay your deposit and confirm your appointment with Angelena.</p>
                 </div>
-                <div className="currentStepContainer">
+                <div className="currentStepContainer-payment">
                     <div className="stepItem">
                         <span>
                             <img className="iconCircle-inactive" src={rightArrow} alt="" />
@@ -50,23 +81,26 @@ function ReviewPayDeposit() {
             </div>
             <div className="review-pay-information-container">
                 <div className="infoContainer">
-                    <p className="title-info">Booking Summary</p>
-                    <div className="flex-info">
-                        <p>Service</p>
-                        <p className="flex-desc">Drop-in-Care</p>
+                    <p className="title-info-card">Card Details</p>
+                    <div className="payment-info">
+                        <p className="payment-input-name">Name on card</p>
+                        <input className="payment-input" onChange={(e) => setNameOnCard(e.target.value)} value={nameOnCard} placeholder="ex. John Wayne"></input>
                     </div>
-                    <div className="flex-info">
-                        <p>Pet Name</p>
-                        <p className="flex-desc">Mochi (Dog)e</p>
+                    <div className="payment-info">
+                        <p className="payment-input-name">Card Number</p>
+                        <input className="payment-input" onChange={(e) => parseCardNumber(e.target.value)} value={cardNumber} placeholder="1234 5678 9012 3456"></input>
                     </div>
-                    <div className="flex-info">
-                        <p>Date & Time</p>
-                        <p className="flex-desc">Tue, Oct 6 @ 12:00 PM</p>
-                    </div>
-                    <div className="line-overlay"></div>
-                    <div>
-                        <p className="flex-info-spec">SPECIAL INSTRUCTIONS SUMMARY</p>
-                        <p className="flex-info-spec">Feed 1/2 cup kibble at 12:00 PM. No meds required. Key is located in the lockbox by the side door (Code: 4892)</p>
+                    <div className="payment-info">
+                        <div className="expiry-cvv-container">
+                            <div>
+                                <p className="payment-input-name">Expiry date</p>
+                                <input className="payment-input-secrets" onChange={(e) => parseExpiryDate(e.target.value)} value={expiryDate} placeholder="MM/YY"></input>
+                            </div>
+                            <div>
+                                <p className="payment-input-name">CVV</p>
+                                <input className="payment-input-secrets" onChange={(e) => parseCVV(e.target.value)} value={cvv} placeholder="es. 123"></input>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="spacing-padding">
@@ -94,37 +128,6 @@ function ReviewPayDeposit() {
                             <p className="flex-info-spec-deposit">You're booking within 30 days, so your deposit is $20. (Within 60 days: $50. Within 90 days: $100.) The rest is paid after the visit, in cash or online.</p>
                         </div>
                     </div>
-                    <div className="infoContainer">
-                        <p className="title-info-payment">Select Payment Method</p>
-                        <div className="payment-methods">
-                            <label className="payment-option">
-                                <input
-                                    type="radio"
-                                    name="paymentMethod"
-                                    value="card"
-                                    checked={paymentMethod === "card"}
-                                    onChange={(e) => setPaymentMethod(e.target.value)}
-                                />
-                                Credit / Debit Card
-                            </label>
-
-                            <label className="payment-option">
-                                <input
-                                    type="radio"
-                                    name="paymentMethod"
-                                    value="applePay"
-                                    checked={paymentMethod === "applePay"}
-                                    onChange={(e) => setPaymentMethod(e.target.value)}
-                                />
-                                Apple Pay
-                            </label>
-                        </div>
-                        <div>
-                            <p className="flex-desc-disclaimer">* A deposit is required to secure and confirm your appointment</p>
-                            <p className="flex-desc-disclaimer">* Credit or debit card details will not be stored on our servers.</p>
-                        </div>
-
-                    </div>
                 </div>
                 <img
                     src={circleBackground}
@@ -146,4 +149,4 @@ function ReviewPayDeposit() {
     )
 }
 
-export default ReviewPayDeposit;
+export default AddPaymentDetais;

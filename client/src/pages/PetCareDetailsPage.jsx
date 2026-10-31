@@ -74,8 +74,9 @@ export default function PetCareDetailsPage() {
     updatePets(pets.map((pet) => (pet.id === activePet.id ? { ...pet, ...changes } : pet)));
   }
 
-  // TODO (later ticket): go to step 4, Review & Pay
-  function continueToReview() {}
+  function continueToReview() {
+    navigate("/book-appointment/review-and-pay")
+  }
 
   const actions = (
     <>
