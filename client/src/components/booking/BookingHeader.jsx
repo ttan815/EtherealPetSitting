@@ -6,7 +6,7 @@ import topo3 from "../../assets/booking/title-topo-3.svg";
 import topo4 from "../../assets/booking/title-topo-4.svg";
 import topo5 from "../../assets/booking/title-topo-5.svg";
 import topo6 from "../../assets/booking/title-topo-6.svg";
-import "../../styles/BookingHeader.css";
+import "../../styles/booking/BookingHeader.css";
 
 const TOPO_LINES = [topo1, topo2, topo3, topo4, topo5, topo6];
 

@@ -1,6 +1,6 @@
 import arrowIcon from "../../assets/booking/arrow-select.svg";
 import { formatServicePrice } from "../../utils/format-service-price";
-import "../../styles/BookingServiceCard.css";
+import "../../styles/booking/BookingServiceCard.css";
 
 // Selectable service card on step 1 of booking (Figma "Service / ...").
 // The whole card is one toggle button: clicking picks it, clicking again un-picks it.

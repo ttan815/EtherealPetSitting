@@ -1,6 +1,6 @@
 import { TIME_OF_DAY_OPTIONS } from "../../constants/booking-filters";
 import chevronIcon from "../../assets/booking/select-chevron.svg";
-import "../../styles/AvailabilityFilters.css";
+import "../../styles/booking/AvailabilityFilters.css";
 
 // Labeled dropdown styled like the Figma "Date Select" / "Sitter Select"
 function FilterSelect({ id, label, value, options, onChange }) {

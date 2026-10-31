@@ -1,6 +1,6 @@
 import { formatTime } from "../../utils/format-time";
 import { formatWeekdayDate } from "../../utils/calendar-dates";
-import "../../styles/AvailableTimes.css";
+import "../../styles/booking/AvailableTimes.css";
 
 // "Available Times" panel on booking step 2. Only open times are shown.
 // selectedDate: Date, or null before a day is picked

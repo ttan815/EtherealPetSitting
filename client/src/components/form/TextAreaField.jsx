@@ -1,5 +1,5 @@
 import "../../styles/form/TextField.css";
-import "../../styles/TextAreaField.css";
+import "../../styles/form/TextAreaField.css";
 import FieldMessage from "./FieldMessage";
 
 // Labeled multi-line text box; the <textarea> version of TextField, with the same look.

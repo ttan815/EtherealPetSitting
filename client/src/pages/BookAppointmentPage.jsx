@@ -7,7 +7,7 @@ import { BOOKING_SERVICES } from "../constants/booking-services";
 import { useBooking } from "../hooks/useBooking";
 import { getServiceIdsFromQuery } from "../utils/service-query";
 import arrowBackIcon from "../assets/booking/arrow-back.svg";
-import "../styles/BookAppointmentPage.css";
+import "../styles/booking/BookAppointmentPage.css";
 
 // Step 1 of booking: the customer picks one or more services (Figma "Customer - Book a Service").
 // Starts with the services in the URL (e.g. from the home page "Book this service"),

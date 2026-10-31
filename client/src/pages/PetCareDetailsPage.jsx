@@ -9,7 +9,7 @@ import { BOOKING_SERVICES } from "../constants/booking-services";
 import { useBooking } from "../hooks/useBooking";
 import { fromDateKey } from "../utils/calendar-dates";
 import { getSavedHouseEntry, getSavedPets } from "../utils/placeholder-pets";
-import "../styles/PetCareDetailsPage.css";
+import "../styles/booking/PetCareDetailsPage.css";
 
 function createNewPet() {
   return {

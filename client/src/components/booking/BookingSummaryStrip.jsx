@@ -1,7 +1,7 @@
 import { formatWeekdayDate } from "../../utils/calendar-dates";
 import { formatTime } from "../../utils/format-time";
 import { formatStartingAmount } from "../../utils/format-service-price";
-import "../../styles/BookingSummaryStrip.css";
+import "../../styles/booking/BookingSummaryStrip.css";
 
 // One-line recap of steps 1 and 2: "Service: Drop-in Care ($25) | Date & Time: Tue, Oct 6 @ 12:00 PM"
 // date: Date; time: minutes after midnight

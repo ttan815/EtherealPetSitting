@@ -25,7 +25,7 @@ import {
   getToday,
 } from "../utils/calendar-dates";
 import { getAvailableTimes } from "../utils/placeholder-availability";
-import "../styles/SelectDateTimePage.css";
+import "../styles/booking/SelectDateTimePage.css";
 
 // Bookable days for a Date dropdown choice: starts tomorrow, lasts `days` days
 function getDateRange(dateRangeOption) {

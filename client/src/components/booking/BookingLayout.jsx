@@ -4,7 +4,7 @@ import BookingHeader from "./BookingHeader";
 import { useAuth } from "../../context/AuthContext";
 import circleLeft from "../../assets/booking/shape-circle-left.svg";
 import circleRight from "../../assets/booking/shape-circle-right.svg";
-import "../../styles/BookingLayout.css";
+import "../../styles/booking/BookingLayout.css";
 
 // Page frame shared by every booking step: nav, title band with step tracker,
 // content area with soft background circles, bottom button row, and footer.

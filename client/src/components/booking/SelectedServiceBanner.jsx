@@ -1,6 +1,6 @@
 import { formatServicePrice } from "../../utils/format-service-price";
 import pawIcon from "../../assets/booking/icon-paw.svg";
-import "../../styles/SelectedServiceBanner.css";
+import "../../styles/booking/SelectedServiceBanner.css";
 
 // Reminds the customer which services they picked on step 1.
 // One service: its icon, name, description and price (Figma).

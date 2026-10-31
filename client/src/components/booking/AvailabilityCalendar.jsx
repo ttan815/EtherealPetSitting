@@ -1,7 +1,7 @@
 import { formatMonthYear, formatWeekdayDate, getCalendarWeeks, toDateKey } from "../../utils/calendar-dates";
 import previousIcon from "../../assets/booking/calendar-prev.svg";
 import nextIcon from "../../assets/booking/calendar-next.svg";
-import "../../styles/AvailabilityCalendar.css";
+import "../../styles/booking/AvailabilityCalendar.css";
 
 const WEEKDAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
