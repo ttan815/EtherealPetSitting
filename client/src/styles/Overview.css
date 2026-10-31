@@ -1,77 +1,73 @@
+
 * {
     box-sizing: border-box;
 }
 
-.overViewContainer{
+.overViewContainer {
     padding: 15px;
     margin: 15px;
     background-color: #f9efed;
 }
-.titleContainer{
+
+.titleContainer {
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
-}.additionalInfoTextAreaContainer {
-    position: relative;
-    width: 100%;
 }
 
-.additionalInfoInput {
-    display: block;
-    width: 100%;
-    height: 150px;
-    resize: none;
-    overflow-y: auto;
-    padding: 12px;
-    padding-bottom: 35px;
-    border: 1px solid #d6ccc1;
-    border-radius: 10px;
-    box-sizing: border-box;
-}
-
-.characterCount {
-    position: absolute;
-    bottom: 12px;
-    right: 15px;
-    font-size: 12px;
-    color: #84704c;
-    pointer-events: none;
-}
-.additionalTaskTitle{
+.additionalTaskTitle {
     font-size: 32px;
     margin-bottom: 0px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 400;
 }
-.additionalTaskDesc{
+
+.additionalTaskDesc {
     font-size: 15px;
     margin-top: 0px;
 }
-.summaryContainer{
+
+.summaryContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     gap: 16px;
 }
-.summaryTitle{
+
+.summaryTitle {
     font-size: 24px;
     margin-bottom: 0px;
     font-family: 'Times New Roman', Times, serif;
 }
-.summaryDesc{
+
+.summaryDesc {
     margin-top: 0px;
     font-size: 14px;
     color: #84704c;
 }
-.summaryIcon{
+
+.summaryIcon {
     width: 40px;
     height: 40px;
     border-radius: 999px;
     background-color: #ceb690;
 }
-.individualSummaryContainer{
+.summaryIcon-bell{
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+}
+
+.summaryIcon-complete {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background-color: #e5ece1;
+}
+
+.individualSummaryContainer {
     border: 1px solid #ceb690;
     padding: 12px;
     border-radius: 30px;
@@ -82,7 +78,8 @@
     flex: 1;
     background-color: #fffdfb;
 }
-.taskInputIndividualSummaryContainer{
+
+.taskInputIndividualSummaryContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -90,7 +87,7 @@
     flex: 1;
 }
 
-.flex-info-task{
+.flex-info-task {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -106,33 +103,37 @@
     border-top: 1px solid #84704c;
 }
 
-.taskForSitter{
+.taskForSitter {
     margin-top: 15px;
 }
-.taskForSitterContainer{
+
+.taskForSitterContainer {
     background-color: #fffdfb;
     border-radius: 20px;
     border: 1px solid #d6ccc1;
     padding: 12px;
 }
-.additionalInfoContainer{
+
+.additionalInfoContainer {
     background-color: #fffdfb;
     border-radius: 20px;
     border: 1px solid #d6ccc1;
     padding: 12px;
     position: relative;
 }
-.taskInputField{
+
+.taskInputField {
     width: 100%;
     padding: 10px;
     border-radius: 15px;
     border: 1px solid #d6ccc1;
 }
-.taskInputField:focus{
+
+.taskInputField:focus {
     outline: none;
 }
 
-.task-input-container{
+.task-input-container {
     display: flex;
     justify-content: start;
     flex-direction: row;
@@ -140,13 +141,14 @@
     width: 100%;
 }
 
-.taskTitleContainer{
+.taskTitleContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
-.totalNumberOfTasks{
+
+.totalNumberOfTasks {
     background-color: #e5ece1;
     padding: 5px;
     border-radius: 999px;
@@ -155,20 +157,20 @@
     color: #4f694e;
 }
 
-.taskForSitterAndAdditionalInfoContainer{
+.taskForSitterAndAdditionalInfoContainer {
     display: grid;
     grid-template-columns: 6.5fr 2.5fr;
     gap: 15px;
     align-items: start;
     width: 100%;
     margin-top: 15px;
-
 }
 
-.strike-through{
+.strike-through {
     text-decoration: line-through;
     color: #84704c;
 }
+
 .bookingNoteContainer {
     display: flex;
     flex-direction: row;
@@ -195,11 +197,10 @@
     margin: 0;
 }
 
-.lastUpdateText{
+.lastUpdateText {
     text-align: center;
     font-size: 12px;
 }
-
 
 .additionalInfoTextAreaContainer {
     position: relative;
@@ -228,219 +229,6 @@
     pointer-events: none;
 }
 
-
-
-
-
-
-
-
-.sectionHeader {
-    background-color: #705930;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 100;
-    color: #f9efed;
-    position: relative;
-    overflow: hidden;
-}
-
-.reviewPayDepositTitle {
-    font-size: 40px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.bookingConfirmedContainerDesc {
-    padding-left: 80px;
-    padding-top: 35px;
-    padding-bottom: 35px;
-    padding-right: 80px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-
-
-.thankYouNote {
-    max-width: 512px;
-}
-
-.circleLeft {
-    position: absolute;
-    bottom: 0px;
-    left: -140px;
-    top: 0px;
-    width: 300px;
-    opacity: 50%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.circleRight {
-    position: absolute;
-    bottom: 0px;
-    left: 1100px;
-    top: -150px;
-    width: 400px;
-    opacity: 50%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.ringBottomLeft {
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    top: -50px;
-    width: 900px;
-    pointer-events: none;
-}
-
-.ringBottomRight {
-    position: absolute;
-    width: 1300px;
-    right: 0;
-    pointer-events: none;
-}
-
-.review-pay-information-container {
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 35px;
-    padding-bottom: 35px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    background-color: #f9efed;
-    align-items: start;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-.infoContainer {
-    background-color: #fffdfb;
-    padding: 15px;
-    z-index: 15;
-    border-radius: 20px;
-    border: 1px solid #d6ccc1;
-    max-width: 512px;
-    width: 100%;
-}
-
-.confirmation-number {
-    font-weight: 500;
-}
-
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    gap: 16px;
-    color: #705930;
-}
-
-.fake-checkbox {
-    width: 20px;
-    height: 20px;
-    border: 1.5px solid #705930;
-    border-radius: 3px;
-    flex-shrink: 0;
-}
-
-.appointmentMsgAddToCal {
-    font-size: 14px;
-}
-
-.flex-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: #84704c;
-    height: 40px;
-    align-items: center;
-}
-
-.title-info {
-    font-size: 24px;
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 10px;
-}
-
-.flex-desc {
-    color: black;
-}
-
-.line-overlay {
-    width: 100%;
-    margin-top: 10px;
-    border-top: 1px solid #f9efed;
-}
-
-.return-to-dashboard {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    background: none;
-    color: #84704c;
-}
-
-.bookingConfirmed-Arrow {
-    width: 24px;
-    height: 24px;
-    background: none;
-    background-color: transparent;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.navigation-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    background-color: #f9efed;
-    padding-bottom: 80px;
-    padding-top: 60px;
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-}
-
-.back-btn {
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 35px;
-    color: #84704c;
-    border: 1px #84704c solid;
-    background: transparent;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    z-index: 15;
-}
-.navigation-buttons button {
-    position: relative;
-    z-index: 2;
-}
-
-.back-btn:hover {
-    background-color: #705930;
-    color: #f9efed;
-}
-
 .pay-deposit-confirm-btn {
     background-color: #705930;
     color: #f9efed;
@@ -458,22 +246,43 @@
     background-color: #2f1f04;
 }
 
-@media (max-width: 450px) {
-    .review-pay-information-container {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-
-    .flex-info {
-        font-size: 13px;
-    }
+.flex-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #84704c;
+    height: 40px;
+    align-items: center;
 }
 
-@media (max-width: 850px) {
-    .navigation-buttons{
-        display: flex;
+.flex-desc {
+    color: black;
+}
+
+.titleAndBellContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 1000px) {
+    .summaryContainer {
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        align-items: stretch;
+    }
+
+    .individualSummaryContainer {
+        width: 100%;
+        flex: none;
+    }
+
+    .taskForSitterAndAdditionalInfoContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .taskInputIndividualSummaryContainer {
+        width: 100%;
+        flex: none;
     }
 }

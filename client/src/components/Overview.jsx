@@ -5,6 +5,11 @@ import { useAuth } from "../context/AuthContext";
 import rightArrow from "../assets/icons/arrow-right.svg";
 import leftArrow from "../assets/icons/arrow-left.svg";
 import TextField from "./form/TextField";
+import checkMark from "../assets/icons/Minimal Green Checkmark Icon.png";
+import calendar from "../assets/icons/Calendar Clock Icon.png";
+import checkList from "../assets/icons/Warm Brown Checklist Icon.png";
+import information from "../assets/icons/Brown Spiral Notebook and Pencil Icon.png";
+import bell from "../assets/icons/Minimalist Brown Bell Notification Icon.png";
 function Overview() {
   const { user, loading } = useAuth();
   const [additionalInfo, setAdditionalInfo] = useState("");
@@ -16,17 +21,22 @@ function Overview() {
   return (
     <>
       <div className="overViewContainer">
-        <div className="titleContainer">
-          <h2 className="additionalTaskTitle">Additional task</h2>
-          <p className="additionalTaskDesc">
-            Add the small household chores that help every care visit feel
-            complete.
-          </p>
+        <div className="titleAndBellContainer">
+          <div className="titleContainer">
+            <h2 className="additionalTaskTitle">Additional task</h2>
+            <p className="additionalTaskDesc">
+              Add the small household chores that help every care visit feel
+              complete.
+            </p>
+          </div>
+          <span>
+            <img className="summaryIcon-bell" src={bell}></img>
+          </span>
         </div>
         <div className="summaryContainer">
           <div className="individualSummaryContainer">
             <span>
-              <img className="summaryIcon" src={leftArrow} alt="" />
+              <img className="summaryIcon" src={checkList} alt="" />
             </span>
             <div>
               <p className="summaryTitle">5 tasks</p>
@@ -35,7 +45,7 @@ function Overview() {
           </div>
           <div className="individualSummaryContainer">
             <span>
-              <img className="summaryIcon" src={leftArrow} alt="" />
+              <img className="summaryIcon-complete" src={checkMark} alt="" />
             </span>
             <div>
               <p className="summaryTitle">2 Complete</p>
@@ -44,7 +54,7 @@ function Overview() {
           </div>
           <div className="individualSummaryContainer">
             <span>
-              <img className="summaryIcon" src={leftArrow} alt="" />
+              <img className="summaryIcon" src={calendar} alt="" />
             </span>
             <div>
               <p className="summaryTitle">Oct 03</p>
@@ -59,7 +69,7 @@ function Overview() {
               <div className="summaryContainer">
                 <div className="taskInputIndividualSummaryContainer">
                   <span>
-                    <img className="summaryIcon" src={leftArrow} alt="" />
+                    <img className="summaryIcon" src={checkList} alt="" />
                   </span>
                   <div>
                     <p className="summaryTitle">Tasks for your sitter</p>
@@ -103,7 +113,7 @@ function Overview() {
           <div className="additionalInfoContainer">
             <div className="taskInputIndividualSummaryContainer">
               <span>
-                <img className="summaryIcon" src={leftArrow} alt="" />
+                <img className="summaryIcon" src={information} alt="" />
               </span>
               <div>
                 <p className="summaryTitle">Additional Information</p>
