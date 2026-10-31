@@ -10,6 +10,7 @@ import SelectDateTimePage from "./pages/SelectDateTimePage";
 import PetCareDetailsPage from "./pages/PetCareDetailsPage";
 import BookingProvider from "./context/BookingProvider";
 import ReviewPayDeposit from "./pages/ReviewPayDepositPage"
+import BookingConfirmation from "./components/booking/BookingConfirmation";
 
 /**
  * Renders the application's page routes and the shared booking-step provider.
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="date-time" element={<SelectDateTimePage/>}/>
           <Route path="pet-details" element={<PetCareDetailsPage/>}/>
           <Route path="review-and-pay" element={<ReviewPayDeposit/>}/>
+          <Route path="confirm" element={<BookingConfirmation/>}/>
         </Route>
 
       </Routes>

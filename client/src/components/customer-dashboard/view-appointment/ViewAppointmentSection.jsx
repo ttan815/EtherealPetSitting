@@ -56,9 +56,9 @@ function Detail({ activeFilter, setCurrentView, appointmentId, onReschedule }) {
  * Renders the customer appointment section and its list/detail views.
  * @returns {JSX.Element} The appointment dashboard section.
  */
-function ViewAppointmentSection() {
-    const [currentView, setCurrentView] = useState("main");
-    const [appointmentId, setAppointmentId] = useState("");
+function ViewAppointmentSection({ initialView = "main", initialAppointmentId = "" }) {
+    const [currentView, setCurrentView] = useState(initialView);
+    const [appointmentId, setAppointmentId] = useState(initialAppointmentId);
     const [previousView, setPreviousView] = useState("main");
     const [activeFilter, setActiveFilter] = useState("upcoming");
 

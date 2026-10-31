@@ -140,8 +140,8 @@ function ReviewPayDeposit() {
                     className="circleLeft"
                     alt=""
                 />
-                <button className="back-btn">Back</button>
-                <button className="pay-deposit-confirm-btn">Pay Deposit & Confirm</button>
+                <button className="back-btn" onClick={() => navigate("/book-appointment/pet-details")}>Back</button>
+                <button className="pay-deposit-confirm-btn" onClick={() => navigate("/book-appointment/confirm")}>Pay Deposit & Confirm</button>
             </div>
             <Footer></Footer>
         </>

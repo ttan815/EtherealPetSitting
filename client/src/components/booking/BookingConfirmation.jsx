@@ -1,23 +1,17 @@
-import { useState, useEffect } from "react";
-import NavigationBar from "./NavigationBar";
-import "../styles/BookingConfirmation.css";
-import { useAuth } from "../../context/AuthContext";
-import heroTopoLeft from "../assets/home/hero-topo-left.svg";
-import heroTopoRight from "../assets/home/hero-topo-right.svg";
-import rightArrow from "../assets/icons/arrow-right.svg";
-import leftArrow from "../assets/icons/arrow-left.svg";
-import circleBackground from "../assets/home/hero-inner-circle.svg";
-import Footer from "./Footer";
+import "../../styles/booking/BookingConfirmation.css";
+import { useNavigate } from "react-router";
+import heroTopoLeft from "../../assets/home/hero-topo-left.svg";
+import heroTopoRight from "../../assets/home/hero-topo-right.svg";
+import rightArrow from "../../assets/icons/arrow-right.svg";
+import leftArrow from "../../assets/icons/arrow-left.svg";
+import circleBackground from "../../assets/home/hero-inner-circle.svg";
+import Footer from "../homepage/Footer";
+import DownloadReceiptButton from "../action-button/DownloadReceiptButton";
 function BookingConfirmation({ petName = "PET_NAME_HERE" }) {
-  const { user, loading } = useAuth();
-  const [paymentMethod, setPaymentMethod] = useState("card");
-  let role = user?.role;
-  if (role == null) {
-    role = "visitor";
-  }
+  const navigate = useNavigate();
+
   return (
     <>
-      <NavigationBar role={role} user={user} />
       <div className="sectionHeader">
         <img src={heroTopoLeft} className="ringBottomLeft" alt="" />
         <img src={heroTopoRight} className="ringBottomRight" alt="" />
@@ -77,16 +71,28 @@ function BookingConfirmation({ petName = "PET_NAME_HERE" }) {
       </div>
       <div className="navigation-buttons">
         <img src={circleBackground} className="circleLeft" alt="" />
-        <button className="back-btn">Download Receipt</button>
-        <button className="pay-deposit-confirm-btn">
+        <DownloadReceiptButton/>
+        <button
+          type="button"
+          className="pay-deposit-confirm-btn"
+          onClick={() =>
+            navigate("/customer-dashboard", {
+              state: {
+                section: "appointments",
+                view: "appointment-detail",
+                appointmentId: "EBP-2026-0847",
+              },
+            })
+          }
+        >
           View My Appointments
         </button>
-        <button className="return-to-dashboard">
+        <a className="return-to-dashboard" href="/customer-dashboard">
           <span>
             <img className="bookingConfirmed-Arrow" src={leftArrow} alt="" />
           </span>
           <p>Return to Dashboard</p>
-        </button>
+        </a>
       </div>
       <Footer></Footer>
     </>
