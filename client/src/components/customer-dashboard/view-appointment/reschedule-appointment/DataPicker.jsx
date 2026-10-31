@@ -1,3 +1,4 @@
+// Renders the data picker component.
 import { useState } from "react";
 import "../../../../styles/customer-dashboard/view-appointment/RescheduleAppointment.css";
 
@@ -46,6 +47,12 @@ function CalenderGrid( {calendarCells, visibleMonth} ) {
   );
 }
 
+/**
+ * Renders the date controls used to select a replacement appointment date.
+ * @param {Object} props - Date selection callback.
+ * @param {Function} props.onDateChange - Called with the selected replacement date.
+ * @returns {JSX.Element} The replacement-date picker.
+ */
 function DatePicker({ onDateChange }) {
   const [visibleMonth, setVisibleMonth] = useState(() => {
     const today = new Date();

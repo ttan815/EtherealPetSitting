@@ -1,3 +1,4 @@
+// Renders the home banner section component.
 import BrandMedallion from "./BrandMedallion";
 import Button from "../form/Button";
 import topoLeft from "../../assets/home/hero-topo-left.svg";
@@ -12,6 +13,10 @@ const AVATAR_TONES = ["ring", "blush", "tan"];
 
 // Home page hero (Figma "Hero"): headline, call-to-action buttons and the
 // brand medallion with two pet photo placeholders.
+/**
+ * Renders the homepage hero banner and its primary booking call to action.
+ * @returns {JSX.Element} The homepage hero section.
+ */
 export default function HomeBannerSection() {
   return (
     <section id="home" className="hero" aria-labelledby="hero-title">

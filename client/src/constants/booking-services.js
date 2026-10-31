@@ -1,3 +1,4 @@
+// Defines shared booking services data and settings.
 import homeIcon from "../assets/booking/icon-home.svg";
 import sunIcon from "../assets/booking/icon-sun.svg";
 import moonIcon from "../assets/booking/icon-moon.svg";

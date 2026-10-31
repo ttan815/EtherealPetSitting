@@ -1,3 +1,4 @@
+// Renders the booking service card component.
 import arrowIcon from "../../assets/booking/arrow-select.svg";
 import { formatServicePrice } from "../../utils/format-service-price";
 import "../../styles/booking/BookingServiceCard.css";
@@ -5,6 +6,14 @@ import "../../styles/booking/BookingServiceCard.css";
 // Selectable service card on step 1 of booking (Figma "Service / ...").
 // The whole card is one toggle button: clicking picks it, clicking again un-picks it.
 // aria-pressed tells screen readers whether it is picked.
+/**
+ * Renders a selectable service card in the booking flow.
+ * @param {Object} props - Service data, selection state, and toggle callback.
+ * @param {Object} props.service - The service details displayed on the card.
+ * @param {boolean} props.isSelected - Whether the service is currently selected.
+ * @param {Function} props.onToggle - Called with the service ID when toggled.
+ * @returns {JSX.Element} The selectable service card.
+ */
 function BookingServiceCard({ service, isSelected, onToggle }) {
   return (
     <button

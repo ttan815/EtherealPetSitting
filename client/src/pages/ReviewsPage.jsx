@@ -24,6 +24,10 @@ const SAMPLE_REVIEWS = [
   { id: 2, initials: "AP", petName: "Bean Cat", rating: 4, date: "August 15, 2026", comment: "Very professional service. It was quick, and the appointment setup was very easy." },
 ];
 
+/**
+ * Renders the full customer reviews page and review submission entry point.
+ * @returns {JSX.Element} The reviews page.
+ */
 function ReviewsPage() {
   // who is logged in, same pattern as the home page
   const { user, loading } = useAuth();

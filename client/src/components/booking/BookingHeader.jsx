@@ -1,3 +1,4 @@
+// Renders the booking header component.
 import BookingSteps from "./BookingSteps";
 import { BOOKING_STEPS } from "../../constants/booking-steps";
 import topo1 from "../../assets/booking/title-topo-1.svg";
@@ -12,6 +13,14 @@ const TOPO_LINES = [topo1, topo2, topo3, topo4, topo5, topo6];
 
 // Brown title band at the top of every booking step (Figma "Title Band").
 // currentStep: 1-based step number, shown as "Step 1 of 4" and in the step tracker
+/**
+ * Renders the heading and description for a booking step.
+ * @param {Object} props - Step identity and heading content.
+ * @param {number} props.currentStep - The current step number.
+ * @param {string} props.title - The step heading.
+ * @param {string} props.description - Supporting step description.
+ * @returns {JSX.Element} The booking-step heading.
+ */
 function BookingHeader({ currentStep, title, description }) {
   return (
     <header className="booking-header">

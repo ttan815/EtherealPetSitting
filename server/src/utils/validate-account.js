@@ -1,3 +1,4 @@
+// Provides helper functions for validate account.
 import { hasPhoneFormat, hasOnlyLetter, hasEmailFormat } from "./reg-validator.js";
 import validatePassword from "./validate-password.js";
 

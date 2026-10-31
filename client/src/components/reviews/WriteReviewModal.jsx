@@ -13,6 +13,14 @@ import "../../styles/reviews/WriteReviewModal.css";
 const MAX_LENGTH = 400;
 
 // open shows or hides the popup, on close hides it, on submit gets the new review
+/**
+ * Renders the review-submission dialog when it is open.
+ * @param {Object} props - Modal state and submission callbacks.
+ * @param {boolean} props.open - Whether the dialog should be displayed.
+ * @param {Function} props.onClose - Called when the dialog is dismissed.
+ * @param {Function} props.onSubmit - Called with the submitted review details.
+ * @returns {JSX.Element|null} The review dialog, or null while closed.
+ */
 function WriteReviewModal({ open, onClose, onSubmit }) {
   // the stars the customer picked, 0 means none yet
   const [rating, setRating] = useState(0);

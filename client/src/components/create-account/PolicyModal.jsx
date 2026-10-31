@@ -10,6 +10,13 @@ import '../../styles/create-account/PolicyConsent.css';
 
 // policy is either terms, privacy, or null when nothing is open
 // on close is the function that closes the popup
+/**
+ * Renders a dialog containing the selected policy text.
+ * @param {Object} props - Policy content and dialog close handler.
+ * @param {{title: string, content: import("react").ReactNode}} props.policy - Policy to display.
+ * @param {Function} props.onClose - Called when the dialog is dismissed.
+ * @returns {JSX.Element} The policy dialog.
+ */
 export default function PolicyModal({ policy, onClose }) {
   // reference to the close button so we can move keyboard focus to it
   const closeButtonRef = useRef(null);

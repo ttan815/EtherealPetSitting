@@ -1,3 +1,4 @@
+// Renders the text field component.
 import "../../styles/form/TextField.css";
 import FieldMessage from "./FieldMessage";
 
@@ -9,6 +10,18 @@ import FieldMessage from "./FieldMessage";
 // error: message shown in red under the field; also turns the border red
 // hint: help text shown under the field when there is no error
 // Any other props (type, placeholder, autoComplete...) go straight to <input>.
+/**
+ * Renders a labeled text input with optional icons and feedback.
+ * @param {Object} props - Input identity, decorations, feedback, and native properties.
+ * @param {string} props.id - Input ID.
+ * @param {string} props.label - Visible input label.
+ * @param {string} [props.icon] - Leading icon source.
+ * @param {import("react").ReactNode} [props.labelAction] - Optional action beside the label.
+ * @param {import("react").ReactNode} [props.trailing] - Optional content after the input.
+ * @param {string} [props.error] - Validation message for the input.
+ * @param {string} [props.hint] - Supporting hint displayed with the input.
+ * @returns {JSX.Element} The labeled text field.
+ */
 function TextField({ id, label, icon, labelAction, trailing, error, hint, ...inputProps }) {
   // An error replaces the hint, matching the Figma error screen
   const message = error || hint;

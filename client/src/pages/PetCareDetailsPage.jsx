@@ -1,3 +1,4 @@
+// Renders the pet care details page page.
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import BookingLayout from "../components/booking/BookingLayout";
@@ -35,6 +36,10 @@ function isPetComplete(pet) {
 
 // Step 3 of booking: care details for each pet (Figma "Customer - Pet & Care Details").
 // Starts with all of the customer's saved pets; they can take pets out, add them back, or add a new pet.
+/**
+ * Renders the pet-care details step of the booking flow.
+ * @returns {JSX.Element} The pet-care details page.
+ */
 export default function PetCareDetailsPage() {
   const navigate = useNavigate();
   const { booking, updateBooking } = useBooking();

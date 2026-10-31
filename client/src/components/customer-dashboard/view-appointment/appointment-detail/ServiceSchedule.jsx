@@ -1,5 +1,12 @@
+// Renders the service schedule component.
 import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 
+/**
+ * Renders the service and schedule summary for an appointment.
+ * @param {Object} props - Appointment data.
+ * @param {Object} props.appointment - Appointment details used in the schedule summary.
+ * @returns {JSX.Element} The appointment's service-and-schedule section.
+ */
 function ServiceSchedule( {appointment} ) {
     return (
         <div className="card-service-schedule">

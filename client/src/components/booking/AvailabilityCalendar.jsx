@@ -1,3 +1,4 @@
+// Renders the availability calendar component.
 import { formatMonthYear, formatWeekdayDate, getCalendarWeeks, toDateKey } from "../../utils/calendar-dates";
 import previousIcon from "../../assets/booking/calendar-prev.svg";
 import nextIcon from "../../assets/booking/calendar-next.svg";
@@ -10,6 +11,18 @@ const WEEKDAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 // month: first day of the month to show
 // onMonthChange: called with -1 or 1
 // isDateAvailable: (date) => true when the day has open times
+/**
+ * Renders the booking calendar with selectable dates that have open times.
+ * @param {Object} props - Calendar month, selection, availability, and controls.
+ * @param {Date} props.month - A date in the month being displayed.
+ * @param {boolean} props.canGoToPreviousMonth - Whether the previous-month control is enabled.
+ * @param {boolean} props.canGoToNextMonth - Whether the next-month control is enabled.
+ * @param {Function} props.onMonthChange - Called with -1 or 1 when changing months.
+ * @param {Function} props.isDateAvailable - Returns whether a date has open times.
+ * @param {string|null} props.selectedDateKey - The selected date's YYYY-MM-DD key, if any.
+ * @param {Function} props.onSelectDate - Called with the selected date key.
+ * @returns {JSX.Element} The month calendar and its date controls.
+ */
 function AvailabilityCalendar({
   month,
   canGoToPreviousMonth,

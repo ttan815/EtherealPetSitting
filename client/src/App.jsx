@@ -1,3 +1,4 @@
+// Defines the application routes and shared page layout.
 import { Routes, Route, Outlet } from "react-router";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -9,6 +10,10 @@ import SelectDateTimePage from "./pages/SelectDateTimePage";
 import PetCareDetailsPage from "./pages/PetCareDetailsPage";
 import BookingProvider from "./context/BookingProvider";
 
+/**
+ * Renders the application's page routes and the shared booking-step provider.
+ * @returns {JSX.Element} The application route tree.
+ */
 const App = () => {
   return (
     <div>

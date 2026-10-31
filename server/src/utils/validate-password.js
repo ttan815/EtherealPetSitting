@@ -1,3 +1,4 @@
+// Provides helper functions for validate password.
 import { REQUIRE_LENGTH } from "../config/password-policy.js";
 import { hasSymbol, hasCapital, hasNumber } from "./reg-validator.js";
 

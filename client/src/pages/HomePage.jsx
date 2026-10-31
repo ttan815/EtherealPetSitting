@@ -1,3 +1,4 @@
+// Renders the home page page.
 import "../styles/homepage/HomePage.css"
 import NavigationBar from "../components/homepage/NavigationBar";
 import ServiceSection from "../components/homepage/ServiceSection"
@@ -7,6 +8,10 @@ import ReviewsSection from "../components/homepage/ReviewSection";
 import HomeBannerSection from "../components/homepage/HomeBannerSection"
 
 import { useAuth } from "../context/AuthContext";
+/**
+ * Renders the homepage and its shared navigation, hero, and content sections.
+ * @returns {JSX.Element} The site homepage.
+ */
 const HomePage = () => {
     const { user, loading } = useAuth()
     if (loading) {

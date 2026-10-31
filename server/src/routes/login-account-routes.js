@@ -1,3 +1,4 @@
+// Registers the login account routes API endpoints.
 import express from "express";
 import loginAccount, { getLoginSession } from "../controllers/login-account-controller.js"
 import { rateLimit } from "express-rate-limit"

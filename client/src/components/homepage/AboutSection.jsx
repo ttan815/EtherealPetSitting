@@ -21,6 +21,13 @@ import shape4 from '../../assets/home/about-shape-4.svg';
 // the whole about section
 // the logged in flag is false by default so visitors get sent to login
 // the owner photo can be passed in later, otherwise a placeholder box shows
+/**
+ * Renders the homepage about section with owner imagery and booking links.
+ * @param {Object} props - Login state and owner image.
+ * @param {boolean} [props.isLoggedIn] - Whether the visitor has an active session.
+ * @param {string|null} [props.ownerPhoto] - Optional owner photo URL.
+ * @returns {JSX.Element} The homepage about section.
+ */
 export default function AboutSection({ isLoggedIn = false, ownerPhoto = null }) {
   // customers go to the booking page, visitors go to the login page
   const bookingLink = isLoggedIn ? '/book-appointment' : '/login';

@@ -1,3 +1,4 @@
+// Renders the customer sidebar nav component.
 import {
   LayoutGrid, CalendarDays, PawPrint, User,
   CalendarPlus, ClipboardList, Star, CircleDollarSign,
@@ -15,6 +16,13 @@ const NAV_ITEMS = [
   { id: "payment", label: "Make Online Payment", icon: CircleDollarSign },
 ];
 
+/**
+ * Renders the customer dashboard section navigation.
+ * @param {Object} props - Active section and navigation callback.
+ * @param {string} props.activeSection - ID of the currently selected section.
+ * @param {Function} props.onSelect - Called with a section ID when selected.
+ * @returns {JSX.Element} The dashboard sidebar navigation.
+ */
 export default function CustomerSidebarNav({ activeSection, onSelect }) {
   return (
     <nav aria-label="Customer navigation">

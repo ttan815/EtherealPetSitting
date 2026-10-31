@@ -1,3 +1,4 @@
+// Provides helper functions for password hash.
 import bcrypt from "bcryptjs";
 import { SALT_ROUND } from "../config/password-policy.js";
 

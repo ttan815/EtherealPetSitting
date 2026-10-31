@@ -1,5 +1,12 @@
+// Renders the care instruction component.
 import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 
+/**
+ * Renders the care instructions for the specified pet.
+ * @param {Object} props - Pet identity.
+ * @param {string|number} props.petId - ID of the pet whose instructions are shown.
+ * @returns {JSX.Element} The pet care-instructions section.
+ */
 function CareInstruction( {petId} ) {
     return (
         <div className="card-care-instructions">

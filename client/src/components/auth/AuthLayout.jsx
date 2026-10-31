@@ -1,3 +1,4 @@
+// Renders the auth layout component.
 import BrandPanel from "./BrandPanel";
 import BrandLogo from "../homepage/BrandLogo";
 import { SUPPORT_PHONE } from "../../constants/site-info";
@@ -8,6 +9,14 @@ import "../../styles/auth/AuthLayout.css";
 // Left: BrandPanel. Right: logo bar, the page's own content, help footer.
 // children: the page content shown in the middle of the right half
 // tagline, taglineEmphasis: passed to BrandPanel (defaults are the login text)
+/**
+ * Renders the shared authentication page layout with branding and a form area.
+ * @param {Object} props - Layout content and tagline.
+ * @param {import("react").ReactNode} props.children - The authentication form content.
+ * @param {string} props.tagline - The first part of the branding tagline.
+ * @param {string} props.taglineEmphasis - The emphasized ending of the tagline.
+ * @returns {JSX.Element} The authentication page layout.
+ */
 function AuthLayout({ children, tagline, taglineEmphasis }) {
   return (
     <div className="auth-layout">

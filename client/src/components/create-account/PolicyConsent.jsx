@@ -19,6 +19,14 @@ import '../../styles/create-account/PolicyConsent.css';
 
 // checked and on change come from the create account page
 // error is an optional message shown under the checkbox
+/**
+ * Renders the required policy-consent checkbox and any validation message.
+ * @param {Object} props - Consent state and its change callback.
+ * @param {boolean} props.checked - Whether the visitor has accepted the policies.
+ * @param {Function} props.onChange - Called with the new checked state.
+ * @param {string} [props.error] - Validation message shown when consent is missing.
+ * @returns {JSX.Element} The policy checkbox and error message.
+ */
 export default function PolicyConsent({ checked, onChange, error = '' }) {
   // backup checkbox state so it still works if the page does not pass one in
   const [localChecked, setLocalChecked] = useState(false);

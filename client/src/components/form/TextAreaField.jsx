@@ -1,3 +1,4 @@
+// Renders the text area field component.
 import "../../styles/form/TextField.css";
 import "../../styles/form/TextAreaField.css";
 import FieldMessage from "./FieldMessage";
@@ -6,6 +7,14 @@ import FieldMessage from "./FieldMessage";
 // id, label: connect the <label> to the textarea
 // hint: help text shown under the field
 // Any other props (value, onChange, placeholder, rows...) go straight to <textarea>.
+/**
+ * Renders a labeled textarea with optional supporting hint text.
+ * @param {Object} props - Textarea identity, label, hint, and native properties.
+ * @param {string} props.id - Textarea ID.
+ * @param {string} props.label - Visible textarea label.
+ * @param {string} [props.hint] - Supporting hint displayed with the textarea.
+ * @returns {JSX.Element} The labeled textarea field.
+ */
 function TextAreaField({ id, label, hint, ...textareaProps }) {
   const hintId = hint ? `${id}-hint` : undefined;
 

@@ -1,3 +1,4 @@
+// Provides shared booking provider state to the React application.
 import { useEffect, useState } from "react";
 import { BookingContext } from "./booking-context";
 import { NO_PREFERENCE_SITTER_ID } from "../constants/booking-sitters";
@@ -27,6 +28,11 @@ function loadBooking() {
 }
 
 // Wraps the booking routes in App.jsx so every step shares one booking (read it with useBooking)
+/**
+ * Provides and persists the in-progress booking for descendant booking routes.
+ * @param {{children: import("react").ReactNode}} props - The provider's React children.
+ * @returns {JSX.Element} The booking context provider.
+ */
 export default function BookingProvider({ children }) {
   const [booking, setBooking] = useState(loadBooking);
 

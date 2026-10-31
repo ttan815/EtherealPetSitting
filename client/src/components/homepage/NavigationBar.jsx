@@ -1,3 +1,4 @@
+// Renders the navigation bar component.
 import { useState } from "react";
 import ProfileMenu from "./ProfileMenu";
 import BrandLogo from "./BrandLogo";
@@ -15,6 +16,14 @@ const SECTION_LINKS = [
 // role: "visitor" | "customer" | "admin"
 // user: { name: "Example Name" } for logged-in users (used for initials)
 // onLogout: called when the user picks "Log out" in the profile menu
+/**
+ * Renders the site navigation for visitors or signed-in customers.
+ * @param {Object} props - User identity, role, and logout action.
+ * @param {string} [props.role] - The current user's role or visitor state.
+ * @param {Object|null} [props.user] - Signed-in user data used in navigation.
+ * @param {Function} [props.onLogout] - Called when the user signs out.
+ * @returns {JSX.Element} The responsive site navigation.
+ */
 function NavigationBar({ role = "visitor", user, onLogout }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // mobile menu
 

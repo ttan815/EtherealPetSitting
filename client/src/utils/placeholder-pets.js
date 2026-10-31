@@ -39,10 +39,18 @@ const SAVED_PETS = [
   },
 ];
 
+/**
+ * Returns the placeholder saved-pet records for the current customer.
+ * @returns {Array<Object>} The customer's saved pets and care details.
+ */
 export function getSavedPets() {
   return SAVED_PETS;
 }
 
+/**
+ * Returns the placeholder home-entry notes for the current customer.
+ * @returns {string} The saved home-access instructions.
+ */
 export function getSavedHouseEntry() {
   return "Side gate code 4821. Spare key in the lockbox by the back door (code 0917).";
 }

@@ -1,3 +1,4 @@
+// Renders the sidebar profile component.
 import { useState } from "react";
 import "../../styles/customer-dashboard/SidebarProfile.css";
 
@@ -23,6 +24,13 @@ function getInitials(name = "") {
     .toUpperCase();
 }
 
+/**
+ * Renders the customer's profile summary and sign-out action.
+ * @param {Object} props - Profile display name and logout callback.
+ * @param {string} [props.name] - Customer name used in the profile display.
+ * @param {Function} props.onLogout - Called when the customer chooses to log out.
+ * @returns {JSX.Element} The sidebar profile panel.
+ */
 export default function SidebarProfile({ name = "Maya Rivera", onLogout }) {
   const [showConfirm, setShowConfirm] = useState(false);
 

@@ -1,7 +1,16 @@
+// Renders the sitter picker component.
 import "../../styles/booking/SitterPicker.css";
 
 // "Choose your sitter" radio cards. Each card is a <label> around a real radio,
 // so it works with the keyboard (arrow keys) and screen readers.
+/**
+ * Renders the sitter choices and highlights the selected sitter.
+ * @param {Object} props - Sitter records, selection, and selection callback.
+ * @param {Array<Object>} props.sitters - Sitters available for the booking.
+ * @param {string|number} props.selectedSitterId - ID of the selected sitter.
+ * @param {Function} props.onSelect - Called with a sitter ID when selected.
+ * @returns {JSX.Element} The sitter selection controls.
+ */
 function SitterPicker({ sitters, selectedSitterId, onSelect }) {
   return (
     <fieldset className="booking-panel sitter-picker">

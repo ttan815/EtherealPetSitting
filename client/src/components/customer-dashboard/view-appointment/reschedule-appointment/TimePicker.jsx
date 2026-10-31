@@ -1,3 +1,4 @@
+// Renders the time picker component.
 import { useEffect, useState } from "react";
 import "../../../../styles/customer-dashboard/view-appointment/RescheduleAppointment.css";
 
@@ -30,6 +31,13 @@ async function fetchEmployeesWithAvailability(date) {
   ];
 }
 
+/**
+ * Renders availability choices for the selected replacement date.
+ * @param {Object} props - Selected date and availability-selection callback.
+ * @param {Date|string} props.selectedDate - The date for which to show available times.
+ * @param {Function} props.onAvailabilitySelect - Called with the selected employee and time.
+ * @returns {JSX.Element} The available replacement-time choices.
+ */
 function TimePicker({ selectedDate, onAvailabilitySelect }) {
   const [employees, setEmployees] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);

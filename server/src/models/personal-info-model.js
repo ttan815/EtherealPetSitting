@@ -1,3 +1,4 @@
+// Defines the personal info model database model.
 import mongoose from "mongoose";
 
 const personalInfoSchema = new mongoose.Schema(

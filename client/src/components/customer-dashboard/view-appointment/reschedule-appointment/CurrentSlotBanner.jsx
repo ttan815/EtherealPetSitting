@@ -1,5 +1,10 @@
+// Renders the current slot banner component.
 import "../../../../styles/customer-dashboard/view-appointment/RescheduleAppointment.css";
 
+/**
+ * Renders the banner describing the appointment's current time slot.
+ * @returns {JSX.Element} The current appointment slot banner.
+ */
 function CurrentSlotBanner() {
   return (
     <div className="current-slot-banner">

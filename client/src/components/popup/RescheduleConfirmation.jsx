@@ -1,5 +1,13 @@
+// Renders the reschedule confirmation component.
 import "../../styles/popup/RescheduleAppointmentConfirmation.css";
 
+/**
+ * Renders confirmation after an appointment has been rescheduled.
+ * @param {Object} props - Appointment identity and navigation callback.
+ * @param {string|number} props.appointmentId - ID of the rescheduled appointment.
+ * @param {Function} props.onViewAppointment - Called to view the updated appointment.
+ * @returns {JSX.Element} The rescheduling confirmation dialog.
+ */
 function RescheduleConfirmation({ appointmentId, onViewAppointment }) {
   return (
     <div className="reschedule-confirmation-backdrop">

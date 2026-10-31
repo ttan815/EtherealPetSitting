@@ -1,3 +1,4 @@
+// Renders the select date time page page.
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import BookingLayout from "../components/booking/BookingLayout";
@@ -40,6 +41,10 @@ function isTimeInPartOfDay(time, partOfDay) {
 // Step 2 of booking: pick a sitter, a day and a time
 // (Figma "Customer - Select Date & Time (with filters & sitter)").
 // The sitter, day and time are saved in the booking; the date range and time-of-day filters only live here.
+/**
+ * Renders the date-and-time selection step of the booking flow.
+ * @returns {JSX.Element} The booking date-and-time page.
+ */
 export default function SelectDateTimePage() {
   const navigate = useNavigate();
   const { booking, updateBooking } = useBooking();

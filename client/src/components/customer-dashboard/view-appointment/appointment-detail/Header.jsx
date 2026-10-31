@@ -1,6 +1,14 @@
+// Renders the header component.
 import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 import ArrowLeft from "../../../../assets/icons/arrow-left.svg";
 
+/**
+ * Renders the appointment-detail heading and return-to-list action.
+ * @param {Object} props - Appointment data and dashboard navigation callback.
+ * @param {Function} props.setCurrentView - Sets the dashboard view to display.
+ * @param {Object} props.appointment - Appointment details used in the heading.
+ * @returns {JSX.Element} The appointment detail header.
+ */
 function Header( {setCurrentView, appointment} ) {
     function handleBack() {
         setCurrentView("main");

@@ -1,6 +1,15 @@
+// Renders the upcoming visit button component.
 import { useState, useEffect } from "react";
 import "../../../styles/customer-dashboard/view-appointment/UpcomingVisitButton.css";
 
+/**
+ * Renders the control that loads and selects upcoming appointments.
+ * @param {Object} props - Appointment loading callback and dashboard filter state.
+ * @param {Function} props.onAppointmentsLoaded - Receives appointments after they load.
+ * @param {string} props.activeFilter - The currently selected appointment filter.
+ * @param {Function} props.setActiveFilter - Changes the selected appointment filter.
+ * @returns {JSX.Element} The upcoming-appointments button.
+ */
 function UpcomingVisitButton({ onAppointmentsLoaded, activeFilter, setActiveFilter }) {
     const [loading, setLoading] = useState(false);
     const [loaded, setLoaded] = useState(false);

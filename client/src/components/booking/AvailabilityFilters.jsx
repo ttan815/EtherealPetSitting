@@ -1,3 +1,4 @@
+// Renders the availability filters component.
 import { TIME_OF_DAY_OPTIONS } from "../../constants/booking-filters";
 import chevronIcon from "../../assets/booking/select-chevron.svg";
 import "../../styles/booking/AvailabilityFilters.css";
@@ -27,6 +28,16 @@ function FilterSelect({ id, label, value, options, onChange }) {
 // filters: { dateRangeId, timeOfDayId, sitterId }
 // dateRangeOptions, sitterOptions: [{ value, label }] for the two dropdowns
 // onChange: called with the whole updated filters object
+/**
+ * Renders controls for filtering available appointment dates and times.
+ * @param {Object} props - Filter values, dropdown options, and change handlers.
+ * @param {{dateRangeId: string, timeOfDayId: string, sitterId: string}} props.filters - Current filter selections.
+ * @param {Array<{value: string, label: string}>} props.dateRangeOptions - Date-range dropdown choices.
+ * @param {Array<{value: string, label: string}>} props.sitterOptions - Sitter dropdown choices.
+ * @param {Function} props.onChange - Called with the complete updated filter object.
+ * @param {Function} props.onClear - Called when the user clears all filters.
+ * @returns {JSX.Element} The availability filter panel.
+ */
 function AvailabilityFilters({ filters, dateRangeOptions, sitterOptions, onChange, onClear }) {
   function updateFilter(name, value) {
     onChange({ ...filters, [name]: value });

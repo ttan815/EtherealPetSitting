@@ -1,3 +1,4 @@
+// Renders the cancel appointment popup component.
 import { useEffect, useRef, useState } from "react";
 import "../../styles/popup/CancelAppointmentPopup.css";
 
@@ -103,6 +104,14 @@ function CancelAppointmentConfirmation( {onClose, setIsSuccess, closeButtonRef} 
     );
 }
 
+/**
+ * Renders the cancellation confirmation dialog and reports a successful cancellation.
+ * @param {Object} props - Dialog controls and appointment cancellation details.
+ * @param {Function} props.onClose - Called when the dialog is dismissed.
+ * @param {Function} props.onCancelled - Called after cancellation succeeds.
+ * @param {string|number} props.appointmentId - ID of the appointment to cancel.
+ * @returns {JSX.Element} The appointment cancellation dialog.
+ */
 function CancelAppointmentPopup({ onClose, onCancelled, appointmentId }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const closeButtonRef = useRef(null);

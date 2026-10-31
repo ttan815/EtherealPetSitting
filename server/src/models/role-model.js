@@ -1,3 +1,4 @@
+// Defines the role model database model.
 import mongoose, { Mongoose } from "mongoose";
 
 const roleSchema = new mongoose.Schema(

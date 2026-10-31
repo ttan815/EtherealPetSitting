@@ -1,3 +1,4 @@
+// Renders the footer component.
 import { QRCodeSVG } from "qrcode.react";
 import BrandLogo from "./BrandLogo";
 import { SUPPORT_EMAIL, SUPPORT_PHONE } from "../../constants/site-info";
@@ -24,6 +25,10 @@ const SOCIAL_LINKS = [
   { label: "Facebook", href: "#", icon: facebookIcon },
 ];
 
+/**
+ * Renders the site's shared footer and supporting navigation.
+ * @returns {JSX.Element} The site footer.
+ */
 function Footer() {
   // The QR code points to the booking page on whatever domain the site runs on
   const bookingUrl = `${window.location.origin}/book-appointment`;

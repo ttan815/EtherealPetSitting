@@ -1,5 +1,12 @@
+// Renders the reschedule header component.
 import "../../../../styles/customer-dashboard/view-appointment/RescheduleAppointment.css";
 
+/**
+ * Renders the rescheduling page heading and keep-appointment action.
+ * @param {Object} props - Callback for leaving the rescheduling flow.
+ * @param {Function} props.onKeepAppointment - Called to keep the current appointment.
+ * @returns {JSX.Element} The rescheduling header.
+ */
 function RescheduleHeader({ onKeepAppointment }) {
   return (
     <header className="header">

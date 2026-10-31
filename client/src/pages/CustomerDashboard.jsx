@@ -1,3 +1,4 @@
+// Renders the customer dashboard page.
 import { useState } from "react";
 import ViewAppointmentSection from "../components/customer-dashboard/view-appointment/ViewAppointmentSection";
 import ManagePet from "../components/customer-dashboard/manage-pet/ManagePet";
@@ -13,6 +14,10 @@ const SECTION_TITLES = {
     payment: "Make Online Payment",
 };
 
+/**
+ * Renders the customer dashboard and its selected account section.
+ * @returns {JSX.Element} The customer dashboard page.
+ */
 function CustomerDashboard() {
     const [activeSection, setActiveSection] = useState("dashboard");
 

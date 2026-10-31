@@ -1,3 +1,4 @@
+// Renders the review section component.
 import SectionHeading from "./SectionHeading";
 import Button from "../form/Button";
 import topo1 from "../../assets/home/reviews-topo-1.svg";
@@ -25,6 +26,10 @@ const PLACEHOLDER_REVIEWS = [
 ];
 
 // Home page reviews (Figma "Reviews"): rating summary, review cards, link to all reviews.
+/**
+ * Renders the homepage review highlights and link to all reviews.
+ * @returns {JSX.Element} The homepage review section.
+ */
 export default function ReviewsSection() {
   return (
     <section id="reviews" className="reviews-section" aria-labelledby="reviews-heading">

@@ -1,3 +1,4 @@
+// Renders the reschedule appointment component.
 import { useState } from "react";
 import "../../../../styles/customer-dashboard/view-appointment/RescheduleAppointment.css";
 import RescheduleConfirmation from "../../../popup/RescheduleConfirmation";
@@ -7,6 +8,14 @@ import DatePicker from "./DataPicker";
 import TimePicker from "./TimePicker";
 import ActionRow from "./ActionRow";
 
+/**
+ * Renders the rescheduling flow for an existing appointment.
+ * @param {Object} props - Appointment identity and navigation callbacks.
+ * @param {string|number} props.appointmentId - ID of the appointment being changed.
+ * @param {Function} props.onKeepAppointment - Called when the customer keeps the current slot.
+ * @param {Function} props.onViewAppointment - Called to return to the appointment view.
+ * @returns {JSX.Element} The appointment rescheduling interface.
+ */
 function RescheduleAppointment({ appointmentId, onKeepAppointment, onViewAppointment }) {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [selectedDate, setSelectedDate] = useState(() => new Date());

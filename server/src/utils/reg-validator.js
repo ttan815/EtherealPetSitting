@@ -1,3 +1,4 @@
+// Provides helper functions for reg validator.
 const REGEX_SYMBOL = /[^A-Za-z0-9]/;
 const REGEX_CAPITAL = /[A-Z]/;
 const REGEX_NUMBER = /[0-9]/;

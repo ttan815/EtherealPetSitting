@@ -1,3 +1,4 @@
+// Configures and starts the Express API server.
 import createAccountRoutes from "./routes/create-account-routes.js";
 import loginAccountRoutes from "./routes/login-account-routes.js";
 import express from "express";

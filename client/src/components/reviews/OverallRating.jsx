@@ -10,6 +10,13 @@ import Button from "../form/Button";
 import "../../styles/reviews/OverallRating.css";
 
 // reviews is the list of reviews, on write review opens the popup
+/**
+ * Renders the aggregate review rating and the write-review action.
+ * @param {Object} props - Review records and review-submission callback.
+ * @param {Array<Object>} props.reviews - Reviews used to calculate the overall rating.
+ * @param {Function} props.onWriteReview - Called to open the review form.
+ * @returns {JSX.Element} The overall rating summary.
+ */
 function OverallRating({ reviews, onWriteReview }) {
   // how many reviews there are
   const total = reviews.length;

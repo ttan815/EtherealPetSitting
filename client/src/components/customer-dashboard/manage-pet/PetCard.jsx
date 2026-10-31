@@ -14,6 +14,13 @@ import "../../../styles/customer-dashboard/manage-pet/PetCard.css";
 // pet holds the info for one pet
 // the edit path is where the edit info button goes, it defaults to a guess until
 // the edit pet page route is decided
+/**
+ * Renders a saved pet's summary and its edit action.
+ * @param {Object} props - Pet record and edit destination.
+ * @param {Object} props.pet - The pet details shown in the card.
+ * @param {string} [props.editPath] - Destination for editing this pet.
+ * @returns {JSX.Element} The saved-pet card.
+ */
 function PetCard({ pet, editPath = `/manage-pets/${pet.id}/edit` }) {
   // breed and age shown together, for example golden retriever · 4 years
   const breedAndAge = `${pet.breed} · ${pet.age}`;

@@ -42,6 +42,13 @@ const SAMPLE_PETS = [
 
 // pets can be passed in later from the server, otherwise the sample pets show
 // the add pet path is where the add a pet button goes
+/**
+ * Renders the customer's saved-pet list and the link for adding a pet.
+ * @param {Object} props - Pet records and the add-pet route.
+ * @param {Array<Object>} [props.pets] - Pets to display in the management list.
+ * @param {string} [props.addPetPath] - Destination for adding a new pet.
+ * @returns {JSX.Element} The saved-pet management page.
+ */
 function ManagePet({ pets = SAMPLE_PETS, addPetPath = "/manage-pets/add" }) {
   // shows 1 pet or 2 pets in the badge
   const petCountLabel = `${pets.length} ${pets.length === 1 ? "pet" : "pets"}`;

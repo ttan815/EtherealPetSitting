@@ -1,3 +1,4 @@
+// Renders the profile menu component.
 import { useEffect, useRef, useState } from "react";
 import chevronDownIcon from "../../assets/icons/chevron-down.svg";
 import dashboardIcon from "../../assets/icons/dashboard.svg";
@@ -10,6 +11,14 @@ function getInitials(name = "") {
   return initials.join("") || "?";
 }
 
+/**
+ * Renders the signed-in user's profile menu and available account actions.
+ * @param {Object} props - User role, profile data, and logout action.
+ * @param {string} props.role - The user's role.
+ * @param {Object} props.user - Signed-in user profile data.
+ * @param {Function} props.onLogout - Called when the user signs out.
+ * @returns {JSX.Element} The profile menu.
+ */
 function ProfileMenu({ role, user, onLogout }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);

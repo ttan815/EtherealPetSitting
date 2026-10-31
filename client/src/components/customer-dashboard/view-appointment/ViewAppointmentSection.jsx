@@ -1,3 +1,4 @@
+// Renders the view appointment section component.
 import { useState } from "react"
 import ViewAppointmentHeader from "./ViewAppointmentHeader";
 import PastVisitButton from "./PastVisitButton";
@@ -51,6 +52,10 @@ function Detail({ activeFilter, setCurrentView, appointmentId, onReschedule }) {
     );
 }
 
+/**
+ * Renders the customer appointment section and its list/detail views.
+ * @returns {JSX.Element} The appointment dashboard section.
+ */
 function ViewAppointmentSection() {
     const [currentView, setCurrentView] = useState("main");
     const [appointmentId, setAppointmentId] = useState("");

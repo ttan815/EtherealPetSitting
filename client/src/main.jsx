@@ -1,3 +1,4 @@
+// Mounts the React application and loads its global styles.
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles/tokens.css' // imported here (not in index.css) so merges can't drop it

@@ -1,3 +1,4 @@
+/* Styles the cancel appointment popup interface. */
 .cancel-appointment-modal__backdrop {
   position: fixed;
   inset: 0;

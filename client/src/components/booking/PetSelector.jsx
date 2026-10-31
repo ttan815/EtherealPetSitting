@@ -1,3 +1,4 @@
+// Renders the pet selector component.
 import pawIcon from "../../assets/booking/pet-paw.svg";
 import doneIcon from "../../assets/booking/pet-done.svg";
 import doneLightIcon from "../../assets/booking/pet-done-light.svg";
@@ -7,6 +8,19 @@ import "../../styles/booking/PetSelector.css";
 // pets: pets in this booking; clicking one shows its form, "×" takes it out of the booking
 // completedPetIds: pets whose details are filled in (they get a check)
 // addablePets: saved pets that were taken out; shown as dashed "+ Name" chips to add back
+/**
+ * Renders the saved-pet selector and its pet-management actions.
+ * @param {Object} props - Pet records, selection state, and selection handlers.
+ * @param {Array<Object>} props.pets - Pets available to include in the booking.
+ * @param {string|number|null} props.activePetId - ID of the active pet.
+ * @param {Array<string|number>} props.completedPetIds - IDs of pets with completed care details.
+ * @param {Array<Object>} props.addablePets - Pets that can be added to the booking.
+ * @param {Function} props.onSwitch - Called when a different pet is selected.
+ * @param {Function} props.onRemove - Called when a pet is removed.
+ * @param {Function} props.onAdd - Called when a saved pet is added.
+ * @param {Function} props.onAddNew - Called to start adding a new pet.
+ * @returns {JSX.Element} The pet selector and its controls.
+ */
 function PetSelector({ pets, activePetId, completedPetIds, addablePets, onSwitch, onRemove, onAdd, onAddNew }) {
   const canRemove = pets.length > 1; // a booking needs at least one pet
 

@@ -1,3 +1,4 @@
+// Renders the book appointment page page.
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import BookingLayout from "../components/booking/BookingLayout";
@@ -12,6 +13,10 @@ import "../styles/booking/BookAppointmentPage.css";
 // Step 1 of booking: the customer picks one or more services (Figma "Customer - Book a Service").
 // Starts with the services in the URL (e.g. from the home page "Book this service"),
 // otherwise with the ones already in the booking (e.g. after "Back" from step 2).
+/**
+ * Renders the service-selection step of the booking flow.
+ * @returns {JSX.Element} The booking service-selection page.
+ */
 export default function BookAppointmentPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

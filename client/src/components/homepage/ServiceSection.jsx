@@ -136,6 +136,13 @@ function ServiceCard({ service, isLoggedIn }) {
 // the whole service section
 // services can be passed in later from the admin, otherwise the default list is used
 // the logged in flag is false by default so visitors get sent to login
+/**
+ * Renders the homepage pet-care service offerings and booking links.
+ * @param {Object} props - Service records and visitor login state.
+ * @param {Array<Object>} [props.services] - Service offerings to display.
+ * @param {boolean} [props.isLoggedIn] - Whether the visitor has an active session.
+ * @returns {JSX.Element} The homepage services section.
+ */
 export default function ServiceSection({ services = DEFAULT_SERVICES, isLoggedIn = false }) {
   // what the section looks like on the page
   return (

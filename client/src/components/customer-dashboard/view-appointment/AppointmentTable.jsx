@@ -1,3 +1,4 @@
+// Renders the appointment table component.
 import AppointmentRow from "./AppointmentRow";
 import "../../../styles/customer-dashboard/view-appointment/AppointmentTable.css";
 
@@ -13,6 +14,16 @@ import "../../../styles/customer-dashboard/view-appointment/AppointmentTable.css
 * balance: "$0.00",
 * petType: "dog"
 */
+/**
+ * Renders the appointments table for the selected dashboard filter.
+ * @param {Object} props - Appointment records, filter, and action callbacks.
+ * @param {string} props.activeFilter - The currently selected appointment filter.
+ * @param {Array<Object>} props.appointments - Appointment records to display.
+ * @param {Function} props.setCurrentView - Sets the dashboard view to display.
+ * @param {Function} props.setAppointmentId - Sets the appointment ID in the dashboard.
+ * @param {Function} props.onReschedule - Starts rescheduling an appointment.
+ * @returns {JSX.Element} The filtered appointments table.
+ */
 function AppointmentsTable({ activeFilter, appointments, setCurrentView, setAppointmentId, onReschedule }) {
   return (
     <div className="appointments-table-wrapper">

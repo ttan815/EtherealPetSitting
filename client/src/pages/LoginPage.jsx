@@ -1,3 +1,4 @@
+// Renders the login page page.
 import AuthLayout from "../components/auth/AuthLayout";
 import TextField from "../components/form/TextField";
 import PasswordField from "../components/form/PasswordField";
@@ -10,6 +11,10 @@ import { useAuth } from "../context/AuthContext";
 import "../styles/login/LoginPage.css";
 
 // Visitor log in screen. UI only: nothing is sent to the server yet.
+/**
+ * Renders the customer login form and supporting authentication layout.
+ * @returns {JSX.Element} The login page.
+ */
 function LoginPage() {
   // Stop the browser from reloading the page until login is wired up
   const navigate = useNavigate()

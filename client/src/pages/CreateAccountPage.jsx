@@ -1,3 +1,4 @@
+// Renders the create account page page.
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import AuthLayout from "../components/auth/AuthLayout";
@@ -29,6 +30,13 @@ const EMPTY_FORM = {
 
 // Visitor sign up screen. All checks happen on the server; this page only
 // shows what the server sends back.
+/**
+ * Renders the account-creation form and submits it to the account API.
+ * @param {Object} props - The account page configuration.
+ * @param {string} [props.apiUrl] - The account-creation endpoint.
+ * @param {Function} [props.onSuccess] - Called with the successful API response.
+ * @returns {JSX.Element} The account-creation page.
+ */
 function CreateAccountPage({ apiUrl = DEFAULT_API_URL, onSuccess }) {
   const [form, setForm] = useState(EMPTY_FORM);
   // Field errors, keyed like EMPTY_FORM, e.g. { email: "Please enter your email address." }

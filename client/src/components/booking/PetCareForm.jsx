@@ -1,3 +1,4 @@
+// Renders the pet care form component.
 import TextField from "../form/TextField";
 import TextAreaField from "../form/TextAreaField";
 import Checkbox from "../form/Checkbox";
@@ -9,6 +10,16 @@ const SHARED_HINT = "Applies to all pets in this booking.";
 // New pets also get name / type / age and "Save this pet to my profile".
 // House-entry and additional tasks belong to the home, so they're shared by every pet.
 // onPetChange / onSharedChange: called with only the fields that changed
+/**
+ * Renders the care-details form for one pet and shared home instructions.
+ * @param {Object} props - Pet data, shared details, and update callbacks.
+ * @param {Object} props.pet - The pet and its current care details.
+ * @param {string|null} props.houseEntry - Shared home-access instructions.
+ * @param {string} props.additionalTasks - Shared additional care tasks.
+ * @param {Function} props.onPetChange - Called with a pet field update.
+ * @param {Function} props.onSharedChange - Called with a shared details update.
+ * @returns {JSX.Element} The pet care-details form.
+ */
 function PetCareForm({ pet, houseEntry, additionalTasks, onPetChange, onSharedChange }) {
   // Props for a field that edits one of the pet's own details
   function petField(name) {

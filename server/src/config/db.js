@@ -1,3 +1,4 @@
+// Connects the application to MongoDB.
 import mongoose from "mongoose";
 
 const connectDB = connect

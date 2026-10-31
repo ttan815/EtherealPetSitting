@@ -1,7 +1,12 @@
+// Renders the download receipt button component.
 import { useEffect, useRef, useState } from "react";
 import "../../styles/customer-dashboard/view-appointment/DownloadReceiptButton.css";
 import DownloadReceiptPopup from "../popup/DownloadReceiptPopup";
 
+/**
+ * Renders the action for downloading an appointment receipt and its dialog.
+ * @returns {JSX.Element} The receipt-download button and conditional dialog.
+ */
 function DownloadReceiptButton() {
   const [isOpen, setIsOpen] = useState(false);
   const closeButtonRef = useRef(null);

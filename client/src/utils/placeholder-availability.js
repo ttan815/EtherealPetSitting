@@ -14,6 +14,12 @@ function isPretendBooked(date, slotIndex) {
 }
 
 // Open start times on this date for any of the given sitters, earliest first
+/**
+ * Gets the placeholder start times available from the selected sitters on a date.
+ * @param {Date} date - The date to check.
+ * @param {string[]} sitterIds - IDs of sitters whose schedules should be combined.
+ * @returns {number[]} Available start times in minutes after midnight, sorted earliest first.
+ */
 export function getAvailableTimes(date, sitterIds) {
   const times = new Set();
 

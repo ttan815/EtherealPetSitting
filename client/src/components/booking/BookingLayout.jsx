@@ -1,3 +1,4 @@
+// Renders the booking layout component.
 import NavigationBar from "../homepage/NavigationBar";
 import Footer from "../homepage/Footer";
 import BookingHeader from "./BookingHeader";
@@ -11,6 +12,16 @@ import "../../styles/booking/BookingLayout.css";
 // currentStep, title, description: passed to the title band
 // actions: buttons for the bottom row (e.g. back on the left, continue on the right)
 // children: the step's own content (service cards, calendar, ...)
+/**
+ * Renders the shared booking-step page layout and its navigation actions.
+ * @param {Object} props - Step content and navigation.
+ * @param {number} props.currentStep - The current step number.
+ * @param {string} props.title - The step heading.
+ * @param {string} props.description - Supporting step description.
+ * @param {import("react").ReactNode} props.actions - Step navigation actions.
+ * @param {import("react").ReactNode} props.children - The main step content.
+ * @returns {JSX.Element} The booking-step layout.
+ */
 function BookingLayout({ currentStep, title, description, actions, children }) {
   const { user, loading } = useAuth();
 

@@ -1,3 +1,4 @@
+// Handles login account controller requests for the API.
 import mongoose from "mongoose";
 import Account from "../models/account-model.js";
 import PersonalInfo from "../models/personal-info-model.js";

@@ -1,3 +1,4 @@
+// Renders the brand medallion component.
 import { BUSINESS_NAME, BUSINESS_SUBTITLE } from "../../constants/site-info";
 import logoScriptDog from "../../assets/brand/logo-script-dog.svg";
 import panelGlow from "../../assets/brand/medallion-glow.svg";
@@ -18,6 +19,13 @@ const LAYERS = {
 // Round logo badge: glow, ring, inner circle, then the script logo and wordmark.
 // variant: "panel" (brown side of the auth pages) | "hero" (home page hero, larger)
 // children: extra layers positioned over the medallion (e.g. the hero pet photos)
+/**
+ * Renders a decorative brand medallion around its child content.
+ * @param {Object} props - Medallion style and content.
+ * @param {string} [props.variant] - Visual variant for the medallion.
+ * @param {import("react").ReactNode} props.children - Content displayed in the medallion.
+ * @returns {JSX.Element} The branded medallion.
+ */
 function BrandMedallion({ variant = "panel", children }) {
   const layers = LAYERS[variant];
 

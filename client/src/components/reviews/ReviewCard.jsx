@@ -7,6 +7,12 @@ import StarRating from "./StarRating";
 import "../../styles/reviews/ReviewCard.css";
 
 // review holds the info for one review
+/**
+ * Renders one customer's review and its rating.
+ * @param {Object} props - Review data.
+ * @param {Object} props.review - Review record to display.
+ * @returns {JSX.Element} The review card.
+ */
 function ReviewCard({ review }) {
   // what the card looks like
   return (

@@ -1,5 +1,12 @@
+// Renders the payment info component.
 import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail.css"
 
+/**
+ * Renders payment information for the given transaction.
+ * @param {Object} props - Transaction identity.
+ * @param {string|number} props.transactionId - ID of the transaction to display.
+ * @returns {JSX.Element} The transaction payment-information section.
+ */
 function paymentInfo( {transactionId} ) {
     return (
         <div className="card-payment-info">
