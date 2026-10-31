@@ -1,16 +1,12 @@
-import { useState, useEffect } from "react";
-import NavigationBar from "./NavigationBar";
-import "../styles/Overview.css";
-import { useAuth } from "../context/AuthContext";
-import rightArrow from "../assets/icons/arrow-right.svg";
-import leftArrow from "../assets/icons/arrow-left.svg";
-import TextField from "./form/TextField";
-import checkMark from "../assets/icons/Minimal Green Checkmark Icon.png";
-import calendar from "../assets/icons/Calendar Clock Icon.png";
-import checkList from "../assets/icons/Warm Brown Checklist Icon.png";
-import information from "../assets/icons/Brown Spiral Notebook and Pencil Icon.png";
-import bell from "../assets/icons/Minimalist Brown Bell Notification Icon.png";
-function Overview() {
+import "../../../styles/customer-dashboard/additional-task/AdditionalTask.css"
+import { useState } from "react";
+import { useAuth } from "../../../context/AuthContext";
+import checkMark from "../../../assets/icons/Minimal Green Checkmark Icon.png";
+import calendar from "../../../assets/icons/Calendar Clock Icon.png";
+import checkList from "../../../assets/icons/Warm Brown Checklist Icon.png";
+import information from "../../../assets/icons/Brown Spiral Notebook and Pencil Icon.png";
+import bell from "../../../assets/icons/Minimalist Brown Bell Notification Icon.png";
+function AdditionalTask() {
   const { user, loading } = useAuth();
   const [additionalInfo, setAdditionalInfo] = useState("");
   let role = user?.role;
@@ -152,4 +148,4 @@ function Overview() {
   );
 }
 
-export default Overview;
+export default AdditionalTask;
