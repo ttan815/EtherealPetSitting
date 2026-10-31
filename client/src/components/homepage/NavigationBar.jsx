@@ -1,5 +1,6 @@
 // Renders the navigation bar component.
 import { useState } from "react";
+import { Link } from "react-router";
 import ProfileMenu from "./ProfileMenu";
 import BrandLogo from "./BrandLogo";
 import "../../styles/homepage/NavigationBar.css";
@@ -7,10 +8,10 @@ import "../../styles/homepage/NavigationBar.css";
 // Section links every role sees. Each href matches a section id on the home page
 // (<section id="home">, <section id="services">, ...).
 const SECTION_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Reviews", href: "#reviews" },
+  { label: "Home", href: "/#home" },
+  { label: "Services", href: "/#services" },
+  { label: "About", href: "/#about" },
+  { label: "Reviews", href: "/#reviews" },
 ];
 
 // role: "visitor" | "customer" | "admin"
@@ -61,9 +62,9 @@ function NavigationBar({ role = "visitor", user, onLogout }) {
           <ul className="navigation-links">
             {SECTION_LINKS.map((link) => (
               <li key={link.label}>
-                <a href={link.href} onClick={closeMenu}>
+                <Link to={link.href} onClick={closeMenu}>
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
 
