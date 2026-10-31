@@ -1,6 +1,6 @@
 // Provides shared booking provider state to the React application.
 import { useEffect, useState } from "react";
-import { BookingContext } from "./booking-context";
+import { BookingContext } from "../context/booking-context";
 import { NO_PREFERENCE_SITTER_ID } from "../constants/booking-sitters";
 
 // Everything the customer has picked so far in the book-appointment flow.
