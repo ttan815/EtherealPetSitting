@@ -1,5 +1,6 @@
 // Renders the customer dashboard page.
 import { useState } from "react";
+import { useNavigate } from "react-router"
 import ViewAppointmentSection from "../components/customer-dashboard/view-appointment/ViewAppointmentSection";
 import ManagePet from "../components/customer-dashboard/manage-pet/ManagePet";
 import "../styles/customer-dashboard/CustomerDashboard.css";
@@ -20,15 +21,29 @@ const SECTION_TITLES = {
  */
 function CustomerDashboard() {
     const [activeSection, setActiveSection] = useState("dashboard");
+    const navigate = useNavigate();
 
     function renderSection() {
         switch (activeSection) {
+            case "dashboard":
+                return <h1>Dashboard</h1>;
             case "appointments":
                 return <ViewAppointmentSection />;
             case "pets":
                 return <ManagePet />;
-            case "dashboard":
-                return <h1>Dashboard</h1>;
+            case "profile":
+                return <h1>Personal Information</h1>
+            case "book":
+                navigate("/book-appointment");
+                break;
+            case "tasks":
+                return <h1>Additional Task</h1>
+            case "review":
+                navigate("/reviews");
+                break;
+            case "payment":
+                navigate("/payments");
+            
             default:
                 return (
                     <section>
