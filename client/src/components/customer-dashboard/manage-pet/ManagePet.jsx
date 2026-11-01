@@ -3,6 +3,8 @@
 // a your pets heading with a count badge, and a two column grid of pet cards
 // this is only the page content, it goes inside the customer dashboard sidebar layout
 
+// useState Logic
+import { useState } from "react"
 // link lets the add a pet button change pages without reloading the site
 import { Link } from "react-router";
 // one card for each pet
@@ -11,6 +13,10 @@ import PetCard from "./PetCard";
 import bellIcon from "../../../assets/icons/bell.svg";
 // styles for this page
 import "../../../styles/customer-dashboard/manage-pet/ManagePetPage.css";
+// Add Pet
+import AddPet from "./AddPet"
+// Edit Pet
+import EditPet from "./EditPet"
 
 // sample pets from the figma until real pets come from the server
 const SAMPLE_PETS = [
@@ -40,20 +46,8 @@ const SAMPLE_PETS = [
   },
 ]; // end of sample pets
 
-// pets can be passed in later from the server, otherwise the sample pets show
-// the add pet path is where the add a pet button goes
-/**
- * Renders the customer's saved-pet list and the link for adding a pet.
- * @param {Object} props - Pet records and the add-pet route.
- * @param {Array<Object>} [props.pets] - Pets to display in the management list.
- * @param {string} [props.addPetPath] - Destination for adding a new pet.
- * @returns {JSX.Element} The saved-pet management page.
- */
-function ManagePet({ pets = SAMPLE_PETS, addPetPath = "/manage-pets/add" }) {
-  // shows 1 pet or 2 pets in the badge
-  const petCountLabel = `${pets.length} ${pets.length === 1 ? "pet" : "pets"}`;
 
-  // what the page looks like
+function MainContent( {pets, petCountLabel, setCurrentView} ) {
   return (
     <section className="manage-pet-page" aria-labelledby="manage-pet-title">
       {/* top of the page with the title on the left and the buttons on the right */}
@@ -74,9 +68,9 @@ function ManagePet({ pets = SAMPLE_PETS, addPetPath = "/manage-pets/add" }) {
             <img src={bellIcon} alt="" />
           </button>
           {/* goes to the add new pet page, styled like the team button */}
-          <Link to={addPetPath} className="button button-primary manage-pet-add">
+          <button className="button button-primary manage-pet-add" onClick={() => setCurrentView("add")}>
             Add a pet
-          </Link>
+          </button>
         </div>
       </header>
 
@@ -100,7 +94,7 @@ function ManagePet({ pets = SAMPLE_PETS, addPetPath = "/manage-pets/add" }) {
         <div className="manage-pet-grid">
           {/* make one card for every pet */}
           {pets.map((pet) => (
-            <PetCard key={pet.id} pet={pet} />
+            <PetCard key={pet.id} pet={pet} setCurrentView={setCurrentView} />
           ))}
         </div>
       ) : (
@@ -109,6 +103,29 @@ function ManagePet({ pets = SAMPLE_PETS, addPetPath = "/manage-pets/add" }) {
       )}
     </section>
   );
+}
+
+// pets can be passed in later from the server, otherwise the sample pets show
+// the add pet path is where the add a pet button goes
+/**
+ * Renders the customer's saved-pet list and the link for adding a pet.
+ * @param {Object} props - Pet records and the add-pet route.
+ * @param {Array<Object>} [props.pets] - Pets to display in the management list.
+ * @returns {JSX.Element} The saved-pet management page.
+ */
+function ManagePet({ pets = SAMPLE_PETS}) {
+  // shows 1 pet or 2 pets in the badge
+  const petCountLabel = `${pets.length} ${pets.length === 1 ? "pet" : "pets"}`;
+  // Initialize Views Content
+  const [currentView, setCurrentView] = useState("main");
+
+  // what the page looks like
+  if(currentView === "main")
+    return <MainContent pets={pets} petCountLabel={petCountLabel} setCurrentView={setCurrentView}/>;
+  else if(currentView === "add")
+    return <AddPet/>
+  else if(currentView === "edit")
+    return <EditPet/>
 }
 
 export default ManagePet;

@@ -21,7 +21,7 @@ import "../../../styles/customer-dashboard/manage-pet/PetCard.css";
  * @param {string} [props.editPath] - Destination for editing this pet.
  * @returns {JSX.Element} The saved-pet card.
  */
-function PetCard({ pet, editPath = `/manage-pets/${pet.id}/edit` }) {
+function PetCard({ pet, setCurrentView}) {
   // breed and age shown together, for example golden retriever · 4 years
   const breedAndAge = `${pet.breed} · ${pet.age}`;
 
@@ -80,9 +80,9 @@ function PetCard({ pet, editPath = `/manage-pets/${pet.id}/edit` }) {
         {/* when this pet was last changed */}
         <p className="pet-card-updated">Last updated {pet.lastUpdated}</p>
         {/* goes to the edit page for this pet, styled like the team button */}
-        <Link to={editPath} className="button button-primary pet-card-edit">
+        <button className="button button-primary pet-card-edit" onClick={() => setCurrentView("edit")}>
           Edit info
-        </Link>
+        </button>
       </div>
     </article>
   );
