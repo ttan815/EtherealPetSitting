@@ -1,13 +1,11 @@
 // Renders the pet care details page page.
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router";
-import BookingLayout from "../components/booking/BookingLayout";
-import BookingSummaryStrip from "../components/booking/BookingSummaryStrip";
-import PetSelector from "../components/booking/PetSelector";
-import PetCareForm from "../components/booking/PetCareForm";
+import BookingLayout from "../components/booking/select-service/BookingLayout";
+import BookingSummaryStrip from "../components/booking/select-pet/BookingSummaryStrip";
+import PetSelector from "../components/booking/select-pet/PetSelector";
+import PetCareForm from "../components/booking/select-pet/PetCareForm";
 import Button from "../components/form/Button";
 import { BOOKING_SERVICES } from "../constants/booking-services";
-import { useBooking } from "../hooks/useBooking";
 import { fromDateKey } from "../utils/calendar-dates";
 import { getSavedHouseEntry, getSavedPets } from "../utils/placeholder-pets";
 import "../styles/booking/PetCareDetailsPage.css";
@@ -38,20 +36,11 @@ function isPetComplete(pet) {
 // Starts with all of the customer's saved pets; they can take pets out, add them back, or add a new pet.
 /**
  * Renders the pet-care details step of the booking flow.
+ * @param {{booking: Object, updateBooking: Function, onBack: Function, onContinue: Function}} props - Booking data and step controls.
  * @returns {JSX.Element} The pet-care details page.
  */
-export default function PetCareDetailsPage() {
-  const navigate = useNavigate();
-  const { booking, updateBooking } = useBooking();
+export default function PetCareDetailsPage({ booking, updateBooking, onBack, onContinue }) {
   const [activePetId, setActivePetId] = useState(null);
-
-  // Steps 1 and 2 have to be done first
-  if (booking.serviceIds.length === 0) {
-    return <Navigate to="/book-appointment" replace />;
-  }
-  if (!booking.dateKey || booking.time === null) {
-    return <Navigate to="/book-appointment/date-time" replace />;
-  }
 
   const services = BOOKING_SERVICES.filter((service) => booking.serviceIds.includes(service.id));
   const savedPets = getSavedPets();
@@ -74,16 +63,12 @@ export default function PetCareDetailsPage() {
     updatePets(pets.map((pet) => (pet.id === activePet.id ? { ...pet, ...changes } : pet)));
   }
 
-  function continueToReview() {
-    navigate("/book-appointment/review-and-pay")
-  }
-
   const actions = (
     <>
-      <Button variant="outline" type="button" onClick={() => navigate("/book-appointment/date-time")}>
+      <Button variant="outline" type="button" onClick={onBack}>
         Back
       </Button>
-      <Button type="button" disabled={!canContinue} onClick={continueToReview}>
+      <Button type="button" disabled={!canContinue} onClick={onContinue}>
         Continue to Review
       </Button>
     </>

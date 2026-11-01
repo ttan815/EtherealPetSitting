@@ -16,6 +16,7 @@ const EMPTY_BOOKING = {
   pets: null, // step 3: pets in this booking with their care details; null = not opened yet
   houseEntry: null, // step 3, shared by every pet; null = use the customer's saved notes
   additionalTasks: "", // step 3, shared by every pet
+  paymentMethod: "card", // step 4
 };
 
 function loadBooking() {
@@ -27,7 +28,7 @@ function loadBooking() {
   }
 }
 
-// Wraps the booking routes in App.jsx so every step shares one booking (read it with useBooking)
+// Wraps the in-page booking flow so each step shares one booking (read it with useBooking).
 /**
  * Provides and persists the in-progress booking for descendant booking routes.
  * @param {{children: import("react").ReactNode}} props - The provider's React children.

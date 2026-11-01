@@ -1,12 +1,9 @@
 // Renders the book appointment page page.
-import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
-import BookingLayout from "../components/booking/BookingLayout";
-import BookingServiceCard from "../components/booking/BookingServiceCard";
+import { useNavigate } from "react-router";
+import BookingLayout from "../components/booking/select-service/BookingLayout";
+import BookingServiceCard from "../components/booking/select-service/BookingServiceCard";
 import Button from "../components/form/Button";
 import { BOOKING_SERVICES } from "../constants/booking-services";
-import { useBooking } from "../hooks/useBooking";
-import { getServiceIdsFromQuery } from "../utils/service-query";
 import arrowBackIcon from "../assets/booking/arrow-back.svg";
 import "../styles/booking/BookAppointmentPage.css";
 
@@ -15,33 +12,26 @@ import "../styles/booking/BookAppointmentPage.css";
 // otherwise with the ones already in the booking (e.g. after "Back" from step 2).
 /**
  * Renders the service-selection step of the booking flow.
+ * @param {{selectedServiceIds: string[], onSelectionChange: Function, onContinue: Function}} props - Selected services and step callbacks.
  * @returns {JSX.Element} The booking service-selection page.
  */
-export default function BookAppointmentPage() {
+export default function BookAppointmentPage({ selectedServiceIds, onSelectionChange, onContinue }) {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const { booking, updateBooking } = useBooking();
-  const [selectedServiceIds, setSelectedServiceIds] = useState(() => {
-    const serviceIdsFromUrl = getServiceIdsFromQuery(searchParams);
-    return serviceIdsFromUrl.length > 0 ? serviceIdsFromUrl : booking.serviceIds;
-  });
   const hasSelectedService = selectedServiceIds.length > 0;
 
   function toggleService(serviceId) {
-    setSelectedServiceIds((serviceIds) =>
+    onSelectionChange((serviceIds) =>
       serviceIds.includes(serviceId) ? serviceIds.filter((id) => id !== serviceId) : [...serviceIds, serviceId]
     );
   }
 
   function continueToDateTime() {
-    updateBooking({ serviceIds: selectedServiceIds });
-    navigate("/book-appointment/date-time");
+    onContinue(selectedServiceIds);
   }
 
   const actions = (
     <>
-      {/* TODO: link to the customer dashboard once that page exists */}
-      <button type="button" className="book-appointment-back">
+      <button type="button" className="book-appointment-back" onClick={() => navigate("/customer-dashboard")}>
         <img src={arrowBackIcon} alt="" />
         Return to Dashboard
       </button>

@@ -149,6 +149,17 @@
     overflow: hidden;
 }
 
+.booking-pet-summaries {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+.booking-pet-summaries .infoContainer {
+    min-width: 0;
+}
+
 .infoContainer {
     background-color: #fffdfb;
     padding: 15px;
@@ -170,7 +181,9 @@
     flex-direction: row;
     justify-content: space-between;
     color: #84704c;
-    height: 40px;
+    min-height: 40px;
+    height: auto;
+    gap: 20px;
     align-items: center;
 }
 
@@ -201,6 +214,8 @@
 
 .flex-desc {
     color: black;
+    text-align: right;
+    overflow-wrap: anywhere;
 }
 
 .flex-desc-deposit {

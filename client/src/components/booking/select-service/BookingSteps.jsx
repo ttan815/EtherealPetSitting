@@ -1,7 +1,7 @@
 // Renders the booking steps component.
-import { BOOKING_STEPS } from "../../constants/booking-steps";
-import stepDoneIcon from "../../assets/booking/step-done.svg";
-import "../../styles/booking/BookingSteps.css";
+import { BOOKING_STEPS } from "../../../constants/booking-steps";
+import stepDoneIcon from "../../../assets/booking/step-done.svg";
+import "../../../styles/booking/BookingSteps.css";
 
 // Numbered step tracker for the booking flow (Figma "BookingSteps").
 // currentStep: 1-based; that step gets the filled circle and earlier steps get an arrow
