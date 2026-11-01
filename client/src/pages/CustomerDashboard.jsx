@@ -7,6 +7,7 @@ import "../styles/customer-dashboard/CustomerDashboard.css";
 import SidebarProfile from "../components/customer-dashboard/SidebarProfile";
 import CustomerSidebarNav from "../components/customer-dashboard/CustomerSidebarNav";
 import AdditionalTask from "../components/customer-dashboard/additional-task/AddtionalTask"
+import Dashboard from "../components/customer-dashboard/main/Dashboard";
 
 const SECTION_TITLES = {
     profile: "Manage Personal Information",
@@ -36,7 +37,7 @@ function CustomerDashboard() {
     function renderSection() {
         switch (activeSection) {
             case "dashboard":
-                return <h1>Dashboard</h1>;
+                return <Dashboard/>;
             case "appointments":
                 return (
                     <ViewAppointmentSection

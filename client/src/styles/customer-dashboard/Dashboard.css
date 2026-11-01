@@ -1,0 +1,805 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #38270d;
+  background: #260d0b;
+  font-synthesis: none;
+
+  --brown: #765d32;
+  --deep: #2f2006;
+  --cream: #f8efec;
+  --line: #ead8c4;
+  --muted: #866b42;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #260d0b;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+/* MAIN DASHBOARD */
+
+.dashboard-shell {
+  width: min(1412px, calc(100% - 28px));
+  min-height: calc(100vh - 14px);
+  margin: 7px auto;
+
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+  align-items: start;
+
+  background: var(--cream);
+  border: 1px solid #4a2a1c;
+}
+
+/* ACCOUNT */
+
+.account {
+  margin-top: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #3d2c0d;
+  border-radius: 14px;
+  padding: 10px;
+}
+
+.account-avatar {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: #d5bd91;
+  color: #49371c;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.account-copy {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+
+  font-size: 11px;
+  color: #fff4e2;
+}
+
+.account-copy span {
+  color: #bca984;
+  font-size: 9px;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+/* HEADER */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+h1,
+h2,
+h3,
+.payment-values strong {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 0 0 2px;
+  letter-spacing: -.3px;
+}
+
+.topbar p,
+.heading-copy p,
+.payment-heading p {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  border: 1px solid var(--line);
+
+  background: transparent;
+  color: var(--brown);
+
+  display: grid;
+  place-items: center;
+}
+
+/* BUTTONS */
+
+.primary-button {
+  border: 0;
+  border-radius: 25px;
+
+  background: var(--brown);
+  color: white;
+
+  padding: 13px 27px;
+  font-size: 12px;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 4px #513a1a18;
+  white-space: nowrap;
+}
+
+/* GENERAL CARDS */
+
+.panel {
+  background: #fffdfb;
+
+  border: 1px solid var(--line);
+  border-radius: 20px;
+
+  box-shadow: 0 5px 15px #4a2a1c08;
+
+  min-width: 0;
+}
+
+/* TOP GRID */
+
+.top-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(270px, .85fr);
+  gap: 20px;
+}
+
+.appointment-card,
+.pets-card {
+  min-height: 312px;
+  padding: 22px;
+}
+
+/* CARD HEADINGS */
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.heading-icon {
+  width: 39px;
+  height: 39px;
+
+  border-radius: 50%;
+
+  background: #f0e5d3;
+  color: #8b6a2e;
+
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+}
+
+.heading-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.heading-copy h2,
+.payment-heading h2 {
+  font-size: 19px;
+  margin: 0 0 2px;
+}
+
+.heading-copy p {
+  font-size: 11px;
+}
+
+/* STATUS BADGES */
+
+.badge {
+  padding: 5px 11px;
+  border-radius: 20px;
+
+  font-size: 10px;
+
+  color: #426044;
+  background: #e6eee3;
+
+  white-space: nowrap;
+}
+
+.badge.sand {
+  color: #71572c;
+  background: #f0e5d3;
+}
+
+.badge.peach {
+  color: #77562c;
+  background: #f5e8de;
+}
+
+/* APPOINTMENT */
+
+.appointment-detail {
+  display: flex;
+  gap: 22px;
+  margin: 24px 0 20px;
+}
+
+.date-tile {
+  width: 84px;
+  height: 98px;
+
+  border-radius: 13px;
+  background: #f5e9e1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+}
+
+.date-tile span {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.date-tile strong {
+  font: 26px 'Playfair Display', Georgia, serif;
+  margin: 2px 0;
+}
+
+.date-tile small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.visit-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.visit-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+}
+
+.visit-title h3 {
+  margin: -3px 0 8px;
+  font-size: 20px;
+}
+
+.visit-title strong {
+  font-size: 12px;
+}
+
+.detail-line {
+  display: grid;
+  grid-template-columns: 17px 72px minmax(0, 1fr);
+  gap: 7px;
+
+  align-items: center;
+  margin: 8px 0;
+
+  font-size: 11px;
+}
+
+.detail-line svg {
+  color: #886b37;
+}
+
+.detail-line span {
+  color: var(--muted);
+}
+
+.detail-line b {
+  font-weight: 500;
+}
+
+.appointment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* LINKS */
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #805b1e;
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* PETS */
+
+.pet-list {
+  display: grid;
+  gap: 11px;
+  margin-top: 15px;
+}
+
+.pet-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  border: 1px solid var(--line);
+  background: #f9f0ed;
+
+  border-radius: 15px;
+  padding: 9px 11px;
+}
+
+.pet-placeholder {
+  width: 54px;
+  height: 54px;
+
+  flex: 0 0 auto;
+  border-radius: 50%;
+
+  background: #fff;
+  border: 1px solid #e7ded5;
+
+  display: grid;
+  place-items: center;
+
+  text-align: center;
+  color: #8c806d;
+
+  font-size: 7px;
+  letter-spacing: .3px;
+  line-height: 1.25;
+}
+
+.pet-copy {
+  display: grid;
+  gap: 3px;
+  font-size: 12px;
+}
+
+.pet-copy span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.card-link {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 17px;
+}
+
+/* MIDDLE GRID */
+
+.middle-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.requests-card,
+.personal-card {
+  min-height: 292px;
+  padding: 20px;
+}
+
+/* SITTER REQUESTS */
+
+.request-list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 11px;
+  font-size: 11px;
+}
+
+.request-list li {
+  padding: 7px 0;
+  border-top: 1px solid #f0e5d9;
+}
+
+.request-list .done {
+  text-decoration: line-through;
+  color: #8f7e65;
+}
+
+/* PERSONAL INFORMATION */
+
+.personal-details {
+  display: grid;
+  gap: 12px;
+  margin: 17px 0 14px;
+}
+
+.personal-details div {
+  display: grid;
+  gap: 3px;
+}
+
+.personal-details label {
+  font-size: 9px;
+  letter-spacing: .7px;
+  color: #85642e;
+}
+
+.personal-details span {
+  font-size: 10px;
+}
+
+/* CAREGIVER NOTE */
+
+.note-card {
+  min-height: 139px;
+  padding: 22px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.caregiver-avatar {
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 auto;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: var(--brown);
+  color: white;
+}
+
+.note-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 10px;
+}
+
+.note-meta span {
+  color: var(--muted);
+}
+
+.note-copy p {
+  font: 16px/1.5 'Playfair Display', Georgia, serif;
+  margin: 5px 0 0;
+}
+
+.photo-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 11px;
+
+  background: #f5e8de;
+  color: #785b31;
+
+  border-radius: 18px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* ONLINE PAYMENT */
+
+.payment-card,
+.review-card {
+  padding: 20px;
+}
+
+.payment-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.payment-heading h2 {
+  font-size: 19px;
+}
+
+.payment-heading p {
+  font-size: 11px;
+}
+
+.payment-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: 17px;
+}
+
+.payment-labels,
+.payment-values {
+  display: grid;
+  gap: 14px;
+
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.payment-labels small {
+  margin-top: 8px;
+  font-size: 10px;
+}
+
+.payment-values {
+  text-align: right;
+  justify-items: end;
+
+  color: #4b3616;
+  gap: 8px;
+}
+
+.payment-values strong {
+  font-size: 24px;
+}
+
+.payment-values b {
+  font: 14px 'Playfair Display', Georgia, serif;
+}
+
+.payment-values span {
+  font-size: 10px;
+}
+
+.payment-values .primary-button {
+  margin-top: 2px;
+}
+
+/* WRITE A REVIEW */
+
+.review-visit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 13px;
+}
+
+.review-visit div:last-child {
+  display: grid;
+  gap: 3px;
+  font: 13px 'Playfair Display', Georgia, serif;
+}
+
+.review-visit span {
+  font: 10px 'DM Sans', sans-serif;
+  color: var(--muted);
+}
+
+.review-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* LARGE SCREENS */
+
+@media (min-width: 1500px) {
+  .main-content {
+    padding: 34px 40px;
+    gap: 22px;
+  }
+}
+
+/* TABLETS */
+
+@media (max-width: 1050px) {
+  .dashboard-shell {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .main-content {
+    padding: 25px 22px;
+  }
+
+  .top-grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(245px, .9fr);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+  .dashboard-shell {
+    width: 100%;
+    margin: 0;
+    grid-template-columns: 1fr;
+    border: 0;
+  }
+
+  .sidebar {
+    min-height: auto;
+    padding: 14px 16px;
+  }
+
+  .brand {
+    padding-bottom: 12px;
+  }
+
+  .nav-label,
+  .account {
+    display: none;
+  }
+
+  .sidebar nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 6px;
+    padding-bottom: 2px;
+  }
+
+  .nav-item {
+    min-height: 38px;
+    flex: 0 0 auto;
+    font-size: 10px;
+    padding: 0 10px;
+  }
+
+  .main-content {
+    padding: 23px 16px;
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .top-actions {
+    gap: 7px;
+  }
+
+  .top-actions .primary-button {
+    padding: 11px 13px;
+    font-size: 10px;
+  }
+
+  .top-grid,
+  .middle-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .appointment-card,
+  .pets-card,
+  .requests-card,
+  .personal-card {
+    min-height: 0;
+    padding: 17px;
+  }
+
+  .note-card {
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .note-copy p {
+    font-size: 14px;
+  }
+
+  .photo-pill {
+    display: none;
+  }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 430px) {
+  .topbar {
+    flex-direction: column;
+  }
+
+  .top-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .appointment-detail {
+    gap: 13px;
+  }
+
+  .date-tile {
+    width: 68px;
+  }
+
+  .detail-line {
+    grid-template-columns: 16px 55px minmax(0, 1fr);
+    font-size: 10px;
+  }
+
+  .appointment-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .note-card {
+    gap: 10px;
+  }
+
+  .note-meta {
+    flex-wrap: wrap;
+  }
+
+  .review-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .payment-content {
+    gap: 10px;
+  }
+
+  .payment-labels {
+    font-size: 9px;
+  }
+
+  .payment-values .primary-button {
+    padding: 11px 17px;
+  }
+}
