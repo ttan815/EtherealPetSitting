@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./Edit_pet_pages.css";
+import { useState } from "react";
+import "../styles/EditPet.css";
 
 const initialPet = {
   name: "Mochi",
@@ -20,57 +20,6 @@ const initialPet = {
   notes:
     "Mochi settles best with his blue blanket nearby. His emergency contact is Daniel Rivera at (503) 555-0182.",
 };
-
-function Sidebar() {
-  const links = [
-    ["▦", "Dashboard"],
-    ["▢", "Appointments"],
-    ["♧", "Manage Pet Information"],
-    ["♙", "Manage Personal Information"],
-    ["▣", "Book an Appointment"],
-    ["▤", "Additional Task"],
-    ["☆", "Write a Review"],
-    ["$", "Make Online Payment"],
-  ];
-
-  return (
-    <aside className="edit-sidebar">
-      <div className="edit-brand">
-        <span className="edit-logo">♧</span>
-        <div>
-          <div className="edit-brand-name">ETHEREAL</div>
-          <small>CUSTOMER CARE</small>
-        </div>
-      </div>
-
-      <p className="edit-nav-label">YOUR CARE SPACE</p>
-
-      <nav>
-        {links.map(([icon, name]) => (
-          <a
-            href="#"
-            key={name}
-            className={`edit-nav-link ${
-              name === "Manage Pet Information" ? "active" : ""
-            }`}
-          >
-            <span>{icon}</span>
-            {name}
-          </a>
-        ))}
-      </nav>
-
-      <div className="edit-account">
-        <div className="edit-account-avatar">MR</div>
-        <div>
-          <b>Maya Rivera</b>
-          <small>Customer account</small>
-        </div>
-        <span>⇥</span>
-      </div>
-    </aside>
-  );
-}
 
 function SectionHeading({ icon, title, subtitle }) {
   return (
@@ -234,9 +183,6 @@ export default function EditPet() {
   }
 
   return (
-    <div className="edit-app">
-      <Sidebar />
-
       <main className="edit-main">
 
         <div className="edit-breadcrumb">
@@ -479,10 +425,8 @@ export default function EditPet() {
             </button>
           </div>
         </footer>
-
-      </main>
-
-      {modal === "leave" && (
+        
+        {modal === "leave" && (
         <Modal
           title="Leave without saving?"
           message="You have unsaved changes. Are you sure you want to leave without saving?"
@@ -509,6 +453,6 @@ export default function EditPet() {
           <button onClick={() => setToast(false)}>×</button>
         </div>
       )}
-    </div>
+      </main>
   );
 }

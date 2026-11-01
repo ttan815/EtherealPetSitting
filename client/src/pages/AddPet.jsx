@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./Add_pet_page.css";
+import { useState } from "react";
+import "../styles/Add_pet_page.css";
 
 const initialPet = {
   name: "",
@@ -16,57 +16,6 @@ const initialPet = {
   phone: "",
   notes: "",
 };
-
-function Sidebar() {
-  const links = [
-    ["▦", "Dashboard"],
-    ["▢", "Appointments"],
-    ["♧", "Manage Pet Information"],
-    ["♙", "Manage Personal Information"],
-    ["▣", "Book an Appointment"],
-    ["▤", "Additional Task"],
-    ["☆", "Write a Review"],
-    ["$", "Make Online Payment"],
-  ];
-
-  return (
-    <aside className="add-sidebar">
-      <div className="add-brand">
-        <span className="add-logo">♧</span>
-        <div>
-          <div className="add-brand-name">ETHEREAL</div>
-          <small>CUSTOMER CARE</small>
-        </div>
-      </div>
-
-      <p className="add-nav-label">YOUR CARE SPACE</p>
-
-      <nav>
-        {links.map(([icon, name]) => (
-          <a
-            href="#"
-            key={name}
-            className={`add-nav-link ${
-              name === "Manage Pet Information" ? "active" : ""
-            }`}
-          >
-            <span>{icon}</span>
-            {name}
-          </a>
-        ))}
-      </nav>
-
-      <div className="add-account">
-        <div className="add-account-avatar">MR</div>
-        <div>
-          <b>Maya Rivera</b>
-          <small>Customer account</small>
-        </div>
-        <span>⇥</span>
-      </div>
-    </aside>
-  );
-}
 
 function SectionHeading({ icon, title, subtitle }) {
   return (
@@ -208,9 +157,6 @@ export default function AddPet() {
   };
 
   return (
-    <div className="add-app">
-      <Sidebar />
-
       <main className="add-main">
         <div className="add-breadcrumb">
           <a href="#">← Back to Pet Overview</a>
@@ -445,9 +391,7 @@ export default function AddPet() {
             </button>
           </div>
         </footer>
-      </main>
-
-      {modal === "required" && (
+        {modal === "required" && (
         <Modal
           title="Complete required fields"
           message="Please complete all fields marked with an asterisk (*) before adding your pet."
@@ -473,6 +417,7 @@ export default function AddPet() {
           <button onClick={() => setToast(false)}>×</button>
         </div>
       )}
-    </div>
+
+      </main>
   );
 }
