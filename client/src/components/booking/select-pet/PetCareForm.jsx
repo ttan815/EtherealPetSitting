@@ -1,8 +1,8 @@
 // Renders the pet care form component.
-import TextField from "../form/TextField";
-import TextAreaField from "../form/TextAreaField";
-import Checkbox from "../form/Checkbox";
-import "../../styles/form/PetCareForm.css";
+import TextField from "../../form/TextField";
+import TextAreaField from "../../form/TextAreaField";
+import Checkbox from "../../form/Checkbox";
+import "../../../styles/form/PetCareForm.css";
 
 const SHARED_HINT = "Applies to all pets in this booking.";
 

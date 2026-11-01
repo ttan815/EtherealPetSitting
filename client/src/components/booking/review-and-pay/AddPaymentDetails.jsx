@@ -1,27 +1,25 @@
-import { useState, useEffect } from "react";
-import NavigationBar from "./NavigationBar";
-import '../styles/ReviewPayDeposit.css';
-import { useAuth } from "../../context/AuthContext";
-import heroTopoLeft from "../assets/home/hero-topo-left.svg"
-import heroTopoRight from "../assets/home/hero-topo-right.svg"
-import rightArrow from "../assets/icons/arrow-right.svg"
-import circleBackground from "../assets/home/hero-inner-circle.svg"
-import Footer from "./Footer";
-function AddPaymentDetais() {
-    const { user, loading } = useAuth()
-    const [paymentMethod, setPaymentMethod] = useState("card");
+import { useState } from "react";
+import NavigationBar from "../../homepage/NavigationBar";
+import "../../../styles/booking/ReviewPayDeposit.css";
+import { useAuth } from "../../../context/AuthContext";
+import heroTopoLeft from "../../../assets/home/hero-topo-left.svg"
+import heroTopoRight from "../../../assets/home/hero-topo-right.svg"
+import rightArrow from "../../../assets/icons/arrow-right.svg"
+import circleBackground from "../../../assets/home/hero-inner-circle.svg"
+import Footer from "../../homepage/Footer";
+import { getBookingPrice, formatBookingAmount } from "../../../utils/booking-pricing";
+/**
+ * Renders the standalone card-entry screen for a booking deposit.
+ * @param {{services?: Array<Object>, dateKey?: string|null}} props - Selected services and appointment date.
+ * @returns {JSX.Element} The card-entry page.
+ */
+function AddPaymentDetails({ services = [], dateKey = null }) {
+    const { user } = useAuth()
     const [nameOnCard, setNameOnCard] = useState("");
     const [cardNumber, setCardNumber] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
     const [cvv, setCVV] = useState("");
-    function parseCVV(cvvInput) {
-        if (cvv.length <= 3) {
-            setCVV(cvvInput)
-        }
-        else {
-            setCVV(cvv)
-        }
-    }
+    const { total, deposit, balance } = getBookingPrice(services, dateKey);
     function parseExpiryDate(expyDateInput) {
         let cleanedExpyDate = expyDateInput.replace(/\D/g, "");
         cleanedExpyDate = cleanedExpyDate.slice(0, 4);
@@ -108,24 +106,24 @@ function AddPaymentDetais() {
                         <p className="title-info">Price Details</p>
                         <div className="flex-info">
                             <p>Service Fee</p>
-                            <p className="flex-desc">$25.00</p>
+                            <p className="flex-desc">{formatBookingAmount(total)}</p>
                         </div>
                         <div className="flex-info">
                             <p>Required Deposit</p>
-                            <p className="flex-desc">$20.00</p>
+                            <p className="flex-desc">{formatBookingAmount(deposit)}</p>
                         </div>
                         <div className="flex-info">
                             <p>Remaining Balance (Due after visit)</p>
-                            <p className="flex-desc">$5.00</p>
+                            <p className="flex-desc">{formatBookingAmount(balance)}</p>
                         </div>
                     </div>
                     <div className="infoContainer-deposit">
                         <div className="flex-info">
                             <p>Your deposit today</p>
-                            <p className="flex-desc-deposit">$20.00</p>
+                            <p className="flex-desc-deposit">{formatBookingAmount(deposit)}</p>
                         </div>
                         <div>
-                            <p className="flex-info-spec-deposit">You're booking within 30 days, so your deposit is $20. (Within 60 days: $50. Within 90 days: $100.) The rest is paid after the visit, in cash or online.</p>
+                            <p className="flex-info-spec-deposit">{dateKey ? "Your deposit is based on how far ahead the appointment is booked. The remaining balance is due after the visit, in cash or online." : "Select an appointment date to calculate the required deposit."}</p>
                         </div>
                     </div>
                 </div>
@@ -149,4 +147,4 @@ function AddPaymentDetais() {
     )
 }
 
-export default AddPaymentDetais;
+export default AddPaymentDetails;

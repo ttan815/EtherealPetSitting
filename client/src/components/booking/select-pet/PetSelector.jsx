@@ -1,8 +1,8 @@
 // Renders the pet selector component.
-import pawIcon from "../../assets/booking/pet-paw.svg";
-import doneIcon from "../../assets/booking/pet-done.svg";
-import doneLightIcon from "../../assets/booking/pet-done-light.svg";
-import "../../styles/booking/PetSelector.css";
+import pawIcon from "../../../assets/booking/pet-paw.svg";
+import doneIcon from "../../../assets/booking/pet-done.svg";
+import doneLightIcon from "../../../assets/booking/pet-done-light.svg";
+import "../../../styles/booking/PetSelector.css";
 
 // "Select a Pet(s)" row on booking step 3 (Figma "Pet Tabs").
 // pets: pets in this booking; clicking one shows its form, "×" takes it out of the booking

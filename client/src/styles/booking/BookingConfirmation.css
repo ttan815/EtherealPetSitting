@@ -1,7 +1,8 @@
-* {
+.booking-confirmation-page,
+.booking-confirmation-page * {
     box-sizing: border-box;
 }
-.sectionHeader {
+.confirmation-header {
     background-color: #705930;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 100;
@@ -10,13 +11,13 @@
     overflow: hidden;
 }
 
-.reviewPayDepositTitle {
+.confirmation-title {
     font-size: 40px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-.bookingConfirmedContainerDesc {
+.confirmation-header-content {
     padding-left: 80px;
     padding-top: 35px;
     padding-bottom: 35px;
@@ -28,18 +29,18 @@
     text-align: center;
 }
 
-.bookingConfirmed-Arrow {
+.confirmation-icon {
     width: 64px;
     height: 64px;
     border-radius: 999px;
     background-color: #ceb690;
 }
 
-.thankYouNote {
+.confirmation-thank-you {
     max-width: 512px;
 }
 
-.circleLeft {
+.confirmation-circle-left {
     position: absolute;
     bottom: 0px;
     left: -140px;
@@ -50,7 +51,7 @@
     pointer-events: none;
 }
 
-.circleRight {
+.confirmation-circle-right {
     position: absolute;
     bottom: 0px;
     left: 1100px;
@@ -61,7 +62,7 @@
     pointer-events: none;
 }
 
-.ringBottomLeft {
+.confirmation-topo-left {
     position: absolute;
     bottom: 0px;
     left: 0;
@@ -70,23 +71,20 @@
     pointer-events: none;
 }
 
-.ringBottomRight {
+.confirmation-topo-right {
     position: absolute;
     width: 1300px;
     right: 0;
     pointer-events: none;
 }
 
-.review-pay-information-container {
+.confirmation-summary-section {
     padding-left: 80px;
     padding-right: 80px;
     padding-top: 35px;
     padding-bottom: 35px;
-    display: grid;
-    grid-template-columns: 1fr;
     gap: 30px;
     background-color: #f9efed;
-    align-items: start;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -95,21 +93,21 @@
     align-items: center;
 }
 
-.infoContainer {
+.confirmation-summary-card {
     background-color: #fffdfb;
     padding: 15px;
     z-index: 15;
     border-radius: 20px;
     border: 1px solid #d6ccc1;
-    max-width: 512px;
+    max-width: 680px;
     width: 100%;
 }
 
-.confirmation-number {
+.confirmation-summary-card .confirmation-number {
     font-weight: 500;
 }
 
-.checkbox-container {
+.confirmation-calendar-note {
     display: flex;
     align-items: center;
     padding-top: 15px;
@@ -118,7 +116,7 @@
     color: #705930;
 }
 
-.fake-checkbox {
+.confirmation-checkbox {
     width: 20px;
     height: 20px;
     border: 1.5px solid #705930;
@@ -126,36 +124,39 @@
     flex-shrink: 0;
 }
 
-.appointmentMsgAddToCal {
+.confirmation-calendar-note-text {
     font-size: 14px;
 }
 
-.flex-info {
+.confirmation-summary-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     color: #84704c;
-    height: 40px;
+    min-height: 40px;
+    gap: 24px;
     align-items: center;
 }
 
-.title-info {
+.confirmation-summary-title {
     font-size: 24px;
     font-family: 'Times New Roman', Times, serif;
     margin-top: 10px;
 }
 
-.flex-desc {
+.confirmation-summary-value {
     color: black;
+    text-align: right;
+    overflow-wrap: anywhere;
 }
 
-.line-overlay {
+.confirmation-divider {
     width: 100%;
     margin-top: 10px;
     border-top: 1px solid #84704c;
 }
 
-.return-to-dashboard {
+.confirmation-return-dashboard {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -167,7 +168,7 @@
     color: #84704c;
 }
 
-.bookingConfirmed-Arrow {
+.confirmation-back-icon {
     width: 24px;
     height: 24px;
     background: none;
@@ -177,7 +178,7 @@
     align-items: center;
 }
 
-.navigation-buttons {
+.confirmation-actions {
     display: flex;
     justify-content: center;
     gap: 12px;
@@ -189,30 +190,12 @@
     isolation: isolate;
 }
 
-.back-btn {
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 35px;
-    color: #84704c;
-    border: 1px #84704c solid;
-    background: transparent;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    z-index: 15;
-}
-.navigation-buttons button {
+.confirmation-actions button {
     position: relative;
     z-index: 2;
 }
 
-.back-btn:hover {
-    background-color: #705930;
-    color: #f9efed;
-}
-
-.pay-deposit-confirm-btn {
+.confirmation-view-appointments {
     background-color: #705930;
     color: #f9efed;
     padding-left: 25px;
@@ -225,23 +208,23 @@
     transition: background-color 0.3s ease;
 }
 
-.pay-deposit-confirm-btn:hover {
+.confirmation-view-appointments:hover {
     background-color: #2f1f04;
 }
 
 @media (max-width: 450px) {
-    .review-pay-information-container {
+    .confirmation-summary-section {
         padding-left: 40px;
         padding-right: 40px;
     }
 
-    .flex-info {
+    .confirmation-summary-row {
         font-size: 13px;
     }
 }
 
 @media (max-width: 850px) {
-    .navigation-buttons{
+    .confirmation-actions {
         display: flex;
         flex-direction: column;
         justify-content: center;

@@ -1,5 +1,5 @@
 // Renders the sitter picker component.
-import "../../styles/booking/SitterPicker.css";
+import "../../../styles/booking/SitterPicker.css";
 
 // "Choose your sitter" radio cards. Each card is a <label> around a real radio,
 // so it works with the keyboard (arrow keys) and screen readers.

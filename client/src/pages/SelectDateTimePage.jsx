@@ -1,12 +1,11 @@
 // Renders the select date time page page.
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router";
-import BookingLayout from "../components/booking/BookingLayout";
-import SelectedServiceBanner from "../components/booking/SelectedServiceBanner";
-import AvailabilityFilters from "../components/booking/AvailabilityFilters";
-import SitterPicker from "../components/booking/SitterPicker";
-import AvailabilityCalendar from "../components/booking/AvailabilityCalendar";
-import AvailableTimes from "../components/booking/AvailableTimes";
+import BookingLayout from "../components/booking/select-service/BookingLayout";
+import SelectedServiceBanner from "../components/booking/availability/SelectedServiceBanner";
+import AvailabilityFilters from "../components/booking/availability/AvailabilityFilters";
+import SitterPicker from "../components/booking/availability/SitterPicker";
+import AvailabilityCalendar from "../components/booking/availability/AvailabilityCalendar";
+import AvailableTimes from "../components/booking/availability/AvailableTimes";
 import Button from "../components/form/Button";
 import { BOOKING_SERVICES } from "../constants/booking-services";
 import { BOOKING_SITTERS, NO_PREFERENCE_SITTER_ID } from "../constants/booking-sitters";
@@ -16,7 +15,6 @@ import {
   TIME_OF_DAY_GROUPS,
   TIME_OF_DAY_OPTIONS,
 } from "../constants/booking-filters";
-import { useBooking } from "../hooks/useBooking";
 import {
   addDays,
   addMonths,
@@ -43,18 +41,13 @@ function isTimeInPartOfDay(time, partOfDay) {
 // The sitter, day and time are saved in the booking; the date range and time-of-day filters only live here.
 /**
  * Renders the date-and-time selection step of the booking flow.
+ * @param {{booking: Object, updateBooking: Function, onBack: Function, onContinue: Function}} props - Booking data and step controls.
  * @returns {JSX.Element} The booking date-and-time page.
  */
-export default function SelectDateTimePage() {
-  const navigate = useNavigate();
-  const { booking, updateBooking } = useBooking();
+export default function SelectDateTimePage({ booking, updateBooking, onBack, onContinue }) {
   const [filters, setFilters] = useState(DEFAULT_AVAILABILITY_FILTERS);
   const [shownMonth, setShownMonth] = useState(null); // null = first month of the date range
 
-  // Nothing to book without services from step 1
-  if (booking.serviceIds.length === 0) {
-    return <Navigate to="/book-appointment" replace />;
-  }
   const services = BOOKING_SERVICES.filter((service) => booking.serviceIds.includes(service.id));
 
   // Only sitters who offer every picked service can be chosen
@@ -122,10 +115,10 @@ export default function SelectDateTimePage() {
 
   const actions = (
     <>
-      <Button variant="outline" type="button" onClick={() => navigate("/book-appointment")}>
+      <Button variant="outline" type="button" onClick={onBack}>
         Back
       </Button>
-      <Button type="button" disabled={!canContinue} onClick={() => navigate("/book-appointment/pet-details")}>
+      <Button type="button" disabled={!canContinue} onClick={onContinue}>
         Continue to Pet Details
       </Button>
     </>
