@@ -37,7 +37,7 @@ function CustomerDashboard() {
     function renderSection() {
         switch (activeSection) {
             case "dashboard":
-                return <Dashboard/>;
+                return <Dashboard onNavigateSection={setActiveSection} />;
             case "appointments":
                 return (
                     <ViewAppointmentSection

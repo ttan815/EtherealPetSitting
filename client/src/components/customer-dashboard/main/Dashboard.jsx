@@ -1,4 +1,5 @@
 import "../../../styles/customer-dashboard/Dashboard.css";
+import { useNavigate } from "react-router";
 
 const Icon = ({ name, size = 16 }) => {
   const common = {
@@ -73,11 +74,11 @@ const Icon = ({ name, size = 16 }) => {
   return <svg {...common}>{paths[name] || paths.grid}</svg>;
 };
 
-const ArrowLink = ({ children }) => (
-  <a className="text-link" href="#">
+const ArrowLink = ({ children, onClick }) => (
+  <button type="button" className="text-link" onClick={onClick}>
     {children}
     <Icon name="arrow" size={14}/>
-  </a>
+  </button>
 );
 
 const Badge = ({ children, tone = "green" }) => (
@@ -103,7 +104,8 @@ function PetCard({ name, detail }) {
   );
 }
 
-export default function Dashboard() {
+export default function Dashboard({ onNavigateSection }) {
+  const navigate = useNavigate();
   return (
       <main className="main-content">
 
@@ -112,7 +114,7 @@ export default function Dashboard() {
           <div>
             <h1>Good morning, Maya</h1>
             <p>
-              Everything for Mochi’s care, all in one calm place.
+              Everything for Mochi's care, all in one calm place.
             </p>
           </div>
 
@@ -121,7 +123,7 @@ export default function Dashboard() {
               <Icon name="bell"/>
             </button>
 
-            <button className="primary-button">
+            <button className="primary-button" onClick={() => navigate("/book-appointment")}>
               Book an Appointment
             </button>
           </div>
@@ -180,7 +182,7 @@ export default function Dashboard() {
 
             <div className="appointment-footer">
               <span>Reminder set for 24 hours before</span>
-              <ArrowLink>View appointment</ArrowLink>
+              <ArrowLink onClick={() => onNavigateSection("appointments")}>View appointment</ArrowLink>
             </div>
           </article>
 
@@ -210,7 +212,7 @@ export default function Dashboard() {
             </div>
 
             <div className="card-link">
-              <ArrowLink>Manage Pet Information</ArrowLink>
+              <ArrowLink onClick={() => onNavigateSection("pets")}>Manage Pet Information</ArrowLink>
             </div>
           </article>
 
@@ -240,7 +242,7 @@ export default function Dashboard() {
               <li className="done">Close the patio door</li>
             </ul>
 
-            <ArrowLink>Add another request</ArrowLink>
+            <ArrowLink onClick={() => onNavigateSection("tasks")}>Add another request</ArrowLink>
           </article>
 
           {/* PERSONAL INFORMATION */}
@@ -275,7 +277,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <ArrowLink>Manage Personal Information</ArrowLink>
+            <ArrowLink onClick={() => onNavigateSection("profile")}>Manage Personal Information</ArrowLink>
           </article>
 
         </section>
@@ -327,7 +329,7 @@ export default function Dashboard() {
               <strong>$28.00</strong>
               <b>Drop-in care visit</b>
               <span>Pending payment</span>
-              <button className="primary-button">
+              <button className="primary-button" onClick={() => onNavigateSection("payment")}>
                 Make a payment
               </button>
             </div>
@@ -361,7 +363,7 @@ export default function Dashboard() {
               Your feedback helps other pet parents choose the right sitter.
             </span>
 
-            <button className="primary-button">
+            <button className="primary-button" onClick={() => onNavigateSection("review")}>
               Write a review
             </button>
           </div>
