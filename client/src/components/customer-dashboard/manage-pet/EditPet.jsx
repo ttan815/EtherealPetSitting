@@ -116,7 +116,7 @@ function Modal({ title, message, onClose, onConfirm, confirmText }) {
   );
 }
 
-export default function EditPet() {
+export default function EditPet( {setCurrentView} ) {
   const [pet, setPet] = useState(initialPet);
   const [modal, setModal] = useState("");
   const [toast, setToast] = useState(false);
@@ -157,7 +157,6 @@ export default function EditPet() {
   if (removed) {
     return (
       <div className="edit-app">
-        <Sidebar />
 
         <main className="edit-main edit-removed">
           <div className="edit-removed-content">
@@ -170,6 +169,7 @@ export default function EditPet() {
             <button
               className="edit-primary"
               onClick={() => {
+                setCurrentView("main");
                 setRemoved(false);
                 setPet(initialPet);
               }}
@@ -186,7 +186,7 @@ export default function EditPet() {
       <main className="edit-main">
 
         <div className="edit-breadcrumb">
-          <a href="#">← Back to Pet Overview</a>
+          <a onClick={() => setCurrentView("main")}>← Back to Pet Overview</a>
           <span>/</span>
           <span>Edit {pet.name}</span>
         </div>
@@ -416,7 +416,7 @@ export default function EditPet() {
           <p>Changes apply to future bookings and care visits.</p>
 
           <div>
-            <button className="edit-cancel" onClick={cancel}>
+            <button className="edit-cancel" onClick={() => setCurrentView("main")}>
               Cancel
             </button>
 

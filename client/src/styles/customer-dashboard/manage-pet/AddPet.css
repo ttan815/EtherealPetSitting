@@ -670,3 +670,7 @@ button, input, textarea {
     justify-content: flex-end;
   }
 }
+
+a {
+  cursor: pointer;
+}

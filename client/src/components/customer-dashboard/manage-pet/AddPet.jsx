@@ -107,7 +107,7 @@ function Modal({ title, message, onClose, onConfirm, confirmText = "OK" }) {
   );
 }
 
-export default function AddPet() {
+export default function AddPet( { setCurrentView } ) {
   const [pet, setPet] = useState(initialPet);
   const [modal, setModal] = useState("");
   const [toast, setToast] = useState(false);
@@ -159,7 +159,7 @@ export default function AddPet() {
   return (
       <main className="add-main">
         <div className="add-breadcrumb">
-          <a href="#">← Back to Pet Overview</a>
+          <a onClick={() => setCurrentView("main")}>← Back to Pet Overview</a>
           <span>/</span>
           <span>Add new pet</span>
         </div>

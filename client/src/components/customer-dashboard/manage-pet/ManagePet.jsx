@@ -123,9 +123,9 @@ function ManagePet({ pets = SAMPLE_PETS}) {
   if(currentView === "main")
     return <MainContent pets={pets} petCountLabel={petCountLabel} setCurrentView={setCurrentView}/>;
   else if(currentView === "add")
-    return <AddPet/>
+    return <AddPet setCurrentView={setCurrentView}/>
   else if(currentView === "edit")
-    return <EditPet/>
+    return <EditPet setCurrentView={setCurrentView}/>
 }
 
 export default ManagePet;
