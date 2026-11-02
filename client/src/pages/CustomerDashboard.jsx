@@ -15,7 +15,6 @@ const SECTION_TITLES = {
     book: "Book an Appointment",
     tasks: "Additional Task",
     review: "Write a Review",
-    payment: "Make Online Payment",
 };
 
 /**
@@ -35,10 +34,18 @@ function CustomerDashboard() {
         }
     }, [location.pathname, location.state, navigate]);
 
+    function handleSelectSection(section) {
+        if (section === "payment") {
+            navigate("/payment/EBP-2026-0847");
+            return;
+        }
+        setActiveSection(section);
+    }
+
     function renderSection() {
         switch (activeSection) {
             case "dashboard":
-                return <Dashboard onNavigateSection={setActiveSection} />;
+                return <Dashboard onNavigateSection={handleSelectSection} />;
             case "appointments":
                 return (
                     <ViewAppointmentSection
@@ -58,9 +65,6 @@ function CustomerDashboard() {
             case "review":
                 navigate("/reviews");
                 break;
-            case "payment":
-                navigate("/payments");
-            
             default:
                 return (
                     <section>
@@ -77,7 +81,7 @@ function CustomerDashboard() {
                 <aside className="customer-sidebar">
                     <CustomerSidebarNav
                         activeSection={activeSection}
-                        onSelect={setActiveSection}
+                        onSelect={handleSelectSection}
                     />
                     <SidebarProfile name="Maya Rivera" role="Customer account" />
                 </aside>

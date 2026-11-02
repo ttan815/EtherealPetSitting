@@ -7,6 +7,7 @@ import CustomerDashboard  from "./pages/CustomerDashboard";
 import ReviewsPage from "./pages/ReviewsPage";
 import BookingProvider from "./context/BookingProvider";
 import BookingFlow from "./components/booking/BookingFlow";
+import PaymentPage from "./pages/PaymentPage";
 
 /**
  * Renders the application's page routes and the shared booking-step provider.
@@ -15,23 +16,19 @@ import BookingFlow from "./components/booking/BookingFlow";
 const App = () => {
   return (
     <div>
-      <Routes>
+      <BookingProvider>
+        <Routes>
 
-        <Route path="/" element={<HomePage/>} />
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/create-account" element={<CreateAccount/>}/>
-        <Route path="/customer-dashboard" element={<CustomerDashboard/>}/>
-        <Route path="/reviews" element={<ReviewsPage/>}/>
-        <Route
-          path="/book-appointment"
-          element={
-            <BookingProvider>
-              <BookingFlow />
-            </BookingProvider>
-          }
-        />
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/create-account" element={<CreateAccount/>}/>
+          <Route path="/customer-dashboard" element={<CustomerDashboard/>}/>
+          <Route path="/reviews" element={<ReviewsPage/>}/>
+          <Route path="/payment/:id" element={<PaymentPage/>}/>
+          <Route path="/book-appointment" element={<BookingFlow/>}/>
 
-      </Routes>
+        </Routes>
+      </BookingProvider>
     </div>
   );
 }
