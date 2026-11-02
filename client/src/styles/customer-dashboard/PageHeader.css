@@ -1,0 +1,68 @@
+/* Values from Figma frame "Customer Dashboard - Manage Personal Information" */
+.ph-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.ph-page-title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif; /* serif heading from Figma */
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #2f1f03;
+}
+
+.ph-page-subtitle {
+  margin: 4px 0 0;
+  font-size: 15px;
+  color: #70592f;
+}
+
+.ph-page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+.ph-bell-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #cdb690;
+  background: transparent;
+  color: #70592f;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.ph-bell-button:hover {
+  background: rgba(205, 182, 144, 0.15);
+}
+
+.ph-primary-button {
+  height: 48px;
+  padding: 0 30px;
+  border: none;
+  border-radius: 999px;
+  background: #70592f;
+  color: #f9efed;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ph-primary-button:hover {
+  background: #5d4925;
+}
+
+.ph-primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

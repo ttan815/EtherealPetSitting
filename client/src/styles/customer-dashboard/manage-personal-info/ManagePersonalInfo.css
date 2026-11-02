@@ -1,0 +1,501 @@
+/* Values from Figma frame "Customer Dashboard - Manage Personal Information" */
+
+/* ---------- Section layout ---------- */
+.personal-info-grid {
+    display: grid;
+    grid-template-columns: 286px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.personal-info-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .personal-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Profile card (DT-261) ---------- */
+.pi-profile-card {
+    background: #fffdfb;
+    border: 1px solid #dbc6a5;
+    border-radius: 22px;
+    padding: 23px 23px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pi-profile-avatar {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: #cdb690;
+    color: #2f1f03;
+    display: grid;
+    place-items: center;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 30px;
+}
+
+.pi-profile-name {
+    margin: 16px 0 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #2f1f03;
+}
+
+.pi-profile-email {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #70592f;
+}
+
+.pi-profile-badge {
+    margin-top: 14px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #e4ebe1;
+    color: #4f694d;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.pi-profile-photo-button {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: none;
+    padding: 0;
+    color: #80642f;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pi-profile-photo-button:hover {
+    text-decoration: underline;
+}
+
+.pi-profile-summary {
+    width: 100%;
+    margin: 18px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid #e8d8c1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pi-profile-summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 12px;
+}
+
+.pi-profile-summary-row dt {
+    color: #70592f;
+}
+
+.pi-profile-summary-row dd {
+    margin: 0;
+    color: #2f1f03;
+    font-weight: 600;
+}
+
+/* ---------- Shared card (Personal details, Password & security) ---------- */
+.pi-card {
+    background: #fffdfb;
+    border: 1px solid #dbc6a5;
+    border-radius: 22px;
+    padding: 23px;
+}
+
+.pi-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pi-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ede2d1;
+    color: #70592f;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.pi-card-heading {
+    flex: 1;
+    min-width: 0;
+}
+
+.pi-card-title {
+    margin: 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #2f1f03;
+}
+
+.pi-card-subtitle {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #70592f;
+}
+
+.pi-badge {
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #e4ebe1;
+    color: #4f694d;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* ---------- Personal details form (DT-262) ---------- */
+.pi-fields {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    row-gap: 18px;
+}
+
+@media (max-width: 700px) {
+    .pi-fields {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pi-field-label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #70592f;
+}
+
+.pi-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    padding: 0 12px;
+    background: #ffffff;
+    border: 1px solid #e8d8c1;
+    border-radius: 12px;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pi-input-wrap.editing {
+    border-color: #cdb690;
+}
+
+.pi-input-wrap.editing:focus-within {
+    border-color: #70592f;
+    box-shadow: 0 0 0 3px rgba(112, 89, 47, 0.12);
+}
+
+.pi-input-icon {
+    color: #70592f;
+    flex-shrink: 0;
+}
+
+.pi-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font: inherit;
+    font-size: 13px;
+    color: #2f1f03;
+}
+
+.pi-input[readonly] {
+    cursor: default;
+}
+
+.pi-pencil {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #70592f;
+    cursor: pointer;
+}
+
+.pi-pencil:hover {
+    background: #f4ebe0;
+}
+
+.pi-card-footer {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pi-lock-note {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #70592f;
+}
+
+.pi-edit-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: none;
+    padding: 0;
+    color: #70592f;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pi-edit-all:hover {
+    text-decoration: underline;
+}
+
+/* ---------- "Changes saved" toast ---------- */
+.pi-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 58px;
+    padding: 0 22px 0 16px;
+    border-radius: 16px;
+    background: #2f1f03;
+    color: #f9efed;
+    font-size: 16px;
+    box-shadow: 0 10px 30px rgba(47, 31, 3, 0.25);
+    animation: pi-toast-in 0.2s ease-out;
+}
+
+.pi-toast-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid #cdb690;
+    color: #cdb690;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+}
+
+@keyframes pi-toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Password & security card (DT-263) ---------- */
+.pi-password-status {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 14px;
+    background: #f6e9e4;
+}
+
+.pi-password-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #ede2d1;
+    color: #80642f;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.pi-password-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.pi-password-title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2f1f03;
+}
+
+.pi-password-hint {
+    margin: 3px 0 0;
+    font-size: 12px;
+    color: #70592f;
+}
+
+.pi-badge-center {
+    align-self: center;
+    margin-top: 0;
+}
+
+.pi-two-step-note {
+    margin: 0;
+    font-size: 12px;
+    color: #70592f;
+}
+
+/* ---------- Change password popup ---------- */
+.pi-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    background: rgba(47, 31, 3, 0.35);
+}
+
+.pi-modal {
+    width: 100%;
+    max-width: 560px;
+    box-sizing: border-box;
+    padding: 36px 40px 40px;
+    border-radius: 32px;
+    background: #fffdfb;
+    box-shadow: 0 24px 60px rgba(47, 31, 3, 0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.pi-modal-title {
+    margin: 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #2f1f03;
+}
+
+.pi-modal-subtitle {
+    margin: 10px 0 28px;
+    font-size: 13px;
+    color: #70592f;
+}
+
+.pi-modal-label {
+    margin-bottom: 9px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #70592f;
+}
+
+.pi-modal-input {
+    height: 48px;
+    margin-bottom: 20px;
+    padding: 0 16px;
+    border: 1px solid #dbc6a5;
+    border-radius: 14px;
+    background: #fffdfb;
+    font: inherit;
+    font-size: 13px;
+    color: #2f1f03;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pi-modal-input::placeholder {
+    color: #938770;
+}
+
+.pi-modal-input:focus {
+    border-color: #70592f;
+    box-shadow: 0 0 0 3px rgba(112, 89, 47, 0.12);
+}
+
+.pi-modal-hint,
+.pi-modal-error {
+    margin: -8px 0 0;
+    font-size: 11px;
+}
+
+.pi-modal-hint {
+    color: #70592f;
+}
+
+.pi-modal-error {
+    color: #a3392b;
+    font-weight: 500;
+}
+
+.pi-modal-actions {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.pi-modal-cancel,
+.pi-modal-submit {
+    height: 50px;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.pi-modal-cancel {
+    border: 1px solid #dbc6a5;
+    background: #fffdfb;
+    color: #2f1f03;
+}
+
+.pi-modal-cancel:hover {
+    background: #f6e9e4;
+}
+
+.pi-modal-submit {
+    border: none;
+    background: #70592f;
+    color: #fffdfb;
+}
+
+.pi-modal-submit:hover {
+    background: #5d4925;
+}
