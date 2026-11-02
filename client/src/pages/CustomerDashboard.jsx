@@ -8,6 +8,7 @@ import SidebarProfile from "../components/customer-dashboard/SidebarProfile";
 import CustomerSidebarNav from "../components/customer-dashboard/CustomerSidebarNav";
 import AdditionalTask from "../components/customer-dashboard/additional-task/AddtionalTask"
 import Dashboard from "../components/customer-dashboard/main/Dashboard";
+import ManagePersonalInfo from "../components/customer-dashboard/manage-personal-info/ManagePersonalInfo";
 
 const SECTION_TITLES = {
     profile: "Manage Personal Information",
@@ -48,7 +49,7 @@ function CustomerDashboard() {
             case "pets":
                 return <ManagePet />;
             case "profile":
-                return <h1>Personal Information</h1>
+                return <ManagePersonalInfo />;
             case "book":
                 navigate("/book-appointment");
                 break;
