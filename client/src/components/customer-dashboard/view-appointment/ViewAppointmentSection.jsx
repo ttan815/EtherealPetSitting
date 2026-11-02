@@ -1,19 +1,26 @@
 // Renders the view appointment section component.
 import { useState } from "react"
-import ViewAppointmentHeader from "./ViewAppointmentHeader";
 import PastVisitButton from "./PastVisitButton";
 import "../../../styles/customer-dashboard/view-appointment/ViewAppointmentSection.css"
 import UpcomingVisitButton from "./UpcomingVisitButton";
 import AppointmentTable from "./AppointmentTable"
 import AppointmentDetail from "./appointment-detail/AppointmentDetail";
 import RescheduleAppointment from "./reschedule-appointment/RescheduleAppointment";
+import PageHeader from "../PageHeader";
+import { useNavigate } from "react-router";
 
 function MainContent({ activeFilter, setActiveFilter, setCurrentView, setAppointmentId, onReschedule }) {
     const [appointments, setAppointments] = useState([]);
+    const navigate = useNavigate();
 
     return (
         <section className="view-appointment-section">
-            <ViewAppointmentHeader />
+            <PageHeader 
+            title={"Appointments"} 
+            subtitle={"See your upcoming visits and past care, and reschedule if plans change."} 
+            actionLabel={"Book Appointment"} 
+            onAction={() => navigate("/book-appointment")}
+            />
 
             {/* Filter Option */}
             <div className="tab-filter-navigation">

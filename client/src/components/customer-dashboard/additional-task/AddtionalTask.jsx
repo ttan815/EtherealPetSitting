@@ -5,7 +5,7 @@ import checkMark from "../../../assets/icons/Minimal Green Checkmark Icon.png";
 import calendar from "../../../assets/icons/Calendar Clock Icon.png";
 import checkList from "../../../assets/icons/Warm Brown Checklist Icon.png";
 import information from "../../../assets/icons/Brown Spiral Notebook and Pencil Icon.png";
-import bell from "../../../assets/icons/Minimalist Brown Bell Notification Icon.png";
+import PageHeader from "../PageHeader";
 function AdditionalTask() {
   const { user, loading } = useAuth();
   const [additionalInfo, setAdditionalInfo] = useState("");
@@ -15,20 +15,13 @@ function AdditionalTask() {
   }
 
   return (
-    <>
-      <div className="overViewContainer">
-        <div className="titleAndBellContainer">
-          <div className="titleContainer">
-            <h2 className="additionalTaskTitle">Additional task</h2>
-            <p className="additionalTaskDesc">
-              Add the small household chores that help every care visit feel
-              complete.
-            </p>
-          </div>
-          <span>
-            <img className="summaryIcon-bell" src={bell}></img>
-          </span>
-        </div>
+    <section>
+      <PageHeader 
+      title={"Additional task"} 
+      subtitle={"Add the small household chores that help every care visit feel complete."} 
+      actionLabel={"Book Appointment"} 
+      onAction={() => navigate("/book-appointment")}
+      />
         <div className="summaryContainer">
           <div className="individualSummaryContainer">
             <span>
@@ -143,8 +136,7 @@ function AdditionalTask() {
             <p className="lastUpdateText">Last saved today at 9:42 AM</p>
           </div>
         </div>
-      </div>
-    </>
+    </section>
   );
 }
 

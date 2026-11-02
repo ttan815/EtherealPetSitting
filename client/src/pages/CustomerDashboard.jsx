@@ -9,6 +9,8 @@ import CustomerSidebarNav from "../components/customer-dashboard/CustomerSidebar
 import AdditionalTask from "../components/customer-dashboard/additional-task/AddtionalTask"
 import Dashboard from "../components/customer-dashboard/main/Dashboard";
 import ManagePersonalInfo from "../components/customer-dashboard/manage-personal-info/ManagePersonalInfo";
+import NotificationsPage from "../components/customer-dashboard/notifications/NotificationsPage";
+import { NotificationsProvider } from "../components/customer-dashboard/notifications/NotificationsContext";
 
 const SECTION_TITLES = {
     profile: "Manage Personal Information",
@@ -26,7 +28,12 @@ function CustomerDashboard() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(() =>
         location.state?.section === "appointments" ? "appointments" : "dashboard"
-    );
+    );  
+    const [previousSection, setPreviousSection] = useState("dashboard");
+    const openNotifications = () => {
+        setPreviousSection(activeSection);
+        setActiveSection("notifications");
+    };
 
     useEffect(() => {
         if (location.state?.section === "appointments") {
@@ -65,6 +72,11 @@ function CustomerDashboard() {
             case "review":
                 navigate("/reviews");
                 break;
+            case "payment":
+                navigate("/payments");
+            case "notifications":
+                return <NotificationsPage onBack={() => setActiveSection(previousSection)} />;
+            
             default:
                 return (
                     <section>
@@ -76,6 +88,7 @@ function CustomerDashboard() {
     }
 
     return (
+        <NotificationsProvider onViewAll={openNotifications} onNavigate={setActiveSection}>
         <main className="customer-dashboard">
             <div className="customer-dashboard-layout">
                 <aside className="customer-sidebar">
@@ -90,6 +103,7 @@ function CustomerDashboard() {
                 </div>
             </div>
         </main>
+        </NotificationsProvider>
     );
 }
 

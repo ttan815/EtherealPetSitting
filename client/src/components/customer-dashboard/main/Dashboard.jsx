@@ -1,5 +1,6 @@
 import "../../../styles/customer-dashboard/Dashboard.css";
 import { useNavigate } from "react-router";
+import PageHeader from "../PageHeader";
 
 const Icon = ({ name, size = 16 }) => {
   const common = {
@@ -110,24 +111,12 @@ export default function Dashboard({ onNavigateSection }) {
       <main className="main-content">
 
         {/* HEADER */}
-        <header className="topbar">
-          <div>
-            <h1>Good morning, Maya</h1>
-            <p>
-              Everything for Mochi's care, all in one calm place.
-            </p>
-          </div>
-
-          <div className="top-actions">
-            <button className="icon-button" aria-label="Notifications">
-              <Icon name="bell"/>
-            </button>
-
-            <button className="primary-button" onClick={() => navigate("/book-appointment")}>
-              Book an Appointment
-            </button>
-          </div>
-        </header>
+        <PageHeader 
+        title={"Good Morning, Maya"} 
+        subtitle={"Everything for pet's care, all in one calm place"} 
+        actionLabel={"Book Appointment"} 
+        onAction={() => navigate("/book-appointment")}
+        />
 
         {/* TOP SECTION */}
         <section className="top-grid">

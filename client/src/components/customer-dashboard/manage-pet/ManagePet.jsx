@@ -17,6 +17,8 @@ import "../../../styles/customer-dashboard/manage-pet/ManagePetPage.css";
 import AddPet from "./AddPet"
 // Edit Pet
 import EditPet from "./EditPet"
+// Add Page Header
+import PageHeader from "../PageHeader";
 
 // sample pets from the figma until real pets come from the server
 const SAMPLE_PETS = [
@@ -51,28 +53,12 @@ function MainContent( {pets, petCountLabel, setCurrentView} ) {
   return (
     <section className="manage-pet-page" aria-labelledby="manage-pet-title">
       {/* top of the page with the title on the left and the buttons on the right */}
-      <header className="manage-pet-header">
-        <div>
-          {/* page title */}
-          <h1 id="manage-pet-title" className="manage-pet-title">Manage pet information</h1>
-          {/* short line under the title */}
-          <p className="manage-pet-subtitle">
-            Review each pet&apos;s summary, keep care instructions up to date, and edit details when you need to.
-          </p>
-        </div>
-
-        {/* bell and add a pet button */}
-        <div className="manage-pet-actions">
-          {/* bell for notifications, it will open the notifications popup later */}
-          <button type="button" className="manage-pet-bell" aria-label="Notifications">
-            <img src={bellIcon} alt="" />
-          </button>
-          {/* goes to the add new pet page, styled like the team button */}
-          <button className="button button-primary manage-pet-add" onClick={() => setCurrentView("add")}>
-            Add a pet
-          </button>
-        </div>
-      </header>
+      <PageHeader 
+      title={"Manage pet information"} 
+      subtitle={"Review each pet's summary, keep care instructions up to date, and edit details when you need to."} 
+      actionLabel={"Add a Pet"} 
+      onAction={() => setCurrentView("add")}
+      />
 
       {/* your pets heading row with the count badge */}
       <div className="manage-pet-section-heading">

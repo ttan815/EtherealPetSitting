@@ -1,5 +1,5 @@
 // Renders the shared header used at the top of customer dashboard sections.
-import { Bell } from "lucide-react";
+import NotificationBell from "./notifications/NotificationBell";
 import "../../styles/customer-dashboard/PageHeader.css";
 
 /**
@@ -20,9 +20,7 @@ export default function PageHeader({ title, subtitle, actionLabel, onAction, act
             </div>
 
             <div className="ph-page-header-actions">
-                <button type="button" className="ph-bell-button" aria-label="Notifications">
-                    <Bell size={16} strokeWidth={1.75} />
-                </button>
+                <NotificationBell className="ph-bell-button" />
                 {actionLabel && (
                     <button
                         type="button"

@@ -5,7 +5,6 @@
   display: flex; /* stacks the page pieces */
   flex-direction: column; /* top to bottom */
   gap: 28px; /* space between pieces */
-  padding: 40px; /* space around the content */
   background: var(--color-blush); /* light page background */
   min-height: 100%; /* fills the area next to the sidebar */
 }
