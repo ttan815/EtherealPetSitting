@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router";
 import ViewAppointmentSection from "../components/customer-dashboard/view-appointment/ViewAppointmentSection";
 import ManagePet from "../components/customer-dashboard/manage-pet/ManagePet";
 import "../styles/customer-dashboard/CustomerDashboard.css";
-import SidebarProfile from "../components/customer-dashboard/SidebarProfile";
+import SidebarProfile from "../components/parent-component/SidebarProfile";
 import CustomerSidebarNav from "../components/customer-dashboard/CustomerSidebarNav";
 import AdditionalTask from "../components/customer-dashboard/additional-task/AddtionalTask"
 import Dashboard from "../components/customer-dashboard/main/Dashboard";

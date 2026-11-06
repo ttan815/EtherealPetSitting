@@ -31,7 +31,7 @@ function getInitials(name = "") {
  * @param {Function} props.onLogout - Called when the customer chooses to log out.
  * @returns {JSX.Element} The sidebar profile panel.
  */
-export default function SidebarProfile({ name = "Maya Rivera", onLogout }) {
+export default function SidebarProfile({ name = "Maya Rivera", onLogout, role }) {
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleLogout = () => {
@@ -46,7 +46,7 @@ export default function SidebarProfile({ name = "Maya Rivera", onLogout }) {
         <div className="profile-avatar" aria-hidden="true">{getInitials(name)}</div>
         <div className="profile-text">
           <p className="profile-name">{name}</p>
-          <p className="profile-role">Customer account</p>
+          <p className="profile-role">{role}</p>
         </div>
         <button
           type="button"

@@ -14,6 +14,7 @@ import Revenue from "../components/owner-dashboard/revenue/Revenue"
 import ManageAdmins from "../components/owner-dashboard/manage-admins/ManageAdmins"
 import AuditLog from "../components/owner-dashboard/audit-log/AuditLog"
 import Settings from "../components/owner-dashboard/settings/Settings"
+import SidebarProfile from "../components/parent-component/SidebarProfile";
 
 const SECTION_TITLES = {
     dashboard: "Dashboard",
@@ -34,6 +35,10 @@ function getPendingRequestCount() {
     return pendingCount;
 }
 
+// Temporary placeholder for Logging out
+function logout() {
+    console.log("Logged out")
+}
 
 
 function OwnerDashboard() {
@@ -99,6 +104,7 @@ function OwnerDashboard() {
                         onSelect={handleSelectSection}
                         pendingRequestCount={pendingRequestCount}
                     />
+                    <SidebarProfile name="Angelena Chantengco" role="Owner" onLogout={logout}/>
                 </aside>
                 <div className="customer-dashboard-content">
                     {renderSection()}
