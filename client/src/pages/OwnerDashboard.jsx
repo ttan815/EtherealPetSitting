@@ -2,7 +2,6 @@ import "../styles/customer-dashboard/CustomerDashboard.css";
 import { useLocation } from "react-router";
 import { useState } from "react";
 import NotificationsPage from "../components/customer-dashboard/notifications/NotificationsPage";
-import SidebarProfile from "../components/customer-dashboard/SidebarProfile";
 import { NotificationsProvider } from "../components/customer-dashboard/notifications/NotificationsContext";
 import OwnerSidebarNav from "../components/owner-dashboard/OwnerSidebarNav";
 import Dashboard from "../components/owner-dashboard/main/Dashboard";
@@ -29,6 +28,12 @@ const SECTION_TITLES = {
     settings: "Settings"
 };
 
+// Temporary placeholder until pending appointment and availability requests come from the API.
+function getPendingRequestCount() {
+    const pendingCount = [1,10]; // [Appointment, Availability]
+    return pendingCount;
+}
+
 
 
 function OwnerDashboard() {
@@ -37,6 +42,7 @@ function OwnerDashboard() {
         location.state?.section === "appointments" ? "appointments" : "dashboard"
     );  
     const [previousSection, setPreviousSection] = useState("dashboard");
+    const pendingRequestCount = getPendingRequestCount();
     const openNotifications = () => {
         setPreviousSection(activeSection);
         setActiveSection("notifications");
@@ -91,6 +97,7 @@ function OwnerDashboard() {
                     <OwnerSidebarNav
                         activeSection={activeSection}
                         onSelect={handleSelectSection}
+                        pendingRequestCount={pendingRequestCount}
                     />
                 </aside>
                 <div className="customer-dashboard-content">

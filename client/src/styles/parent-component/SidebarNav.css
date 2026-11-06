@@ -129,6 +129,20 @@
   overflow-wrap: break-word; /* "Manage Personal Information" wraps to 2 lines */
 }
 
+.nav-notification-badge {
+  margin-left: auto;
+  min-width: 20px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  background: var(--sidebar-gold);
+  color: var(--sidebar-bg);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+}
+
 /* Hover (default → hover) */
 .nav-item:hover {
   background: var(--sidebar-hover);

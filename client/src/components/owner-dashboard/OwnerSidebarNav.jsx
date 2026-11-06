@@ -19,9 +19,18 @@ const NAV_ITEMS = [
 ];
 
 
-function OwnerSidebarNav ( {activeSection, onSelect} ) {
+function OwnerSidebarNav({ activeSection, onSelect, pendingRequestCount }) {
     return (
-        <SidebarNav NAV_ITEMS={NAV_ITEMS} subtitle={"Owner"} activeSection={activeSection} onSelect={onSelect}/>
+        <SidebarNav
+            NAV_ITEMS={NAV_ITEMS}
+            subtitle={"Owner"}
+            activeSection={activeSection}
+            onSelect={onSelect}
+            notificationCounts={{
+                appointments: pendingRequestCount[0],
+                availability: pendingRequestCount[1],
+            }}
+        />
     );
 }
 
