@@ -2,6 +2,7 @@ import { useState } from "react";
 import StatCard from "./StatCard";
 import TodaysSchedule from "./TodaysSchedule";
 import BookingRequests from "./BookingRequests";
+import RevenuePanel from "./RevenuePanel";
 import PetCareAlerts from "./PetCareAlerts";
 import DeclineBookingPopup from "../../popup/DeclineBookingPopup";
 import pawIcon from "../../../assets/owner-dashboard/stat-paw.svg";
@@ -103,6 +104,7 @@ export default function Dashboard({ onNavigate }) {
                     />
                 </div>
 
+                <RevenuePanel onNavigate={onNavigate} />
                 <PetCareAlerts onNavigate={onNavigate} />
             </div>
 
