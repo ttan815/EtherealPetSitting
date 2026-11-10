@@ -1,5 +1,98 @@
+// Renders the owner's Revenue page (Figma User Flow "Owner — Revenue").
+import { useCallback, useState } from "react";
+import PageHeader from "../../customer-dashboard/PageHeader";
+import Toast from "../../popup/Toast";
+import exportIcon from "../../../assets/owner-dashboard/export-summary.svg";
+import toastDownloadIcon from "../../../assets/owner-dashboard/toast-download.svg";
+import "../../../styles/owner-dashboard/revenue/Revenue.css";
+
+const VIEW_OPTIONS = [
+    { id: "week", label: "Week" },
+    { id: "month", label: "Month" },
+    { id: "year", label: "Year" },
+];
+
+// Temporary placeholder periods for each view
+const PLACEHOLDER_VIEWS = {
+    week: { unit: "week", label: "This week", startDate: "2026-09-21", endDate: "2026-09-27" },
+    month: { unit: "month", label: "September 2026", startDate: "2026-09-01", endDate: "2026-09-30" },
+    year: { unit: "year", label: "2026", startDate: "2026-01-01", endDate: "2026-12-31" },
+};
+
+/**
+ * Gets the period the Revenue page shows for a view; the page's sections use it to load their numbers.
+ * @param {string} unitDate The view: "week", "month" or "year".
+ * @returns {{unit: string, label: string, startDate: string, endDate: string}} The period for that view.
+ */
+function getViewBy(unitDate) {
+    const view = PLACEHOLDER_VIEWS[unitDate]; // BACKEND: result from fetch()
+    return view;
+}
+
+/**
+ * Exports the revenue summary for a period.
+ * @param {{startDate: string, endDate: string}} range The period to export.
+ * @returns {boolean} Whether the export worked.
+ */
+function exportRevenueSummary(range) {
+    console.log("Export revenue summary:", range); // BACKEND: download the summary from the API
+    const isExported = true; // BACKEND: result from fetch()
+    return isExported;
+}
+
+/**
+ * Renders the Revenue page: the header with the Week / Month / Year view and Export summary.
+ * The Overview, revenue chart, revenue by service and Still owed table come in their own subtasks.
+ * @returns {JSX.Element} The Revenue page.
+ */
 export default function Revenue() {
+    const [viewBy, setViewBy] = useState("month");
+    const [toastMessage, setToastMessage] = useState(null);
+
+    const view = getViewBy(viewBy);
+    const closeToast = useCallback(() => setToastMessage(null), []);
+
+    function exportSummary() {
+        if (exportRevenueSummary(view)) {
+            setToastMessage("Summary exported");
+        }
+    }
+
     return (
-        <p>Revenue</p>
+        <section className="revenue-page">
+            <PageHeader
+                title={
+                    <span className="revenue-page-title">
+                        Revenue
+                        {/* TODO: reusable <OwnerTag> component not available */}
+                        <span className="revenue-page-tag">Owner</span>
+                    </span>
+                }
+                subtitle="Track earnings, deposits, and anyone who still owes."
+                showBell={false}
+            >
+                {/* TODO: reusable <SegmentedControl> component not available */}
+                <div className="revenue-page-view" role="group" aria-label="Current view">
+                    {VIEW_OPTIONS.map((option) => (
+                        <button
+                            key={option.id}
+                            type="button"
+                            className="revenue-page-view-option"
+                            aria-pressed={viewBy === option.id}
+                            onClick={() => setViewBy(option.id)}
+                        >
+                            {option.label}
+                        </button>
+                    ))}
+                </div>
+
+                <button type="button" className="revenue-page-export" onClick={exportSummary}>
+                    <img src={exportIcon} alt="" />
+                    Export summary
+                </button>
+            </PageHeader>
+
+            {toastMessage && <Toast message={toastMessage} icon={toastDownloadIcon} onClose={closeToast} />}
+        </section>
     );
 }

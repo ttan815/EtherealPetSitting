@@ -1,0 +1,71 @@
+/* Owner Revenue page (Figma User Flow "Owner — Revenue") */
+.revenue-page {
+  font-family: var(--font-body);
+}
+
+/* Header: "Revenue" + OWNER tag; the view toggle and Export sit in PageHeader's actions */
+.revenue-page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.revenue-page-tag {
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(164, 140, 101, 0.2);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-brown);
+}
+
+/* Week / Month / Year; the chosen one is a raised white pill */
+.revenue-page-view {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: rgba(206, 182, 144, 0.3);
+}
+
+.revenue-page-view-option {
+  padding: 7px 14px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-brown);
+  cursor: pointer;
+}
+
+.revenue-page-view-option[aria-pressed="true"] {
+  background: var(--color-cream);
+  box-shadow: 0 1px 3px rgba(47, 31, 4, 0.08);
+  color: var(--color-dark-brown);
+}
+
+.revenue-page-export {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid rgba(112, 89, 48, 0.6);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-brown);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.revenue-page-export:hover {
+  background: rgba(164, 140, 101, 0.12);
+}

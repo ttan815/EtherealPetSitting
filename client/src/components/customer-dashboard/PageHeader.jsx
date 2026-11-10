@@ -9,9 +9,11 @@ import "../../styles/customer-dashboard/PageHeader.css";
  * @param {string} actionLabel The label for the action button; the button is hidden when empty.
  * @param {Function} onAction Called when the action button is clicked.
  * @param {boolean} actionDisabled Disables the action button when true.
+ * @param {boolean} showBell Shows the notification bell; true unless a page turns it off.
+ * @param {import("react").ReactNode} children Extra controls shown in the actions area, before the action button.
  * @returns {JSX.Element} The page header.
  */
-export default function PageHeader({ title, subtitle, actionLabel, onAction, actionDisabled }) {
+export default function PageHeader({ title, subtitle, actionLabel, onAction, actionDisabled, showBell = true, children }) {
     return (
         <header className="ph-page-header">
             <div>
@@ -20,7 +22,8 @@ export default function PageHeader({ title, subtitle, actionLabel, onAction, act
             </div>
 
             <div className="ph-page-header-actions">
-                <NotificationBell className="ph-bell-button" />
+                {showBell && <NotificationBell className="ph-bell-button" />}
+                {children}
                 {actionLabel && (
                     <button
                         type="button"
