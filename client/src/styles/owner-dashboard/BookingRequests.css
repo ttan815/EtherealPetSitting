@@ -1,0 +1,180 @@
+/* Booking Requests card on the owner dashboard (Figma "Admin — Dashboard") */
+.booking-requests {
+  padding: 24px;
+  background: var(--color-cream);
+  border: 1px solid rgba(206, 182, 144, 0.55);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -8px rgba(47, 31, 4, 0.04);
+  box-sizing: border-box;
+  font-family: var(--font-body);
+}
+
+.booking-requests-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.booking-requests-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-dark-brown);
+}
+
+.booking-requests-count {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-brown);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-blush);
+}
+
+.booking-requests-empty {
+  margin: 20px 0 0;
+  font-size: 15px;
+  color: var(--color-brown);
+}
+
+.booking-requests-list {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* One request: pet and customer, date and deposit, then the buttons */
+.booking-request {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 0;
+}
+
+.booking-request + .booking-request {
+  border-top: 1px solid rgba(206, 182, 144, 0.45);
+}
+
+.booking-request:last-child {
+  padding-bottom: 0;
+}
+
+.booking-request-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.booking-request-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(206, 182, 144, 0.45);
+}
+
+.booking-request-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--color-brown);
+}
+
+.booking-request-pet {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-dark-brown);
+}
+
+.booking-request-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.booking-request-date {
+  font-size: 15px;
+  color: var(--color-dark-brown);
+}
+
+.booking-request-deposit {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.booking-request-deposit-paid {
+  background: rgba(112, 89, 48, 0.12);
+  color: var(--color-brown);
+}
+
+.booking-request-deposit-pending {
+  background: rgba(164, 140, 101, 0.22);
+  color: var(--color-dark-brown);
+}
+
+.booking-request-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.booking-request-accept,
+.booking-request-decline,
+.booking-request-reschedule {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.booking-request-accept,
+.booking-request-decline {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  transition: background-color 0.15s ease;
+}
+
+.booking-request-accept {
+  border: 1px solid var(--color-brown);
+  background: var(--color-brown);
+  color: var(--color-blush);
+}
+
+.booking-request-accept:hover {
+  background: var(--color-dark-brown);
+}
+
+.booking-request-decline {
+  border: 1px solid rgba(112, 89, 48, 0.6);
+  background: transparent;
+  color: var(--color-brown);
+}
+
+.booking-request-decline:hover {
+  background: rgba(164, 140, 101, 0.12);
+}
+
+.booking-request-reschedule {
+  padding: 8px 4px;
+  border: 0;
+  background: none;
+  color: var(--color-brown);
+}
+
+.booking-request-reschedule:hover {
+  text-decoration: underline;
+}

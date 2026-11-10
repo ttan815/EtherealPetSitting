@@ -11,3 +11,18 @@
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
 }
+
+/* Today's Schedule on the left, Booking Requests on the right, like Figma;
+   stacked when there isn't room for both */
+.owner-dashboard-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  align-items: start;
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .owner-dashboard-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
