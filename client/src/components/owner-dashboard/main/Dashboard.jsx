@@ -3,10 +3,12 @@ import StatCard from "./StatCard";
 import TodaysSchedule from "./TodaysSchedule";
 import BookingRequests from "./BookingRequests";
 import RevenuePanel from "./RevenuePanel";
+import ReviewsToApprove from "./ReviewsToApprove";
 import PetCareAlerts from "./PetCareAlerts";
-import DeclineBookingPopup from "../../popup/DeclineBookingPopup";
+import ReasonPopup from "../../popup/ReasonPopup";
 import pawIcon from "../../../assets/owner-dashboard/stat-paw.svg";
 import clipboardIcon from "../../../assets/owner-dashboard/stat-clipboard.svg";
+import declineIcon from "../../../assets/owner-dashboard/decline-icon.svg";
 import "../../../styles/owner-dashboard/Dashboard.css";
 
 // Temporary placeholder visits (Figma "Admin — Dashboard").
@@ -90,6 +92,8 @@ export default function Dashboard({ onNavigate }) {
                     />
                 </div>
 
+                <PetCareAlerts onNavigate={onNavigate} />
+
                 <div className="owner-dashboard-row">
                     <TodaysSchedule
                         visits={visits}
@@ -105,12 +109,21 @@ export default function Dashboard({ onNavigate }) {
                 </div>
 
                 <RevenuePanel onNavigate={onNavigate} />
-                <PetCareAlerts onNavigate={onNavigate} />
+                <ReviewsToApprove />
             </div>
 
             {decliningRequest && (
-                <DeclineBookingPopup
-                    request={decliningRequest}
+                <ReasonPopup
+                    icon={declineIcon}
+                    title={`Decline ${decliningRequest.petName}’s booking request?`}
+                    description={`${decliningRequest.customerName} will be notified${
+                        decliningRequest.isDepositPaid
+                            ? `, and their $${decliningRequest.depositAmount} deposit will be refunded.`
+                            : "."
+                    }`}
+                    fieldLabel="Message to the customer"
+                    placeholder="e.g. Sorry, we’re fully booked that weekend."
+                    confirmLabel="Decline request"
                     onCancel={() => setDecliningRequest(null)}
                     onConfirm={() => declineBooking(decliningRequest.id)}
                 />
