@@ -1,6 +1,6 @@
 // Renders the shared header used at the top of customer dashboard sections.
 import NotificationBell from "./notifications/NotificationBell";
-import "../../styles/customer-dashboard/PageHeader.css";
+import "../../styles/parent-component/PageHeader.css"
 
 /**
  * Renders a section header with a title, subtitle, bell button, and optional action button.

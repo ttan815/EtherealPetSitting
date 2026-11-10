@@ -18,7 +18,7 @@ import AddPet from "./AddPet"
 // Edit Pet
 import EditPet from "./EditPet"
 // Add Page Header
-import PageHeader from "../PageHeader";
+import PageHeader from "../../parent-component/PageHeader";
 
 // sample pets from the figma until real pets come from the server
 const SAMPLE_PETS = [

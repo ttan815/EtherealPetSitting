@@ -1,8 +1,8 @@
 import "../styles/customer-dashboard/CustomerDashboard.css";
 import { useLocation } from "react-router";
 import { useState } from "react";
-import NotificationsPage from "../components/customer-dashboard/notifications/NotificationsPage";
-import { NotificationsProvider } from "../components/customer-dashboard/notifications/NotificationsContext";
+import NotificationsPage from "../components/parent-component/notifications/NotificationsPage";
+import { NotificationsProvider } from "../components/parent-component/notifications/NotificationsContext";
 import OwnerSidebarNav from "../components/owner-dashboard/OwnerSidebarNav";
 import Dashboard from "../components/owner-dashboard/main/Dashboard";
 import Calender  from "../components/owner-dashboard/calender/Calender";

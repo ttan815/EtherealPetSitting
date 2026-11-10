@@ -1,6 +1,6 @@
 // Renders the Manage Personal Information section of the customer dashboard.
 import { useCallback, useState } from "react";
-import PageHeader from "../PageHeader";
+import PageHeader from "../../parent-component/PageHeader";
 import ProfileCard from "./ProfileCard";
 import PersonalDetailsForm, { FIELD_NAMES } from "./PersonalDetailsForm";
 import PasswordSecurity from "./PasswordSecurity";

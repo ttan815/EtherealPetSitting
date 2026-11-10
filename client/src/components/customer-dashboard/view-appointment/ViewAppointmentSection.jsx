@@ -6,7 +6,7 @@ import UpcomingVisitButton from "./UpcomingVisitButton";
 import AppointmentTable from "./AppointmentTable"
 import AppointmentDetail from "./appointment-detail/AppointmentDetail";
 import RescheduleAppointment from "./reschedule-appointment/RescheduleAppointment";
-import PageHeader from "../PageHeader";
+import PageHeader from "../../parent-component/PageHeader";
 import { useNavigate } from "react-router";
 
 function MainContent({ activeFilter, setActiveFilter, setCurrentView, setAppointmentId, onReschedule }) {

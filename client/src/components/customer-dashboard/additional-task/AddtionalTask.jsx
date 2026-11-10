@@ -5,7 +5,7 @@ import checkMark from "../../../assets/icons/Minimal Green Checkmark Icon.png";
 import calendar from "../../../assets/icons/Calendar Clock Icon.png";
 import checkList from "../../../assets/icons/Warm Brown Checklist Icon.png";
 import information from "../../../assets/icons/Brown Spiral Notebook and Pencil Icon.png";
-import PageHeader from "../PageHeader";
+import PageHeader from "../../parent-component/PageHeader";
 function AdditionalTask() {
   const { user, loading } = useAuth();
   const [additionalInfo, setAdditionalInfo] = useState("");

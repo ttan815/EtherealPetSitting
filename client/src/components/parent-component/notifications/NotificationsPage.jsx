@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, X } from "lucide-react";
 import { useNotifications, NOTIFICATION_ICONS } from "./NotificationsContext";
-import "../../../styles/customer-dashboard/notifications/Notifications.css";
+import "../../../styles/parent-component/Notifications.css"
 
 const PAGE_SIZE = 5;
 

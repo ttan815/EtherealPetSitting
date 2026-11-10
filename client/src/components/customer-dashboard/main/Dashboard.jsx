@@ -1,6 +1,6 @@
 import "../../../styles/customer-dashboard/Dashboard.css";
 import { useNavigate } from "react-router";
-import PageHeader from "../PageHeader";
+import PageHeader from "../../parent-component/PageHeader";
 
 const Icon = ({ name, size = 16 }) => {
   const common = {

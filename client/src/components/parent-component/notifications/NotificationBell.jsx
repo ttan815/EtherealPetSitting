@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Bell } from "lucide-react";
 import { useNotifications, NOTIFICATION_ICONS } from "./NotificationsContext";
-import "../../../styles/customer-dashboard/notifications/Notifications.css";
+import "../../../styles/parent-component/Notifications.css";
 
 const POPUP_LIMIT = 4;
 

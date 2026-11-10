@@ -9,8 +9,8 @@ import CustomerSidebarNav from "../components/customer-dashboard/CustomerSidebar
 import AdditionalTask from "../components/customer-dashboard/additional-task/AddtionalTask"
 import Dashboard from "../components/customer-dashboard/main/Dashboard";
 import ManagePersonalInfo from "../components/customer-dashboard/manage-personal-info/ManagePersonalInfo";
-import NotificationsPage from "../components/customer-dashboard/notifications/NotificationsPage";
-import { NotificationsProvider } from "../components/customer-dashboard/notifications/NotificationsContext";
+import NotificationsPage from "../components/parent-component/notifications/NotificationsPage";
+import { NotificationsProvider } from "../components/parent-component/notifications/NotificationsContext";
 
 const SECTION_TITLES = {
     profile: "Manage Personal Information",
