@@ -1,0 +1,6 @@
+/* Overview cards on the owner's Revenue page: four across like Figma, wrapping on smaller screens */
+.revenue-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}

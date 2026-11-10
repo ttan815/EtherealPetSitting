@@ -2,6 +2,7 @@
 import { useCallback, useState } from "react";
 import PageHeader from "../../customer-dashboard/PageHeader";
 import Toast from "../../popup/Toast";
+import RevenueOverview from "./RevenueOverview";
 import exportIcon from "../../../assets/owner-dashboard/export-summary.svg";
 import toastDownloadIcon from "../../../assets/owner-dashboard/toast-download.svg";
 import "../../../styles/owner-dashboard/revenue/Revenue.css";
@@ -41,8 +42,8 @@ function exportRevenueSummary(range) {
 }
 
 /**
- * Renders the Revenue page: the header with the Week / Month / Year view and Export summary.
- * The Overview, revenue chart, revenue by service and Still owed table come in their own subtasks.
+ * Renders the Revenue page: the header with the Week / Month / Year view and Export summary,
+ * then the Overview cards. The revenue chart, revenue by service and Still owed table come in their own subtasks.
  * @returns {JSX.Element} The Revenue page.
  */
 export default function Revenue() {
@@ -91,6 +92,8 @@ export default function Revenue() {
                     Export summary
                 </button>
             </PageHeader>
+
+            <RevenueOverview unitDate={view.unit} />
 
             {toastMessage && <Toast message={toastMessage} icon={toastDownloadIcon} onClose={closeToast} />}
         </section>
