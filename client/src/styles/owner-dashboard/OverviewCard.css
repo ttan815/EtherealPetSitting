@@ -1,0 +1,83 @@
+.stat-today-s-visits,
+.stat-today-s-visits * {
+  box-sizing: border-box;
+}
+.stat-today-s-visits {
+  background: #fffdfb;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: rgba(206, 182, 144, 0.55);
+  border-width: 1px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+  box-shadow: 0px 6px 20px -8px rgba(47, 31, 4, 0.04);
+  overflow: hidden;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.icon-badge {
+  background: rgba(206, 182, 144, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.icon-paw {
+  flex-shrink: 0;
+  width: 19px;
+  height: 19px;
+  position: relative;
+  overflow: visible;
+}
+.spacer {
+  flex-shrink: 0;
+  width: 1px;
+  height: 8px;
+  position: relative;
+  overflow: hidden;
+}
+._6 {
+  color: #2f1f04;
+  text-align: left;
+  font-family: 'Times New Roman';
+  font-size: 34px;
+  font-weight: 400;
+  position: relative;
+}
+.today-s-visits {
+  color: #2f1f04;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+._2-completed-4-upcoming {
+  color: rgba(112, 89, 48, 0.85);
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+}

@@ -1,28 +1,17 @@
-import {
-  LayoutGrid, Calendar, PawPrint, Users,
-  Clock , ClipboardList, Star, ChartColumnBig, ShieldCheck, Settings
-} from "lucide-react";
 import SidebarNav from "../parent-component/SidebarNav";
+import { OWNER_NAV_ITEMS } from "../../constants/owner-nav-items";
 
-
-const NAV_ITEMS = [
-    { id: "dashboard", label: "Dashboard", icon: LayoutGrid },
-    { id: "calender", label: "Calender", icon: Calendar },
-    { id: "appointments", label: "Appointments", icon: ClipboardList },
-    { id: "customers_and_pets", label: "Customers And Pets", icon: PawPrint },
-    { id: "reviews", label: "Reviews", icon: Star },
-    { id: "availability", label: "Availability", icon: Clock },
-    { id: "revenue", label: "Revenue", icon: ChartColumnBig },
-    { id: "manage_admins", label: "Manage Admins", icon: Users },
-    { id: "audit_log", label: "Audit Log", icon: ShieldCheck },
-    { id: "settings", label: "Settings", icon: Settings },
-];
-
-
+/**
+ * Renders the owner dashboard sidebar navigation.
+ * @param {string} activeSection - ID of the currently selected section.
+ * @param {Function} onSelect - Called with a section ID when selected.
+ * @param {number[]} pendingRequestCount - Counts for pending requests by category.
+ * @returns {JSX.Element} The dashboard sidebar navigation.
+ */
 function OwnerSidebarNav({ activeSection, onSelect, pendingRequestCount }) {
     return (
         <SidebarNav
-            NAV_ITEMS={NAV_ITEMS}
+            NAV_ITEMS={OWNER_NAV_ITEMS}
             subtitle={"Owner"}
             activeSection={activeSection}
             onSelect={onSelect}
