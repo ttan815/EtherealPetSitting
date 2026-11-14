@@ -40,7 +40,11 @@ export default function TodaysSchedule({ visits, onMarkComplete, onViewCalendar 
             <li key={visit.id} className="schedule-visit">
               <div className="schedule-visit-time">
                 <span className="schedule-visit-strong">{visit.time}</span>
-                <span>{visit.duration}</span>
+                <span>
+                  {visit.endTime
+                    ? `${visit.endTime} · ${visit.dateLabel}`
+                    : visit.duration}
+                </span>
               </div>
 
               {/* Paw placeholder until pets have photos */}
@@ -50,7 +54,7 @@ export default function TodaysSchedule({ visits, onMarkComplete, onViewCalendar 
 
               <div className="schedule-visit-info">
                 <span className="schedule-visit-strong">
-                  {visit.petName} · {visit.breed}
+                  {visit.breed ? `${visit.petName} · ${visit.breed}` : visit.petName}
                 </span>
                 <span>
                   {visit.service} for {visit.customerName}

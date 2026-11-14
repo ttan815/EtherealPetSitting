@@ -15,6 +15,7 @@ import ManageAdmins from "../components/owner-dashboard/manage-admins/ManageAdmi
 import AuditLog from "../components/owner-dashboard/audit-log/AuditLog"
 import Settings from "../components/owner-dashboard/settings/Settings"
 import SidebarProfile from "../components/parent-component/SidebarProfile";
+import { NewAppointmentProvider } from "../context/NewAppointmentProvider";
 
 const SECTION_TITLES = {
     dashboard: "Dashboard",
@@ -76,7 +77,7 @@ function OwnerDashboard() {
             case "Settings":
                 return <Settings/>;
             case "availability":
-                return <Availability onNavigate={handleSelectSection}/>;
+                return <Availability/>;
             case "revenue":
                 return <Revenue/>
             case "settings":
@@ -96,21 +97,23 @@ function OwnerDashboard() {
 
     return (
         <NotificationsProvider onViewAll={openNotifications} onNavigate={setActiveSection}>
-        <main className="customer-dashboard">
-            <div className="customer-dashboard-layout">
-                <aside className="customer-sidebar">
-                    <OwnerSidebarNav
-                        activeSection={activeSection}
-                        onSelect={handleSelectSection}
-                        pendingRequestCount={pendingRequestCount}
-                    />
-                    <SidebarProfile name="Angelena Chantengco" role="Owner" onLogout={logout}/>
-                </aside>
-                <div className="customer-dashboard-content">
-                    {renderSection()}
-                </div>
-            </div>
-        </main>
+            <NewAppointmentProvider>
+                <main className="customer-dashboard">
+                    <div className="customer-dashboard-layout">
+                        <aside className="customer-sidebar">
+                            <OwnerSidebarNav
+                                activeSection={activeSection}
+                                onSelect={handleSelectSection}
+                                pendingRequestCount={pendingRequestCount}
+                            />
+                            <SidebarProfile name="Angelena Chantengco" role="Owner" onLogout={logout}/>
+                        </aside>
+                        <div className="customer-dashboard-content">
+                            {renderSection()}
+                        </div>
+                    </div>
+                </main>
+            </NewAppointmentProvider>
         </NotificationsProvider>
     );
 }

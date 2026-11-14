@@ -1,27 +1,23 @@
 :root {
-    --color-primary: #705930;
-    --color-hover: #64502e;
-    --color-on-primary: #f9efed;
-    --font-family: Arial, sans-serif;
+    --color-primary: var(--color-brown);
+    --color-hover: var(--color-dark-brown);
+    --color-on-primary: var(--color-blush);
+    --font-family: var(--font-body);
     --font-size-button: 16px;
     --space-button-y: 14px;
     --space-button-x: 48px;
     --space-icon: 6px;
-    --radius-pill: 999px;
-
-    --appointment-color-primary-background: #fffdfb;
-    --appointment-pet-drop-down-primary: #efe2cd;
-    --appointment-border-color: #d4be9d;
-    --appointment-radius: 25px;
+    --appointment-color-primary-background: var(--color-cream);
+    --appointment-pet-drop-down-primary: var(--color-blush);
+    --appointment-border-color: var(--color-input-border);
+    --appointment-radius: var(--radius-input);
     --appointment-title: 25px;
     --appointment-subtitle: 13px;
-    --apppointment-primary-color: #ad9b7d;
+    --apppointment-primary-color: var(--color-muted);
     --appointment-padding: 25px;
     --appointment-select-padding: 12px;
-    --appointment-radius: 12px;
     --appointment-button-padding-x: 12px;
     --appointment-button-padding-y: 6px;
-
 }
 
 
@@ -52,25 +48,96 @@
 }
 
 .blurBackground {
-    background-color: black;
     background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
     width: 100%;
-    height: 100%;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    padding: 16px;
+    overflow-y: auto;
 }
 
 .requestAvailabilityContainer {
-    border-radius: var(--appointment-radius);
+    width: min(100%, 800px);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-card);
     background-color: var(--appointment-color-primary-background);
     padding: var(--appointment-padding);
-    max-width: 800px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    box-shadow: 0 24px 60px -12px rgba(47, 31, 4, 0.25);
+}
+
+.appointment-dialog-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.appointment-close-button {
+    flex-shrink: 0;
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-pill);
+    padding: 8px 14px;
+    background: var(--color-cream);
+    color: var(--color-brown);
+    cursor: pointer;
+}
+
+.appointment-close-button:hover {
+    background: var(--color-blush);
+}
+
+.appointment-approval {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin: 16px 0;
+    padding: 12px 16px;
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-input);
+}
+
+.appointment-approval legend {
+    padding: 0 6px;
+    color: var(--color-brown);
+    font-size: 14px;
+}
+
+.appointment-approval-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.appointment-approval-option input {
+    accent-color: var(--color-brown);
+}
+
+.appointment-status {
+    color: var(--color-muted);
+}
+
+.appointment-error {
+    color: var(--color-error);
+}
+
+.appointment-actions button:disabled {
+    cursor: wait;
+    opacity: 0.65;
 }
 
 .requestAvailTitle {
+    color: var(--color-dark-brown);
+    font-family: var(--font-heading);
     font-size: var(--appointment-title);
     margin-top: 0px;
     margin-bottom: 0px;
@@ -81,6 +148,7 @@
     margin-top: 2px;
     margin-bottom: 2px;
     color: var(--apppointment-primary-color);
+    font-family: var(--font-body);
     font-weight: 500;
 }
 
@@ -104,6 +172,8 @@
     padding: var(--appointment-select-padding);
     border: 1px solid var(--appointment-border-color);
     margin-top: 10px;
+    color: var(--color-dark-brown);
+    font: inherit;
 }
 
 .pet-select-element {
@@ -157,12 +227,12 @@
 }
 
 .labels {
-    color: var(--color-primary, #ff9d00);
+    color: var(--color-primary);
     font-size: var(--font-size-label, 14px);
 }
 
 .note-field label {
-    color: var(--color-primary, #ff9d00);
+    color: var(--color-primary);
     font-size: var(--font-size-label, 14px);
 }
 
@@ -171,21 +241,21 @@
     width: 100%;
     min-height: 84px;
     padding: var(--space-3, 12px) var(--space-4, 16px);
-    border: 1px solid var(--appointment-border-color, #d8b484);
+    border: 1px solid var(--appointment-border-color);
     border-radius: var(--radius-input, 10px);
-    background: var(--color-surface, #fffdfb);
-    color: var(--color-primary, #755b30);
+    background: var(--color-cream);
+    color: var(--color-dark-brown);
     font: inherit;
     resize: vertical;
 }
 
 .note-field textarea::placeholder {
-    color: var(--color-primary, #755b30);
+    color: var(--color-primary);
     opacity: 1;
 }
 
 .note-field textarea:focus-visible {
-    outline: 2px solid var(--color-primary, #755b30);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
 
@@ -209,7 +279,7 @@
 .cancel-button,
 .send-request-button {
     padding: 12px 26px;
-    border-radius: 30px;
+    border-radius: var(--radius-pill);
     font-size: 16px;
     font-family: inherit;
     cursor: pointer;
@@ -217,22 +287,31 @@
 
 .cancel-button {
     background-color: transparent;
-    color: #70572c;
-    border: 1px solid #70572c;
+    color: var(--color-brown);
+    border: 1px solid var(--color-brown);
 }
 
 .send-request-button {
-    background-color: #70572c;
-    color: white;
-    border: 1px solid #70572c;
+    background-color: var(--color-brown);
+    color: var(--color-blush);
+    border: 1px solid var(--color-brown);
 }
 
 .cancel-button:hover {
-    background-color: #f2ece3;
+    background-color: var(--color-blush);
 }
 
 .send-request-button:hover {
-    background-color: #594523;
+    background-color: var(--color-dark-brown);
+}
+
+.cancel-button:focus-visible,
+.send-request-button:focus-visible,
+.appointment-close-button:focus-visible,
+.select-element:focus-visible,
+.note-field textarea:focus-visible {
+    outline: 2px solid var(--color-brown);
+    outline-offset: 2px;
 }
 
 .leaveAsNote {
@@ -249,7 +328,7 @@
     box-sizing: border-box;
     font-family: var(--font-family);
     font-size: 15px;
-    color: #39280f;
+    color: var(--color-dark-brown);
     cursor: pointer;
 }
 
@@ -279,7 +358,7 @@
     font-family: var(--font-family);
     font-size: 15px;
     font-weight: 400;
-    color: #39280f;
+    color: var(--color-dark-brown);
     margin-bottom: 12px;
 }
 
@@ -300,7 +379,7 @@
 
 .appointment-calendar .react-datepicker__day {
     font-family: var(--font-family);
-    color: #39280f;
+    color: var(--color-dark-brown);
     font-size: 13px;
     font-weight: 400;
     width: 37px;
@@ -338,7 +417,7 @@
 
 
 .appointment-calendar .react-datepicker__day--disabled {
-    color: #bcb3a5;
+    color: var(--color-muted);
     cursor: not-allowed;
 }
 
@@ -368,4 +447,19 @@
 .date-container {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    .requestAvailabilityContainer {
+        padding: 20px;
+    }
+
+    .appointment-dialog-header {
+        flex-direction: column;
+    }
+
+    .appointment-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
 }

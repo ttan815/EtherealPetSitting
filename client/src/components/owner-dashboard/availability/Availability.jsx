@@ -9,6 +9,7 @@ import AvailabilityFilter, { getAvailability, filterAvailability } from "./Avail
 import AvailabilityTable from "./AvailabilityTable";
 import { approveAvailability, disapproveAvailability, updateAvailability, removeAvailability } from "./AvailabilityRowActions";
 import AvailabilityPopup, { addAvailability, assignCustomer } from "./AvailabilityPopup";
+import NewAppointmentButton from "../../action-button/NewAppointmentButton";
 import "../../../styles/owner-dashboard/availability/Availability.css";
 
 const DEFAULT_FILTERS = { search: "", admin: "all", service: "all" };
@@ -39,10 +40,9 @@ function hoursBetween(start, end) {
 
 /**
  * Renders the Availability section: header, summary cards, filters, table, popups and toast.
- * @param {Function} onNavigate Optional; switches the dashboard section (used by New Appointment).
  * @returns {JSX.Element} The Availability section.
  */
-export default function Availability({ onNavigate }) {
+export default function Availability() {
     const [options] = useState(getAvailabilityOptions);
     const [slots, setSlots] = useState([]);
     const [activeChip, setActiveChip] = useState("requests");
@@ -118,11 +118,6 @@ export default function Availability({ onNavigate }) {
         closePopup();
     }
 
-    function handleNewAppointment() {
-        // TODO: reusable <NewAppointmentButton> component not available
-        if (onNavigate) onNavigate("appointments");
-    }
-
     const visibleSlots = filterAvailability(slots, activeChip, filters);
     const approved = slots.filter((s) => s.status === "approved");
     const summary = [
@@ -138,8 +133,7 @@ export default function Availability({ onNavigate }) {
             <PageHeader
                 title="Availability"
                 subtitle="Review the times your admins send. Only approved times appear on the booking page."
-                actionLabel="+ New Appointment"
-                onAction={handleNewAppointment}
+                actionButton={<NewAppointmentButton />}
             >
                 <button type="button" className="av-btn av-btn-outline av-btn-header" onClick={() => setPopup({ mode: "add", slot: null })}>
                     + Add availability

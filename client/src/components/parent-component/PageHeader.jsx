@@ -6,6 +6,7 @@ import "../../styles/parent-component/PageHeader.css"
  * Renders a section header with a title, subtitle, bell button, and optional action button.
  * @param {string} title The main heading text.
  * @param {string} subtitle The supporting text under the heading.
+ * @param {import("react").ReactNode} actionButton A custom action control.
  * @param {string} actionLabel The label for the action button; the button is hidden when empty.
  * @param {Function} onAction Called when the action button is clicked.
  * @param {boolean} actionDisabled Disables the action button when true.
@@ -13,7 +14,7 @@ import "../../styles/parent-component/PageHeader.css"
  * @param {import("react").ReactNode} children Extra controls shown in the actions area, before the action button.
  * @returns {JSX.Element} The page header.
  */
-export default function PageHeader({ title, subtitle, actionLabel, onAction, actionDisabled, showBell = true, children }) {
+export default function PageHeader({ title, subtitle, actionButton, actionLabel, onAction, actionDisabled, showBell = true, children }) {
     return (
         <header className="ph-page-header">
             <div>
@@ -24,6 +25,7 @@ export default function PageHeader({ title, subtitle, actionLabel, onAction, act
             <div className="ph-page-header-actions">
                 {showBell && <NotificationBell className="ph-bell-button" />}
                 {children}
+                {actionButton}
                 {actionLabel && (
                     <button
                         type="button"
