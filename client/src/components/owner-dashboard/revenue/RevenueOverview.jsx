@@ -1,5 +1,6 @@
 // Renders the Overview stat cards on the owner's Revenue page.
 import OverviewHeader from "../../parent-component/OverviewHeader";
+import OverviewCard from "../../parent-component/OverviewCard";
 import { getRevenue } from "../../../utils/get-revenue";
 import dollarIcon from "../../../assets/owner-dashboard/stat-dollar.svg";
 import checkIcon from "../../../assets/owner-dashboard/stat-check.svg";
@@ -45,33 +46,38 @@ export default function RevenueOverview({ unitDate }) {
   const currentEarnings = revenue[revenue.length - 1];
   const previousEarnings = revenue[revenue.length - 2];
   const overview = getRevenueOverview(unitDate);
+  const overviewCards = [
+    {
+      icon: dollarIcon,
+      number: formatMoney(currentEarnings),
+      title: "Total earnings",
+      subtitle: `${overview.periodName} · ${formatChange(currentEarnings, previousEarnings, overview.previousPeriodName)}`,
+    },
+    {
+      icon: checkIcon,
+      number: formatMoney(overview.depositsCollected),
+      title: "Deposits collected",
+      subtitle: `${overview.depositBookingCount} bookings`,
+    },
+    {
+      icon: alertIcon,
+      number: formatMoney(overview.stillOwed),
+      title: "Still owed",
+      subtitle: `${overview.unpaidVisitCount} visits unpaid`,
+    },
+    {
+      icon: pawIcon,
+      number: overview.visitsCompleted,
+      title: "Visits completed",
+      subtitle: `This ${unitDate}`,
+    },
+  ];
 
   return (
     <OverviewHeader className="revenue-overview">
-      <StatCard
-        icon={dollarIcon}
-        value={formatMoney(currentEarnings)}
-        label="Total earnings"
-        detail={`${overview.periodName} · ${formatChange(currentEarnings, previousEarnings, overview.previousPeriodName)}`}
-      />
-      <StatCard
-        icon={checkIcon}
-        value={formatMoney(overview.depositsCollected)}
-        label="Deposits collected"
-        detail={`${overview.depositBookingCount} bookings`}
-      />
-      <StatCard
-        icon={alertIcon}
-        value={formatMoney(overview.stillOwed)}
-        label="Still owed"
-        detail={`${overview.unpaidVisitCount} visits unpaid`}
-      />
-      <StatCard
-        icon={pawIcon}
-        value={overview.visitsCompleted}
-        label="Visits completed"
-        detail={`This ${unitDate}`}
-      />
+      {overviewCards.map((card) => (
+        <OverviewCard key={card.title} {...card} />
+      ))}
     </OverviewHeader>
   );
 }

@@ -2,7 +2,7 @@ import "../../styles/owner-dashboard/OverviewCard.css";
 
 /**
  * Renders a single overview stat card for the owner dashboard.
- * @param {{icon: React.ComponentType|"", title: string, subtitle: string, number: string|number}} props - Overview card details.
+ * @param {{icon: React.ComponentType|string, title: string, subtitle: string, number: string|number}} props - Overview card details.
  * @returns {JSX.Element} The rendered overview card.
  */
 function OverviewCard({icon: Icon, title, subtitle, number}) {
@@ -11,7 +11,7 @@ function OverviewCard({icon: Icon, title, subtitle, number}) {
             {Icon !== "" && (
                 <div className="row">
                     <div className="icon-badge">
-                        <Icon />
+                        {typeof Icon === "string" ? <img src={Icon} alt="" /> : <Icon />}
                     </div>
                 </div>
             )}
