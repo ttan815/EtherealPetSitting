@@ -1,0 +1,285 @@
+/* audit log page styles */
+
+.al-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-family: var(--font-body);
+    color: var(--color-dark-brown);
+}
+
+/* small owner tag next to the page title */
+.al-owner-badge {
+    display: inline-block;
+    margin-left: 12px;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    background: #ece0d0;
+    color: var(--color-brown);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* the export button in the figma is outlined, so restyle the shared header button here only */
+.al-header .ph-primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--color-brown);
+    background: transparent;
+    color: var(--color-brown);
+    box-shadow: none;
+}
+
+.al-header .ph-primary-button:hover:not(:disabled) {
+    background: #fffcfa;
+}
+
+.al-header .ph-primary-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* filter bar */
+.al-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.al-search {
+    flex: 0 1 380px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    border: 1px solid var(--color-ring);
+    border-radius: 12px;
+    background: #fffcfa;
+    color: var(--color-brown);
+}
+
+.al-search input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--color-dark-brown);
+    font: inherit;
+    font-size: 15px;
+}
+
+.al-search:focus-within {
+    border-color: var(--color-brown);
+}
+
+.al-select {
+    padding: 12px 16px;
+    border: 1px solid var(--color-ring);
+    border-radius: 12px;
+    background: #fffcfa;
+    color: var(--color-dark-brown);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* main card */
+.al-card {
+    background: #fffcfa;
+    border: 1px solid var(--color-card-border, #ecdcc8);
+    border-radius: var(--radius-card);
+    padding: 28px 32px;
+}
+
+.al-day + .al-day {
+    margin-top: 28px;
+}
+
+.al-day-label {
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ecdcc8;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-brown);
+}
+
+.al-rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.al-rows li {
+    border-bottom: 1px solid #ecdcc8;
+}
+
+.al-rows li:last-child {
+    border-bottom: none;
+}
+
+.al-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 96px 40px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.al-row:hover .al-message {
+    text-decoration: underline;
+    text-decoration-color: var(--color-ring);
+}
+
+.al-time {
+    font-size: 15px;
+    color: var(--color-brown);
+}
+
+.al-avatar {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-ring);
+    color: var(--color-dark-brown);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.al-avatar-owner {
+    background: var(--color-brown);
+    color: #fff;
+}
+
+.al-message {
+    font-size: 16px;
+    color: var(--color-dark-brown);
+}
+
+.al-message strong {
+    font-weight: 600;
+}
+
+.al-area {
+    justify-self: end;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: #f1e6d6;
+    color: var(--color-brown);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.al-details {
+    margin: 0 0 14px 152px;
+    font-size: 14px;
+    color: var(--color-brown);
+}
+
+/* load more row */
+.al-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #ecdcc8;
+}
+
+.al-count {
+    font-size: 14px;
+    color: var(--color-brown);
+}
+
+.al-outline-button {
+    padding: 10px 22px;
+    border: 1px solid var(--color-brown);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-brown);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.al-outline-button:hover {
+    background: var(--color-blush);
+}
+
+/* empty state */
+.al-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px;
+    text-align: center;
+}
+
+.al-empty-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 14px;
+    border-radius: 50%;
+    background: #ece0d0;
+    color: var(--color-brown);
+}
+
+.al-empty-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--color-dark-brown);
+}
+
+.al-empty-text {
+    margin: 6px 0 18px;
+    font-size: 15px;
+    color: var(--color-brown);
+}
+
+/* smaller screens */
+@media (max-width: 860px) {
+    .al-card {
+        padding: 20px;
+    }
+
+    .al-row {
+        grid-template-columns: 40px 1fr;
+    }
+
+    .al-time {
+        grid-column: 1 / -1;
+        font-size: 13px;
+    }
+
+    .al-area {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    .al-details {
+        margin-left: 56px;
+    }
+}
