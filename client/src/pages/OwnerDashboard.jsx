@@ -76,7 +76,7 @@ function OwnerDashboard() {
             case "Settings":
                 return <Settings/>;
             case "availability":
-                return <Availability/>;
+                return <Availability onNavigate={handleSelectSection}/>;
             case "revenue":
                 return <Revenue/>
             case "settings":
