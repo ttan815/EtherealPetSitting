@@ -1,5 +1,5 @@
-/* "Today's visits" stat card on the owner dashboard (Figma "Admin — Dashboard") */
-.todays-visits-card {
+/* Stat card in the owner dashboard's stats row (Figma "Admin — Dashboard") */
+.stat-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -13,7 +13,7 @@
   font-family: var(--font-body);
 }
 
-.todays-visits-card-badge {
+.stat-card-badge {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@
   background: rgba(206, 182, 144, 0.35);
 }
 
-.todays-visits-card-count {
+.stat-card-value {
   margin: 0;
   font-family: var(--font-heading);
   font-size: 34px;
@@ -33,7 +33,7 @@
   color: var(--color-dark-brown);
 }
 
-.todays-visits-card-label {
+.stat-card-label {
   margin: 0;
   font-family: var(--font-body);
   font-size: 15px;
@@ -41,7 +41,7 @@
   color: var(--color-dark-brown);
 }
 
-.todays-visits-card-detail {
+.stat-card-detail {
   margin: 0;
   font-size: 14px;
   color: rgba(112, 89, 48, 0.85);
