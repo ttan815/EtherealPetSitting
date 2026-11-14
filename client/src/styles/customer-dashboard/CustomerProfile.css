@@ -1,0 +1,324 @@
+.customerInformationContainer {
+    background-color: #fffdfb;
+    border: 1px solid #e4d6c0;
+    border-radius: 20px;
+    padding: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #49371f;
+}
+
+.customerInformationHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.customerIdentity {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.customerAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #70582f;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.customerFullName {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+}
+
+.customerSince {
+    font-size: 13px;
+    color: #8f7c59;
+    margin: 0;
+}
+
+.customerActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.customerRole {
+    background-color: #eee5d5;
+    color: #70582f;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.customerEditButton,
+.customerDeleteButton {
+    background-color: transparent;
+    border: 1px solid #ceb690;
+    border-radius: 20px;
+    padding: 7px 16px;
+    color: #70582f;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.customerEditButton:hover,
+.customerDeleteButton:hover {
+    background-color: #eee5d5;
+}
+
+.customerContactInformation {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.customerContactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.customerContactIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #eee5d5;
+    color: #70582f;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.customerContactLabel {
+    font-size: 13px;
+    color: #8f7c59;
+    margin: 0 0 4px 0;
+}
+
+.customerContactValue {
+    font-size: 15px;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.editCustomerOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.editCustomerModal {
+    background-color: #fffdfb;
+    border-radius: 24px;
+    padding: 28px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    color: #49371f;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Header */
+
+.editCustomerHeader {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.editCustomerIcon {
+    background-color: #eee5d5;
+    color: #70582f;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 20px;
+}
+
+.editCustomerHeader h2 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 6px;
+}
+
+.editCustomerHeader p {
+    font-size: 13px;
+    color: #8f7c59;
+    margin: 0;
+}
+
+.editCustomerClose {
+    margin-left: auto;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #e4d6c0;
+    border-radius: 50%;
+    background-color: #f8eeeb;
+    color: #70582f;
+    cursor: pointer;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+/* Form */
+
+.editCustomerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.editCustomerFormRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.editCustomerField {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.editCustomerField label,
+.editCustomerPets label {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.editCustomerField input,
+.editCustomerField textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddc9ae;
+    border-radius: 10px;
+    background-color: #f8f2ef;
+    color: #49371f;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.editCustomerField input:focus,
+.editCustomerField textarea:focus {
+    border-color: #70582f;
+}
+
+.editCustomerField textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.editCustomerOptional {
+    color: #a89880;
+    font-size: 11px;
+    margin-left: 8px;
+    font-weight: 400;
+}
+
+/* Pets */
+
+.editCustomerPets {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.editCustomerPetTag {
+    background-color: #eee5d5;
+    color: #70582f;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.editCustomerAddPet {
+    background-color: transparent;
+    border: 1px dashed #ceb690;
+    color: #70582f;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Action buttons */
+
+.editCustomerActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.editCustomerCancel,
+.editCustomerSave {
+    padding: 13px 26px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.editCustomerCancel {
+    border: 1px solid #ceb690;
+    background-color: transparent;
+    color: #70582f;
+}
+
+.editCustomerSave {
+    background-color: #70582f;
+    color: white;
+    border: 1px solid #70582f;
+}
+
+.editCustomerCancel:hover {
+    background-color: #eee5d5;
+}
+
+.editCustomerSave:hover {
+    background-color: #5c4726;
+}
+
+/* Mobile responsiveness */
+
+@media (max-width: 480px) {
+    .editCustomerFormRow {
+        grid-template-columns: 1fr;
+    }
+
+    .editCustomerModal {
+        padding: 20px;
+    }
+}

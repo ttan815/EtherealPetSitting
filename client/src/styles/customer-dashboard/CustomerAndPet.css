@@ -1,0 +1,36 @@
+.customerPetContainer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.column {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+}
+
+.customerDashboardHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.customerDashboardHeader .ph-page-header {
+    flex: 1;
+    margin: 0;
+}
+
+@media (max-width: 500px) {
+    .customerDashboardHeader {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 700px) {
+    .customerPetContainer {
+        grid-template-columns: 1fr;
+    }
+}
