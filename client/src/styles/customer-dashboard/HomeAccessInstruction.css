@@ -1,0 +1,92 @@
+.homeAccessContainer {
+    background-color: #fffdfb;
+    border: 1px solid #e8d8ca;
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #44301e;
+}
+
+.homeAccessHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.homeAccessHeader svg {
+    color: #87603b;
+    flex-shrink: 0;
+}
+
+.homeAccessHeader h3 {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.homeAccessCustomerNote {
+    background-color: #f7edeb;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+}
+
+.homeAccessNoteLabel {
+    font-size: 12px;
+    color: #87603b;
+    margin: 0 0 5px;
+}
+
+.homeAccessNote {
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.homeAccessTasks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.homeAccessTasks h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.homeAccessTask {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.homeAccessTask input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #a98c6d;
+    border-radius: 4px;
+    background-color: transparent;
+    margin: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.homeAccessTask input[type="checkbox"]:checked {
+    background-color: #87603b;
+    border-color: #87603b;
+}
+
+.homeAccessTask input[type="checkbox"]:checked::after {
+    content: "✓";
+    color: white;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+}

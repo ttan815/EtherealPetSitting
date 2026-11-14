@@ -1,0 +1,128 @@
+.petsProfileContainer {
+    width: 100%;
+    background-color: #fffdfb;
+    border: 1px solid #e8d8ca;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #44301e;
+}
+
+.petsProfileHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.petsProfileHeader svg {
+    color: #80673c;
+}
+
+.petsProfileHeader h3 {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.petProfileOverview {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.petProfileAvatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #e8ddca;
+    color: #80673c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.petProfileDetails h2 {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 5px;
+}
+
+.petProfileDescription {
+    font-size: 13px;
+    color: #80673c;
+    margin: 0 0 6px;
+}
+
+.petAllergyBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #e5ddcf;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #44301e;
+}
+
+.petInformationGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.petInformationCard {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+    background-color: #f7edeb;
+    border-radius: 12px;
+}
+
+.petInformationIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e8ddca;
+    color: #80673c;
+    flex-shrink: 0;
+}
+
+.petInformationText {
+    min-width: 0;
+}
+
+.petInformationText h5 {
+    font-size: 12px;
+    font-weight: 400;
+    color: #80673c;
+    margin: 0 0 4px;
+}
+
+.petInformationText p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.petVetCard {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 480px) {
+    .petInformationGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .petsProfileContainer {
+        padding: 16px;
+    }
+}
