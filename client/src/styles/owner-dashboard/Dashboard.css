@@ -1,0 +1,13 @@
+/* Owner dashboard home: stat cards, then the dashboard cards stacked */
+.owner-dashboard-home {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Room for four stat cards across, like Figma; wraps on smaller screens */
+.owner-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
