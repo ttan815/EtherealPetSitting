@@ -1,6 +1,6 @@
 .customerPetContainer {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(240px, 0.8fr) minmax(0, 2fr);
     gap: 16px;
 }
 
@@ -8,6 +8,11 @@
     display: flex;
     gap: 24px;
     flex-direction: column;
+    min-width: 0;
+}
+
+.customerPetContainer > aside {
+    min-width: 0;
 }
 
 .customerDashboardHeader {

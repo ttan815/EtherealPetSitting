@@ -33,6 +33,18 @@
     margin-bottom: 18px;
 }
 
+.petProfileCard + .petProfileCard {
+    border-top: 1px solid #e8d8ca;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.petsProfileEmpty {
+    color: #80673c;
+    font-size: 13px;
+    margin: 0;
+}
+
 .petProfileAvatar {
     width: 80px;
     height: 80px;

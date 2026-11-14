@@ -17,7 +17,7 @@
 }
 
 .customerSearch {
-    background-image: url("../../../src/assets/icons/magnifying_glass.png");
+    background-image: url("../../../assets/icons/magnifying_glass.png");
     background-repeat: no-repeat;
     background-position: left 10px center;
     background-size: 18px 18px;
@@ -31,6 +31,17 @@
     font-size: 13px;
     outline: none;
     margin-bottom: 8px;
+}
+
+.customerSearch:focus-visible {
+    border-color: #70582f;
+    box-shadow: 0 0 0 2px rgba(112, 88, 47, 0.18);
+}
+
+.customerListRows {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .customerContainer {
@@ -47,6 +58,15 @@
     box-sizing: border-box;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+}
+
+.customerContainer:focus-visible {
+    outline: 2px solid #70582f;
+    outline-offset: 2px;
 }
 
 .customerContainer:hover {
@@ -76,16 +96,31 @@
 }
 
 .customerName {
+    display: block;
     font-size: 14px;
     font-weight: 600;
     margin: 0;
 }
 
 .customerPetNameType {
+    display: block;
     font-size: 12px;
     font-weight: 400;
     margin: 0;
     color: #8f7c59;
+}
+
+.customerListText {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.customerListEmpty,
+.customerDetailsEmpty {
+    color: #8f7c59;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 12px;
 }
 
 .deleteCustomerOverlay {

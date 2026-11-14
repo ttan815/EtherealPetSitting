@@ -79,6 +79,19 @@
     background-color: #eee5d5;
 }
 
+.customerEditButton:focus-visible,
+.customerDeleteButton:focus-visible,
+.editCustomerClose:focus-visible,
+.deleteCustomerClose:focus-visible,
+.editCustomerAddPet:focus-visible,
+.editCustomerCancel:focus-visible,
+.editCustomerSave:focus-visible,
+.deleteCustomerCancel:focus-visible,
+.deleteCustomerConfirm:focus-visible {
+    outline: 2px solid #70582f;
+    outline-offset: 2px;
+}
+
 .customerContactInformation {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -256,6 +269,11 @@
     gap: 10px;
 }
 
+.editCustomerPetsLabel {
+    font-size: 13px;
+    font-weight: 500;
+}
+
 .editCustomerPetTag {
     background-color: #eee5d5;
     color: #70582f;
@@ -303,6 +321,11 @@
     border: 1px solid #70582f;
 }
 
+.editCustomerSave:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
 .editCustomerCancel:hover {
     background-color: #eee5d5;
 }
@@ -313,12 +336,22 @@
 
 /* Mobile responsiveness */
 
-@media (max-width: 480px) {
+@media (max-width: 760px) {
     .editCustomerFormRow {
         grid-template-columns: 1fr;
     }
 
     .editCustomerModal {
         padding: 20px;
+    }
+
+    .customerInformationHeader {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .customerContactInformation {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }

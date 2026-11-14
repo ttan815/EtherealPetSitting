@@ -1,6 +1,11 @@
-import "../../../src/styles/customer-dashboard/HomeAccessInstruction.css";
+import "../../../styles/owner-dashboard/mannage-customer-and-pet/HomeAccessInstruction.css";
 
-function HomeAccessInstruction({ toggleExtraTask }) {
+/**
+ * Shows the selected customer's home note and extra-task checklist.
+ * @param {{customer: Object, onToggleTask: Function}} props Customer and checklist update handler.
+ * @returns {JSX.Element} The home access details panel.
+ */
+function HomeAccessInstruction({ customer, onToggleTask }) {
     return (
         <div className="homeAccessContainer">
             <div className="homeAccessHeader">
@@ -63,32 +68,30 @@ function HomeAccessInstruction({ toggleExtraTask }) {
                 </p>
 
                 <p className="homeAccessNote">
-                    Side gate code is 4821. Spare key is in the lockbox
-                    by the back door (code 0917). Please lock the
-                    deadbolt when you leave.
+                    {customer.homeAccessNote || "No home access instructions provided."}
                 </p>
             </div>
 
             <div className="homeAccessTasks">
                 <h4>Extra tasks</h4>
-
-                <label className="homeAccessTask">
-                    <input type="checkbox" />
-                    <span>Bring in the mail</span>
-                </label>
-
-                <label className="homeAccessTask">
-                    <input type="checkbox" />
-                    <span>Water the plants on the patio</span>
-                </label>
-
-                <label className="homeAccessTask">
-                    <input type="checkbox" />
-                    <span>Turn on the porch light after 6 PM</span>
-                </label>
+                {customer.tasks.map((task) => (
+                    <label className="homeAccessTask" key={task.id}>
+                        <input
+                            type="checkbox"
+                            checked={task.checked}
+                            onChange={(event) => onToggleTask(customer.id, task.id, event.target.checked)}
+                        />
+                        <span>{task.label}</span>
+                    </label>
+                ))}
+                {customer.tasks.length === 0 && <p>No extra tasks for this customer.</p>}
             </div>
         </div>
     );
 }
 
+/**
+ * Exports the HomeAccessInstruction component.
+ * @returns {Function} The home access instructions component.
+ */
 export default HomeAccessInstruction;
