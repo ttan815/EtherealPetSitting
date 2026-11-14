@@ -3,7 +3,7 @@
   box-sizing: border-box;
 }
 .stat-today-s-visits {
-  background: #fffdfb;
+  background: var(--color-cream);
   border-radius: 20px;
   border-style: solid;
   border-color: rgba(206, 182, 144, 0.55);

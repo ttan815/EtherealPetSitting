@@ -1,0 +1,96 @@
+/* Pet Care Alerts card on the owner dashboard (Figma "Admin — Dashboard") */
+.pet-care-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  background: var(--color-cream);
+  border: 1px solid rgba(206, 182, 144, 0.55);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -8px rgba(47, 31, 4, 0.04);
+  box-sizing: border-box;
+}
+
+.pet-care-alerts-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-dark-brown);
+}
+
+/* Alerts side by side. An alert doesn't squeeze its text onto two lines;
+   it moves down to the next row instead (text only wraps on phone widths). */
+.pet-care-alerts-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px; /* + the rows' 4px padding = Figma's 14px gap */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Starts at its text's full width, then shares any leftover space */
+.pet-care-alerts-list > li {
+  flex: 1 1 auto;
+}
+
+/* Whole row is the click target; the padding gives the hover background
+   some room, and the negative margin keeps the content aligned with the title */
+.pet-care-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: calc(100% + 8px);
+  margin: 0 -4px;
+  padding: 4px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  text-align: left;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.pet-care-alert:hover {
+  background: rgba(164, 140, 101, 0.12);
+}
+
+.pet-care-alert-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(164, 140, 101, 0.25);
+}
+
+/* The Figma pill is drawn flat and tilted 45° */
+.pet-care-alert-icon-pill {
+  transform: rotate(-45deg);
+}
+
+.pet-care-alert-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+/* Fixed line heights keep every row the same height, so the icons line up
+   (otherwise a fallback-font glyph like "→" makes its line taller) */
+.pet-care-alert-headline {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+  color: var(--color-dark-brown);
+}
+
+.pet-care-alert-detail {
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-brown);
+}

@@ -60,7 +60,7 @@ function OwnerDashboard() {
     function renderSection() {
         switch (activeSection) {
             case "dashboard":
-                return <Dashboard/>;
+                return <Dashboard onNavigate={handleSelectSection}/>;
             case "calender":
                 return <Calender/>;
             case "appointments":
