@@ -1,0 +1,371 @@
+:root {
+    --color-primary: #705930;
+    --color-hover: #64502e;
+    --color-on-primary: #f9efed;
+    --font-family: Arial, sans-serif;
+    --font-size-button: 16px;
+    --space-button-y: 14px;
+    --space-button-x: 48px;
+    --space-icon: 6px;
+    --radius-pill: 999px;
+
+    --appointment-color-primary-background: #fffdfb;
+    --appointment-pet-drop-down-primary: #efe2cd;
+    --appointment-border-color: #d4be9d;
+    --appointment-radius: 25px;
+    --appointment-title: 25px;
+    --appointment-subtitle: 13px;
+    --apppointment-primary-color: #ad9b7d;
+    --appointment-padding: 25px;
+    --appointment-select-padding: 12px;
+    --appointment-radius: 12px;
+    --appointment-button-padding-x: 12px;
+    --appointment-button-padding-y: 6px;
+
+}
+
+
+.new-appointment-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-icon);
+    padding: var(--space-button-y) var(--space-button-x);
+    border: none;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    font-family: var(--font-family);
+    font-size: var(--font-size-button);
+    font-weight: 400;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.new-appointment-button:hover {
+    background-color: var(--color-hover);
+}
+
+.new-appointment-button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+.blurBackground {
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.requestAvailabilityContainer {
+    border-radius: var(--appointment-radius);
+    background-color: var(--appointment-color-primary-background);
+    padding: var(--appointment-padding);
+    max-width: 800px;
+}
+
+.requestAvailTitle {
+    font-size: var(--appointment-title);
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+.instructionsTime {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: var(--apppointment-primary-color);
+    font-weight: 500;
+}
+
+.form-field-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.select-element {
+    width: 100%;
+    background-color: var(--appointment-color-primary-background);
+    border-radius: var(--appointment-radius);
+    padding: var(--appointment-select-padding);
+    border: 1px solid var(--appointment-border-color);
+    margin-top: 10px;
+}
+
+.pet-select-element {
+    width: 100%;
+    background-color: var(--appointment-pet-drop-down-primary);
+    border-radius: var(--appointment-radius);
+    padding: var(--appointment-select-padding);
+    color: var(--appointment-subtitle);
+    border: 1px solid var(--appointment-border-color);
+    margin-top: 10px;
+}
+
+.service-button {
+    border-radius: var(--radius-pill);
+    background-color: var(--appointment-color-primary-background);
+    border: 1px solid var(--appointment-border-color);
+    padding-left: var(--appointment-button-padding-x);
+    padding-right: var(--appointment-button-padding-x);
+    padding-top: var(--appointment-button-padding-y);
+    padding-bottom: var(--appointment-button-padding-y);
+}
+
+.service-button-selected {
+    border-radius: var(--radius-pill);
+    background-color: var(--color-primary);
+    color: var(--appointment-color-primary-background);
+    border: 1px solid var(--appointment-border-color);
+    padding-left: var(--appointment-button-padding-x);
+    padding-right: var(--appointment-button-padding-x);
+    padding-top: var(--appointment-button-padding-y);
+    padding-bottom: var(--appointment-button-padding-y);
+}
+
+.service-button:hover {
+    background-color: var(--color-hover);
+    color: var(--appointment-color-primary-background);
+}
+
+.serviceContainer {
+    display: flex;
+    justify-content: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 15px;
+}
+
+.note-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2, 8px);
+}
+
+.labels {
+    color: var(--color-primary, #ff9d00);
+    font-size: var(--font-size-label, 14px);
+}
+
+.note-field label {
+    color: var(--color-primary, #ff9d00);
+    font-size: var(--font-size-label, 14px);
+}
+
+.note-field textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 84px;
+    padding: var(--space-3, 12px) var(--space-4, 16px);
+    border: 1px solid var(--appointment-border-color, #d8b484);
+    border-radius: var(--radius-input, 10px);
+    background: var(--color-surface, #fffdfb);
+    color: var(--color-primary, #755b30);
+    font: inherit;
+    resize: vertical;
+}
+
+.note-field textarea::placeholder {
+    color: var(--color-primary, #755b30);
+    opacity: 1;
+}
+
+.note-field textarea:focus-visible {
+    outline: 2px solid var(--color-primary, #755b30);
+    outline-offset: 2px;
+}
+
+.appointment-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.appointment-actions-approval {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
+.cancel-button,
+.send-request-button {
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: transparent;
+    color: #70572c;
+    border: 1px solid #70572c;
+}
+
+.send-request-button {
+    background-color: #70572c;
+    color: white;
+    border: 1px solid #70572c;
+}
+
+.cancel-button:hover {
+    background-color: #f2ece3;
+}
+
+.send-request-button:hover {
+    background-color: #594523;
+}
+
+.leaveAsNote {
+    font-size: 12px;
+}
+
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+    width: 100%;
+}
+
+#appointment-date {
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    font-size: 15px;
+    color: #39280f;
+    cursor: pointer;
+}
+
+#appointment-date:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+}
+
+
+.appointment-calendar.react-datepicker {
+    font-family: var(--font-family);
+    background: var(--appointment-color-primary-background);
+    border: 1px solid var(--appointment-border-color);
+    border-radius: 16px;
+    padding: 10px;
+}
+
+
+.appointment-calendar .react-datepicker__header {
+    background: transparent;
+    border: none;
+    padding-top: 6px;
+}
+
+
+.appointment-calendar .react-datepicker__current-month {
+    font-family: var(--font-family);
+    font-size: 15px;
+    font-weight: 400;
+    color: #39280f;
+    margin-bottom: 12px;
+}
+
+.appointment-calendar .react-datepicker__month {
+    margin: 0;
+}
+
+
+.appointment-calendar .react-datepicker__day-name {
+    font-family: var(--font-family);
+    color: var(--color-primary);
+    font-size: 12px;
+    width: 37px;
+    line-height: 25px;
+    margin: 2px;
+}
+
+
+.appointment-calendar .react-datepicker__day {
+    font-family: var(--font-family);
+    color: #39280f;
+    font-size: 13px;
+    font-weight: 400;
+    width: 37px;
+    height: 37px;
+    line-height: 37px;
+    margin: 2px;
+    border-radius: 50%;
+}
+
+
+.appointment-calendar .react-datepicker__day:not([aria-disabled="true"]):hover {
+    background-color: var(--appointment-pet-drop-down-primary);
+    border-radius: 50%;
+}
+
+
+.appointment-calendar .react-datepicker__day--keyboard-selected {
+    background-color: var(--appointment-pet-drop-down-primary);
+    color: var(--color-primary);
+    border-radius: 50%;
+}
+
+
+.appointment-calendar .react-datepicker__day--selected,
+.appointment-calendar .react-datepicker__day--selected:not([aria-disabled="true"]):hover {
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+}
+
+
+.appointment-calendar .react-datepicker__day--outside-month {
+    color: var(--apppointment-primary-color);
+}
+
+
+.appointment-calendar .react-datepicker__day--disabled {
+    color: #bcb3a5;
+    cursor: not-allowed;
+}
+
+.appointment-calendar .react-datepicker__navigation {
+    top: 12px;
+}
+
+.appointment-calendar .react-datepicker__navigation--previous {
+    left: 8px;
+}
+
+.appointment-calendar .react-datepicker__navigation--next {
+    right: 8px;
+}
+
+.appointment-calendar .react-datepicker__navigation-icon::before {
+    border-color: var(--color-primary);
+    border-width: 1.5px 1.5px 0 0;
+    width: 7px;
+    height: 7px;
+}
+
+.react-datepicker-popper {
+    z-index: 1100;
+}
+
+.date-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
