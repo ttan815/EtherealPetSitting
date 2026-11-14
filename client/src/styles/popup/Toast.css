@@ -1,0 +1,46 @@
+/* Confirmation toast (Figma "Toast — Changes Saved" style) */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px 14px 16px;
+  border-radius: 14px;
+  background: var(--color-dark-brown);
+  box-shadow: 0 24px 60px -12px rgba(47, 31, 4, 0.22);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--color-blush);
+  transform: translateX(-50%);
+  animation: toast-in 0.2s ease-out;
+}
+
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(206, 182, 144, 0.25);
+}
+
+.toast-close {
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+}

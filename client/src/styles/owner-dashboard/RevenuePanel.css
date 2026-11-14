@@ -1,0 +1,278 @@
+/* Revenue panel on the owner dashboard (Figma "Admin — Dashboard", owner only) */
+.revenue-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  background: var(--color-cream);
+  border: 1px solid rgba(206, 182, 144, 0.55);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -8px rgba(47, 31, 4, 0.04);
+  box-sizing: border-box;
+  font-family: var(--font-body);
+  color: var(--color-brown);
+}
+
+.revenue-panel-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.revenue-panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.revenue-panel-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-dark-brown);
+}
+
+.revenue-panel-tag {
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(164, 140, 101, 0.2);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.revenue-panel-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Week / Month / Custom toggle; the chosen one is a raised white pill */
+.revenue-panel-range {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: rgba(206, 182, 144, 0.25);
+}
+
+.revenue-panel-range-option {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-brown);
+  cursor: pointer;
+}
+
+.revenue-panel-range-option[aria-pressed="true"] {
+  background: var(--color-cream);
+  box-shadow: 0 1px 3px rgba(47, 31, 4, 0.08);
+  color: var(--color-dark-brown);
+}
+
+.revenue-panel-export {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid rgba(112, 89, 48, 0.6);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-brown);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.revenue-panel-export:hover {
+  background: rgba(164, 140, 101, 0.12);
+}
+
+/* Totals and chart on the left, earnings by service on the right */
+.revenue-panel-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+}
+
+.revenue-panel-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.revenue-panel-total {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 38px;
+  color: var(--color-dark-brown);
+}
+
+.revenue-panel-period {
+  margin: 0;
+  font-size: 15px;
+}
+
+.revenue-panel-change {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.revenue-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.revenue-chart-week {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.revenue-chart-amount {
+  font-size: 13px;
+}
+
+.revenue-chart-bar {
+  width: 40px;
+  border-radius: 8px 8px 0 0;
+  background: var(--color-ring);
+}
+
+.revenue-chart-bar-current {
+  background: var(--color-brown);
+}
+
+.revenue-chart-label {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.revenue-panel-services {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.revenue-panel-services-title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-dark-brown);
+}
+
+.revenue-services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.revenue-service {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.revenue-service-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--color-dark-brown);
+}
+
+.revenue-service-amount {
+  font-weight: 500;
+}
+
+.revenue-service-track {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(206, 182, 144, 0.3);
+  overflow: hidden;
+}
+
+.revenue-service-fill {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--color-brown);
+}
+
+.revenue-panel-unpaid {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-brown);
+  cursor: pointer;
+}
+
+.revenue-panel-unpaid:hover {
+  text-decoration: underline;
+}
+
+/* Smaller screens: earnings by service moves under the chart */
+@media (max-width: 900px) {
+  .revenue-panel-body {
+    flex-direction: column;
+  }
+
+  .revenue-panel-totals,
+  .revenue-panel-services {
+    width: 100%;
+  }
+}
+
+/* Phones: the weeks share the card's width so 6 weeks still fit */
+@media (max-width: 600px) {
+  .revenue-chart {
+    gap: 6px;
+  }
+
+  .revenue-chart-week {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .revenue-chart-bar {
+    width: min(40px, 100%);
+  }
+
+  .revenue-chart-amount,
+  .revenue-chart-label {
+    font-size: 11px;
+  }
+}

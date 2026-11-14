@@ -1,5 +1,6 @@
-/* Decline Booking popup on the owner dashboard (Figma "Admin Pop-up — Decline Booking") */
-.decline-booking-backdrop {
+/* Confirm popup with a message box, shared by Decline Booking and Reject Review
+   (Figma "Admin Pop-up — Decline Booking" / "Admin Pop-up — Reject Review") */
+.reason-popup-backdrop {
   position: fixed;
   inset: 0;
   z-index: 1000;
@@ -10,7 +11,7 @@
   background: rgba(47, 31, 4, 0.55);
 }
 
-.decline-booking-popup {
+.reason-popup {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -25,13 +26,13 @@
   font-family: var(--font-body);
 }
 
-.decline-booking-header {
+.reason-popup-header {
   display: flex;
   align-items: flex-start;
   gap: 16px;
 }
 
-.decline-booking-icon {
+.reason-popup-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +43,7 @@
   background: rgba(162, 65, 42, 0.12);
 }
 
-.decline-booking-heading {
+.reason-popup-heading {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -50,7 +51,7 @@
   min-width: 0;
 }
 
-.decline-booking-title {
+.reason-popup-title {
   margin: 0;
   font-family: var(--font-heading);
   font-size: 24px;
@@ -59,14 +60,14 @@
   color: var(--color-dark-brown);
 }
 
-.decline-booking-description {
+.reason-popup-description {
   margin: 0;
   font-size: 15px;
   line-height: 1.5;
   color: var(--color-brown);
 }
 
-.decline-booking-close {
+.reason-popup-close {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,26 +81,26 @@
   cursor: pointer;
 }
 
-.decline-booking-field {
+.reason-popup-field {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.decline-booking-label {
+.reason-popup-label {
   font-size: 14px;
   font-weight: 500;
   color: var(--color-dark-brown);
 }
 
-.decline-booking-optional {
+.reason-popup-optional {
   margin-left: 8px;
   font-size: 12px;
   font-weight: 400;
   color: rgba(112, 89, 48, 0.7);
 }
 
-.decline-booking-message {
+.reason-popup-message {
   height: 96px;
   padding: 12px 14px;
   border: 1px solid var(--color-input-border);
@@ -112,24 +113,24 @@
   box-sizing: border-box;
 }
 
-.decline-booking-message:focus {
+.reason-popup-message:focus {
   outline: 2px solid var(--color-brown);
   outline-offset: 1px;
 }
 
-.decline-booking-message::placeholder {
+.reason-popup-message::placeholder {
   color: rgba(112, 89, 48, 0.65);
 }
 
-.decline-booking-actions {
+.reason-popup-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 12px;
 }
 
-.decline-booking-cancel,
-.decline-booking-confirm {
+.reason-popup-cancel,
+.reason-popup-confirm {
   padding: 15px 30px;
   border-radius: var(--radius-pill);
   font-family: var(--font-body);
@@ -139,22 +140,28 @@
   transition: background-color 0.15s ease;
 }
 
-.decline-booking-cancel {
+.reason-popup-cancel {
   border: 1px solid var(--color-brown);
   background: transparent;
   color: var(--color-brown);
 }
 
-.decline-booking-cancel:hover {
+.reason-popup-cancel:hover {
   background: rgba(164, 140, 101, 0.12);
 }
 
-.decline-booking-confirm {
+.reason-popup-confirm {
   border: 1px solid var(--color-error);
   background: var(--color-error);
   color: var(--color-blush);
 }
 
-.decline-booking-confirm:hover {
+.reason-popup-confirm:hover:not(:disabled) {
   background: #8a3622;
+}
+
+/* Required message still empty */
+.reason-popup-confirm:disabled {
+  opacity: 0.5;
+  cursor: default;
 }

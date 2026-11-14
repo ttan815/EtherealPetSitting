@@ -1,0 +1,136 @@
+/* Reviews to approve card on the owner dashboard (Figma "Admin — Dashboard") */
+.reviews-to-approve {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  background: var(--color-cream);
+  border: 1px solid rgba(206, 182, 144, 0.55);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -8px rgba(47, 31, 4, 0.04);
+  box-sizing: border-box;
+  font-family: var(--font-body);
+  color: var(--color-brown);
+}
+
+.reviews-to-approve-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-dark-brown);
+}
+
+/* 5.0 ★★★★★ / Average from 24 approved reviews */
+.reviews-to-approve-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(206, 182, 144, 0.45);
+}
+
+.reviews-to-approve-average {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 30px;
+  color: var(--color-dark-brown);
+}
+
+.reviews-to-approve-count {
+  margin: 2px 0 0;
+  font-size: 14px;
+}
+
+.review-stars {
+  font-size: 14px;
+  letter-spacing: 1.4px;
+  color: var(--color-tan);
+}
+
+.review-stars-large {
+  font-size: 15px;
+  letter-spacing: 1.5px;
+}
+
+.review-star-empty {
+  opacity: 0.3;
+}
+
+.reviews-to-approve-empty {
+  margin: 0;
+  font-size: 15px;
+}
+
+.reviews-to-approve-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pending-review {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pending-review + .pending-review {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(206, 182, 144, 0.45);
+}
+
+.pending-review-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pending-review-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.pending-review-reject,
+.pending-review-approve {
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.pending-review-reject {
+  border: 1px solid rgba(112, 89, 48, 0.6);
+  background: transparent;
+  color: var(--color-brown);
+}
+
+.pending-review-reject:hover {
+  background: rgba(164, 140, 101, 0.12);
+}
+
+.pending-review-approve {
+  border: 1px solid var(--color-brown);
+  background: var(--color-brown);
+  color: var(--color-blush);
+}
+
+.pending-review-approve:hover {
+  background: var(--color-dark-brown);
+}
+
+.pending-review-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-dark-brown);
+}
+
+.pending-review-meta {
+  margin: 0;
+  font-size: 14px;
+}

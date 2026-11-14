@@ -1,10 +1,15 @@
 import PageHeader from "../../parent-component/PageHeader";
-import OverviewHeader from "./OverviewHeader";
+import OverviewHeader from "../../parent-component/OverviewHeader";
+import OverviewCard from "../../parent-component/OverviewCard";
 import { useState } from "react";
 import TodaysSchedule from "./TodaysSchedule";
 import BookingRequests from "./BookingRequests";
+import RevenuePanel from "./RevenuePanel";
+import ReviewsToApprove from "./ReviewsToApprove";
 import PetCareAlerts from "./PetCareAlerts";
-import DeclineBookingPopup from "../../popup/DeclineBookingPopup";
+import ReasonPopup from "../../popup/ReasonPopup";
+import declineIcon from "../../../assets/owner-dashboard/decline-icon.svg";
+import { OWNER_OVERVIEW_ITEMS } from "../../../constants/owner-overview-items";
 import "../../../styles/owner-dashboard/Dashboard.css";
 
 // Temporary placeholder visits (Figma "Admin — Dashboard").
@@ -77,7 +82,17 @@ export default function Dashboard({ onNavigate }) {
         <section>
             {/* Add New Appointment */}
             <PageHeader title={"Welcome, Owner"} subtitle={`${formattedDate} —  here's today at a glance`}/>
-            <OverviewHeader/>
+            <OverviewHeader>
+                {OWNER_OVERVIEW_ITEMS.map(({ icon, title, subtitle, number }) => (
+                    <OverviewCard
+                        key={title}
+                        icon={icon}
+                        title={title}
+                        subtitle={subtitle}
+                        number={number}
+                    />
+                ))}
+            </OverviewHeader>
 
             <br/>
 
@@ -95,12 +110,24 @@ export default function Dashboard({ onNavigate }) {
                         onDecline={setDecliningRequest}
                         onReschedule={rescheduleBooking}
                     />
-                </div>  
+                </div>
+
+                <RevenuePanel onNavigate={onNavigate} />
+                <ReviewsToApprove />
             </div>
 
             {decliningRequest && (
-                <DeclineBookingPopup
-                    request={decliningRequest}
+                <ReasonPopup
+                    icon={declineIcon}
+                    title={`Decline ${decliningRequest.petName}’s booking request?`}
+                    description={`${decliningRequest.customerName} will be notified${
+                        decliningRequest.isDepositPaid
+                            ? `, and their $${decliningRequest.depositAmount} deposit will be refunded.`
+                            : "."
+                    }`}
+                    fieldLabel="Message to the customer"
+                    placeholder="e.g. Sorry, we’re fully booked that weekend."
+                    confirmLabel="Decline request"
                     onCancel={() => setDecliningRequest(null)}
                     onConfirm={() => declineBooking(decliningRequest.id)}
                 />

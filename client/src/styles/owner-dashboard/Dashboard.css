@@ -1,4 +1,6 @@
-/* Owner dashboard home: stat cards, then the dashboard cards stacked */
+/* Owner dashboard home (Figma User Flow "Owner — Dashboard"): stat cards,
+   Pet Care Alerts, Today's Schedule | Booking Requests, then Revenue and
+   Reviews to approve, each across the full width */
 .owner-dashboard-home {
   display: flex;
   flex-direction: column;
@@ -12,12 +14,11 @@
   gap: 20px;
 }
 
-/* Today's Schedule on the left, Booking Requests on the right, like Figma;
+/* Today's Schedule | Booking Requests, both the height of the taller one;
    stacked when there isn't room for both */
 .owner-dashboard-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 400px;
-  align-items: start;
   gap: 20px;
 }
 
