@@ -149,6 +149,23 @@ function clonePet(pet) {
     return { ...pet };
 }
 
+function normalizePet(pet, customerId, index) {
+    return {
+        ...pet,
+        id: pet.id || `pet-${customerId}-${Date.now()}-${index}`,
+        name: String(pet.name || "").trim(),
+        breed: String(pet.breed || "").trim(),
+        age: String(pet.age || "").trim() || "Age not provided",
+        weight: String(pet.weight || "").trim() || "Weight not provided",
+        allergies: String(pet.allergies || "").trim() || "None known",
+        medications: String(pet.medications || "").trim() || "No medication information provided.",
+        diet: String(pet.diet || "").trim() || "No diet information provided.",
+        careNotes: String(pet.careNotes || "").trim() || "No care notes provided.",
+        vetName: String(pet.vetName || "").trim() || "Not provided",
+        vetPhone: String(pet.vetPhone || "").trim(),
+    };
+}
+
 function cloneCustomer(customer) {
     return {
         ...customer,
@@ -202,8 +219,18 @@ export function updateCustomer(id, data) {
     if (!firstName || !lastName) {
         return null;
     }
+    if (Array.isArray(data.pets)) {
+        if (!data.pets.length || data.pets.some((pet) => (
+            !String(pet.name || "").trim() || !String(pet.breed || "").trim()
+        ))) {
+            return null;
+        }
+    }
 
     Object.assign(customer, data, { firstName, lastName });
+    if (Array.isArray(data.pets)) {
+        customer.pets = data.pets.map((pet, index) => normalizePet(pet, customer.id, index));
+    }
     customer.name = `${customer.firstName} ${customer.lastName}`.trim();
     customer.initials = `${customer.firstName[0] || ""}${customer.lastName[0] || ""}`.toUpperCase();
     return cloneCustomer(customer);
@@ -253,7 +280,7 @@ export function getPetsByCustomer(customerId) {
 /**
  * Adds a temporary pet record to a customer.
  * @param {number|string} customerId Customer ID.
- * @param {{name: string, breed: string}} pet New pet details.
+ * @param {{name: string, breed: string, age?: string, weight?: string, allergies?: string}} pet New pet details.
  * @returns {Object|null} The updated customer, or null when the customer is not found.
  */
 export function addPetToCustomer(customerId, pet) {
@@ -266,14 +293,62 @@ export function addPetToCustomer(customerId, pet) {
         id: `pet-${customerId}-${Date.now()}`,
         name: pet.name.trim(),
         breed: pet.breed.trim(),
-        age: "Age not provided",
-        weight: "Weight not provided",
-        allergies: "Not provided",
+        age: String(pet.age || "").trim() || "Age not provided",
+        weight: String(pet.weight || "").trim() || "Weight not provided",
+        allergies: String(pet.allergies || "").trim() || "None known",
         medications: "No medication information provided.",
         diet: "No diet information provided.",
         careNotes: "No care notes provided.",
         vetName: "Not provided",
         vetPhone: "",
     });
+    return cloneCustomer(customer);
+}
+
+/**
+ * Creates a temporary customer record with the customer's first pet.
+ * @param {Object} data New customer fields and pet details.
+ * @returns {Object|null} The created customer, or null when required data is invalid.
+ */
+export function createCustomer(data) {
+    const firstName = String(data.firstName || "").trim();
+    const lastName = String(data.lastName || "").trim();
+    const phone = String(data.phone || "").trim();
+    const email = String(data.email || "").trim();
+    const address = String(data.address || "").trim();
+    const pets = Array.isArray(data.pets) ? data.pets : [];
+
+    if (
+        !firstName ||
+        !lastName ||
+        !phone ||
+        !address ||
+        !pets.length ||
+        pets.some((pet) => !String(pet.name || "").trim() || !String(pet.breed || "").trim()) ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ) {
+        return null;
+    }
+
+    const id = Math.max(0, ...customers.map((customer) => Number(customer.id) || 0)) + 1;
+    const now = new Date();
+    const customer = {
+        id,
+        firstName,
+        lastName,
+        name: `${firstName} ${lastName}`,
+        initials: `${firstName[0]}${lastName[0]}`.toUpperCase(),
+        role: "Customer",
+        since: now.toLocaleDateString("en-US", { month: "long", year: "numeric" }),
+        visits: 0,
+        phone,
+        email,
+        address,
+        homeAccessNote: String(data.homeAccessNote || "").trim(),
+        tasks: [],
+        pets: pets.map((pet, index) => normalizePet(pet, id, index)),
+    };
+
+    customers.push(customer);
     return cloneCustomer(customer);
 }

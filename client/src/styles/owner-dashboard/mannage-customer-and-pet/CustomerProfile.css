@@ -210,6 +210,44 @@
     gap: 16px;
 }
 
+.editCustomerPetFields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+    background-color: #f7edeb;
+    border-radius: 12px;
+}
+
+.customerPetEditorHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.editCustomerRemovePet {
+    border: 0;
+    background: transparent;
+    color: #8f7c59;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.editCustomerRemovePet:focus-visible {
+    outline: 2px solid #70582f;
+    outline-offset: 2px;
+}
+
+.customerFormValidation {
+    color: #a33d26;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+}
+
 .editCustomerFormRow {
     display: grid;
     grid-template-columns: 1fr 1fr;

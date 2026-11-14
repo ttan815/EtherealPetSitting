@@ -4,8 +4,9 @@ import CustomerList from "./CustomerList";
 import CustomerProfile from "./CustomerProfile";
 import HomeAccessInstruction from "./HomeAccessInstruction";
 import PetsProfile from "./PetsProfile";
+import { AddCustomerButton } from "../../action-button/AddCustomerButton";
 import {
-    addPetToCustomer,
+    createCustomer,
     deleteCustomer,
     getCustomerById,
     getCustomers,
@@ -48,17 +49,23 @@ export default function CustomersAndPets() {
 
     function handleDeleteCustomer(id) {
         if (!deleteCustomer(id)) {
-            return;
+            return false;
         }
         const remainingCustomers = getCustomers(searchQuery);
         setSelectedCustomerId(remainingCustomers[0]?.id ?? null);
         refreshCustomerData();
+        return true;
     }
 
-    function handleAddPet(customerId, pet) {
-        if (addPetToCustomer(customerId, pet)) {
-            refreshCustomerData();
+    function handleCreateCustomer(data) {
+        const customer = createCustomer(data);
+        if (!customer) {
+            return null;
         }
+        setSearchQuery("");
+        setSelectedCustomerId(customer.id);
+        refreshCustomerData();
+        return customer;
     }
 
     function handleToggleTask(customerId, taskId, checked) {
@@ -72,6 +79,7 @@ export default function CustomersAndPets() {
             <PageHeader
                 title="Customers & Pets"
                 subtitle="Everything customers share about their pets and home."
+                actionButton={<AddCustomerButton onCreateCustomer={handleCreateCustomer} />}
             />
             <div className="customerPetContainer">
                 <aside>
@@ -91,7 +99,6 @@ export default function CustomersAndPets() {
                                 customer={selectedCustomer}
                                 onUpdate={handleUpdateCustomer}
                                 onDelete={handleDeleteCustomer}
-                                onAddPet={handleAddPet}
                             />
                             <HomeAccessInstruction customer={selectedCustomer} onToggleTask={handleToggleTask} />
                             <PetsProfile pets={getPetsByCustomer(selectedCustomer.id)} />
