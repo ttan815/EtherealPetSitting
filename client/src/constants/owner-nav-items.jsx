@@ -7,6 +7,10 @@ import {
  * Builds the sidebar navigation items for the owner dashboard.
  * @returns {Array<{id: string, label: string, icon: object}>} The list of owner dashboard navigation items.
  */
+/**
+ * Navigation sections shown in the owner dashboard sidebar.
+ * @type {Array<Object>}
+ */
 export const OWNER_NAV_ITEMS = [
     { id: "dashboard", label: "Dashboard", icon: LayoutGrid },
     { id: "calender", label: "Calender", icon: Calendar },

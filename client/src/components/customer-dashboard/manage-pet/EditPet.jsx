@@ -99,6 +99,12 @@ function Modal({ title, message, onClose, onConfirm, confirmText }) {
   );
 }
 
+/**
+ * Renders the form for editing or removing a pet from the customer's profile.
+ * @param {Object} props Page navigation callback.
+ * @param {Function} props.setCurrentView Changes the customer dashboard view.
+ * @returns {JSX.Element} The edit-pet form.
+ */
 export default function EditPet( {setCurrentView} ) {
   const [pet, setPet] = useState(initialPet);
   const [modal, setModal] = useState("");

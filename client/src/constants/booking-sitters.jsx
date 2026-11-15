@@ -4,4 +4,5 @@
 // serviceIds: services this sitter offers; null means every service
 // shortName: shown in the sitter dropdown and the "Available Times" summary
 
+/** @type {string} ID for the booking choice that allows any available sitter. */
 export const NO_PREFERENCE_SITTER_ID = "no-preference";

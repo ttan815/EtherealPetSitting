@@ -16,6 +16,12 @@ import "../../../styles/owner-dashboard/Dashboard.css";
 import NewAppointmentButton from "../../action-button/NewAppointmentButton";
 import { useNewAppointment } from "../../../context/NewAppointmentContext";
 
+/**
+ * Renders the owner overview, schedule, and pending dashboard actions.
+ * @param {Object} props Dashboard navigation callback.
+ * @param {Function} props.onNavigate Navigates to an owner dashboard section.
+ * @returns {JSX.Element} The owner dashboard overview.
+ */
 export default function Dashboard({ onNavigate }) {
     const { visits, markAppointmentComplete } = useNewAppointment();
     const [requests, setRequests] = useState(getInitialBookingRequests);

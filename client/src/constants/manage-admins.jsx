@@ -1,3 +1,7 @@
+/**
+ * Permissions available to an admin account.
+ * @type {Array<Object>}
+ */
 export const ADMIN_PERMISSIONS = [
     "See the calendar and appointments",
     "See customer and pet info",
@@ -6,6 +10,10 @@ export const ADMIN_PERMISSIONS = [
     "Approve or reject new reviews",
 ];
 
+/**
+ * Permissions available to the owner account.
+ * @type {Array<Object>}
+ */
 export const OWNER_PERMISSIONS = [
     "Set available times",
     "See revenue and payments",
@@ -15,6 +23,10 @@ export const OWNER_PERMISSIONS = [
     "Change settings",
 ];
 
+/**
+ * Summary of actions admins can perform.
+ * @type {string[]}
+ */
 export const ADMIN_CAN_DO = [
     "See the calendar, appointments, and customer & pet info",
     "Accept or decline booking requests",

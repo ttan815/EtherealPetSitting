@@ -9,6 +9,11 @@ import pillIcon from "../assets/booking/icon-pill.svg";
 // Services a customer can pick on step 1 of booking (Figma "Customer - Book a Service").
 // id: used in the URL (/book-appointment?service=dog-walking) and later sent to the API
 // Service IDs and presentation are stable. Prices are loaded by booking-service.
+/**
+ * Stable service IDs, display names, and icons used in the booking flow.
+ * Dynamic service prices are supplied by the booking service.
+ * @type {Array<Object>}
+ */
 export const BOOKING_SERVICES = [
   {
     id: "drop-in-care",

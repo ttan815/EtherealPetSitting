@@ -1,3 +1,7 @@
+/**
+ * Configurable UI copy used by the new-appointment popup.
+ * @type {Object}
+ */
 export const NEW_APPOINTMENT_COPY = {
     openButtonLabel: "New Appointment",
     dialogTitle: "Request availability",
@@ -33,6 +37,10 @@ export const NEW_APPOINTMENT_COPY = {
     submitError: "Unable to submit the appointment. Please try again.",
 };
 
+/**
+ * Represents the owner as an appointment admin option.
+ * @type {{id: string, label: string}}
+ */
 export const OWNER_APPOINTMENT_OPTION = {
     id: "owner",
     label: NEW_APPOINTMENT_COPY.ownerLabel,

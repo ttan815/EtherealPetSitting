@@ -7,6 +7,11 @@ import heroTopoRight from "../../assets/home/hero-topo-right.svg"
 import rightArrow from "../../assets/icons/arrow-right.svg"
 import circleBackground from "../../assets/home/hero-inner-circle.svg"
 import Footer from "../Footer";
+
+/**
+ * Renders the appointment confirmation and payment page.
+ * @returns {JSX.Element} The appointment confirmation page.
+ */
 function AppointmentConfirmed() {
     const { user, loading } = useAuth()
     const [paymentMethod, setPaymentMethod] = useState("card");

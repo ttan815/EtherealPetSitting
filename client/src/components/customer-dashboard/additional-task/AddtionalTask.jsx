@@ -6,6 +6,11 @@ import calendar from "../../../assets/icons/Calendar Clock Icon.png";
 import checkList from "../../../assets/icons/Warm Brown Checklist Icon.png";
 import information from "../../../assets/icons/Brown Spiral Notebook and Pencil Icon.png";
 import PageHeader from "../../parent-component/PageHeader";
+
+/**
+ * Renders the customer's additional tasks and visit summary.
+ * @returns {JSX.Element} The additional-tasks page.
+ */
 function AdditionalTask() {
   const { user, loading } = useAuth();
   const [additionalInfo, setAdditionalInfo] = useState("");

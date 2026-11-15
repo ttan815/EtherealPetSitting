@@ -17,6 +17,10 @@ export function getNotificationIcon(type) {
     return NOTIFICATION_ICONS[type];
 }
 
+/**
+ * Notification categories available in settings.
+ * @type {Array<{key: string, label: string}>}
+ */
 export const NOTIFICATION_OPTIONS = [
     { key: "newBookings", label: "New booking requests" },
     { key: "rescheduled", label: "Rescheduled appointments" },
@@ -26,5 +30,7 @@ export const NOTIFICATION_OPTIONS = [
     { key: "weeklyEarnings", label: "Weekly earnings summary" },
 ];
 
+/** @type {number} Notifications shown on each page. */
 export const NOTIFICATION_PAGE_SIZE = 5;
+/** @type {number} Latest notifications shown in the bell popup. */
 export const NOTIFICATION_POPUP_LIMIT = 4;

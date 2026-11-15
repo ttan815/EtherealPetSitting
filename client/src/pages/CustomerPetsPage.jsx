@@ -4,6 +4,11 @@ import CustomerProfile from "../components/customer-dashboard/CustomerProfile";
 import HomeAccessInstruction from "../components/customer-dashboard/HomeAccessInstruction";
 import PetsProfile from "../components/customer-dashboard/PetsProfile";
 import PageHeader from "../components/customer-dashboard/PageHeader";
+
+/**
+ * Renders the customer and pet information page.
+ * @returns {JSX.Element} The customer-and-pets page.
+ */
 function CustomerAndPet() {
     return (
         <>

@@ -3,6 +3,10 @@
 // a section can have body text, a list of items, or both
 
 // holds both policies so the popup can look them up by name
+/**
+ * Static policy content shown during customer account creation.
+ * @type {Object}
+ */
 export const POLICIES = {
   // terms of service popup content
   terms: {

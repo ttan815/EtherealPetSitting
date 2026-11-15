@@ -155,6 +155,10 @@ function PetCard({ name, detail }) {
   );
 }
 
+/**
+ * Renders the customer dashboard home page.
+ * @returns {JSX.Element} The dashboard page.
+ */
 export default function Dashboard() {
   return (
     <div className="dashboard-shell">

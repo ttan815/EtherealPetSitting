@@ -1,3 +1,7 @@
+/**
+ * Empty customer fields for the manage-customer form.
+ * @type {Object}
+ */
 export const EMPTY_MANAGED_CUSTOMER = {
     firstName: "",
     lastName: "",
@@ -7,6 +11,10 @@ export const EMPTY_MANAGED_CUSTOMER = {
     homeAccessNote: "",
 };
 
+/**
+ * Empty pet fields for the manage-customer form.
+ * @type {Object}
+ */
 export const EMPTY_MANAGED_PET = {
     name: "",
     breed: "",
@@ -15,6 +23,10 @@ export const EMPTY_MANAGED_PET = {
     allergies: "",
 };
 
+/**
+ * Empty values for the customer dashboard add-pet form.
+ * @type {Object}
+ */
 export const EMPTY_PET_FORM = {
     name: "",
     age: "",
@@ -31,6 +43,10 @@ export const EMPTY_PET_FORM = {
     notes: "",
 };
 
+/**
+ * Empty values for the change-password form.
+ * @type {Object}
+ */
 export const EMPTY_PASSWORD_CHANGE_FORM = {
     oldPassword: "",
     newPassword: "",

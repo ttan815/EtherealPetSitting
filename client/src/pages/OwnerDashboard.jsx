@@ -25,6 +25,10 @@ function logout() {
 }
 
 
+/**
+ * Renders the owner dashboard and its selected section.
+ * @returns {JSX.Element} The owner dashboard page.
+ */
 function OwnerDashboard() {
     const location = useLocation();
     const [activeSection, setActiveSection] = useState(() =>

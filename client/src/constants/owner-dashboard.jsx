@@ -3,6 +3,10 @@ import pillIcon from "../assets/owner-dashboard/alert-pill.svg";
 import warningIcon from "../assets/owner-dashboard/alert-warning.svg";
 import calendarIcon from "../assets/owner-dashboard/alert-calendar.svg";
 
+/**
+ * Metric cards shown at the top of the owner dashboard.
+ * @type {Array<Object>}
+ */
 export const OWNER_OVERVIEW_CARDS = [
     { key: "todayVisits", icon: PawPrint, title: "Today's visits" },
     { key: "pendingRequests", icon: ClipboardList, title: "Pending requests", subtitle: "waiting for your reply" },
@@ -10,6 +14,10 @@ export const OWNER_OVERVIEW_CARDS = [
     { key: "unpaidBalance", icon: ClipboardList, title: "unpaid balance" },
 ];
 
+/**
+ * Page titles keyed by owner dashboard section ID.
+ * @type {Object<string, string>}
+ */
 export const OWNER_SECTION_TITLES = {
     dashboard: "Dashboard",
     calender: "Calender",
@@ -23,12 +31,20 @@ export const OWNER_SECTION_TITLES = {
     settings: "Settings",
 };
 
+/**
+ * Display and navigation metadata for owner pet-care alerts.
+ * @type {Object}
+ */
 export const OWNER_PET_CARE_ALERT_TYPES = {
     medication: { icon: pillIcon, iconClassName: "pet-care-alert-icon-pill", section: "customers_and_pets" },
     allergy: { icon: warningIcon, section: "customers_and_pets" },
     "reschedule-request": { icon: calendarIcon, section: "appointments" },
 };
 
+/**
+ * Display labels for owner visit statuses.
+ * @type {Object<string, string>}
+ */
 export const OWNER_VISIT_STATUS_LABELS = {
     completed: "Completed",
     "in-progress": "In progress",

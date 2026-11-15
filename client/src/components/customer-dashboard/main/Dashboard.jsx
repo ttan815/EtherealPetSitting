@@ -105,6 +105,12 @@ function PetCard({ name, detail }) {
   );
 }
 
+/**
+ * Renders the customer dashboard overview and upcoming appointment.
+ * @param {Object} props Dashboard navigation callback.
+ * @param {Function} props.onNavigateSection Navigates to a customer dashboard section.
+ * @returns {JSX.Element} The customer dashboard overview.
+ */
 export default function Dashboard({ onNavigateSection }) {
   const navigate = useNavigate();
   return (

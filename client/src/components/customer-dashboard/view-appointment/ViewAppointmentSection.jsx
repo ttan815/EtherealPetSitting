@@ -61,6 +61,9 @@ function Detail({ activeFilter, setCurrentView, appointmentId, onReschedule }) {
 
 /**
  * Renders the customer appointment section and its list/detail views.
+ * @param {Object} props Initial view and appointment selection.
+ * @param {string} [props.initialView="main"] The view displayed initially.
+ * @param {string} [props.initialAppointmentId=""] The appointment selected initially.
  * @returns {JSX.Element} The appointment dashboard section.
  */
 function ViewAppointmentSection({ initialView = "main", initialAppointmentId = "" }) {

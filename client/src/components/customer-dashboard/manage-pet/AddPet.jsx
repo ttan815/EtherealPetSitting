@@ -92,6 +92,12 @@ function Modal({ title, message, onClose, onConfirm, confirmText = "OK" }) {
   );
 }
 
+/**
+ * Renders the form for adding a pet to the customer's profile.
+ * @param {Object} props Page navigation callback.
+ * @param {Function} props.setCurrentView Changes the customer dashboard view.
+ * @returns {JSX.Element} The add-pet form.
+ */
 export default function AddPet( { setCurrentView } ) {
   const [pet, setPet] = useState(() => ({ ...EMPTY_PET_FORM }));
   const [modal, setModal] = useState("");
