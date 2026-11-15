@@ -68,8 +68,15 @@ export default function AvailabilityTable({ slots, handlers }) {
                                 <div className="av-cell-sub">{formatTime(slot.start)} – {formatTime(slot.end)}</div>
                             </td>
                             <td className="av-cell-main">${slot.price}</td>
-                            <td className={slot.customer ? "av-cell-main" : "av-cell-muted"}>
-                                {slot.customer ? slot.customer.name : "Open for booking"}
+                            <td>
+                                {slot.customer ? (
+                                    <>
+                                        <span className="av-cell-main">{slot.customer.name}</span>
+                                        {slot.customer.pet && <span className="av-cell-sub">{slot.customer.pet.name}</span>}
+                                    </>
+                                ) : (
+                                    <span className="av-cell-muted">Open for booking</span>
+                                )}
                             </td>
                             <td>
                                 {/* TODO: reusable <StatusBadge> component not available */}

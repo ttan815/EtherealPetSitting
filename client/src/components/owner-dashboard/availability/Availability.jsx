@@ -22,6 +22,8 @@ import {
 import { DEFAULT_OWNER_AVAILABILITY_FILTERS } from "../../../constants/availability";
 import "../../../styles/owner-dashboard/availability/Availability.css";
 
+const DEFAULT_FILTERS = { search: "", admin: "all", service: "all" };
+
 function hoursBetween(start, end) {
     const [sh, sm] = start.split(":").map(Number);
     const [eh, em] = end.split(":").map(Number);
@@ -84,10 +86,10 @@ export default function Availability() {
         closePopup();
     }
 
-    function handleAssign(customer) {
-        const result = assignCustomer(popup.slot.id, customer.id);
+    function handleAssign(customer, pet) {
+     const result = assignCustomer(popup.slot.id, customer.id, pet.id);
         if (!result.ok) return;
-        replaceSlot({ id: popup.slot.id, customer: { id: customer.id, name: customer.name } });
+        replaceSlot({ id: popup.slot.id, customer: { id: customer.id, name: customer.name, pet: { id: pet.id, name: pet.name } } });
         setToast("Customer assigned · admin notified");
         closePopup();
     }

@@ -11,10 +11,10 @@ const AVAILABILITY_OPTIONS = {
   admins: ["Jamie Rivera", "Priya Shah", "Marcus Lee"],
   services: ["Dog Walking", "Drop-in Care", "Overnight Stay", "Pet Sitting"],
   customers: [
-    { id: 1, name: "Maria G.", pets: "Coco · Poodle" },
-    { id: 2, name: "Kevin P.", pets: "Max · Labrador" },
-    { id: 3, name: "Lisa W.", pets: "Nala · Siamese Cat" },
-    { id: 4, name: "Daniel K.", pets: "Biscuit · Corgi" },
+    { id: 1, name: "Maria G.", pets: [{ id: 11, name: "Coco", breed: "Poodle" }] },
+    { id: 2, name: "Kevin P.", pets: [{ id: 21, name: "Max", breed: "Labrador" }] },
+    { id: 3, name: "Lisa W.", pets: [{ id: 31, name: "Nala", breed: "Siamese Cat" }] },
+    { id: 4, name: "Daniel K.", pets: [{ id: 41, name: "Biscuit", breed: "Corgi" }] },
   ],
 };
 
@@ -68,7 +68,10 @@ export function getAvailabilityOptions() {
   return {
     admins: [...AVAILABILITY_OPTIONS.admins],
     services: [...AVAILABILITY_OPTIONS.services],
-    customers: AVAILABILITY_OPTIONS.customers.map((customer) => ({ ...customer })),
+    customers: AVAILABILITY_OPTIONS.customers.map((customer) => ({
+      ...customer,
+      pets: customer.pets.map((pet) => ({ ...pet })),
+    })),
   };
 }
 
@@ -102,14 +105,19 @@ export function addAvailability(data) {
  * @param {number|string} customerId Customer ID.
  * @returns {{ok: boolean, id: number|string, customerId: number|string}} The result.
  */
-export function assignCustomer(id, customerId) {
+export function assignCustomer(id, customerId, petId) {
   const slot = availabilitySlots.find((item) => String(item.id) === String(id));
   const customer = AVAILABILITY_OPTIONS.customers.find((item) => String(item.id) === String(customerId));
   if (!slot || !customer) {
-    return { ok: false, id, customerId };
+    return { ok: false, id, customerId, petId };
   }
-  slot.customer = { id: customer.id, name: customer.name };
-  return { ok: true, id, customerId };
+  const pet = customer.pets.find((item) => String(item.id) === String(petId));
+  slot.customer = {
+    id: customer.id,
+    name: customer.name,
+    pet: pet ? { id: pet.id, name: pet.name } : null,
+  };
+  return { ok: true, id, customerId, petId: pet ? pet.id : petId };
 }
 
 /**

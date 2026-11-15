@@ -1,5 +1,35 @@
 // Renders the status chips and search/dropdown filters for the owner's Availability section (DT-322).
-import { AVAILABILITY_CHIPS } from "../../../constants/availability";
+
+/** Chip definitions in display order. `status` is matched against each availability slot. */
+export const AVAILABILITY_CHIPS = [
+    { key: "requests", label: "Requests", status: "pending", showCount: true },
+    { key: "awaiting", label: "Awaiting admin", status: "awaiting_admin", showCount: true },
+    { key: "approved", label: "Approved", status: "approved", showCount: false },
+    { key: "disapproved", label: "Disapproved", status: "disapproved", showCount: false },
+    { key: "all", label: "All", status: null, showCount: false },
+];
+
+// Temporary data until the API is connected
+const TEMP_AVAILABILITY = [
+    { id: 1, admin: "Jamie Rivera", service: "Dog Walking", date: "2026-11-16", start: "08:00", end: "12:00", price: 25, customer: null, status: "pending" },
+    { id: 2, admin: "Priya Shah", service: "Overnight Stay", date: "2026-11-18", start: "18:00", end: "23:00", price: 85, customer: null, status: "pending" },
+    { id: 3, admin: "Marcus Lee", service: "Drop-in Care", date: "2026-11-17", start: "12:00", end: "15:00", price: 30, customer: { id: 3, name: "Lisa W." }, status: "pending", pet: { id: 31, name: "Nala" } },
+    { id: 4, admin: "Jamie Rivera", service: "Pet Sitting", date: "2026-11-19", start: "09:00", end: "13:00", price: 60, customer: null, status: "awaiting_admin" },
+    { id: 5, admin: "Priya Shah", service: "Dog Walking", date: "2026-11-16", start: "13:00", end: "17:00", price: 25, customer: null, status: "approved" },
+    { id: 6, admin: "Marcus Lee", service: "Overnight Stay", date: "2026-11-21", start: "18:00", end: "22:00", price: 85, customer: { id: 1, name: "Maria G." }, status: "approved", pet: { id: 11, name: "Coco" } },
+    { id: 7, admin: "Jamie Rivera", service: "Drop-in Care", date: "2026-11-20", start: "10:00", end: "12:00", price: 30, customer: null, status: "approved" },
+    { id: 8, admin: "Marcus Lee", service: "Pet Sitting", date: "2026-11-22", start: "08:00", end: "11:00", price: 60, customer: null, status: "disapproved", reason: "Already booked that morning." },
+];
+
+/**
+ * Temporary method that fetches availability slots from the backend.
+ * @param {Object} filters The active chip, search text, admin and service (sent as query params once the API exists).
+ * @returns {Array<Object>} The availability slots.
+ */
+export function getAvailability(filters) {
+    const temp = TEMP_AVAILABILITY.map((slot) => ({ ...slot })); // Result from fetch(`/api/availability?...`, filters)
+    return temp;
+}
 
 /**
  * Keeps only the slots that match the active chip and every filter.
