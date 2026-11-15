@@ -45,3 +45,19 @@ export const OWNER_APPOINTMENT_OPTION = {
     id: "owner",
     label: NEW_APPOINTMENT_COPY.ownerLabel,
 };
+
+/** @type {string} Locale used to format appointment dates. */
+export const APPOINTMENT_DATE_LOCALE = "en-US";
+/** @type {Intl.DateTimeFormatOptions} Month format for appointment date tiles. */
+export const APPOINTMENT_MONTH_FORMAT_OPTIONS = { month: "short" };
+/** @type {Intl.DateTimeFormatOptions} Day format for appointment date tiles. */
+export const APPOINTMENT_DAY_FORMAT_OPTIONS = { day: "2-digit" };
+/** @type {Intl.DateTimeFormatOptions} Weekday format for appointment date tiles. */
+export const APPOINTMENT_WEEKDAY_FORMAT_OPTIONS = { weekday: "long" };
+/** @type {Intl.DateTimeFormatOptions} Long date format for appointment details. */
+export const APPOINTMENT_LONG_DATE_FORMAT_OPTIONS = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+};

@@ -7,12 +7,12 @@ const SAMPLE_SETTINGS = {
         facebook: "",
     },
     services: [
-        { id: "drop-in", name: "Drop-in Care", enabled: true, price: "" },
-        { id: "whole-day", name: "Whole Day Care", enabled: true, price: "" },
-        { id: "overnight", name: "Overnight Stays", enabled: true, price: "" },
-        { id: "dog-walking", name: "Dog Walking", enabled: true, price: "" },
-        { id: "grooming", name: "Grooming Care", enabled: true, price: "" },
-        { id: "medication", name: "Medication", enabled: true, price: "" },
+        { id: "drop-in", name: "Drop-in Care", enabled: true, price: "25" },
+        { id: "whole-day", name: "Whole Day Care", enabled: true, price: "25" },
+        { id: "overnight", name: "Overnight Stays", enabled: true, price: "25" },
+        { id: "dog-walking", name: "Dog Walking", enabled: true, price: "25" },
+        { id: "grooming", name: "Grooming Care", enabled: true, price: "25" },
+        { id: "medication", name: "Medication", enabled: true, price: "25" },
     ],
     deposits: [
         { days: 30, amount: "20" },

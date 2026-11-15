@@ -1,6 +1,12 @@
 import "../../../styles/customer-dashboard/Dashboard.css";
 import { useNavigate } from "react-router";
 import PageHeader from "../../parent-component/PageHeader";
+import {
+  APPOINTMENT_DATE_LOCALE,
+  APPOINTMENT_DAY_FORMAT_OPTIONS,
+  APPOINTMENT_MONTH_FORMAT_OPTIONS,
+  APPOINTMENT_WEEKDAY_FORMAT_OPTIONS,
+} from "../../../constants/appointment-copy";
 
 const Icon = ({ name, size = 16 }) => {
   const common = {
@@ -107,18 +113,23 @@ function PetCard({ name, detail }) {
 
 /**
  * Renders the customer dashboard overview and upcoming appointment.
- * @param {Object} props Dashboard navigation callback.
+ * @param {Object} props Dashboard data and navigation callback.
  * @param {Function} props.onNavigateSection Navigates to a customer dashboard section.
+ * @param {Object} props.dashboardData Customer, pet, appointment, and activity data.
  * @returns {JSX.Element} The customer dashboard overview.
  */
-export default function Dashboard({ onNavigateSection }) {
+export default function Dashboard({ onNavigateSection, dashboardData }) {
   const navigate = useNavigate();
+  const { customer, pets, upcomingAppointment, requests, caregiverNote, payment, review } = dashboardData;
+  const appointmentDate = upcomingAppointment
+    ? new Date(`${upcomingAppointment.scheduledDate}T00:00:00`)
+    : null;
   return (
       <main className="main-content">
 
         {/* HEADER */}
         <PageHeader 
-        title={"Good Morning, Maya"} 
+        title={`Good Morning, ${customer.preferredName}`}
         subtitle={"Everything for pet's care, all in one calm place"} 
         actionLabel={"Book Appointment"} 
         onAction={() => navigate("/book-appointment")}
@@ -139,46 +150,52 @@ export default function Dashboard({ onNavigateSection }) {
                 <p>Your next visit is confirmed and ready</p>
               </div>
 
-              <Badge>Confirmed</Badge>
+              {upcomingAppointment && <Badge>{upcomingAppointment.status}</Badge>}
             </div>
 
-            <div className="appointment-detail">
-              <div className="date-tile">
-                <span>OCT</span>
-                <strong>03</strong>
-                <small>Saturday</small>
-              </div>
+            {upcomingAppointment ? (
+              <>
+                <div className="appointment-detail">
+                  <div className="date-tile">
+                    <span>{appointmentDate.toLocaleDateString(APPOINTMENT_DATE_LOCALE, APPOINTMENT_MONTH_FORMAT_OPTIONS).toUpperCase()}</span>
+                    <strong>{appointmentDate.toLocaleDateString(APPOINTMENT_DATE_LOCALE, APPOINTMENT_DAY_FORMAT_OPTIONS)}</strong>
+                    <small>{appointmentDate.toLocaleDateString(APPOINTMENT_DATE_LOCALE, APPOINTMENT_WEEKDAY_FORMAT_OPTIONS)}</small>
+                  </div>
 
-              <div className="visit-info">
-                <div className="visit-title">
-                  <h3>Drop-in care visit</h3>
-                  <strong>$28</strong>
+                  <div className="visit-info">
+                    <div className="visit-title">
+                      <h3>{upcomingAppointment.service}</h3>
+                      <strong>{upcomingAppointment.balance}</strong>
+                    </div>
+
+                    <div className="detail-line">
+                      <Icon name="clock"/>
+                      <span>Time</span>
+                      <b>{upcomingAppointment.time}</b>
+                    </div>
+
+                    <div className="detail-line">
+                      <Icon name="paw"/>
+                      <span>Pet</span>
+                      <b>{upcomingAppointment.petName}</b>
+                    </div>
+
+                    <div className="detail-line">
+                      <Icon name="user"/>
+                      <span>Caregiver</span>
+                      <b>{upcomingAppointment.sitterName}</b>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="detail-line">
-                  <Icon name="clock"/>
-                  <span>Time</span>
-                  <b>10:30 AM – 11:15 AM</b>
+                <div className="appointment-footer">
+                  <span>{upcomingAppointment.reminder ? `Reminder set for ${upcomingAppointment.reminder}` : ""}</span>
+                  <ArrowLink onClick={() => onNavigateSection("appointments")}>View appointment</ArrowLink>
                 </div>
-
-                <div className="detail-line">
-                  <Icon name="paw"/>
-                  <span>Pet</span>
-                  <b>Mochi</b>
-                </div>
-
-                <div className="detail-line">
-                  <Icon name="user"/>
-                  <span>Caregiver</span>
-                  <b>Adrian P.</b>
-                </div>
-              </div>
-            </div>
-
-            <div className="appointment-footer">
-              <span>Reminder set for 24 hours before</span>
-              <ArrowLink onClick={() => onNavigateSection("appointments")}>View appointment</ArrowLink>
-            </div>
+              </>
+            ) : (
+              <p>No upcoming appointments.</p>
+            )}
           </article>
 
           {/* YOUR PETS */}
@@ -195,15 +212,13 @@ export default function Dashboard({ onNavigateSection }) {
             </div>
 
             <div className="pet-list">
-              <PetCard
-                name="Mochi"
-                detail="Golden Retriever · 4 years"
-              />
-
-              <PetCard
-                name="Luna"
-                detail="Domestic Shorthair · 2 years"
-              />
+              {pets.map((pet) => (
+                <PetCard
+                  key={pet.id}
+                  name={pet.name}
+                  detail={`${pet.breed} · ${pet.age}`}
+                />
+              ))}
             </div>
 
             <div className="card-link">
@@ -228,13 +243,13 @@ export default function Dashboard({ onNavigateSection }) {
                 <p>Tasks you’d like us to handle during the visit</p>
               </div>
 
-              <Badge tone="sand">2 requested</Badge>
+              <Badge tone="sand">{requests.filter((request) => !request.completed).length} requested</Badge>
             </div>
 
             <ul className="request-list">
-              <li>Bring in the porch parcel</li>
-              <li>Water the fiddle-leaf fig</li>
-              <li className="done">Close the patio door</li>
+              {requests.map((request) => (
+                <li key={request.id} className={request.completed ? "done" : ""}>{request.label}</li>
+              ))}
             </ul>
 
             <ArrowLink onClick={() => onNavigateSection("tasks")}>Add another request</ArrowLink>
@@ -258,17 +273,17 @@ export default function Dashboard({ onNavigateSection }) {
             <div className="personal-details">
               <div>
                 <label>EMAIL</label>
-                <span>maya.rivera@email.com</span>
+                <span>{customer.email}</span>
               </div>
 
               <div>
                 <label>MOBILE</label>
-                <span>(510) 555-0182</span>
+                <span>{customer.phone}</span>
               </div>
 
               <div>
                 <label>SERVICE ADDRESS</label>
-                <span>1427 Willow Street · Oakland, CA</span>
+                <span>{customer.address}</span>
               </div>
             </div>
 
@@ -279,29 +294,28 @@ export default function Dashboard({ onNavigateSection }) {
 
         {/* CAREGIVER NOTE */}
         <section className="panel note-card">
-          <div className="caregiver-avatar">AP</div>
+          <div className="caregiver-avatar">{caregiverNote.caregiverInitials}</div>
 
           <div className="note-copy">
             <div className="note-meta">
-              <b>A note from Adrian</b>
-              <span>Yesterday · 4:42 PM</span>
+              <b>A note from {caregiverNote.caregiverName}</b>
+              <span>{caregiverNote.timestamp}</span>
             </div>
 
             <p>
-              “Mochi was in wonderful spirits. We had a sunny loop
-              around the block, and he finished all his dinner.”
+              “{caregiverNote.message}”
             </p>
           </div>
 
           <span className="photo-pill">
             <Icon name="image" size={13}/>
-            3 photos
+            {caregiverNote.photoCount} photos
           </span>
         </section>
 
         {/* ONLINE PAYMENT */}
         <section className="panel payment-card">
-          <div className="payment-heading">
+          {payment && <div className="payment-heading">
             <div>
               <h2>Make Online Payment</h2>
               <p>
@@ -309,10 +323,10 @@ export default function Dashboard({ onNavigateSection }) {
               </p>
             </div>
 
-            <Badge tone="peach">Due Oct 05</Badge>
-          </div>
+            <Badge tone="peach">Due {payment.dueDate}</Badge>
+          </div>}
 
-          <div className="payment-content">
+          {payment && <div className="payment-content">
             <div className="payment-labels">
               <span>Outstanding amount</span>
               <span>Related service</span>
@@ -321,39 +335,40 @@ export default function Dashboard({ onNavigateSection }) {
             </div>
 
             <div className="payment-values">
-              <strong>$28.00</strong>
-              <b>Drop-in care visit</b>
-              <span>Pending payment</span>
+              <strong>{payment.amount}</strong>
+              <b>{payment.service}</b>
+              <span>{payment.status}</span>
               <button className="primary-button" onClick={() => onNavigateSection("payment")}>
                 Make a payment
               </button>
             </div>
           </div>
+          }
         </section>
 
         {/* WRITE A REVIEW */}
         <section className="panel review-card">
-          <div className="payment-heading">
+          {review && <div className="payment-heading">
             <div>
               <h2>Write a review</h2>
               <p>
-                Share your experience with Adrian’s recent drop-in care visit.
+                Share your experience with {review.sitterName}’s recent {review.service}.
               </p>
             </div>
 
-            <Badge>Completed visit</Badge>
-          </div>
+            <Badge>{review.status} visit</Badge>
+          </div>}
 
-          <div className="review-visit">
-            <div className="caregiver-avatar">AP</div>
+          {review && <div className="review-visit">
+            <div className="caregiver-avatar">{review.sitterName.split(" ").map((part) => part[0]).join("").slice(0, 2)}</div>
 
             <div>
-              <b>Drop-in care visit</b>
-              <span>with Adrian P. · Oct 03</span>
+              <b>{review.service}</b>
+              <span>with {review.sitterName} · {review.date}</span>
             </div>
-          </div>
+          </div>}
 
-          <div className="review-footer">
+          {review && <div className="review-footer">
             <span>
               Your feedback helps other pet parents choose the right sitter.
             </span>
@@ -361,7 +376,7 @@ export default function Dashboard({ onNavigateSection }) {
             <button className="primary-button" onClick={() => onNavigateSection("review")}>
               Write a review
             </button>
-          </div>
+          </div>}
         </section>
 
       </main>

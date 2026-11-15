@@ -1,6 +1,13 @@
-// activity table for the audit log, rows are grouped by day
-import { useState } from "react";
-import { getAuditLogDetails, getAuditLogPeople } from "../../../services/audit-log-service";
+// Renders audit log rows grouped by day using data supplied by the page.
+import {
+    AUDIT_LOG_DAY_FORMAT_OPTIONS,
+    AUDIT_LOG_DETAILS_FORMAT_OPTIONS,
+    AUDIT_LOG_LOCALE,
+    AUDIT_LOG_TIME_FORMAT_OPTIONS,
+    AUDIT_LOG_TODAY_LABEL,
+    AUDIT_LOG_UNKNOWN_PERSON,
+    AUDIT_LOG_YESTERDAY_LABEL,
+} from "../../../constants/audit-log";
 import "../../../styles/owner-dashboard/audit-log/AuditLog.css";
 
 /**
@@ -12,9 +19,9 @@ function getDayLabel(date) {
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
-    if (date.toDateString() === today.toDateString()) return "Today";
-    if (date.toDateString() === yesterday.toDateString()) return "Yesterday";
-    return date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+    if (date.toDateString() === today.toDateString()) return AUDIT_LOG_TODAY_LABEL;
+    if (date.toDateString() === yesterday.toDateString()) return AUDIT_LOG_YESTERDAY_LABEL;
+    return date.toLocaleDateString(AUDIT_LOG_LOCALE, AUDIT_LOG_DAY_FORMAT_OPTIONS);
 }
 
 /**
@@ -35,23 +42,15 @@ function groupByDay(entries) {
 
 /**
  * Renders the audit log rows grouped under day headings.
- * @param {Array} entries Log entries ({ id, time, person, area, parts }) sorted newest first.
+ * @param {Object} props - Entries, person metadata, selected details, and row actions.
+ * @param {Array<Object>} props.entries - Log entries sorted newest first.
+ * @param {Object} props.people - Person metadata keyed by person ID.
+ * @param {string|number|null} props.openId - ID of the row with details open.
+ * @param {Object|null} props.details - Details for the open row.
+ * @param {(id: string|number) => void} props.onToggleRow - Toggles row details.
  * @returns {JSX.Element} The activity table.
  */
-export default function ActivityTable({ entries }) {
-    const [openId, setOpenId] = useState(null);
-    const [details, setDetails] = useState(null);
-    const people = getAuditLogPeople();
-
-    function toggleRow(id) {
-        if (openId === id) {
-            setOpenId(null);
-            return;
-        }
-        setDetails(getAuditLogDetails(id));
-        setOpenId(id);
-    }
-
+export default function ActivityTable({ entries, people, openId, details, onToggleRow }) {
     return (
         <div className="al-table">
             {groupByDay(entries).map((group) => (
@@ -59,7 +58,7 @@ export default function ActivityTable({ entries }) {
                     <h2 className="al-day-label">{group.label}</h2>
                     <ul className="al-rows">
                         {group.entries.map((entry) => {
-                            const person = people[entry.person] ?? { initials: "?", owner: false };
+                            const person = people[entry.person] ?? AUDIT_LOG_UNKNOWN_PERSON;
                             const isOpen = openId === entry.id;
                             return (
                                 <li key={entry.id}>
@@ -67,10 +66,10 @@ export default function ActivityTable({ entries }) {
                                         type="button"
                                         className="al-row"
                                         aria-expanded={isOpen}
-                                        onClick={() => toggleRow(entry.id)}
+                                        onClick={() => onToggleRow(entry.id)}
                                     >
                                         <span className="al-time">
-                                            {new Date(entry.time).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
+                                            {new Date(entry.time).toLocaleTimeString(AUDIT_LOG_LOCALE, AUDIT_LOG_TIME_FORMAT_OPTIONS)}
                                         </span>
                                         <span className={`al-avatar${person.owner ? " al-avatar-owner" : ""}`} aria-hidden="true">
                                             {person.initials}
@@ -84,7 +83,7 @@ export default function ActivityTable({ entries }) {
                                     </button>
                                     {isOpen && details && (
                                         <p className="al-details">
-                                            {new Date(entry.time).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}
+                                            {new Date(entry.time).toLocaleString(AUDIT_LOG_LOCALE, AUDIT_LOG_DETAILS_FORMAT_OPTIONS)}
                                             {" · "}{details.changedBy}{" · "}{details.device}
                                         </p>
                                     )}

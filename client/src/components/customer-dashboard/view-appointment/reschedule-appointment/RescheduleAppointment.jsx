@@ -12,11 +12,12 @@ import ActionRow from "./ActionRow";
  * Renders the rescheduling flow for an existing appointment.
  * @param {Object} props - Appointment identity and navigation callbacks.
  * @param {string|number} props.appointmentId - ID of the appointment being changed.
+ * @param {Object|null} props.appointment - Appointment details loaded by the parent.
  * @param {Function} props.onKeepAppointment - Called when the customer keeps the current slot.
  * @param {Function} props.onViewAppointment - Called to return to the appointment view.
  * @returns {JSX.Element} The appointment rescheduling interface.
  */
-function RescheduleAppointment({ appointmentId, onKeepAppointment, onViewAppointment }) {
+function RescheduleAppointment({ appointmentId, appointment, onKeepAppointment, onViewAppointment }) {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [selectedDate, setSelectedDate] = useState(() => new Date());
   const [selectedAvailability, setSelectedAvailability] = useState(null);
@@ -30,10 +31,14 @@ function RescheduleAppointment({ appointmentId, onKeepAppointment, onViewAppoint
     );
   }
 
+  if (!appointment) {
+    return <p role="alert">Appointment details could not be found.</p>;
+  }
+
   return (
     <section className="modal-reschedule-appointment" aria-labelledby="reschedule-title">
       <RescheduleHeader onKeepAppointment={onKeepAppointment} />
-      <CurrentSlotBanner />
+      <CurrentSlotBanner appointment={appointment} />
       <div className="pickers-grid">
         <DatePicker
           onDateChange={(date) => {

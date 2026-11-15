@@ -7,20 +7,21 @@ import PaymentInfo from "./PaymentInfo";
 import RescheduleAppointButton from "../../../action-button/RescheduleAppointmentButton";
 import DownloadReceiptButton from "../../../action-button/DownloadReceiptButton";
 import CancelAppointmentButton from "../../../action-button/CancelAppointmentButton";
-import { getAppointmentById } from "../../../../services/appointment-service";
 
 
 /**
  * Renders an appointment's details and its available dashboard actions.
  * @param {Object} props - Appointment identity, dashboard state, and callbacks.
- * @param {string} props.activeFilter - The currently selected appointment filter.
  * @param {Function} props.setCurrentView - Sets the dashboard view to display.
+ * @param {Object|null} props.appointment - Appointment details loaded by the parent.
  * @param {string|number} props.appointmentId - ID of the appointment to display.
  * @param {Function} props.onReschedule - Starts rescheduling the appointment.
  * @returns {JSX.Element} The appointment detail view.
  */
-function AppointmentDetail({ activeFilter, setCurrentView, appointmentId, onReschedule }) {
-    const appointment = getAppointmentById(appointmentId);
+function AppointmentDetail({ setCurrentView, appointmentId, appointment, onReschedule }) {
+    if (!appointment) {
+        return <p role="alert">Appointment details could not be found.</p>;
+    }
 
     return (
         <div className="page-content">
@@ -28,11 +29,11 @@ function AppointmentDetail({ activeFilter, setCurrentView, appointmentId, onResc
             <div className="content-split-columns">
                 <div className="left-segment-details">
                     <ServiceSchedule appointment={appointment} />
-                    <CareInstruction petId={appointment.petId} />
+                    <CareInstruction careInstructions={appointment.careInstructions} />
                 </div>
 
                 <div className="right-segment-panel">
-                    <PaymentInfo transactionId={appointment.transactionId} />
+                    <PaymentInfo payment={appointment.payment} />
 
                     <div className="sitter-sidebar-actions">
                         <RescheduleAppointButton onReschedule={onReschedule} />

@@ -27,12 +27,12 @@ function Header( {setCurrentView, appointment} ) {
                 <div className="title-status">
                     <div className="appointment-details">Appointment Details</div>
                     <div className="pill-badge">
-                    <div className={appointment.status === "Confirm" ? "confirm" : "pending"}>{appointment.status}</div>
+                    <div className={appointment.status === "Confirmed" ? "confirm" : "pending"}>{appointment.status}</div>
                     </div>
                 </div>
 
                 <div className="confirmation-reference-epb-2026-0847">
-                    Confirmation Reference: EPB-2026-0847
+                    Confirmation Reference: {appointment.confirmationReference}
                 </div>
             </div>
         </header>

@@ -10,7 +10,7 @@ import PetCareAlerts from "./PetCareAlerts";
 import ReasonPopup from "../../popup/ReasonPopup";
 import declineIcon from "../../../assets/owner-dashboard/decline-icon.svg";
 import { OWNER_OVERVIEW_CARDS } from "../../../constants/owner-overview-items";
-import { acceptBookingRequest, declineBookingRequest, getInitialBookingRequests } from "../../../services/appointment-service";
+import { acceptBooking, declineBookingRequest, getInitialBookingRequests } from "../../../services/appointment-service";
 import { getOwnerOverviewMetrics } from "../../../services/dashboard-service";
 import "../../../styles/owner-dashboard/Dashboard.css";
 import NewAppointmentButton from "../../action-button/NewAppointmentButton";
@@ -26,6 +26,7 @@ export default function Dashboard({ onNavigate }) {
     const { visits, markAppointmentComplete } = useNewAppointment();
     const [requests, setRequests] = useState(getInitialBookingRequests);
     const [decliningRequest, setDecliningRequest] = useState(null); // request shown in the Decline popup\
+    const [requestActionError, setRequestActionError] = useState("");
     const metrics = getOwnerOverviewMetrics();
     const overviewValues = {
         todayVisits: {
@@ -50,24 +51,6 @@ export default function Dashboard({ onNavigate }) {
         year: 'numeric'
     });
 
-    function removeRequest(id) {
-        setRequests((current) => current.filter((request) => request.id !== id));
-    }
-
-    // Temporary: only updates the page.
-    // BACKEND: also tell the API the booking is accepted.
-    function acceptBooking(id) {
-        if (acceptBookingRequest(id).ok) removeRequest(id);
-    }
-
-    // Temporary: only updates the page.
-    // BACKEND: also tell the API the booking is declined, and send the popup's
-    // optional message to the customer.
-    function declineBooking(id) {
-        if (declineBookingRequest(id).ok) removeRequest(id);
-        setDecliningRequest(null);
-    }
-
     // Temporary: opens the Calendar so the owner can pick a new time.
     // BACKEND: the Calendar should load this request (bookingRequestId) to reschedule it.
     function rescheduleBooking(id) {
@@ -76,7 +59,6 @@ export default function Dashboard({ onNavigate }) {
 
     return (
         <section>
-            {/* Add New Appointment */}
             <PageHeader
                 title="Welcome, Owner"
                 subtitle={`${formattedDate} —  here's today at a glance`}
@@ -104,11 +86,23 @@ export default function Dashboard({ onNavigate }) {
                     />
                     <BookingRequests
                         requests={requests}
-                        onAccept={acceptBooking}
-                        onDecline={setDecliningRequest}
+                        onAccept={(id) => {
+                            setRequestActionError("");
+                            const result = acceptBooking(id);
+                            if (result.ok) {
+                                setRequests(result.requests);
+                            } else {
+                                setRequestActionError("This booking request is no longer available. Refresh and try again.");
+                            }
+                        }}
+                        onDecline={(request) => {
+                            setRequestActionError("");
+                            setDecliningRequest(request);
+                        }}
                         onReschedule={rescheduleBooking}
                     />
                 </div>
+                {requestActionError && <p role="alert">{requestActionError}</p>}
 
                 <RevenuePanel onNavigate={onNavigate} />
                 <ReviewsToApprove />
@@ -126,8 +120,20 @@ export default function Dashboard({ onNavigate }) {
                     fieldLabel="Message to the customer"
                     placeholder="e.g. Sorry, we’re fully booked that weekend."
                     confirmLabel="Decline request"
-                    onCancel={() => setDecliningRequest(null)}
-                    onConfirm={() => declineBooking(decliningRequest.id)}
+                    onCancel={() => {
+                        setDecliningRequest(null);
+                        setRequestActionError("");
+                    }}
+                    onConfirm={(message) => {
+                        setRequestActionError("");
+                        const result = declineBookingRequest(decliningRequest.id, message);
+                        if (result.ok) {
+                            setRequests(result.requests);
+                            setDecliningRequest(null);
+                        } else {
+                            setRequestActionError("This booking request is no longer available. Refresh and try again.");
+                        }
+                    }}
                 />
             )}
         </section>

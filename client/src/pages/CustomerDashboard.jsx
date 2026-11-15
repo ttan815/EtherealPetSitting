@@ -12,6 +12,7 @@ import ManagePersonalInfo from "../components/customer-dashboard/manage-personal
 import NotificationsPage from "../components/parent-component/notifications/NotificationsPage";
 import { NotificationsProvider } from "../components/parent-component/notifications/NotificationsContext";
 import { CUSTOMER_SECTION_TITLES } from "../constants/customer-dashboard";
+import { getCustomerDashboardData } from "../services/customer-dashboard-service";
 
 /**
  * Renders the customer dashboard and its selected account section.
@@ -20,6 +21,7 @@ import { CUSTOMER_SECTION_TITLES } from "../constants/customer-dashboard";
 function CustomerDashboard() {
     const location = useLocation();
     const navigate = useNavigate();
+    const [dashboardData] = useState(getCustomerDashboardData);
     const [activeSection, setActiveSection] = useState(() =>
         location.state?.section === "appointments" ? "appointments" : "dashboard"
     );  
@@ -46,7 +48,7 @@ function CustomerDashboard() {
     function renderSection() {
         switch (activeSection) {
             case "dashboard":
-                return <Dashboard onNavigateSection={handleSelectSection} />;
+                return <Dashboard onNavigateSection={handleSelectSection} dashboardData={dashboardData} />;
             case "appointments":
                 return (
                     <ViewAppointmentSection
@@ -68,6 +70,7 @@ function CustomerDashboard() {
                 break;
             case "payment":
                 navigate("/payments");
+                break;
             case "notifications":
                 return <NotificationsPage onBack={() => setActiveSection(previousSection)} />;
             
@@ -90,7 +93,7 @@ function CustomerDashboard() {
                         activeSection={activeSection}
                         onSelect={handleSelectSection}
                     />
-                    <SidebarProfile name="Maya Rivera" role="Customer account" />
+                    <SidebarProfile name={dashboardData.customer.fullName} role="Customer account" />
                 </aside>
                 <div className="customer-dashboard-content">
                     {renderSection()}

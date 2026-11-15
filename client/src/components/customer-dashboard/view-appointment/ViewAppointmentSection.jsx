@@ -8,6 +8,7 @@ import AppointmentDetail from "./appointment-detail/AppointmentDetail";
 import RescheduleAppointment from "./reschedule-appointment/RescheduleAppointment";
 import PageHeader from "../../parent-component/PageHeader";
 import { useNavigate } from "react-router";
+import { getAppointmentById } from "../../../services/appointment-service";
 
 function MainContent({ activeFilter, setActiveFilter, setCurrentView, setAppointmentId, onReschedule }) {
     const [appointments, setAppointments] = useState([]);
@@ -48,12 +49,12 @@ function MainContent({ activeFilter, setActiveFilter, setCurrentView, setAppoint
     );
 }
 
-function Detail({ activeFilter, setCurrentView, appointmentId, onReschedule }) {
+function Detail({ setCurrentView, appointmentId, appointment, onReschedule }) {
     return (
         <AppointmentDetail
-            activeFilter={activeFilter}
             setCurrentView={setCurrentView}
             appointmentId={appointmentId}
+            appointment={appointment}
             onReschedule={() => onReschedule(appointmentId, "appointment-detail")}
         />
     );
@@ -71,6 +72,7 @@ function ViewAppointmentSection({ initialView = "main", initialAppointmentId = "
     const [appointmentId, setAppointmentId] = useState(initialAppointmentId);
     const [previousView, setPreviousView] = useState("main");
     const [activeFilter, setActiveFilter] = useState("upcoming");
+    const appointment = currentView === "main" ? null : getAppointmentById(appointmentId);
 
     function handleReschedule(id, returnView) {
         setAppointmentId(`${id}`);
@@ -91,9 +93,9 @@ function ViewAppointmentSection({ initialView = "main", initialAppointmentId = "
     else if (currentView === "appointment-detail")
         return (
             <Detail
-                activeFilter={activeFilter}
                 setCurrentView={setCurrentView}
                 appointmentId={appointmentId}
+                appointment={appointment}
                 onReschedule={handleReschedule}
             />
         );
@@ -101,6 +103,7 @@ function ViewAppointmentSection({ initialView = "main", initialAppointmentId = "
         return (
             <RescheduleAppointment
                 appointmentId={appointmentId}
+                appointment={appointment}
                 onKeepAppointment={() => setCurrentView(previousView)}
                 onViewAppointment={(id) => {
                     setAppointmentId(id);

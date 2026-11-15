@@ -15,17 +15,20 @@ export function getInitialVisits() {
 }
 
 // Temporary placeholder booking requests (Figma "Admin — Dashboard").
-// BACKEND: replace with the pending booking requests from the API, in the same shape.
+// BACKEND: replace these records and mutations with the bookings API.
+const INITIAL_BOOKING_REQUESTS = [
+    { id: "request-coco", petName: "Coco", breed: "Poodle", customerName: "Maria G.", service: "Overnight Stay", dateLabel: "Oct 3 – Oct 5", isDepositPaid: true, depositAmount: 20 },
+    { id: "request-max", petName: "Max", breed: "Labrador", customerName: "Kevin P.", service: "Dog Walking", dateLabel: "Oct 1 · 9:00 AM", isDepositPaid: true, depositAmount: 20 },
+    { id: "request-nala", petName: "Nala", breed: "Siamese Cat", customerName: "Lisa W.", service: "Drop-in Care", dateLabel: "Oct 2 · 12:00 PM", isDepositPaid: false, depositAmount: 20 },
+];
+let bookingRequests = INITIAL_BOOKING_REQUESTS.map((request) => ({ ...request }));
+
 /**
- * Loads temporary appointment requests for the Dashboard.
- * @returns {Object[]} Initial booking requests.
+ * Fetches the current temporary appointment requests for the Dashboard.
+ * @returns {Object[]} Current pending booking requests.
  */
 export function getInitialBookingRequests() {
-    return [
-        { id: "request-coco", petName: "Coco", breed: "Poodle", customerName: "Maria G.", service: "Overnight Stay", dateLabel: "Oct 3 – Oct 5", isDepositPaid: true, depositAmount: 20 },
-        { id: "request-max", petName: "Max", breed: "Labrador", customerName: "Kevin P.", service: "Dog Walking", dateLabel: "Oct 1 · 9:00 AM", isDepositPaid: true, depositAmount: 20 },
-        { id: "request-nala", petName: "Nala", breed: "Siamese Cat", customerName: "Lisa W.", service: "Drop-in Care", dateLabel: "Oct 2 · 12:00 PM", isDepositPaid: false, depositAmount: 20 },
-    ];
+    return bookingRequests.map((request) => ({ ...request }));
 }
 
 /**
@@ -116,20 +119,32 @@ export function createAppointmentRecord(appointment) {
 /**
  * Approves a temporary booking request.
  * @param {string|number} id The booking request ID.
- * @returns {{ok: boolean, id: string|number}} The result.
+ * @returns {{ok: boolean, id: string|number, requests: Object[]}} Result and current requests.
  */
-export function acceptBookingRequest(id) {
-    return { ok: Boolean(id), id };
+export function acceptBooking(id) {
+    const requestIndex = bookingRequests.findIndex((request) => String(request.id) === String(id));
+    if (requestIndex < 0) {
+        return { ok: false, id, requests: getInitialBookingRequests() };
+    }
+
+    bookingRequests = bookingRequests.filter((request) => String(request.id) !== String(id));
+    return { ok: true, id, requests: getInitialBookingRequests() };
 }
 
 /**
  * Declines a temporary booking request.
  * @param {string|number} id The booking request ID.
  * @param {string} [message] Optional message to the customer.
- * @returns {{ok: boolean, id: string|number}} The result.
+ * @returns {{ok: boolean, id: string|number, message: string, requests: Object[]}} Result and current requests.
  */
 export function declineBookingRequest(id, message = "") {
-    return { ok: Boolean(id), id, message };
+    const requestExists = bookingRequests.some((request) => String(request.id) === String(id));
+    if (!requestExists) {
+        return { ok: false, id, message, requests: getInitialBookingRequests() };
+    }
+
+    bookingRequests = bookingRequests.filter((request) => String(request.id) !== String(id));
+    return { ok: true, id, message, requests: getInitialBookingRequests() };
 }
 
 /**
@@ -142,16 +157,257 @@ export function updateAppointmentStatus(id, status) {
     return { ok: Boolean(id), id, status };
 }
 
+const CUSTOMER_APPOINTMENTS = [
+    {
+        id: 1,
+        petId: "mochi",
+        petName: "Mochi",
+        petBreed: "Shiba Inu",
+        petType: "dog",
+        service: "Drop-in care visit",
+        date: "Oct 03, 2026",
+        scheduledDate: "2026-10-03",
+        time: "10:30 AM – 11:15 AM",
+        startTime: "10:30 AM",
+        endTime: "11:15 AM",
+        status: "Confirmed",
+        paymentStatus: "Pending payment",
+        balance: "$28.00",
+        amount: 28,
+        sitterName: "Adrian P.",
+        sitterRole: "Sitter",
+        reminder: "24 hours before",
+        confirmationReference: "EPB-2026-0847",
+        transactionId: 1001,
+        reschedulingFee: 0,
+        payment: {
+            servicePricing: "$28.00",
+            requiredDeposit: "$20.00",
+            depositPaidVia: "Visa ending in •••• 4242",
+            remainingBalance: "$8.00",
+        },
+        careInstructions: {
+            medication: "None required for this visit.",
+            diet: "Feed 1/2 cup kibble at 12:00 PM. Clean water bowl thoroughly and fill to the brim.",
+            allergies: "Slightly sensitive to wheat grains. Please only offer Ethereal Salmon treats.",
+            houseEntry: "Code is 4821. Key is in the lockbox by back door. Code 0917. Lock deadbolt upon leaving.",
+            additionalTasks: ["Water the plants on the back patio", "Bring in the daily mail from box"],
+        },
+    },
+    {
+        id: 2,
+        petId: "luna",
+        petName: "Luna",
+        petBreed: "Tabby Cat",
+        petType: "cat",
+        service: "Pet Sitting",
+        date: "Oct 08, 2026",
+        scheduledDate: "2026-10-08",
+        time: "2:00 PM – 2:45 PM",
+        startTime: "2:00 PM",
+        endTime: "2:45 PM",
+        status: "Pending",
+        paymentStatus: "Unpaid",
+        balance: "$45.00",
+        amount: 45,
+        sitterName: "Angelena C.",
+        sitterRole: "Owner",
+        reminder: "24 hours before",
+        confirmationReference: "EPB-2026-0848",
+        transactionId: 1002,
+        reschedulingFee: 0,
+        payment: {
+            servicePricing: "$45.00",
+            requiredDeposit: "$20.00",
+            depositPaidVia: "Not paid",
+            remainingBalance: "$45.00",
+        },
+        careInstructions: {
+            medication: "No medication required.",
+            diet: "Feed one pouch of wet food and refresh the water bowl.",
+            allergies: "None known.",
+            houseEntry: "Use the side entrance and make sure the gate is latched.",
+            additionalTasks: [],
+        },
+    },
+    {
+        id: 3,
+        petId: "mochi",
+        petName: "Mochi",
+        petBreed: "Shiba Inu",
+        petType: "dog",
+        service: "Dog Walking",
+        date: "Oct 10, 2026",
+        scheduledDate: "2026-10-10",
+        time: "11:00 AM – 11:30 AM",
+        startTime: "11:00 AM",
+        endTime: "11:30 AM",
+        status: "Confirmed",
+        paymentStatus: "Paid",
+        balance: "$0.00",
+        amount: 30,
+        sitterName: "Adrian P.",
+        sitterRole: "Sitter",
+        reminder: "24 hours before",
+        confirmationReference: "EPB-2026-0849",
+        transactionId: 1003,
+        reschedulingFee: 0,
+        payment: {
+            servicePricing: "$30.00",
+            requiredDeposit: "$20.00",
+            depositPaidVia: "Visa ending in •••• 4242",
+            remainingBalance: "$0.00",
+        },
+        careInstructions: {
+            medication: "None required for this visit.",
+            diet: "No feeding needed during the walk.",
+            allergies: "Check treats for wheat grains.",
+            houseEntry: "Use the side gate; lock the deadbolt when leaving.",
+            additionalTasks: [],
+        },
+    },
+    {
+        id: 4,
+        petId: "mochi",
+        petName: "Mochi",
+        petBreed: "Shiba Inu",
+        petType: "dog",
+        service: "Drop-in care visit",
+        date: "Oct 03, 2026",
+        scheduledDate: "2026-10-03",
+        time: "10:30 AM – 11:15 AM",
+        startTime: "10:30 AM",
+        endTime: "11:15 AM",
+        status: "Completed",
+        paymentStatus: "Paid",
+        balance: "$0.00",
+        amount: 28,
+        sitterName: "Adrian P.",
+        sitterRole: "Sitter",
+        reminder: "",
+        confirmationReference: "EPB-2026-0840",
+        transactionId: 1000,
+        reschedulingFee: 0,
+        payment: {
+            servicePricing: "$28.00",
+            requiredDeposit: "$20.00",
+            depositPaidVia: "Visa ending in •••• 4242",
+            remainingBalance: "$0.00",
+        },
+        careInstructions: {
+            medication: "None required for this visit.",
+            diet: "Feed 1/2 cup kibble at noon.",
+            allergies: "Slightly sensitive to wheat grains.",
+            houseEntry: "Use the lockbox by the back door.",
+            additionalTasks: [],
+        },
+    },
+    {
+        id: 5,
+        petId: "luna",
+        petName: "Luna",
+        petBreed: "Tabby Cat",
+        petType: "cat",
+        service: "Pet Sitting",
+        date: "Sep 28, 2026",
+        scheduledDate: "2026-09-28",
+        time: "2:00 PM – 2:45 PM",
+        startTime: "2:00 PM",
+        endTime: "2:45 PM",
+        status: "Completed",
+        paymentStatus: "Paid",
+        balance: "$0.00",
+        amount: 45,
+        sitterName: "Angelena C.",
+        sitterRole: "Owner",
+        reminder: "",
+        confirmationReference: "EPB-2026-0837",
+        transactionId: 999,
+        reschedulingFee: 0,
+        payment: {
+            servicePricing: "$45.00",
+            requiredDeposit: "$20.00",
+            depositPaidVia: "Visa ending in •••• 4242",
+            remainingBalance: "$0.00",
+        },
+        careInstructions: {
+            medication: "No medication required.",
+            diet: "Feed one pouch of wet food.",
+            allergies: "None known.",
+            houseEntry: "Use the side entrance.",
+            additionalTasks: [],
+        },
+    },
+    {
+        id: 6,
+        petId: "mochi",
+        petName: "Mochi",
+        petBreed: "Shiba Inu",
+        petType: "dog",
+        service: "Dog Walking",
+        date: "Sep 21, 2026",
+        scheduledDate: "2026-09-21",
+        time: "11:00 AM – 11:30 AM",
+        startTime: "11:00 AM",
+        endTime: "11:30 AM",
+        status: "Completed",
+        paymentStatus: "Paid",
+        balance: "$0.00",
+        amount: 30,
+        sitterName: "Adrian P.",
+        sitterRole: "Sitter",
+        reminder: "",
+        confirmationReference: "EPB-2026-0829",
+        transactionId: 998,
+        reschedulingFee: 0,
+        payment: {
+            servicePricing: "$30.00",
+            requiredDeposit: "$20.00",
+            depositPaidVia: "Visa ending in •••• 4242",
+            remainingBalance: "$0.00",
+        },
+        careInstructions: {
+            medication: "None required for this visit.",
+            diet: "No feeding needed during the walk.",
+            allergies: "Check treats for wheat grains.",
+            houseEntry: "Use the side gate; lock the deadbolt when leaving.",
+            additionalTasks: [],
+        },
+    },
+];
+
+function cloneAppointment(appointment) {
+    return {
+        ...appointment,
+        payment: { ...appointment.payment },
+        careInstructions: {
+            ...appointment.careInstructions,
+            additionalTasks: [...appointment.careInstructions.additionalTasks],
+        },
+    };
+}
+
+/**
+ * Fetches temporary customer appointments filtered by upcoming or past status.
+ * @param {"upcoming"|"past"} status The appointment group to fetch.
+ * @returns {Object[]} Matching appointment records.
+ */
+export function getCustomerAppointments(status) {
+    if (status !== "upcoming" && status !== "past") {
+        throw new TypeError('Appointment status must be "upcoming" or "past".');
+    }
+    const isUpcoming = status === "upcoming";
+    return CUSTOMER_APPOINTMENTS
+        .filter((appointment) => (appointment.status === "Completed") !== isUpcoming)
+        .map(cloneAppointment);
+}
+
 /**
  * Fetches temporary upcoming appointments for the signed-in customer.
  * @returns {Object[]} Upcoming appointments.
  */
 export function getUpcomingAppointments() {
-    return [
-        { id: 1, petName: "Buddy", service: "Dog Walking", date: "Oct 26, 2026", time: "10:00 AM", status: "Confirmed", paymentStatus: "Paid", balance: "$0.00", petType: "dog" },
-        { id: 2, petName: "Luna", service: "Pet Sitting", date: "Oct 28, 2026", time: "2:00 PM", status: "Pending", paymentStatus: "Unpaid", balance: "$45.00", petType: "cat" },
-        { id: 3, petName: "Max", service: "Pet Grooming", date: "Oct 30, 2026", time: "11:00 AM", status: "Confirmed", paymentStatus: "Paid", balance: "$0.00", petType: "dog" },
-    ];
+    return getCustomerAppointments("upcoming");
 }
 
 /**
@@ -159,26 +415,17 @@ export function getUpcomingAppointments() {
  * @returns {Object[]} Past appointments.
  */
 export function getPastAppointments() {
-    return [
-        { id: 1, petName: "Samson", service: "Dog Walking", date: "Oct 26, 2026", time: "10:00 AM", status: "Completed", paymentStatus: "Paid", balance: "$0.00", petType: "dog" },
-        { id: 2, petName: "Pops", service: "Pet Sitting", date: "Oct 28, 2026", time: "2:00 PM", status: "Completed", paymentStatus: "Paid", balance: "$0.00", petType: "cat" },
-        { id: 3, petName: "Carl", service: "Pet Grooming", date: "Oct 30, 2026", time: "11:00 AM", status: "Completed", paymentStatus: "Paid", balance: "$0.00", petType: "dog" },
-    ];
+    return getCustomerAppointments("past");
 }
 
 /**
  * Fetches a temporary appointment detail record.
  * @param {string|number} appointmentId The appointment ID.
- * @returns {Object} Appointment details.
+ * @returns {Object|null} Appointment details, or null when the ID is unknown.
  */
 export function getAppointmentById(appointmentId) {
-    return {
-        id: appointmentId,
-        sitter: "Owner",
-        service: "Trim",
-        petId: 101,
-        date: "Oct 26, 2026",
-        time: "10:00 AM",
-        transactionId: 1001,
-    };
+    const appointment = CUSTOMER_APPOINTMENTS.find(
+        (record) => String(record.id) === String(appointmentId),
+    );
+    return appointment ? cloneAppointment(appointment) : null;
 }

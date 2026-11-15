@@ -4,9 +4,9 @@ import { FileText } from "lucide-react";
 import AuditLogHeader from "./AuditLogHeader";
 import AuditLogFilters from "./AuditLogFilters";
 import ActivityTable from "./ActivityTable";
-import useExportButton from "./ExportButton";
+import useExportButton from "../../action-button/ExportButton";
 import { AUDIT_LOG_PAGE_SIZE, DEFAULT_AUDIT_LOG_FILTERS } from "../../../constants/audit-log";
-import { getAuditLog } from "../../../services/audit-log-service";
+import { getAuditLog, getAuditLogDetails, getAuditLogPeople } from "../../../services/audit-log-service";
 import "../../../styles/owner-dashboard/audit-log/AuditLog.css";
 
 /**
@@ -16,6 +16,9 @@ import "../../../styles/owner-dashboard/audit-log/AuditLog.css";
 export default function AuditLog() {
     const [filters, setFilters] = useState(DEFAULT_AUDIT_LOG_FILTERS);
     const [visibleCount, setVisibleCount] = useState(AUDIT_LOG_PAGE_SIZE);
+    const [people] = useState(getAuditLogPeople);
+    const [openEntryId, setOpenEntryId] = useState(null);
+    const [details, setDetails] = useState(null);
 
     const entries = useMemo(() => getAuditLog(filters), [filters]);
     const visible = entries.slice(0, visibleCount);
@@ -25,6 +28,18 @@ export default function AuditLog() {
     function handleFilterChange(next) {
         setFilters(next);
         setVisibleCount(AUDIT_LOG_PAGE_SIZE);
+        setOpenEntryId(null);
+        setDetails(null);
+    }
+
+    function handleToggleEntry(id) {
+        if (openEntryId === id) {
+            setOpenEntryId(null);
+            setDetails(null);
+            return;
+        }
+        setDetails(getAuditLogDetails(id));
+        setOpenEntryId(id);
     }
 
     return (
@@ -46,7 +61,13 @@ export default function AuditLog() {
                     </div>
                 ) : (
                     <>
-                        <ActivityTable entries={visible} />
+                        <ActivityTable
+                            entries={visible}
+                            people={people}
+                            openId={openEntryId}
+                            details={details}
+                            onToggleRow={handleToggleEntry}
+                        />
                         <div className="al-footer">
                             <span className="al-count">Showing {visible.length} of {entries.length}</span>
                             {visible.length < entries.length && (
