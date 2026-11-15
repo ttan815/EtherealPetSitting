@@ -13,10 +13,10 @@ export const AVAILABILITY_CHIPS = [
 const TEMP_AVAILABILITY = [
     { id: 1, admin: "Jamie Rivera", service: "Dog Walking", date: "2026-11-16", start: "08:00", end: "12:00", price: 25, customer: null, status: "pending" },
     { id: 2, admin: "Priya Shah", service: "Overnight Stay", date: "2026-11-18", start: "18:00", end: "23:00", price: 85, customer: null, status: "pending" },
-    { id: 3, admin: "Marcus Lee", service: "Drop-in Care", date: "2026-11-17", start: "12:00", end: "15:00", price: 30, customer: { id: 3, name: "Lisa W." }, status: "pending" },
+    { id: 3, admin: "Marcus Lee", service: "Drop-in Care", date: "2026-11-17", start: "12:00", end: "15:00", price: 30, customer: { id: 3, name: "Lisa W." }, status: "pending", pet: { id: 31, name: "Nala" } },
     { id: 4, admin: "Jamie Rivera", service: "Pet Sitting", date: "2026-11-19", start: "09:00", end: "13:00", price: 60, customer: null, status: "awaiting_admin" },
     { id: 5, admin: "Priya Shah", service: "Dog Walking", date: "2026-11-16", start: "13:00", end: "17:00", price: 25, customer: null, status: "approved" },
-    { id: 6, admin: "Marcus Lee", service: "Overnight Stay", date: "2026-11-21", start: "18:00", end: "22:00", price: 85, customer: { id: 1, name: "Maria G." }, status: "approved" },
+    { id: 6, admin: "Marcus Lee", service: "Overnight Stay", date: "2026-11-21", start: "18:00", end: "22:00", price: 85, customer: { id: 1, name: "Maria G." }, status: "approved", pet: { id: 11, name: "Coco" } },
     { id: 7, admin: "Jamie Rivera", service: "Drop-in Care", date: "2026-11-20", start: "10:00", end: "12:00", price: 30, customer: null, status: "approved" },
     { id: 8, admin: "Marcus Lee", service: "Pet Sitting", date: "2026-11-22", start: "08:00", end: "11:00", price: 60, customer: null, status: "disapproved", reason: "Already booked that morning." },
 ];

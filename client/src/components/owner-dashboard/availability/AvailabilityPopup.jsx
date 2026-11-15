@@ -4,7 +4,7 @@ import { formatDate, formatTime } from "./AvailabilityTable";
 
 /**
  * Temporary method that creates a new availability slot.
- * @param {Object} data The admin, service, date, times, price and customer.
+ * @param {Object} data The admin, service, date, times, customer and pet. Price is set by the backend from Settings.
  * @returns {Object} The created slot with its new id.
  */
 export function addAvailability(data) {
@@ -16,10 +16,11 @@ export function addAvailability(data) {
  * Temporary method that assigns a customer to an availability slot.
  * @param {number} id The availability slot id.
  * @param {number} customerId The customer to assign.
+ * @param {number} petId The customer's pet for this visit.
  * @returns {Object} The backend result.
  */
-export function assignCustomer(id, customerId) {
-    const temp = { ok: true, id, customerId }; // Result from fetch(`/api/availability/${id}/assign`, { method: "POST" })
+export function assignCustomer(id, customerId, petId) {
+    const temp = { ok: true, id, customerId, petId }; // Result from fetch(`/api/availability/${id}/assign`, { method: "POST" })
     return temp;
 }
 
@@ -28,7 +29,7 @@ const CalendarIcon = () => <svg {...ICON_PROPS}><rect x="3" y="5" width="18" hei
 const UserIcon = () => <svg {...ICON_PROPS}><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>;
 const XCircleIcon = () => <svg {...ICON_PROPS}><circle cx="12" cy="12" r="9" /><path d="m15 9-6 6M9 9l6 6" /></svg>;
 
-const EMPTY_FORM = { admin: "", service: "", date: "", start: "", end: "", price: "", booking: "open", customerId: "" };
+const EMPTY_FORM = { admin: "", service: "", date: "", start: "", end: "", booking: "open", customerId: "", petId: "" };
 
 /**
  * Checks the Add/Edit form for missing fields, bad values and overlapping times.
@@ -45,9 +46,8 @@ export function validateAvailability(form, slots, editingId) {
     if (!form.start) errors.start = "Pick a start time.";
     if (!form.end) errors.end = "Pick an end time.";
     if (form.start && form.end && form.end <= form.start) errors.end = "End time must be after the start time.";
-    if (form.price === "" || form.price === null) errors.price = "Enter a price.";
-    else if (Number(form.price) <= 0) errors.price = "Price must be more than $0.";
     if (form.booking === "customer" && !form.customerId) errors.customerId = "Choose a customer.";
+    else if (form.booking === "customer" && !form.petId) errors.petId = "Choose a pet.";
 
     if (!errors.admin && !errors.date && !errors.start && !errors.end) {
         const clash = slots.find((s) =>
@@ -100,13 +100,17 @@ function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
     const isEdit = Boolean(slot);
     const [form, setForm] = useState(() =>
         isEdit
-            ? { ...EMPTY_FORM, ...slot, price: String(slot.price), booking: slot.customer ? "customer" : "open", customerId: slot.customer ? String(slot.customer.id) : "" }
+            ? { ...EMPTY_FORM, ...slot, booking: slot.customer ? "customer" : "open", customerId: slot.customer ? String(slot.customer.id) : "", petId: slot.customer?.pet ? String(slot.customer.pet.id) : "" }
             : EMPTY_FORM
     );
     const [errors, setErrors] = useState({});
 
+    const selectedCustomer = options.customers.find((c) => String(c.id) === form.customerId);
+    const price = options.servicePrices[form.service];
+
     function update(field, value) {
-        setForm((f) => ({ ...f, [field]: value }));
+        // Changing the customer clears the pet, since pets belong to one customer
+        setForm((f) => ({ ...f, [field]: value, ...(field === "customerId" ? { petId: "" } : {}) }));
     }
 
     function handleSubmit(e) {
@@ -115,17 +119,16 @@ function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
         setErrors(found);
         if (Object.keys(found).length > 0) return;
 
-        const customer = form.booking === "customer"
-            ? options.customers.find((c) => String(c.id) === form.customerId)
-            : null;
+        const customer = form.booking === "customer" ? selectedCustomer : null;
+        const pet = customer?.pets.find((pt) => String(pt.id) === form.petId);
         onSave({
             admin: form.admin,
             service: form.service,
             date: form.date,
             start: form.start,
             end: form.end,
-            price: Number(form.price),
-            customer: customer ? { id: customer.id, name: customer.name } : null,
+            price,
+            customer: customer ? { id: customer.id, name: customer.name, pet: { id: pet.id, name: pet.name } } : null,
         });
     }
 
@@ -158,12 +161,11 @@ function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
                 <Field label="End time" error={errors.end}>
                     <input className="av-input" type="time" value={form.end} onChange={(e) => update("end", e.target.value)} />
                 </Field>
-                <Field label="Price" error={errors.price} wide>
-                    <div className="av-price">
-                        <span>$</span>
-                        <input className="av-input" type="number" min="0" step="1" value={form.price} onChange={(e) => update("price", e.target.value)} placeholder="0" />
-                    </div>
-                </Field>
+                {form.service && (
+                    <p className="av-price-note av-field-wide">
+                        Price: <strong>${price}</strong> · set automatically in Settings
+                    </p>
+                )}
 
                 <fieldset className="av-field av-field-wide av-radio-group">
                     <legend className="av-field-label">Who can book it</legend>
@@ -186,6 +188,15 @@ function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
                     </Field>
                 )}
 
+                {form.booking === "customer" && selectedCustomer && (
+                    <Field label="Pet" error={errors.petId} wide>
+                        <select className="av-input" value={form.petId} onChange={(e) => update("petId", e.target.value)}>
+                            <option value="">Choose a pet</option>
+                            {selectedCustomer.pets.map((pt) => <option key={pt.id} value={pt.id}>{pt.name} · {pt.breed}</option>)}
+                        </select>
+                    </Field>
+                )}
+
                 {errors.overlap && <p className="av-error av-error-banner av-field-wide">{errors.overlap}</p>}
 
                 <div className="av-popup-actions av-field-wide">
@@ -200,17 +211,31 @@ function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
 function AssignCustomer({ slot, options, onClose, onAssign }) {
     const [search, setSearch] = useState("");
     const [selectedId, setSelectedId] = useState(slot.customer?.id ?? null);
+    const [petId, setPetId] = useState(slot.customer?.pet?.id ?? null);
     const [error, setError] = useState("");
 
     const matches = options.customers.filter((c) => c.name.toLowerCase().includes(search.trim().toLowerCase()));
+    const selected = options.customers.find((c) => c.id === selectedId);
+
+    function pickCustomer(id) {
+        setSelectedId(id);
+        // Preselect the pet when the customer only has one
+        const customer = options.customers.find((c) => c.id === id);
+        setPetId(customer.pets.length === 1 ? customer.pets[0].id : null);
+        setError("");
+    }
 
     function handleAssign() {
-        const customer = options.customers.find((c) => c.id === selectedId);
-        if (!customer) {
+        const pet = selected?.pets.find((pt) => pt.id === petId);
+        if (!selected) {
             setError("Choose a customer to assign.");
             return;
         }
-        onAssign(customer);
+        if (!pet) {
+            setError("Choose which pet this visit is for.");
+            return;
+        }
+        onAssign(selected, pet);
     }
 
     return (
@@ -233,17 +258,34 @@ function AssignCustomer({ slot, options, onClose, onAssign }) {
                         <button
                             type="button"
                             className={`av-customer ${selectedId === c.id ? "av-customer-selected" : ""}`}
-                            onClick={() => { setSelectedId(c.id); setError(""); }}
+                            onClick={() => pickCustomer(c.id)}
                         >
                             <span className="av-avatar">{c.name[0]}</span>
                             <span>
                                 <span className="av-cell-main">{c.name}</span>
-                                <span className="av-cell-sub">{c.pets}</span>
+                                <span className="av-cell-sub">{c.pets.map((pt) => pt.name).join(", ")}</span>
                             </span>
                         </button>
                     </li>
                 ))}
             </ul>
+            {selected && (
+                <div className="av-field">
+                    <span className="av-field-label">Pet</span>
+                    <div className="av-pet-chips">
+                        {selected.pets.map((pt) => (
+                            <button
+                                key={pt.id}
+                                type="button"
+                                className={`av-chip ${petId === pt.id ? "av-chip-active" : ""}`}
+                                onClick={() => { setPetId(pt.id); setError(""); }}
+                            >
+                                {pt.name} · {pt.breed}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
             {error && <p className="av-error">{error}</p>}
             <div className="av-popup-actions">
                 <button type="button" className="av-btn av-btn-outline" onClick={onClose}>Cancel</button>
@@ -315,7 +357,7 @@ function DisapproveRequest({ slot, onClose, onDisapprove }) {
  * @param {Object} options Admin, service and customer lists for the form.
  * @param {Function} onClose Closes the popup without changes.
  * @param {Function} onSave Called with form data when Add/Edit is saved.
- * @param {Function} onAssign Called with the chosen customer.
+ * @param {Function} onAssign Called with the chosen customer and pet.
  * @param {Function} onRemove Called when removal is confirmed.
  * @param {Function} onDisapprove Called with the reason when disapproval is confirmed.
  * @returns {JSX.Element|null} The open popup, or nothing.

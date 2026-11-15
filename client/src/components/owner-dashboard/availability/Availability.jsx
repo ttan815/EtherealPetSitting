@@ -19,11 +19,13 @@ export function getAvailabilityOptions() {
     const temp = {
         admins: ["Jamie Rivera", "Priya Shah", "Marcus Lee"],
         services: ["Dog Walking", "Drop-in Care", "Overnight Stay", "Pet Sitting"],
+                // Price per service comes from the Settings tab; the owner never types it here
+        servicePrices: { "Dog Walking": 25, "Drop-in Care": 30, "Overnight Stay": 85, "Pet Sitting": 60 },
         customers: [
-            { id: 1, name: "Maria G.", pets: "Coco · Poodle" },
-            { id: 2, name: "Kevin P.", pets: "Max · Labrador" },
-            { id: 3, name: "Lisa W.", pets: "Nala · Siamese Cat" },
-            { id: 4, name: "Daniel K.", pets: "Biscuit · Corgi" },
+            { id: 1, name: "Maria G.", pets: [{ id: 11, name: "Coco", breed: "Poodle" }] },
+            { id: 2, name: "Kevin P.", pets: [{ id: 21, name: "Max", breed: "Labrador" }, { id: 22, name: "Bella", breed: "Beagle" }] },
+            { id: 3, name: "Lisa W.", pets: [{ id: 31, name: "Nala", breed: "Siamese Cat" }] },
+            { id: 4, name: "Daniel K.", pets: [{ id: 41, name: "Biscuit", breed: "Corgi" }, { id: 42, name: "Pepper", breed: "Tabby Cat" }] },
         ],
     }; // Result from fetch("/api/availability/options")
     return temp;
@@ -92,10 +94,10 @@ export default function Availability({ onNavigate }) {
         closePopup();
     }
 
-    function handleAssign(customer) {
-        const result = assignCustomer(popup.slot.id, customer.id);
+    function handleAssign(customer, pet) {
+     const result = assignCustomer(popup.slot.id, customer.id, pet.id);
         if (!result.ok) return;
-        replaceSlot({ id: popup.slot.id, customer: { id: customer.id, name: customer.name } });
+        replaceSlot({ id: popup.slot.id, customer: { id: customer.id, name: customer.name, pet: { id: pet.id, name: pet.name } } });
         setToast("Customer assigned · admin notified");
         closePopup();
     }
