@@ -1,0 +1,702 @@
+/* =========================================
+   1. CALENDAR PAGE/Header DT-313
+========================================= */
+
+.calendar-page {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f8efeb;
+  color: #382710;
+  box-sizing: border-box;
+}
+
+.calendar-main {
+  flex: 1;
+  min-width: 0;
+  padding: 36px;
+  background: #f8efeb;
+  box-sizing: border-box;
+}
+
+.calendar-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.calendar-new-appointment {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.calendar-content {
+  width: 100%;
+  min-width: 0;
+  background: #fffdfa;
+  border: 1px solid #eadbc9;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(80, 54, 20, 0.025);
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   2. CALENDAR TOOLBAR DT-306
+========================================= */
+
+.calendar-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.calendar-toolbar-left,
+.calendar-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.calendar-nav-button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #dfc9a9;
+  background: #fffdfa;
+  color: #70572f;
+  font-size: 23px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-nav-button:hover,
+.calendar-today-button:hover {
+  background: #efe2d1;
+}
+
+.calendar-today-button {
+  height: 34px;
+  padding: 0 16px;
+  border: 1px solid #b9a17d;
+  border-radius: 20px;
+  background: transparent;
+  color: #624d2d;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.calendar-current-date {
+  color: #35240d;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.calendar-toolbar-right {
+  gap: 10px;
+}
+
+.calendar-sitter-select {
+  min-width: 102px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #dfc9a9;
+  border-radius: 9px;
+  background: #fffdfa;
+  color: #49361d;
+  cursor: pointer;
+  outline: none;
+}
+
+.calendar-view-toggle {
+  display: flex;
+  padding: 4px;
+  border-radius: 25px;
+  background: #eee0d0;
+}
+
+.calendar-view-toggle button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: transparent;
+  color: #70572f;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.calendar-view-toggle button.active {
+  background: #fffdfa;
+  color: #35240d;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   3. WEEK VIEW DT-307
+========================================= */
+
+.week-calendar {
+  width: 100%;
+  background: #fffdfa;
+  border-radius: 14px;
+  overflow: auto;
+}
+
+.week-calendar-header {
+  display: grid;
+  grid-template-columns: 60px repeat(7, minmax(100px, 1fr));
+  min-width: 850px;
+  background: #fffdfa;
+  border-bottom: 1px solid #eadbc9;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.week-time-header {
+  border-right: 1px solid #eadbc9;
+}
+
+.week-day-header {
+  min-height: 78px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #725b34;
+  font-size: 12px;
+}
+
+.week-day-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #382710;
+  font-size: 14px;
+}
+
+.week-day-number.today {
+  background: #755d35;
+  color: white;
+}
+
+.week-calendar-body {
+  display: grid;
+  grid-template-columns: 60px minmax(790px, 1fr);
+  min-width: 850px;
+}
+
+.week-time-axis {
+  border-right: 1px solid #eadbc9;
+}
+
+.week-time-label {
+  display: flex;
+  justify-content: center;
+  padding-top: 3px;
+  color: #806a47;
+  font-size: 11px;
+  box-sizing: border-box;
+}
+
+.week-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.week-day-column {
+  position: relative;
+  border-right: 1px solid #eadbc9;
+  background: #fffdfa;
+}
+
+.week-day-column.current-day {
+  background: #faf7f2;
+}
+
+.week-hour-cell {
+  border-bottom: 1px solid #eee2d4;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   4. DAY VIEW DT-308
+========================================= */
+
+.day-calendar {
+  background: #fffdfa;
+  border: 1px solid #eadbc9;
+  border-radius: 17px;
+  padding: 18px 22px;
+  overflow: hidden;
+}
+
+.day-calendar-header {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-date-heading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  color: #71582e;
+  font-size: 12px;
+}
+
+.day-date-number {
+  width: 31px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #765d35;
+  color: white;
+  font-size: 14px;
+}
+
+.day-calendar-body {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+}
+
+.day-time-axis {
+  border-right: 1px solid #eadbc9;
+}
+
+.day-time-label {
+  box-sizing: border-box;
+  padding-top: 3px;
+  color: #806a47;
+  font-size: 11px;
+}
+
+.day-timeline {
+  position: relative;
+  min-width: 0;
+}
+
+.day-hour-cell {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee2d4;
+}
+
+.day-calendar-legend {
+  display: flex;
+  gap: 20px;
+  padding: 17px 0 2px;
+  color: #806a47;
+  font-size: 12px;
+}
+
+.day-calendar-legend div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-dark,
+.legend-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.legend-dark {
+  background: #755d35;
+}
+
+.legend-light {
+  background: #d9c39f;
+}
+
+
+/* =========================================
+   5. MONTH VIEW DT-309
+========================================= */
+
+.month-calendar {
+  background: #fffdfa;
+  border: 1px solid #eadbc9;
+  border-radius: 15px;
+  padding: 21px;
+  overflow: hidden;
+}
+
+.month-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  background: #f5eee4;
+  border: 1px solid #eadbc9;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.month-weekdays div {
+  padding: 10px 5px;
+  text-align: center;
+  color: #725b34;
+  font-size: 12px;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-left: 1px solid #eadbc9;
+}
+
+.month-day {
+  min-height: 104px;
+  padding: 9px 7px;
+  border-right: 1px solid #eadbc9;
+  border-bottom: 1px solid #eadbc9;
+  cursor: pointer;
+  background: #fffdfa;
+  transition: background 0.15s;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.month-day:hover {
+  background: #faf4eb;
+}
+
+.month-day.outside-month {
+  color: #b5a48d;
+}
+
+.month-day.outside-month .month-day-number {
+  color: #b5a48d;
+}
+
+.month-day-number {
+  display: flex;
+  margin-bottom: 7px;
+  font-size: 12px;
+  color: #382710;
+}
+
+.month-day-number span {
+  width: 23px;
+  height: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.month-day-number span.today {
+  background: #755d35;
+  border-radius: 50%;
+  color: white;
+}
+
+.month-events {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.month-more {
+  margin-top: 4px;
+  color: #80643b;
+  font-size: 10px;
+}
+
+.closed-day {
+  background: #f7f2eb;
+}
+
+.month-closed-label {
+  color: #a48d69;
+  font-size: 10px;
+  margin-top: 8px;
+}
+
+.month-legend {
+  display: flex;
+  gap: 20px;
+  padding-top: 15px;
+  color: #806a47;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.month-legend div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.month-legend span {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.legend-closed {
+  background: #f7f2eb;
+}
+
+
+/* =========================================
+   6. EVENT BLOCKS DT-310
+========================================= */
+
+.event-block {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  border-radius: 8px;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 2;
+  transition: filter 0.15s;
+}
+
+.event-block:hover {
+  filter: brightness(0.94);
+  z-index: 3;
+}
+
+.dark-event {
+  background: #755d35;
+  color: #fffaf2;
+}
+
+.light-event {
+  background: #d9c39f;
+  color: #30220e;
+}
+
+.event-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 2px 5px;
+  min-width: 0;
+  font-size: 11px;
+}
+
+.event-time,
+.event-pet-name {
+  white-space: nowrap;
+}
+
+.event-service {
+  flex-basis: 100%;
+  font-size: 10px;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.day-event {
+  left: 4px;
+  right: 3px;
+  padding: 7px;
+}
+
+.day-event .event-content {
+  display: block;
+}
+
+.day-event .event-time,
+.day-event .event-pet-name {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.day-event .event-service {
+  margin-top: 3px;
+}
+
+.week-event .event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.month-event {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 17px;
+  min-height: 17px;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.month-event .event-content {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  font-size: 9px;
+  line-height: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.month-event .event-time {
+  display: none;
+}
+
+.month-event .event-pet-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   7. CURRENT TIME INDICATOR
+========================================= */
+
+.current-time-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #4d3516;
+  z-index: 4;
+}
+
+.current-time-indicator span {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: #4d3516;
+  border-radius: 50%;
+  left: -4px;
+  top: -4px;
+}
+
+
+/* =========================================
+   8. APPOINTMENT DETAIL OVERLAY
+========================================= */
+
+.event-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(35, 23, 9, 0.45);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.event-detail-container {
+  width: min(600px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fffdfa;
+  border-radius: 15px;
+}
+
+
+/* =========================================
+   9. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1000px) {
+  .calendar-main {
+    padding: 25px;
+  }
+
+  .calendar-content {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 750px) {
+  .month-calendar {
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .month-weekdays,
+  .month-grid {
+    min-width: 700px;
+  }
+
+  .month-day {
+    min-height: 90px;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  .calendar-main {
+    padding: 16px;
+  }
+
+  .calendar-toolbar {
+    align-items: flex-start;
+  }
+
+  .calendar-toolbar-left,
+  .calendar-toolbar-right {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .calendar-current-date {
+    font-size: 17px;
+  }
+
+  .calendar-page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calendar-new-appointment {
+    justify-content: flex-start;
+  }
+
+  .calendar-content {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .day-calendar {
+    padding: 12px;
+  }
+
+  .day-calendar-body {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .day-calendar-legend {
+    flex-wrap: wrap;
+  }
+}
