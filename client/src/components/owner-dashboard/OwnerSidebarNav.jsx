@@ -1,5 +1,5 @@
 import SidebarNav from "../parent-component/SidebarNav";
-import { OWNER_NAV_ITEMS } from "../../constants/owner-nav-items";
+import { OWNER_NAV_ITEMS } from "../../constants/owner/owner-nav-items";
 
 /**
  * Renders the owner dashboard sidebar navigation.

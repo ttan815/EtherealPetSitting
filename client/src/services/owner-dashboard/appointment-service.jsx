@@ -1,4 +1,4 @@
-import { APPOINTMENT_TABS } from "../constants/appointment";
+import { APPOINTMENT_TABS } from "../../constants/appointments/appointment";
 
 // Temporary placeholder visits (Figma "Admin — Dashboard").
 // BACKEND: replace with today's appointments from the API, in the same shape.

@@ -1,8 +1,8 @@
 // popups for inviting, editing, and removing an admin
 import { useEffect, useState } from "react";
 import { Check, Mail, Pencil, X } from "lucide-react";
-import { ADMIN_CAN_DO } from "../../../constants/manage-admins";
-import { EMAIL_PATTERN } from "../../../constants/validation";
+import { ADMIN_CAN_DO } from "../../../constants/owner/manage-admins";
+import { EMAIL_PATTERN } from "../../../constants/shared/validation";
 import "../../../styles/owner-dashboard/manage-admins/ManageAdmins.css";
 
 /**

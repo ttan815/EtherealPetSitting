@@ -1,7 +1,7 @@
 // Provides shared booking provider state to the React application.
 import { useEffect, useState } from "react";
 import { BookingContext } from "../context/booking-context";
-import { BOOKING_STORAGE_KEY, EMPTY_BOOKING } from "../constants/booking-state";
+import { BOOKING_STORAGE_KEY, EMPTY_BOOKING } from "../constants/booking/booking-state";
 
 function loadBooking() {
   try {

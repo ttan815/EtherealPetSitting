@@ -5,8 +5,8 @@ import BusinessInfo from "./BusinessInfo";
 import ServicePrices from "./ServicePrices";
 import Deposits from "./Deposits";
 import NotificationSettings from "./NotificationSettings";
-import { EMAIL_PATTERN } from "../../../constants/validation";
-import { getSettings, saveSettings } from "../../../services/settings-service";
+import { EMAIL_PATTERN } from "../../../constants/shared/validation";
+import { getSettings, saveSettings } from "../../../services/owner-dashboard/settings-service";
 import "../../../styles/owner-dashboard/settings/Settings.css";
 
 /**

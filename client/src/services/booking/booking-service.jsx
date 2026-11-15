@@ -1,5 +1,5 @@
-import { BOOKING_SERVICES, BOOKING_SERVICE_PRICES, HOMEPAGE_SERVICES } from "../constants/booking-services";
-import { BOOKING_SITTERS } from "../constants/booking-sitters";
+import { BOOKING_SERVICES, BOOKING_SERVICE_PRICES, HOMEPAGE_SERVICES } from "../../constants/booking/booking-services";
+import { BOOKING_SITTERS } from "../../constants/booking/booking-sitters";
 
 /**
  * Returns service presentation enriched with configured fallback prices.

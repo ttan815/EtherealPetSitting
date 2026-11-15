@@ -13,7 +13,7 @@ import { useAuth } from "../context/AuthContext";
 import OverallRating from "../components/reviews/OverallRating";
 import ReviewCard from "../components/reviews/ReviewCard";
 import WriteReviewModal from "../components/reviews/WriteReviewModal";
-import { getPublicReviews } from "../services/review-service";
+import { getPublicReviews } from "../services/reviews/review-service";
 // styles for this page
 import "../styles/reviews/ReviewsPage.css";
 

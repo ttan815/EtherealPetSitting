@@ -7,13 +7,13 @@ import SitterPicker from "../components/booking/availability/SitterPicker";
 import AvailabilityCalendar from "../components/booking/availability/AvailabilityCalendar";
 import AvailableTimes from "../components/booking/availability/AvailableTimes";
 import Button from "../components/form/Button";
-import { NO_PREFERENCE_SITTER_ID } from "../constants/booking-sitters";
+import { NO_PREFERENCE_SITTER_ID } from "../constants/booking/booking-sitters";
 import {
   DATE_RANGE_OPTIONS,
   DEFAULT_AVAILABILITY_FILTERS,
   TIME_OF_DAY_GROUPS,
   TIME_OF_DAY_OPTIONS,
-} from "../constants/booking-filters";
+} from "../constants/booking/booking-filters";
 import {
   addDays,
   addMonths,
@@ -22,8 +22,8 @@ import {
   getStartOfMonth,
   getToday,
 } from "../utils/calendar-dates";
-import { getAvailableTimes } from "../services/availability-service";
-import { getBookingServices, getBookingSitters } from "../services/booking-service";
+import { getAvailableTimes } from "../services/owner-dashboard/availability-service";
+import { getBookingServices, getBookingSitters } from "../services/booking/booking-service";
 import "../styles/booking/SelectDateTimePage.css";
 
 // Bookable days for a Date dropdown choice: starts tomorrow, lasts `days` days

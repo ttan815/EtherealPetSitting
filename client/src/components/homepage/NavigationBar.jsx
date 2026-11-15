@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import ProfileMenu from "./ProfileMenu";
 import BrandLogo from "./BrandLogo";
-import { HOMEPAGE_SECTION_LINKS } from "../../constants/homepage";
+import { HOMEPAGE_SECTION_LINKS } from "../../constants/homepage/homepage";
 import "../../styles/homepage/NavigationBar.css";
 
 // role: "visitor" | "customer" | "admin"

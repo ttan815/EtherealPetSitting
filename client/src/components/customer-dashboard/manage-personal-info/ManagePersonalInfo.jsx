@@ -6,12 +6,12 @@ import PersonalDetailsForm from "./PersonalDetailsForm";
 import PasswordSecurity from "./PasswordSecurity";
 import ChangePasswordModal from "./ChangePasswordModal";
 import SavedToast from "./SavedToast";
-import { PERSONAL_DETAILS_FIELD_NAMES } from "../../../constants/personal-info";
+import { PERSONAL_DETAILS_FIELD_NAMES } from "../../../constants/customer/personal-info";
 import {
     changeCustomerPassword,
     getCustomerProfile,
     updateCustomerProfile,
-} from "../../../services/customer-service";
+} from "../../../services/customer-dashboard/customer-service";
 import "../../../styles/customer-dashboard/manage-personal-info/ManagePersonalInfo.css";
 
 /**

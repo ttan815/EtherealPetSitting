@@ -14,7 +14,7 @@ import {
     resendInvite,
     saveBackupSettings,
     updateAdmin,
-} from "../../../services/admin-service";
+} from "../../../services/owner-dashboard/admin-service";
 import "../../../styles/owner-dashboard/manage-admins/ManageAdmins.css";
 
 /**

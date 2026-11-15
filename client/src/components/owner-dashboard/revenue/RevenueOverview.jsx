@@ -1,8 +1,8 @@
 // Renders the Overview stat cards on the owner's Revenue page.
 import OverviewHeader from "../../parent-component/OverviewHeader";
 import OverviewCard from "../../parent-component/OverviewCard";
-import { getRevenue, getRevenueOverview } from "../../../services/revenue-service";
-import { getRevenueOverviewCards } from "../../../constants/revenue-overview";
+import { getRevenue, getRevenueOverview } from "../../../services/owner-dashboard/revenue-service";
+import { getRevenueOverviewCards } from "../../../constants/owner/revenue-overview";
 import "../../../styles/owner-dashboard/revenue/RevenueOverview.css";
 
 /**

@@ -1,10 +1,10 @@
 // Defines shared booking services data and settings.
-import homeIcon from "../assets/booking/icon-home.svg";
-import sunIcon from "../assets/booking/icon-sun.svg";
-import moonIcon from "../assets/booking/icon-moon.svg";
-import pawIcon from "../assets/booking/icon-paw.svg";
-import scissorsIcon from "../assets/booking/icon-scissors.svg";
-import pillIcon from "../assets/booking/icon-pill.svg";
+import homeIcon from "../../assets/booking/icon-home.svg";
+import sunIcon from "../../assets/booking/icon-sun.svg";
+import moonIcon from "../../assets/booking/icon-moon.svg";
+import pawIcon from "../../assets/booking/icon-paw.svg";
+import scissorsIcon from "../../assets/booking/icon-scissors.svg";
+import pillIcon from "../../assets/booking/icon-pill.svg";
 
 // Services a customer can pick on step 1 of booking (Figma "Customer - Book a Service").
 // id: used in the URL (/book-appointment?service=dog-walking) and later sent to the API

@@ -1,7 +1,7 @@
 // Renders the review section component.
 import SectionHeading from "./SectionHeading";
 import Button from "../form/Button";
-import { getHomepageReviews, getPublicReviewSummary } from "../../services/review-service";
+import { getHomepageReviews, getPublicReviewSummary } from "../../services/reviews/review-service";
 import topo1 from "../../assets/home/reviews-topo-1.svg";
 import topo2 from "../../assets/home/reviews-topo-2.svg";
 import topo3 from "../../assets/home/reviews-topo-3.svg";

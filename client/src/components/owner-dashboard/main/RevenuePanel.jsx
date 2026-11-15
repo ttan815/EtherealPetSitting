@@ -2,13 +2,13 @@
 import { useState } from "react";
 import downloadIcon from "../../../assets/owner-dashboard/export-download.svg";
 import arrowIcon from "../../../assets/owner-dashboard/link-arrow.svg";
-import { DASHBOARD_REVENUE_RANGE_OPTIONS, REVENUE_BAR_MAX_HEIGHT } from "../../../constants/revenue";
+import { DASHBOARD_REVENUE_RANGE_OPTIONS, REVENUE_BAR_MAX_HEIGHT } from "../../../constants/owner/revenue";
 import {
   exportDashboardRevenue,
   getEarningsByService,
   getRevenueByWeek,
   getRevenueSummary,
-} from "../../../services/revenue-service";
+} from "../../../services/owner-dashboard/revenue-service";
 import "../../../styles/owner-dashboard/RevenuePanel.css";
 
 // "$4,860"

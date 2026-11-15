@@ -2,7 +2,7 @@ import { formatWeekdayDate, fromDateKey } from "../../../utils/calendar-dates";
 import { formatTime } from "../../../utils/format-time";
 import { formatServicePrice } from "../../../utils/format-service-price";
 import { getBookingPrice, formatBookingAmount } from "../../../utils/booking-pricing";
-import { getSavedPets } from "../../../services/pet-service";
+import { getSavedPets } from "../../../services/customer-dashboard/pet-service";
 
 /**
  * Renders the confirmed appointment and payment summary.

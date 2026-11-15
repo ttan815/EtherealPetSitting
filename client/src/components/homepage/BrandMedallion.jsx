@@ -1,6 +1,6 @@
 // Renders the brand medallion component.
-import { BUSINESS_NAME, BUSINESS_SUBTITLE } from "../../constants/site-info";
-import { BRAND_MEDALLION_LAYERS } from "../../constants/brand";
+import { BUSINESS_NAME, BUSINESS_SUBTITLE } from "../../constants/shared/site-info";
+import { BRAND_MEDALLION_LAYERS } from "../../constants/shared/brand";
 import logoScriptDog from "../../assets/brand/logo-script-dog.svg";
 import "../../styles/homepage/BrandMedallion.css";
 

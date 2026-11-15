@@ -5,9 +5,9 @@ import BookingSummaryStrip from "../components/booking/select-pet/BookingSummary
 import PetSelector from "../components/booking/select-pet/PetSelector";
 import PetCareForm from "../components/booking/select-pet/PetCareForm";
 import Button from "../components/form/Button";
-import { BOOKING_SERVICES } from "../constants/booking-services";
+import { BOOKING_SERVICES } from "../constants/booking/booking-services";
 import { fromDateKey } from "../utils/calendar-dates";
-import { getSavedHouseEntry, getSavedPets } from "../services/pet-service";
+import { getSavedHouseEntry, getSavedPets } from "../services/customer-dashboard/pet-service";
 import "../styles/booking/PetCareDetailsPage.css";
 
 function createNewPet() {

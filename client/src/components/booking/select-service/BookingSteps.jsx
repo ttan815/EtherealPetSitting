@@ -1,5 +1,5 @@
 // Renders the booking steps component.
-import { BOOKING_STEPS } from "../../../constants/booking-steps";
+import { BOOKING_STEPS } from "../../../constants/booking/booking-steps";
 import stepDoneIcon from "../../../assets/booking/step-done.svg";
 import "../../../styles/booking/BookingSteps.css";
 

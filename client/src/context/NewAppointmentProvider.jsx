@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { NewAppointmentContext } from "./NewAppointmentContext";
-import { NEW_APPOINTMENT_COPY, OWNER_APPOINTMENT_OPTION } from "../constants/appointment-copy";
+import { NEW_APPOINTMENT_COPY, OWNER_APPOINTMENT_OPTION } from "../constants/appointments/appointment-copy";
 import {
     createAppointmentRecord,
     getAppointmentAdmins,
@@ -9,7 +9,7 @@ import {
     getAppointmentServices,
     getInitialVisits,
     updateAppointmentStatus,
-} from "../services/appointment-service";
+} from "../services/owner-dashboard/appointment-service";
 
 /**
  * Provides shared appointment-popup options and dashboard appointment state.

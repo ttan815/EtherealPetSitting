@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { EMPTY_MANAGED_CUSTOMER, EMPTY_MANAGED_PET } from "../../constants/customer-forms";
+import { EMPTY_MANAGED_CUSTOMER, EMPTY_MANAGED_PET } from "../../constants/customer/customer-forms";
 import "../../styles/owner-dashboard/mannage-customer-and-pet/CustomerProfile.css";
 
 function getCustomerForm(customer, isAddMode) {

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router";
 import { useBooking } from "../../hooks/useBooking";
-import { NO_PREFERENCE_SITTER_ID } from "../../constants/booking-sitters";
+import { NO_PREFERENCE_SITTER_ID } from "../../constants/booking/booking-sitters";
 import BookAppointmentPage from "../../pages/BookAppointmentPage";
 import SelectDateTimePage from "../../pages/SelectDateTimePage";
 import PetCareDetailsPage from "../../pages/PetCareDetailsPage";
 import BookingConfirmation from "./confirmation/BookingConfirmation";
 import { getServiceIdsFromQuery } from "../../utils/service-query";
-import { getBookingServices, getBookingSitters } from "../../services/booking-service";
+import { getBookingServices, getBookingSitters } from "../../services/booking/booking-service";
 
 /**
  * Renders booking stages and routes the payment stage separately.

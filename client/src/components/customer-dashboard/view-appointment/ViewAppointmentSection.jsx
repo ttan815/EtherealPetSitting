@@ -8,7 +8,7 @@ import AppointmentDetail from "./appointment-detail/AppointmentDetail";
 import RescheduleAppointment from "./reschedule-appointment/RescheduleAppointment";
 import PageHeader from "../../parent-component/PageHeader";
 import { useNavigate } from "react-router";
-import { getAppointmentById } from "../../../services/appointment-service";
+import { getAppointmentById } from "../../../services/owner-dashboard/appointment-service";
 
 function MainContent({ activeFilter, setActiveFilter, setCurrentView, setAppointmentId, onReschedule }) {
     const [appointments, setAppointments] = useState([]);

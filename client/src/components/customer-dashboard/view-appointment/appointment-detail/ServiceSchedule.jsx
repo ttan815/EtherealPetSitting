@@ -3,7 +3,7 @@ import "../../../../styles/customer-dashboard/view-appointment/AppointmentDetail
 import {
     APPOINTMENT_DATE_LOCALE,
     APPOINTMENT_LONG_DATE_FORMAT_OPTIONS,
-} from "../../../../constants/appointment-copy";
+} from "../../../../constants/appointments/appointment-copy";
 
 /**
  * Renders the service and schedule summary for an appointment.

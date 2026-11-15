@@ -1,7 +1,7 @@
 // Renders the editable Personal details card on the Manage Personal Information section.
 import { useEffect, useRef } from "react";
 import { Pencil, Lock, SquareUser } from "lucide-react";
-import { PERSONAL_DETAILS_FIELDS } from "../../../constants/personal-info";
+import { PERSONAL_DETAILS_FIELDS } from "../../../constants/customer/personal-info";
 
 /**
  * Renders the personal details form; each field is read-only until its pencil (or "Edit all fields") is clicked.

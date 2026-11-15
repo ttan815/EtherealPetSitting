@@ -7,7 +7,7 @@ import {
     AUDIT_LOG_TODAY_LABEL,
     AUDIT_LOG_UNKNOWN_PERSON,
     AUDIT_LOG_YESTERDAY_LABEL,
-} from "../../../constants/audit-log";
+} from "../../../constants/owner/audit-log";
 import "../../../styles/owner-dashboard/audit-log/AuditLog.css";
 
 /**

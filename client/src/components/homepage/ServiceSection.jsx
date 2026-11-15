@@ -18,7 +18,7 @@ import shape3 from '../../assets/home/services-shape-3.svg';
 import shape4 from '../../assets/home/services-shape-4.svg';
 import shape5 from '../../assets/home/services-shape-5.svg';
 
-import { getHomepageServices } from "../../services/booking-service";
+import { getHomepageServices } from "../../services/booking/booking-service";
 
 // builds one service card
 // service holds the card info and the logged in flag tells us if the user is a customer

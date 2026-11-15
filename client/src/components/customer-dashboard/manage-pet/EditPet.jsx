@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getEditablePetProfile } from "../../../services/pet-service";
+import { getEditablePetProfile } from "../../../services/customer-dashboard/pet-service";
 import "../../../styles/customer-dashboard/manage-pet/EditPet.css";
 
 const initialPet = getEditablePetProfile();

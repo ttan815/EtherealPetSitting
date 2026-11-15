@@ -1,7 +1,7 @@
 import { PawPrint, ClipboardList, CircleDollarSign } from "lucide-react";
-import pillIcon from "../assets/owner-dashboard/alert-pill.svg";
-import warningIcon from "../assets/owner-dashboard/alert-warning.svg";
-import calendarIcon from "../assets/owner-dashboard/alert-calendar.svg";
+import pillIcon from "../../assets/owner-dashboard/alert-pill.svg";
+import warningIcon from "../../assets/owner-dashboard/alert-warning.svg";
+import calendarIcon from "../../assets/owner-dashboard/alert-calendar.svg";
 
 /**
  * Metric cards shown at the top of the owner dashboard.

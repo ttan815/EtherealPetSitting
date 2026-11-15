@@ -1,7 +1,7 @@
 // Renders the bell button and its notifications popup.
 import { useEffect, useRef, useState } from "react";
 import { Bell } from "lucide-react";
-import { getNotificationIcon, NOTIFICATION_POPUP_LIMIT } from "../../../constants/notifications";
+import { getNotificationIcon, NOTIFICATION_POPUP_LIMIT } from "../../../constants/notifications/notifications";
 import { useNotifications } from "./NotificationsContext";
 import "../../../styles/parent-component/Notifications.css";
 

@@ -19,7 +19,7 @@ import AddPet from "./AddPet"
 import EditPet from "./EditPet"
 // Add Page Header
 import PageHeader from "../../parent-component/PageHeader";
-import { getCustomerPets } from "../../../services/pet-service";
+import { getCustomerPets } from "../../../services/customer-dashboard/pet-service";
 
 
 function MainContent( {pets, petCountLabel, setCurrentView} ) {

@@ -1,7 +1,7 @@
 // Renders the auth layout component.
 import BrandPanel from "./BrandPanel";
 import BrandLogo from "../homepage/BrandLogo";
-import { SUPPORT_PHONE } from "../../constants/site-info";
+import { SUPPORT_PHONE } from "../../constants/shared/site-info";
 import arrowLeftIcon from "../../assets/icons/arrow-left.svg";
 import "../../styles/auth/AuthLayout.css";
 

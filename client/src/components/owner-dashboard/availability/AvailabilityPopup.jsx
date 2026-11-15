@@ -1,7 +1,7 @@
 // Renders the Add / Edit / Assign / Remove / Disapprove popups for the owner's Availability section (DT-325).
 import { useEffect, useState } from "react";
 import { formatDate, formatTime } from "./AvailabilityTable";
-import { AVAILABILITY_EMPTY_FORM, AVAILABILITY_ICON_PROPS } from "../../../constants/availability";
+import { AVAILABILITY_EMPTY_FORM, AVAILABILITY_ICON_PROPS } from "../../../constants/availability/availability";
 
 /**
  * Temporary method that creates a new availability slot.
@@ -394,3 +394,4 @@ export default function AvailabilityPopup({ mode, slot, slots, options, onClose,
             return null;
     }
 }
+

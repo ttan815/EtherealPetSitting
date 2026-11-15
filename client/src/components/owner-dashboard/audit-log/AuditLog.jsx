@@ -5,8 +5,8 @@ import AuditLogHeader from "./AuditLogHeader";
 import AuditLogFilters from "./AuditLogFilters";
 import ActivityTable from "./ActivityTable";
 import useExportButton from "../../action-button/ExportButton";
-import { AUDIT_LOG_PAGE_SIZE, DEFAULT_AUDIT_LOG_FILTERS } from "../../../constants/audit-log";
-import { getAuditLog, getAuditLogDetails, getAuditLogPeople } from "../../../services/audit-log-service";
+import { AUDIT_LOG_PAGE_SIZE, DEFAULT_AUDIT_LOG_FILTERS } from "../../../constants/owner/audit-log";
+import { getAuditLog, getAuditLogDetails, getAuditLogPeople } from "../../../services/owner-dashboard/audit-log-service";
 import "../../../styles/owner-dashboard/audit-log/AuditLog.css";
 
 /**

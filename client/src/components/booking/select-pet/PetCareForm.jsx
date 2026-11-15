@@ -2,7 +2,7 @@
 import TextField from "../../form/TextField";
 import TextAreaField from "../../form/TextAreaField";
 import Checkbox from "../../form/Checkbox";
-import { SHARED_PET_CARE_HINT } from "../../../constants/booking-ui";
+import { SHARED_PET_CARE_HINT } from "../../../constants/booking/booking-ui";
 import "../../../styles/form/PetCareForm.css";
 
 // Care form for the pet picked in PetSelector (Figma "Pet & Care Details" fields).

@@ -8,7 +8,7 @@ import mailIcon from "../assets/icons/mail.svg";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { loginAccount } from "../services/auth-service";
+import { loginAccount } from "../services/auth/auth-service";
 import "../styles/login/LoginPage.css";
 
 // Visitor log in screen. UI only: nothing is sent to the server yet.

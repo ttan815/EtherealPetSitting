@@ -1,5 +1,5 @@
 // Extracts valid service selections from booking URLs.
-import { BOOKING_SERVICES } from "../constants/booking-services";
+import { BOOKING_SERVICES } from "../constants/booking/booking-services";
 
 // Links into booking can pick services in the URL, one "service" per id,
 // e.g. the home page "Book this service": /book-appointment?service=dog-walking

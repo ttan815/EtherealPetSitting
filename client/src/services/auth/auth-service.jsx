@@ -3,7 +3,7 @@ import {
     GENERIC_ERROR_MESSAGE,
     LOGIN_ACCOUNT_URL,
     LOGIN_SESSION_URL,
-} from "../constants/api";
+} from "../../constants/shared/api";
 
 async function readJson(response) {
     return response.headers.get("content-type")?.includes("application/json")

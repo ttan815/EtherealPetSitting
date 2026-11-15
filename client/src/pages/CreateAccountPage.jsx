@@ -12,9 +12,9 @@ import PolicyConsent from "../components/create-account/PolicyConsent";
 import userIcon from "../assets/icons/user.svg";
 import mailIcon from "../assets/icons/mail.svg";
 import phoneIcon from "../assets/icons/phone.svg";
-import { CREATE_ACCOUNT_URL, NETWORK_ERROR_MESSAGE } from "../constants/api";
-import { EMPTY_CREATE_ACCOUNT_FORM } from "../constants/auth-forms";
-import { createAccount as createAccountRequest } from "../services/auth-service";
+import { CREATE_ACCOUNT_URL, NETWORK_ERROR_MESSAGE } from "../constants/shared/api";
+import { EMPTY_CREATE_ACCOUNT_FORM } from "../constants/auth/auth-forms";
+import { createAccount as createAccountRequest } from "../services/auth/auth-service";
 import "../styles/create-account/CreateAccountPage.css";
 
 // Visitor sign up screen. All checks happen on the server; this page only

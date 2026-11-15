@@ -1,6 +1,6 @@
 // Provides shared auth context state to the React application.
 import { createContext, useState, useContext, useEffect } from 'react'
-import { getCurrentSession } from "../services/auth-service";
+import { getCurrentSession } from "../services/auth/auth-service";
 const AuthContext = createContext()
 /**
  * Provides the current authentication session to descendant components.

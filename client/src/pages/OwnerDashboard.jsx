@@ -16,8 +16,8 @@ import AuditLog from "../components/owner-dashboard/audit-log/AuditLog"
 import Settings from "../components/owner-dashboard/settings/Settings"
 import SidebarProfile from "../components/parent-component/SidebarProfile";
 import { NewAppointmentProvider } from "../context/NewAppointmentProvider";
-import { OWNER_SECTION_TITLES } from "../constants/owner-dashboard";
-import { getPendingOwnerRequestCounts } from "../services/dashboard-service";
+import { OWNER_SECTION_TITLES } from "../constants/owner/owner-dashboard";
+import { getPendingOwnerRequestCounts } from "../services/owner-dashboard/dashboard-service";
 
 // Temporary placeholder for Logging out
 function logout() {

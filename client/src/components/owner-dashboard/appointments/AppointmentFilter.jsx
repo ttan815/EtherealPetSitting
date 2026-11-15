@@ -1,5 +1,5 @@
 // Renders the status tabs and search/dropdown filters for the owner's Appointments section.
-import { APPOINTMENT_TABS } from "../../../constants/appointment";
+import { APPOINTMENT_TABS } from "../../../constants/appointments/appointment";
 
 /**
  * Renders the status tabs with counts plus the search and dropdowns.

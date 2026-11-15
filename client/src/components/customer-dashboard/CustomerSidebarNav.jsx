@@ -1,6 +1,6 @@
 // Renders the customer sidebar nav component.
 import SidebarNav from "../parent-component/SidebarNav";
-import { CUSTOMER_NAV_ITEMS } from "../../constants/customer-nav-items";
+import { CUSTOMER_NAV_ITEMS } from "../../constants/customer/customer-nav-items";
 
 /**
  * Renders the Customer dashboard section navigation.

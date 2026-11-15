@@ -1,7 +1,7 @@
 // Renders the full Notifications page with pagination.
 import { useEffect, useState } from "react";
 import { ArrowRight, X } from "lucide-react";
-import { getNotificationIcon, NOTIFICATION_PAGE_SIZE } from "../../../constants/notifications";
+import { getNotificationIcon, NOTIFICATION_PAGE_SIZE } from "../../../constants/notifications/notifications";
 import { useNotifications } from "./NotificationsContext";
 import "../../../styles/parent-component/Notifications.css"
 

@@ -1,6 +1,6 @@
 // Renders the upcoming visit button component.
 import { useState, useEffect } from "react";
-import { getUpcomingAppointments } from "../../../services/appointment-service";
+import { getUpcomingAppointments } from "../../../services/owner-dashboard/appointment-service";
 import "../../../styles/customer-dashboard/view-appointment/UpcomingVisitButton.css";
 
 /**

@@ -6,7 +6,7 @@ import {
   APPOINTMENT_DAY_FORMAT_OPTIONS,
   APPOINTMENT_MONTH_FORMAT_OPTIONS,
   APPOINTMENT_WEEKDAY_FORMAT_OPTIONS,
-} from "../../../constants/appointment-copy";
+} from "../../../constants/appointments/appointment-copy";
 
 const Icon = ({ name, size = 16 }) => {
   const common = {

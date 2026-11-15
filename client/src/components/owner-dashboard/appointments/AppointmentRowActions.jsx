@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import {
     acceptAppointment, cancelAppointment, dateFromToday, declineAppointment, formatDay, formatTime,
     getAvailableTimes, markAppointmentComplete, parseISODate, rescheduleAppointment, toISODate,
-} from "../../../services/appointment-service";
-import { WEEKDAYS } from "../../../constants/appointment";
+} from "../../../services/owner-dashboard/appointment-service";
+import { WEEKDAYS } from "../../../constants/appointments/appointment";
 
 /**
  * Renders the buttons for one appointment row, based on its status.

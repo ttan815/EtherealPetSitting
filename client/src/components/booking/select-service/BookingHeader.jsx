@@ -1,7 +1,7 @@
 // Renders the booking header component.
 import BookingSteps from "./BookingSteps";
-import { BOOKING_STEPS } from "../../../constants/booking-steps";
-import { BOOKING_HEADER_TOPO_LINES } from "../../../constants/booking-ui";
+import { BOOKING_STEPS } from "../../../constants/booking/booking-steps";
+import { BOOKING_HEADER_TOPO_LINES } from "../../../constants/booking/booking-ui";
 import "../../../styles/booking/BookingHeader.css";
 
 // Brown title band at the top of every booking step (Figma "Title Band").

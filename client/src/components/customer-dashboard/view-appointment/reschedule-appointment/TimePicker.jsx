@@ -1,6 +1,6 @@
 // Renders the time picker component.
 import { useEffect, useState } from "react";
-import { getEmployeesWithAvailability } from "../../../../services/availability-service";
+import { getEmployeesWithAvailability } from "../../../../services/owner-dashboard/availability-service";
 import "../../../../styles/customer-dashboard/view-appointment/RescheduleAppointment.css";
 
 function formatDateKey(date) {

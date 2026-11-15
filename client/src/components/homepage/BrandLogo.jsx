@@ -1,5 +1,5 @@
 // Renders the brand logo component.
-import { BUSINESS_NAME, BUSINESS_SUBTITLE } from "../../constants/site-info";
+import { BUSINESS_NAME, BUSINESS_SUBTITLE } from "../../constants/shared/site-info";
 import logoDogMark from "../../assets/brand/logo-dog-mark.svg";
 import logoDogMarkLight from "../../assets/brand/logo-dog-mark-light.svg";
 import "../../styles/homepage/BrandLogo.css";

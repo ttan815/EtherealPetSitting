@@ -1,7 +1,7 @@
 // Renders the home banner section component.
 import BrandMedallion from "./BrandMedallion";
 import Button from "../form/Button";
-import { HOMEPAGE_AVATAR_TONES } from "../../constants/homepage";
+import { HOMEPAGE_AVATAR_TONES } from "../../constants/homepage/homepage";
 import topoLeft from "../../assets/home/hero-topo-left.svg";
 import topoRight from "../../assets/home/hero-topo-right.svg";
 import pawIcon from "../../assets/icons/paw.svg";

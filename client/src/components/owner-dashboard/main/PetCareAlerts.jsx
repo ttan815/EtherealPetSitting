@@ -1,6 +1,6 @@
 // Renders the pet care alerts card on the owner dashboard.
-import { OWNER_PET_CARE_ALERT_TYPES } from "../../../constants/owner-dashboard";
-import { getPetCareAlerts } from "../../../services/dashboard-service";
+import { OWNER_PET_CARE_ALERT_TYPES } from "../../../constants/owner/owner-dashboard";
+import { getPetCareAlerts } from "../../../services/owner-dashboard/dashboard-service";
 import "../../../styles/owner-dashboard/PetCareAlerts.css";
 
 /**

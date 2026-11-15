@@ -1,5 +1,5 @@
-import instagramIcon from "../assets/icons/instagram.svg";
-import facebookIcon from "../assets/icons/facebook.svg";
+import instagramIcon from "../../assets/icons/instagram.svg";
+import facebookIcon from "../../assets/icons/facebook.svg";
 
 /**
  * Navigation links to sections on the homepage.

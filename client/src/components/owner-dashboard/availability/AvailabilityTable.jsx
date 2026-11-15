@@ -1,6 +1,6 @@
 // Renders the availability table for the owner's Availability section (DT-323).
 import AvailabilityRowActions from "./AvailabilityRowActions";
-import { AVAILABILITY_STATUS_LABELS } from "../../../constants/availability";
+import { AVAILABILITY_STATUS_LABELS } from "../../../constants/availability/availability";
 
 /**
  * Turns a 24-hour "HH:MM" string into "9:00 AM".
@@ -94,3 +94,4 @@ export default function AvailabilityTable({ slots, handlers }) {
         </div>
     );
 }
+

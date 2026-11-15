@@ -1,5 +1,5 @@
 import { getCustomerProfile } from "./customer-service";
-import { getUpcomingAppointments, getPastAppointments } from "./appointment-service";
+import { getUpcomingAppointments, getPastAppointments } from "../owner-dashboard/appointment-service";
 import { getCustomerPets } from "./pet-service";
 
 const CUSTOMER_DASHBOARD_REQUESTS = [

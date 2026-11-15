@@ -1,7 +1,7 @@
-import dollarIcon from "../assets/owner-dashboard/stat-dollar.svg";
-import checkIcon from "../assets/owner-dashboard/stat-check.svg";
-import alertIcon from "../assets/owner-dashboard/stat-alert.svg";
-import pawIcon from "../assets/owner-dashboard/stat-paw.svg";
+import dollarIcon from "../../assets/owner-dashboard/stat-dollar.svg";
+import checkIcon from "../../assets/owner-dashboard/stat-check.svg";
+import alertIcon from "../../assets/owner-dashboard/stat-alert.svg";
+import pawIcon from "../../assets/owner-dashboard/stat-paw.svg";
 
 function formatMoney(amount) {
   return `$${amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}`;

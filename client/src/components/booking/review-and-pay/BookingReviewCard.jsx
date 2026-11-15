@@ -1,7 +1,7 @@
 import { formatWeekdayDate, fromDateKey } from "../../../utils/calendar-dates";
 import { formatTime } from "../../../utils/format-time";
 import { formatServicePrice } from "../../../utils/format-service-price";
-import { getSavedHouseEntry } from "../../../services/pet-service";
+import { getSavedHouseEntry } from "../../../services/customer-dashboard/pet-service";
 
 /**
  * Renders booking details and care instructions for one pet.

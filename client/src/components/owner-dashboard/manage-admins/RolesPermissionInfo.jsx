@@ -1,6 +1,6 @@
 // what each role can do card, shows admin abilities next to owner only abilities
 import { Check, Lock } from "lucide-react";
-import { ADMIN_PERMISSIONS, OWNER_PERMISSIONS } from "../../../constants/manage-admins";
+import { ADMIN_PERMISSIONS, OWNER_PERMISSIONS } from "../../../constants/owner/manage-admins";
 import "../../../styles/owner-dashboard/manage-admins/ManageAdmins.css";
 
 /**

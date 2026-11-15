@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useBooking } from "../hooks/useBooking";
-import { getBookingServices } from "../services/booking-service";
+import { getBookingServices } from "../services/booking/booking-service";
 import BookingConfirmation from "../components/booking/confirmation/BookingConfirmation";
 import ReviewPayDeposit from "./ReviewPayDepositPage";
 

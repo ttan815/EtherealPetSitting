@@ -11,8 +11,8 @@ import Dashboard from "../components/customer-dashboard/main/Dashboard";
 import ManagePersonalInfo from "../components/customer-dashboard/manage-personal-info/ManagePersonalInfo";
 import NotificationsPage from "../components/parent-component/notifications/NotificationsPage";
 import { NotificationsProvider } from "../components/parent-component/notifications/NotificationsContext";
-import { CUSTOMER_SECTION_TITLES } from "../constants/customer-dashboard";
-import { getCustomerDashboardData } from "../services/customer-dashboard-service";
+import { CUSTOMER_SECTION_TITLES } from "../constants/customer/customer-dashboard";
+import { getCustomerDashboardData } from "../services/customer-dashboard/customer-dashboard-service";
 
 /**
  * Renders the customer dashboard and its selected account section.

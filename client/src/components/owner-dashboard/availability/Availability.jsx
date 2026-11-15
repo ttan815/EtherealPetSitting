@@ -18,8 +18,8 @@ import {
     getAvailabilityOptions,
     removeAvailability,
     updateAvailability,
-} from "../../../services/availability-service";
-import { DEFAULT_OWNER_AVAILABILITY_FILTERS } from "../../../constants/availability";
+} from "../../../services/owner-dashboard/availability-service";
+import { DEFAULT_OWNER_AVAILABILITY_FILTERS } from "../../../constants/availability/availability";
 import "../../../styles/owner-dashboard/availability/Availability.css";
 
 const DEFAULT_FILTERS = { search: "", admin: "all", service: "all" };

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import BookingLayout from "../components/booking/select-service/BookingLayout";
 import BookingServiceCard from "../components/booking/select-service/BookingServiceCard";
 import Button from "../components/form/Button";
-import { getBookingServices } from "../services/booking-service";
+import { getBookingServices } from "../services/booking/booking-service";
 import arrowBackIcon from "../assets/booking/arrow-back.svg";
 import "../styles/booking/BookAppointmentPage.css";
 

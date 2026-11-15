@@ -1,6 +1,6 @@
 // Renders the availability calendar component.
 import { formatMonthYear, formatWeekdayDate, getCalendarWeeks, toDateKey } from "../../../utils/calendar-dates";
-import { BOOKING_WEEKDAY_LABELS } from "../../../constants/booking-ui";
+import { BOOKING_WEEKDAY_LABELS } from "../../../constants/booking/booking-ui";
 import previousIcon from "../../../assets/booking/calendar-prev.svg";
 import nextIcon from "../../../assets/booking/calendar-next.svg";
 import "../../../styles/booking/AvailabilityCalendar.css";

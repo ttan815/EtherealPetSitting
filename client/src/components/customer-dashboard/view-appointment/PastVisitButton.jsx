@@ -1,6 +1,6 @@
 // Renders the past visit button component.
 import { useState, useEffect } from "react";
-import { getPastAppointments } from "../../../services/appointment-service";
+import { getPastAppointments } from "../../../services/owner-dashboard/appointment-service";
 
 /**
  * Renders the control that loads and selects past appointment history.

@@ -5,7 +5,7 @@ import {
     getNotifications,
     markAllNotificationsRead,
     markNotificationRead,
-} from "../../../services/notification-service";
+} from "../../../services/parent-component/notification-service";
 
 const NotificationsContext = createContext(null);
 

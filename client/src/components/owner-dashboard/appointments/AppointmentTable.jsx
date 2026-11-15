@@ -1,7 +1,7 @@
 // Renders the appointment table and the Appointment Details popup for the owner's Appointments section.
 import AppointmentRowActions, { PopupFrame } from "./AppointmentRowActions";
-import { STATUS_LABELS } from "../../../constants/appointment";
-import { assignSitter, dateLines, formatDay, formatTime, paymentText } from "../../../services/appointment-service";
+import { STATUS_LABELS } from "../../../constants/appointments/appointment";
+import { assignSitter, dateLines, formatDay, formatTime, paymentText } from "../../../services/owner-dashboard/appointment-service";
 
 const PawIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

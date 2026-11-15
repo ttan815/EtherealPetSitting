@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EMPTY_PET_FORM } from "../../../constants/customer-forms";
+import { EMPTY_PET_FORM } from "../../../constants/customer/customer-forms";
 import "../../../styles/customer-dashboard/manage-pet/AddPet.css";
 
 function SectionHeading({ icon, title, subtitle }) {

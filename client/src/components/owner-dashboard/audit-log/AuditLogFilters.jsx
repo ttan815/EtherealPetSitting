@@ -3,8 +3,8 @@ import { Search } from "lucide-react";
 import {
     AUDIT_LOG_AREA_OPTIONS,
     AUDIT_LOG_RANGE_OPTIONS,
-} from "../../../constants/audit-log";
-import { getAuditLogPeopleOptions } from "../../../services/audit-log-service";
+} from "../../../constants/owner/audit-log";
+import { getAuditLogPeopleOptions } from "../../../services/owner-dashboard/audit-log-service";
 import "../../../styles/owner-dashboard/audit-log/AuditLog.css";
 
 /**

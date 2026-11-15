@@ -1,4 +1,4 @@
-import { AUDIT_LOG_HOUR_MS } from "../constants/audit-log";
+import { AUDIT_LOG_HOUR_MS } from "../../constants/owner/audit-log";
 
 function hoursAgo(hours) {
     return new Date(Date.now() - hours * AUDIT_LOG_HOUR_MS).toISOString();

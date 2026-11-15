@@ -8,8 +8,8 @@ import {
     acceptAppointment, cancelAppointment, declineAppointment, filterAppointments, getAppointmentCounts,
     getAppointments, getServices, getSitters, markAppointmentComplete, parseISODate, rescheduleAppointment,
     shiftDate,
-} from "../../../services/appointment-service";
-import { DEFAULT_FILTERS } from "../../../constants/appointment";
+} from "../../../services/owner-dashboard/appointment-service";
+import { DEFAULT_FILTERS } from "../../../constants/appointments/appointment";
 import { DeclineBookingPopup, RescheduleModal } from "./AppointmentRowActions";
 import "../../../styles/owner-dashboard/appointments/Appointments.css";
 import NewAppointmentButton from "../../action-button/NewAppointmentButton";

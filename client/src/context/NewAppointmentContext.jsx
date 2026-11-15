@@ -4,7 +4,7 @@ import { createContext, useContext } from "react";
  * Gets the temporary appointment requests shared with the owner dashboard.
  * @returns {Object[]} The initial booking requests.
  */
-export { getInitialBookingRequests } from "../services/appointment-service";
+export { getInitialBookingRequests } from "../services/owner-dashboard/appointment-service";
 
 export const NewAppointmentContext = createContext(null);
 

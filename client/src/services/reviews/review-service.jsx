@@ -1,4 +1,4 @@
-import { REVIEW_DAY_MS } from "../constants/reviews";
+import { REVIEW_DAY_MS } from "../../constants/reviews/reviews";
 
 const HOMEPAGE_REVIEWS = [
     {

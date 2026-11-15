@@ -6,7 +6,7 @@
 import { useEffect, useState } from "react";
 // shared star row
 import StarRating from "./StarRating";
-import { WRITE_REVIEW_MAX_LENGTH } from "../../constants/reviews";
+import { WRITE_REVIEW_MAX_LENGTH } from "../../constants/reviews/reviews";
 // styles for the popup
 import "../../styles/reviews/WriteReviewModal.css";
 

@@ -2,7 +2,7 @@
 import pawIcon from "../../../assets/owner-dashboard/schedule-paw.svg";
 import checkIcon from "../../../assets/owner-dashboard/status-check.svg";
 import arrowIcon from "../../../assets/owner-dashboard/link-arrow.svg";
-import { OWNER_VISIT_STATUS_LABELS } from "../../../constants/owner-dashboard";
+import { OWNER_VISIT_STATUS_LABELS } from "../../../constants/owner/owner-dashboard";
 import "../../../styles/owner-dashboard/TodaysSchedule.css";
 
 /**

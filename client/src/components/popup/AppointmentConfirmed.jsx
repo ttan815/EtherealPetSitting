@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import NavigationBar from "./NavigationBar";
-import '../styles/ReviewPayDeposit.css';
-import { useAuth } from "../../../context/AuthContext";
+import NavigationBar from "../homepage/NavigationBar";
+import '../../styles/booking/ReviewPayDeposit.css';
+import { useAuth } from "../../context/AuthContext";
 import heroTopoLeft from "../../assets/home/hero-topo-left.svg"
 import heroTopoRight from "../../assets/home/hero-topo-right.svg"
 import rightArrow from "../../assets/icons/arrow-right.svg"
 import circleBackground from "../../assets/home/hero-inner-circle.svg"
-import Footer from "../Footer";
+import Footer from "../homepage/Footer";
 
 /**
  * Renders the appointment confirmation and payment page.

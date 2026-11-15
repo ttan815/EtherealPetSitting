@@ -1,9 +1,9 @@
-import "../styles/customer-dashboard/CustomerAndPet.css";
-import CustomerList from "../components/customer-dashboard/CustomerList";
-import CustomerProfile from "../components/customer-dashboard/CustomerProfile";
-import HomeAccessInstruction from "../components/customer-dashboard/HomeAccessInstruction";
-import PetsProfile from "../components/customer-dashboard/PetsProfile";
-import PageHeader from "../components/customer-dashboard/PageHeader";
+import "../styles/owner-dashboard/mannage-customer-and-pet/CustomerAndPet.css";
+import CustomerList from "../components/owner-dashboard/customers-and-pets/CustomerList";
+import CustomerProfile from "../components/owner-dashboard/customers-and-pets/CustomerProfile";
+import HomeAccessInstruction from "../components/owner-dashboard/customers-and-pets/HomeAccessInstruction";
+import PetsProfile from "../components/owner-dashboard/customers-and-pets/PetsProfile";
+import PageHeader from "../components/parent-component/PageHeader";
 
 /**
  * Renders the customer and pet information page.

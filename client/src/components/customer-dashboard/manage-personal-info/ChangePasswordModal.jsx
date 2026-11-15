@@ -1,6 +1,6 @@
 // Renders the Change password popup on the Manage Personal Information section.
 import { useEffect, useRef, useState } from "react";
-import { EMPTY_PASSWORD_CHANGE_FORM } from "../../../constants/customer-forms";
+import { EMPTY_PASSWORD_CHANGE_FORM } from "../../../constants/customer/customer-forms";
 
 /**
  * Checks the new password against the rules shown in the hint.

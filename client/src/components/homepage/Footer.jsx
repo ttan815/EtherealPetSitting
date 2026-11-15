@@ -1,8 +1,8 @@
 // Renders the footer component.
 import { QRCodeSVG } from "qrcode.react";
 import BrandLogo from "./BrandLogo";
-import { SUPPORT_EMAIL, SUPPORT_PHONE } from "../../constants/site-info";
-import { HOMEPAGE_QUICK_LINKS, HOMEPAGE_SOCIAL_LINKS } from "../../constants/homepage";
+import { SUPPORT_EMAIL, SUPPORT_PHONE } from "../../constants/shared/site-info";
+import { HOMEPAGE_QUICK_LINKS, HOMEPAGE_SOCIAL_LINKS } from "../../constants/homepage/homepage";
 import emailIcon from "../../assets/icons/email.svg";
 import phoneIcon from "../../assets/icons/phone-light.svg";
 import topo1 from "../../assets/home/footer-topo-1.svg";

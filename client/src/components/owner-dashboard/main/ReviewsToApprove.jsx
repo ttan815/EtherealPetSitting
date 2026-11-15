@@ -8,8 +8,8 @@ import {
   getAverageRating,
   getPendingReviews,
   rejectReview as rejectReviewInService,
-} from "../../../services/review-service";
-import { REVIEW_DAY_MS } from "../../../constants/reviews";
+} from "../../../services/reviews/review-service";
+import { REVIEW_DAY_MS } from "../../../constants/reviews/reviews";
 import "../../../styles/owner-dashboard/ReviewsToApprove.css";
 
 // "Today", "1 day ago", "5 days ago"
