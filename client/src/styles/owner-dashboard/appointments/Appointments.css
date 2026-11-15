@@ -174,6 +174,26 @@
 .ap-cell-sub { display: block; color: var(--ap-muted); font-size: 14px; margin-top: 2px; }
 .ap-cell-text { color: var(--ap-ink); }
 .ap-cell-muted { color: var(--ap-muted); }
+.ap-price-input {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 8px;
+    border: 1px solid var(--ap-input-line);
+    border-radius: 8px;
+    background: var(--ap-card);
+    color: var(--ap-ink);
+}
+.ap-price-input input {
+    width: 72px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+}
+.ap-price-input:focus-within { border-color: var(--ap-brown); }
+.ap-table-sitter-select { max-width: 150px; }
 .ap-empty { text-align: center; padding: 56px 0 !important; cursor: default; }
 .ap-empty-title { font-family: var(--ap-serif); font-size: 20px; margin-bottom: 4px; }
 

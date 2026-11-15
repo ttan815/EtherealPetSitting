@@ -1,7 +1,14 @@
 // Renders the appointment table and the Appointment Details popup for the owner's Appointments section.
 import AppointmentRowActions, { PopupFrame } from "./AppointmentRowActions";
 import { STATUS_LABELS } from "../../../constants/appointments/appointment";
-import { assignSitter, dateLines, formatDay, formatTime, paymentText } from "../../../services/owner-dashboard/appointment-service";
+import { assignSitter, dateLines, formatDay, formatTime } from "../../../services/owner-dashboard/appointment-service";
+import { useEffect, useState } from "react";
+
+function cleanPrice(value) {
+    const cleaned = value.replace(/[^\d.]/g, "");
+    const [whole, ...decimals] = cleaned.split(".");
+    return decimals.length ? `${whole}.${decimals.join("").slice(0, 2)}` : whole;
+}
 
 const PawIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -32,7 +39,7 @@ export function StatusPill({ status }) {
  * @param {Object} handlers Row action callbacks passed to AppointmentRowActions.
  * @returns {JSX.Element} The table.
  */
-export default function AppointmentTable({ appointments, activeTab, handlers }) {
+export default function AppointmentTable({ appointments, activeTab, handlers, sitters }) {
     const emptyTitle = activeTab === "all" ? "No appointments" : `No ${activeTab} appointments`;
 
     return (
@@ -44,7 +51,7 @@ export default function AppointmentTable({ appointments, activeTab, handlers }) 
                         <th>Service</th>
                         <th>Date &amp; time</th>
                         <th>Sitter</th>
-                        <th>Payment <span className="ap-owner-tag">Owner</span></th>
+                        <th>Price</th>
                         <th>Status</th>
                         <th className="ap-th-actions">Actions</th>
                     </tr>
@@ -82,8 +89,20 @@ export default function AppointmentTable({ appointments, activeTab, handlers }) 
                                     <span className="ap-cell-main ap-cell-normal">{dayLine}</span>
                                     <span className="ap-cell-sub">{timeLine}</span>
                                 </td>
-                                <td className={a.sitter ? "ap-cell-text" : "ap-cell-muted"}>{a.sitter ?? "Unassigned"}</td>
-                                <td className={["deposit_unpaid", "balance_unpaid"].includes(a.payment) ? "ap-cell-muted" : "ap-cell-text"}>{paymentText(a)}</td>
+                                <td onClick={(event) => event.stopPropagation()}>
+                                    {a.status === "request" ? (
+                                        <SitterSelect appointment={a} sitters={sitters} onChange={handlers.onSitterChange} />
+                                    ) : (
+                                        <span className={a.sitter ? "ap-cell-text" : "ap-cell-muted"}>{a.sitter ?? "Unassigned"}</span>
+                                    )}
+                                </td>
+                                <td onClick={(event) => event.stopPropagation()}>
+                                    {a.status === "request" ? (
+                                        <AppointmentPriceField appointment={a} onPriceChange={handlers.onPriceChange} />
+                                    ) : (
+                                        <span className="ap-cell-text">${Number(a.price ?? Number(a.deposit || 0) + Number(a.balance || 0)).toFixed(2)}</span>
+                                    )}
+                                </td>
                                 <td><StatusPill status={a.status} /></td>
                                 <td className="ap-td-actions">
                                     <AppointmentRowActions appointment={a} {...handlers} />
@@ -94,6 +113,48 @@ export default function AppointmentTable({ appointments, activeTab, handlers }) 
                 </tbody>
             </table>
         </div>
+    );
+}
+
+function SitterSelect({ appointment, sitters, onChange }) {
+    return (
+        <select
+            className="ap-input ap-table-sitter-select"
+            aria-label={`Assign sitter for ${appointment.pet}`}
+            value={appointment.sitter ?? "Unassigned"}
+            onChange={(event) => onChange?.(appointment, event.target.value)}
+            onKeyDown={(event) => event.stopPropagation()}
+        >
+            <option value="Unassigned">Unassigned</option>
+            {sitters.map((sitter) => (
+                <option key={sitter} value={sitter}>{sitter === "You" ? "You (Angelena)" : sitter}</option>
+            ))}
+        </select>
+    );
+}
+
+function AppointmentPriceField({ appointment, onPriceChange }) {
+    const initialPrice = appointment.price ?? Number(appointment.deposit || 0) + Number(appointment.balance || 0);
+    const [draft, setDraft] = useState(String(initialPrice));
+
+    useEffect(() => setDraft(String(initialPrice)), [initialPrice]);
+
+    return (
+        <label className="ap-price-input">
+            <span aria-hidden="true">$</span>
+            <input
+                type="text"
+                inputMode="decimal"
+                aria-label={`${appointment.service} appointment price`}
+                value={draft}
+                onChange={(event) => setDraft(cleanPrice(event.target.value))}
+                onBlur={() => {
+                    const price = draft === "" ? 0 : Number(draft);
+                    onPriceChange?.(appointment, price);
+                    setDraft(String(price));
+                }}
+            />
+        </label>
     );
 }
 
@@ -119,8 +180,10 @@ export function AppointmentDetails({ appointment: a, sitters, onClose, onChange,
     const fullDate = new Date(`${a.date}T00:00`).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
     const subtitleDay = formatDay(a.date) === "Today" ? `Today, ${formatDay(a.date, false)}` : fullDate;
     const editable = !["completed", "cancelled"].includes(a.status);
+    const canAssignSitter = a.status === "request";
 
     function changeSitter(value) {
+        if (!canAssignSitter) return;
         const sitter = value === "Unassigned" ? null : value;
         const result = assignSitter(a.id, sitter);
         if (result.ok) onChange({ ...a, sitter });
@@ -150,7 +213,7 @@ export function AppointmentDetails({ appointment: a, sitters, onClose, onChange,
                         <InfoRow label="Length">{a.length}</InfoRow>
                         <label className="ap-field">
                             <span className="ap-field-label">Sitter</span>
-                            <select className="ap-input" value={a.sitter ?? "Unassigned"} onChange={(e) => changeSitter(e.target.value)} disabled={!editable}>
+            <select className="ap-input" value={a.sitter ?? "Unassigned"} onChange={(e) => changeSitter(e.target.value)} disabled={!canAssignSitter}>
                                 {sitters.map((s) => <option key={s} value={s}>{s === "You" ? "You (Angelena)" : s}</option>)}
                             </select>
                         </label>

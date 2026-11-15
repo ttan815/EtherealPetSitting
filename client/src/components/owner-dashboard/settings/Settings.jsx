@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import SettingsHeader from "./SettingsHeader";
 import BusinessInfo from "./BusinessInfo";
-import ServicePrices from "./ServicePrices";
+import Services from "./Services";
 import Deposits from "./Deposits";
 import NotificationSettings from "./NotificationSettings";
 import { EMAIL_PATTERN } from "../../../constants/shared/validation";
@@ -93,7 +93,7 @@ export default function Settings() {
             <div className="st-grid">
                 <div className="st-column">
                     <BusinessInfo info={draft.info} errors={shownErrors.info} onChange={(v) => updateSection("info", v)} />
-                    <ServicePrices services={draft.services} errors={shownErrors.services} onChange={(v) => updateSection("services", v)} />
+                    <Services services={draft.services} errors={shownErrors.services} onChange={(v) => updateSection("services", v)} />
                 </div>
                 <div className="st-column">
                     <Deposits deposits={draft.deposits} errors={shownErrors.deposits} onChange={(v) => updateSection("deposits", v)} />

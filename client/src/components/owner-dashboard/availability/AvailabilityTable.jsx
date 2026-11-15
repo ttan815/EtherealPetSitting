@@ -42,7 +42,6 @@ export default function AvailabilityTable({ slots, handlers }) {
                         <th>Admin</th>
                         <th>Service</th>
                         <th>Date &amp; time</th>
-                        <th>Price</th>
                         <th>Booking</th>
                         <th>Status</th>
                         <th className="av-th-actions">Actions</th>
@@ -51,7 +50,7 @@ export default function AvailabilityTable({ slots, handlers }) {
                 <tbody>
                     {slots.length === 0 && (
                         <tr>
-                            <td colSpan={7} className="av-empty">No availability matches these filters.</td>
+                            <td colSpan={6} className="av-empty">No availability matches these filters.</td>
                         </tr>
                     )}
                     {slots.map((slot) => (
@@ -67,7 +66,6 @@ export default function AvailabilityTable({ slots, handlers }) {
                                 <div className="av-cell-main">{formatDate(slot.date)}</div>
                                 <div className="av-cell-sub">{formatTime(slot.start)} – {formatTime(slot.end)}</div>
                             </td>
-                            <td className="av-cell-main">${slot.price}</td>
                             <td>
                                 {slot.customer ? (
                                     <>

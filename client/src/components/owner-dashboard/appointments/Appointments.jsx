@@ -6,7 +6,7 @@ import AppointmentFilter from "./AppointmentFilter";
 import AppointmentTable, { AppointmentDetails } from "./AppointmentTable";
 import {
     acceptAppointment, cancelAppointment, declineAppointment, filterAppointments, getAppointmentCounts,
-    getAppointments, getServices, getSitters, markAppointmentComplete, parseISODate, rescheduleAppointment,
+    assignSitter, getAppointments, getServices, getSitters, markAppointmentComplete, parseISODate, rescheduleAppointment,
     shiftDate,
 } from "../../../services/owner-dashboard/appointment-service";
 import { DEFAULT_FILTERS } from "../../../constants/appointments/appointment";
@@ -76,6 +76,15 @@ export default function Appointments({ onRequestCountChange }) {
         },
         onReschedule: (a) => { setDetailsId(null); setPopup({ mode: "reschedule", id: a.id }); },
         onView: (a) => setDetailsId(a.id),
+        onPriceChange(a, price) {
+            if (a.status !== "request") return;
+            updateAppointment(a.id, { price });
+        },
+        onSitterChange(a, value) {
+            if (a.status !== "request") return;
+            const sitter = value === "Unassigned" ? null : value;
+            if (assignSitter(a.id, sitter).ok) updateAppointment(a.id, { sitter });
+        },
         onCancel(a) {
             if (!cancelAppointment(a.id).ok) return;
             updateAppointment(a.id, { status: "cancelled" });
@@ -119,7 +128,7 @@ export default function Appointments({ onRequestCountChange }) {
                 services={services}
             />
 
-            <AppointmentTable appointments={visible} activeTab={activeTab} handlers={handlers} />
+            <AppointmentTable appointments={visible} activeTab={activeTab} handlers={handlers} sitters={sitters} />
 
             {detailsAppointment && (
                 <AppointmentDetails

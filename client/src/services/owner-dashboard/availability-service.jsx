@@ -203,6 +203,7 @@ export function updateAvailability(id, data) {
   return { ...updated, customer: updated.customer ? { ...updated.customer } : null };
 }
 
+
 /**
  * Removes a temporary availability slot.
  * @param {number|string} id Availability slot ID.

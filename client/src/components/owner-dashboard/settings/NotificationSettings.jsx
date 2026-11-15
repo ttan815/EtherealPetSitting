@@ -1,6 +1,6 @@
 // notifications card, the owner picks which updates they get notified about
 import { Bell } from "lucide-react";
-import { Toggle } from "./ServicePrices";
+import { Toggle } from "./Services";
 import { NOTIFICATION_OPTIONS } from "../../../constants/notifications/notifications";
 import "../../../styles/owner-dashboard/settings/Settings.css";
 

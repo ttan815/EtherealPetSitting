@@ -1,6 +1,6 @@
 // deposits card, how much customers pay online based on how far ahead they book
 import { CircleDollarSign, Info } from "lucide-react";
-import { PriceInput } from "./ServicePrices";
+import { PriceInput } from "./Services";
 import "../../../styles/owner-dashboard/settings/Settings.css";
 
 /**

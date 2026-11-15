@@ -45,7 +45,7 @@ export default function AppointmentRowActions({ appointment, onAccept, onDecline
         case "request":
             return (
                 <div className="ap-row-actions">
-                    <button type="button" className="ap-btn ap-btn-primary ap-btn-sm" onClick={run(onAccept)}>Accept</button>
+                    <button type="button" className="ap-btn ap-btn-primary ap-btn-sm" onClick={run(onAccept)}>Confirm</button>
                     <button type="button" className="ap-btn ap-btn-outline ap-btn-sm" onClick={run(onDecline)}>Decline</button>
                 </div>
             );

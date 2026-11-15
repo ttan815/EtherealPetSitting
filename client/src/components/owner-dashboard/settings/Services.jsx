@@ -74,7 +74,7 @@ export function PriceInput({ id, label, value, placeholder = "", disabled = fals
  * @param {Function} onChange Called with the updated services array.
  * @returns {JSX.Element} The services and prices card.
  */
-export default function ServicePrices({ services, errors, onChange }) {
+export default function Services({ services, errors, onChange }) {
     function update(id, changes) {
         onChange(services.map((s) => (s.id === id ? { ...s, ...changes } : s)));
     }
@@ -84,7 +84,7 @@ export default function ServicePrices({ services, errors, onChange }) {
             <div className="st-card-header">
                 <span className="st-card-icon" aria-hidden="true"><Tag size={18} strokeWidth={1.75} /></span>
                 <div>
-                    <h2 id="st-services-title" className="st-card-title">Services &amp; prices</h2>
+                    <h2 id="st-services-title" className="st-card-title">Services</h2>
                     <p className="st-card-subtitle">Turn services on or off and set what each one costs</p>
                 </div>
             </div>
@@ -99,18 +99,6 @@ export default function ServicePrices({ services, errors, onChange }) {
                                 onChange={(enabled) => update(service.id, { enabled })}
                             />
                             <span className={`st-row-label${service.enabled ? "" : " is-off"}`}>{service.name}</span>
-                        </div>
-                        <div className="st-row-right">
-                            <PriceInput
-                                id={`st-price-${service.id}`}
-                                label={`${service.name} price`}
-                                value={service.price}
-                                placeholder="Set price"
-                                disabled={!service.enabled}
-                                invalid={Boolean(errors[service.id])}
-                                onChange={(price) => update(service.id, { price })}
-                            />
-                            {errors[service.id] && <p className="st-error">{errors[service.id]}</p>}
                         </div>
                     </li>
                 ))}
