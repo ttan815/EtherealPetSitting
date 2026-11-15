@@ -1,21 +1,6 @@
 import { useState } from "react";
+import { EMPTY_PET_FORM } from "../../../constants/customer-forms";
 import "../../../styles/customer-dashboard/manage-pet/AddPet.css";
-
-const initialPet = {
-  name: "",
-  age: "",
-  breed: "",
-  medication: "",
-  diet: "",
-  allergy: "",
-  instructions: "",
-  likes: "",
-  dislikes: "",
-  veterinarian: "",
-  clinic: "",
-  phone: "",
-  notes: "",
-};
 
 function SectionHeading({ icon, title, subtitle }) {
   return (
@@ -108,7 +93,7 @@ function Modal({ title, message, onClose, onConfirm, confirmText = "OK" }) {
 }
 
 export default function AddPet( { setCurrentView } ) {
-  const [pet, setPet] = useState(initialPet);
+  const [pet, setPet] = useState(() => ({ ...EMPTY_PET_FORM }));
   const [modal, setModal] = useState("");
   const [toast, setToast] = useState(false);
 
@@ -152,7 +137,7 @@ export default function AddPet( { setCurrentView } ) {
   };
 
   const reset = () => {
-    setPet(initialPet);
+    setPet({ ...EMPTY_PET_FORM });
     setModal("");
   };
 

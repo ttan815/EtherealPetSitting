@@ -1,5 +1,6 @@
 // Renders the past visit button component.
 import { useState, useEffect } from "react";
+import { getPastAppointments } from "../../../services/appointment-service";
 
 /**
  * Renders the control that loads and selects past appointment history.
@@ -13,46 +14,9 @@ function PastVisitButton({ onAppointmentsLoaded, activeFilter, setActiveFilter }
     const [loading, setLoading] = useState(false);
     const [loaded, setLoaded] = useState(false);
 
-    // Temporary data until the API is connected
-    const tempAppointments = [
-        {
-            id: 1,
-            petName: "Samson",
-            service: "Dog Walking",
-            date: "Oct 26, 2026",
-            time: "10:00 AM",
-            status: "Completed",
-            paymentStatus: "Paid",
-            balance: "$0.00",
-            petType: "dog"
-        },
-        {
-            id: 2,
-            petName: "Pops",
-            service: "Pet Sitting",
-            date: "Oct 28, 2026",
-            time: "2:00 PM",
-            status: "Completed",
-            paymentStatus: "Paid",
-            balance: "$0.00",
-            petType: "cat"
-        },
-        {
-            id: 3,
-            petName: "Carl",
-            service: "Pet Grooming",
-            date: "Oct 30, 2026",
-            time: "11:00 AM",
-            status: "Completed",
-            paymentStatus: "Paid",
-            balance: "$0.00",
-            petType: "dog"
-        },
-    ];
-
     function loadAppointment() {
-        // Later, replace this with an API request.
-        onAppointmentsLoaded(tempAppointments);
+        const appointments = getPastAppointments();
+        onAppointmentsLoaded(appointments);
         setLoaded(true);
         setLoading(false);
     }
@@ -77,7 +41,7 @@ function PastVisitButton({ onAppointmentsLoaded, activeFilter, setActiveFilter }
 
             <div className={activeFilter === "upcoming" ? "counter-badge-inactive" : "counter-badge"}>
                 <div className={activeFilter === "upcoming" ? "number-inactive" : "number"}>
-                    {loaded ? tempAppointments.length : 3}
+                    {loaded ? getPastAppointments().length : 3}
                 </div>
             </div>
 

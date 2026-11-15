@@ -1,19 +1,13 @@
 // Shares the customer's notifications between the bell popup and the Notifications page.
 import { createContext, useContext, useMemo, useState } from "react";
-import { ClipboardList, CircleX, ReceiptText, ArrowLeftRight } from "lucide-react";
-import { mockNotifications } from "../../../constants/mock-notifications";
+import {
+    dismissNotification,
+    getNotifications,
+    markAllNotificationsRead,
+    markNotificationRead,
+} from "../../../services/notification-service";
 
 const NotificationsContext = createContext(null);
-
-/**
- * Icon shown for each notification type.
- */
-export const NOTIFICATION_ICONS = {
-    appointment: ClipboardList,
-    cancelled: CircleX,
-    receipt: ReceiptText,
-    rescheduled: ArrowLeftRight,
-};
 
 /**
  * Holds the notification list and the actions that change it.
@@ -23,8 +17,7 @@ export const NOTIFICATION_ICONS = {
  * @returns {JSX.Element} The provider.
  */
 export function NotificationsProvider({ children, onViewAll, onNavigate }) {
-    // TODO: load from the notifications API.
-    const [notifications, setNotifications] = useState(mockNotifications);
+    const [notifications, setNotifications] = useState(getNotifications);
 
     const value = useMemo(() => {
         const unreadCount = notifications.filter((n) => !n.read).length;
@@ -32,15 +25,28 @@ export function NotificationsProvider({ children, onViewAll, onNavigate }) {
         return {
             notifications,
             unreadCount,
-            markRead: (id) =>
-                setNotifications((list) => list.map((n) => (n.id === id ? { ...n, read: true } : n))),
-            markAllRead: () => setNotifications((list) => list.map((n) => ({ ...n, read: true }))),
-            dismiss: (id) => setNotifications((list) => list.filter((n) => n.id !== id)),
+            markRead: (id) => {
+                if (markNotificationRead(id).ok) {
+                    setNotifications((list) => list.map((n) => (n.id === id ? { ...n, read: true } : n)));
+                }
+            },
+            markAllRead: () => {
+                if (markAllNotificationsRead().ok) {
+                    setNotifications((list) => list.map((n) => ({ ...n, read: true })));
+                }
+            },
+            dismiss: (id) => {
+                if (dismissNotification(id).ok) {
+                    setNotifications((list) => list.filter((n) => n.id !== id));
+                }
+            },
             openAction: (notification) => {
-                setNotifications((list) =>
-                    list.map((n) => (n.id === notification.id ? { ...n, read: true } : n))
-                );
-                onNavigate?.(notification.action.section);
+                if (markNotificationRead(notification.id).ok) {
+                    setNotifications((list) =>
+                        list.map((n) => (n.id === notification.id ? { ...n, read: true } : n))
+                    );
+                    onNavigate?.(notification.action.section);
+                }
             },
             viewAll: () => onViewAll?.(),
         };

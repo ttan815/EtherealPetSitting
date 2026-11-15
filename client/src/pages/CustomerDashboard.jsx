@@ -11,13 +11,7 @@ import Dashboard from "../components/customer-dashboard/main/Dashboard";
 import ManagePersonalInfo from "../components/customer-dashboard/manage-personal-info/ManagePersonalInfo";
 import NotificationsPage from "../components/parent-component/notifications/NotificationsPage";
 import { NotificationsProvider } from "../components/parent-component/notifications/NotificationsContext";
-
-const SECTION_TITLES = {
-    profile: "Manage Personal Information",
-    book: "Book an Appointment",
-    tasks: "Additional Task",
-    review: "Write a Review",
-};
+import { CUSTOMER_SECTION_TITLES } from "../constants/customer-dashboard";
 
 /**
  * Renders the customer dashboard and its selected account section.
@@ -80,7 +74,7 @@ function CustomerDashboard() {
             default:
                 return (
                     <section>
-                        <h1>{SECTION_TITLES[activeSection]}</h1>
+                        <h1>{CUSTOMER_SECTION_TITLES[activeSection]}</h1>
                         <p>This section is not available yet.</p>
                     </section>
                 );

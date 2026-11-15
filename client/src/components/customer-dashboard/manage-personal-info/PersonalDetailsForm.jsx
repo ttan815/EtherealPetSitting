@@ -1,15 +1,7 @@
 // Renders the editable Personal details card on the Manage Personal Information section.
 import { useEffect, useRef } from "react";
-import { User, Sparkles, Mail, Phone, PhoneCall, MapPin, Pencil, Lock, SquareUser } from "lucide-react";
-
-const FIELDS = [
-    { name: "fullName", label: "Full name", icon: User, type: "text" },
-    { name: "preferredName", label: "Preferred name", icon: Sparkles, type: "text" },
-    { name: "email", label: "Gmail", icon: Mail, type: "email" },
-    { name: "phone", label: "Phone number", icon: Phone, type: "tel" },
-    { name: "address", label: "Address", icon: MapPin, type: "text" },
-    { name: "emergencyContact", label: "Emergency number", icon: PhoneCall, type: "text" },
-];
+import { Pencil, Lock, SquareUser } from "lucide-react";
+import { PERSONAL_DETAILS_FIELDS } from "../../../constants/personal-info";
 
 /**
  * Renders the personal details form; each field is read-only until its pencil (or "Edit all fields") is clicked.
@@ -52,7 +44,7 @@ export default function PersonalDetailsForm({ values, verified, editingFields, o
             </div>
 
             <div className="pi-fields">
-                {FIELDS.map(({ name, label, icon: Icon, type }) => {
+                {PERSONAL_DETAILS_FIELDS.map(({ name, label, icon: Icon, type }) => {
                     const isEditing = editingFields.includes(name);
                     return (
                         <div className="pi-field" key={name}>
@@ -101,4 +93,3 @@ export default function PersonalDetailsForm({ values, verified, editingFields, o
 /**
  * List of every editable field name, used by "Edit all fields".
  */
-export const FIELD_NAMES = FIELDS.map((field) => field.name);

@@ -1,29 +1,12 @@
 // Renders the Overview stat cards on the owner's Revenue page.
 import OverviewHeader from "../../parent-component/OverviewHeader";
 import OverviewCard from "../../parent-component/OverviewCard";
-import { getRevenue } from "../../../utils/get-revenue";
+import { getRevenue, getRevenueOverview } from "../../../services/revenue-service";
 import dollarIcon from "../../../assets/owner-dashboard/stat-dollar.svg";
 import checkIcon from "../../../assets/owner-dashboard/stat-check.svg";
 import alertIcon from "../../../assets/owner-dashboard/stat-alert.svg";
 import pawIcon from "../../../assets/owner-dashboard/stat-paw.svg";
 import "../../../styles/owner-dashboard/revenue/RevenueOverview.css";
-
-// Temporary placeholder numbers for the cards that getRevenue() doesn't cover
-const PLACEHOLDER_OVERVIEW = {
-  week: { periodName: "This week", previousPeriodName: "last week", depositsCollected: 140, depositBookingCount: 7, stillOwed: 180, unpaidVisitCount: 3, visitsCompleted: 14 },
-  month: { periodName: "September", previousPeriodName: "August", depositsCollected: 620, depositBookingCount: 31, stillOwed: 180, unpaidVisitCount: 3, visitsCompleted: 58 },
-  year: { periodName: "2026", previousPeriodName: "2025", depositsCollected: 5480, depositBookingCount: 274, stillOwed: 180, unpaidVisitCount: 3, visitsCompleted: 612 },
-};
-
-/**
- * Gets the deposits, unpaid visits and completed visits for a period.
- * @param {string} unitDate The period: "week", "month" or "year".
- * @returns {Object} Period names, deposits collected and their booking count, amount still owed, unpaid visits and visits completed.
- */
-function getRevenueOverview(unitDate) {
-  const overview = PLACEHOLDER_OVERVIEW[unitDate]; // BACKEND: result from fetch()
-  return overview;
-}
 
 // "$4,860", "$44,310.75"
 function formatMoney(amount) {

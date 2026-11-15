@@ -2,9 +2,8 @@
 import TextField from "../../form/TextField";
 import TextAreaField from "../../form/TextAreaField";
 import Checkbox from "../../form/Checkbox";
+import { SHARED_PET_CARE_HINT } from "../../../constants/booking-ui";
 import "../../../styles/form/PetCareForm.css";
-
-const SHARED_HINT = "Applies to all pets in this booking.";
 
 // Care form for the pet picked in PetSelector (Figma "Pet & Care Details" fields).
 // New pets also get name / type / age and "Save this pet to my profile".
@@ -55,7 +54,7 @@ function PetCareForm({ pet, houseEntry, additionalTasks, onPetChange, onSharedCh
         id="booking-house-entry"
         label="House-Entry / Lockbox Details"
         placeholder="Provide details on key location, alarm codes, or security notes..."
-        hint={SHARED_HINT}
+        hint={SHARED_PET_CARE_HINT}
         value={houseEntry}
         onChange={(event) => onSharedChange({ houseEntry: event.target.value })}
       />
@@ -68,7 +67,7 @@ function PetCareForm({ pet, houseEntry, additionalTasks, onPetChange, onSharedCh
         id="booking-additional-tasks"
         label="Additional Tasks"
         placeholder="e.g. Bring in mail, water plants..."
-        hint={SHARED_HINT}
+        hint={SHARED_PET_CARE_HINT}
         value={additionalTasks}
         onChange={(event) => onSharedChange({ additionalTasks: event.target.value })}
       />

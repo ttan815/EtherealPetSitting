@@ -1,26 +1,10 @@
 import { useId, useState } from "react";
+import { EMPTY_MANAGED_CUSTOMER, EMPTY_MANAGED_PET } from "../../constants/customer-forms";
 import "../../styles/owner-dashboard/mannage-customer-and-pet/CustomerProfile.css";
-
-const EMPTY_CUSTOMER = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    homeAccessNote: "",
-};
-
-const EMPTY_PET = {
-    name: "",
-    breed: "",
-    age: "",
-    weight: "",
-    allergies: "",
-};
 
 function getCustomerForm(customer, isAddMode) {
     if (isAddMode) {
-        return { ...EMPTY_CUSTOMER };
+        return { ...EMPTY_MANAGED_CUSTOMER };
     }
     return {
         firstName: customer.firstName,
@@ -34,7 +18,7 @@ function getCustomerForm(customer, isAddMode) {
 
 function getPetForms(customer, isAddMode) {
     if (isAddMode || !customer?.pets?.length) {
-        return [{ ...EMPTY_PET }];
+        return [{ ...EMPTY_MANAGED_PET }];
     }
     return customer.pets.map((pet) => ({ ...pet }));
 }
@@ -64,7 +48,7 @@ export default function ManageCustomerPopup({ mode, customer, onSave, onClose })
     }
 
     function handleAddPet() {
-        setPetForms((current) => [...current, { ...EMPTY_PET }]);
+        setPetForms((current) => [...current, { ...EMPTY_MANAGED_PET }]);
         setValidationMessage("");
     }
 

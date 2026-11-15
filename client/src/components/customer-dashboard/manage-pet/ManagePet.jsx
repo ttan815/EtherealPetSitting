@@ -19,34 +19,7 @@ import AddPet from "./AddPet"
 import EditPet from "./EditPet"
 // Add Page Header
 import PageHeader from "../../parent-component/PageHeader";
-
-// sample pets from the figma until real pets come from the server
-const SAMPLE_PETS = [
-  // first sample pet
-  {
-    id: 1,
-    name: "Mochi",
-    breed: "Golden Retriever",
-    age: "4 years",
-    diet: "2 cups sensitive-stomach kibble · twice daily",
-    careInstructions: "Breakfast at 7:30 AM, dinner at 6:00 PM, and a 25-minute evening walk.",
-    lastUpdated: "Sep 24",
-    profileComplete: true,
-    photo: null,
-  },
-  // second sample pet
-  {
-    id: 2,
-    name: "Pepper",
-    breed: "Domestic Shorthair",
-    age: "2 years",
-    diet: "Grain-free dry food · fresh water refreshed daily",
-    careInstructions: "Feed twice daily, refresh water, and keep the sunroom window open.",
-    lastUpdated: "Sep 18",
-    profileComplete: true,
-    photo: null,
-  },
-]; // end of sample pets
+import { getCustomerPets } from "../../../services/pet-service";
 
 
 function MainContent( {pets, petCountLabel, setCurrentView} ) {
@@ -99,7 +72,7 @@ function MainContent( {pets, petCountLabel, setCurrentView} ) {
  * @param {Array<Object>} [props.pets] - Pets to display in the management list.
  * @returns {JSX.Element} The saved-pet management page.
  */
-function ManagePet({ pets = SAMPLE_PETS}) {
+function ManagePet({ pets = getCustomerPets() }) {
   // shows 1 pet or 2 pets in the badge
   const petCountLabel = `${pets.length} ${pets.length === 1 ? "pet" : "pets"}`;
   // Initialize Views Content

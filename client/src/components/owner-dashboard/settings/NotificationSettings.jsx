@@ -1,16 +1,8 @@
 // notifications card, the owner picks which updates they get notified about
 import { Bell } from "lucide-react";
 import { Toggle } from "./ServicePrices";
+import { NOTIFICATION_OPTIONS } from "../../../constants/notifications";
 import "../../../styles/owner-dashboard/settings/Settings.css";
-
-export const NOTIFICATION_OPTIONS = [
-    { key: "newBookings", label: "New booking requests" },
-    { key: "rescheduled", label: "Rescheduled appointments" },
-    { key: "cancelled", label: "Cancelled appointments" },
-    { key: "serviceUpdates", label: "Service updates" },
-    { key: "newReviews", label: "New reviews" },
-    { key: "weeklyEarnings", label: "Weekly earnings summary" },
-];
 
 /**
  * Renders the notifications card with one toggle per notification type.

@@ -1,6 +1,7 @@
 // Renders the home banner section component.
 import BrandMedallion from "./BrandMedallion";
 import Button from "../form/Button";
+import { HOMEPAGE_AVATAR_TONES } from "../../constants/homepage";
 import topoLeft from "../../assets/home/hero-topo-left.svg";
 import topoRight from "../../assets/home/hero-topo-right.svg";
 import pawIcon from "../../assets/icons/paw.svg";
@@ -9,8 +10,6 @@ import cameraLightIcon from "../../assets/icons/camera-light.svg";
 import "../../styles/homepage/HomeBannerSection.css";
 
 // Background colors of the three pet avatars in the "Trusted by" row
-const AVATAR_TONES = ["ring", "blush", "tan"];
-
 // Home page hero (Figma "Hero"): headline, call-to-action buttons and the
 // brand medallion with two pet photo placeholders.
 /**
@@ -47,7 +46,7 @@ export default function HomeBannerSection() {
 
           <div className="hero-trust">
             <div className="hero-avatars" aria-hidden="true">
-              {AVATAR_TONES.map((tone) => (
+              {HOMEPAGE_AVATAR_TONES.map((tone) => (
                 <span key={tone} className={`hero-avatar hero-avatar-${tone}`}>
                   <img src={pawIcon} alt="" />
                 </span>

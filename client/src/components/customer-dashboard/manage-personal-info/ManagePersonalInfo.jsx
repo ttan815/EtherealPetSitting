@@ -2,11 +2,16 @@
 import { useCallback, useState } from "react";
 import PageHeader from "../../parent-component/PageHeader";
 import ProfileCard from "./ProfileCard";
-import PersonalDetailsForm, { FIELD_NAMES } from "./PersonalDetailsForm";
+import PersonalDetailsForm from "./PersonalDetailsForm";
 import PasswordSecurity from "./PasswordSecurity";
 import ChangePasswordModal from "./ChangePasswordModal";
 import SavedToast from "./SavedToast";
-import { mockCustomer } from "../../../constants/mock-customer";
+import { PERSONAL_DETAILS_FIELD_NAMES } from "../../../constants/personal-info";
+import {
+    changeCustomerPassword,
+    getCustomerProfile,
+    updateCustomerProfile,
+} from "../../../services/customer-service";
 import "../../../styles/customer-dashboard/manage-personal-info/ManagePersonalInfo.css";
 
 /**
@@ -15,9 +20,9 @@ import "../../../styles/customer-dashboard/manage-personal-info/ManagePersonalIn
  */
 export default function ManagePersonalInfo() {
     // Saved values (what the profile card shows). TODO: load the logged-in customer from the API.
-    const [customer, setCustomer] = useState(mockCustomer);
+    const [customer, setCustomer] = useState(getCustomerProfile);
     // Values being typed in the form before "Save changes".
-    const [draft, setDraft] = useState(mockCustomer);
+    const [draft, setDraft] = useState(getCustomerProfile);
     const [editingFields, setEditingFields] = useState([]);
     const [passwordOpen, setPasswordOpen] = useState(false);
     const [toastMessage, setToastMessage] = useState("");
@@ -31,20 +36,22 @@ export default function ManagePersonalInfo() {
     }
 
     function handleEditAll() {
-        setEditingFields(FIELD_NAMES);
+        setEditingFields(PERSONAL_DETAILS_FIELD_NAMES);
     }
 
     function handleSave() {
-        // TODO: send `draft` to the API before updating.
-        setCustomer((prev) => ({ ...prev, ...draft }));
+        const updatedCustomer = updateCustomerProfile(draft);
+        setCustomer(updatedCustomer);
+        setDraft(updatedCustomer);
         setEditingFields([]);
         setToastMessage("Changes saved");
     }
 
     function handlePasswordUpdate() {
-        // TODO: send { oldPassword, newPassword } to the API; show an error if the old password is wrong.
+        const updatedCustomer = changeCustomerPassword();
         setPasswordOpen(false);
-        setCustomer((prev) => ({ ...prev, passwordLastChanged: "just now" }));
+        setCustomer(updatedCustomer);
+        setDraft(updatedCustomer);
         setToastMessage("Password changed");
     }
 

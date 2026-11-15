@@ -1,23 +1,7 @@
 // what each role can do card, shows admin abilities next to owner only abilities
 import { Check, Lock } from "lucide-react";
+import { ADMIN_PERMISSIONS, OWNER_PERMISSIONS } from "../../../constants/manage-admins";
 import "../../../styles/owner-dashboard/manage-admins/ManageAdmins.css";
-
-export const ADMIN_PERMISSIONS = [
-    "See the calendar and appointments",
-    "See customer and pet info",
-    "Accept or decline booking requests",
-    "Mark visits as complete",
-    "Approve or reject new reviews",
-];
-
-export const OWNER_PERMISSIONS = [
-    "Set available times",
-    "See revenue and payments",
-    "Remove approved reviews",
-    "Add or remove admins",
-    "See the audit log",
-    "Change settings",
-];
 
 /**
  * Renders the roles and permissions info card.

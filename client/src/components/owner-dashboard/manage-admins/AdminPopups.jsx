@@ -1,15 +1,9 @@
 // popups for inviting, editing, and removing an admin
 import { useEffect, useState } from "react";
 import { Check, Mail, Pencil, X } from "lucide-react";
+import { ADMIN_CAN_DO } from "../../../constants/manage-admins";
+import { EMAIL_PATTERN } from "../../../constants/validation";
 import "../../../styles/owner-dashboard/manage-admins/ManageAdmins.css";
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const ADMIN_CAN_DO = [
-    "See the calendar, appointments, and customer & pet info",
-    "Accept or decline booking requests",
-    "Mark visits complete and approve reviews",
-];
 
 /**
  * Closes a popup when the esc key is pressed.

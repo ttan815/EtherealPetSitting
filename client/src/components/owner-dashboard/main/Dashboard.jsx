@@ -9,15 +9,33 @@ import ReviewsToApprove from "./ReviewsToApprove";
 import PetCareAlerts from "./PetCareAlerts";
 import ReasonPopup from "../../popup/ReasonPopup";
 import declineIcon from "../../../assets/owner-dashboard/decline-icon.svg";
-import { OWNER_OVERVIEW_ITEMS } from "../../../constants/owner-overview-items";
+import { OWNER_OVERVIEW_CARDS } from "../../../constants/owner-overview-items";
+import { acceptBookingRequest, declineBookingRequest, getInitialBookingRequests } from "../../../services/appointment-service";
+import { getOwnerOverviewMetrics } from "../../../services/dashboard-service";
 import "../../../styles/owner-dashboard/Dashboard.css";
 import NewAppointmentButton from "../../action-button/NewAppointmentButton";
-import { getInitialBookingRequests, useNewAppointment } from "../../../context/NewAppointmentContext";
+import { useNewAppointment } from "../../../context/NewAppointmentContext";
 
 export default function Dashboard({ onNavigate }) {
     const { visits, markAppointmentComplete } = useNewAppointment();
     const [requests, setRequests] = useState(getInitialBookingRequests);
     const [decliningRequest, setDecliningRequest] = useState(null); // request shown in the Decline popup\
+    const metrics = getOwnerOverviewMetrics();
+    const overviewValues = {
+        todayVisits: {
+            number: metrics.completedVisits + metrics.upcomingVisits,
+            subtitle: `${metrics.completedVisits} complete - ${metrics.upcomingVisits} upcoming`,
+        },
+        pendingRequests: { number: metrics.pendingRequests },
+        weeklyEarnings: {
+            number: `$${metrics.weeklyEarnings}`,
+            subtitle: `${metrics.weeklyEarningsChange}% vs last week`,
+        },
+        unpaidBalance: {
+            number: `$${metrics.unpaidBalance}`,
+            subtitle: `${metrics.unpaidVisits} visits unpaid`,
+        },
+    };
 
     const formattedDate = new Date().toLocaleDateString('en-US', {
         weekday: 'long',
@@ -33,14 +51,14 @@ export default function Dashboard({ onNavigate }) {
     // Temporary: only updates the page.
     // BACKEND: also tell the API the booking is accepted.
     function acceptBooking(id) {
-        removeRequest(id);
+        if (acceptBookingRequest(id).ok) removeRequest(id);
     }
 
     // Temporary: only updates the page.
     // BACKEND: also tell the API the booking is declined, and send the popup's
     // optional message to the customer.
     function declineBooking(id) {
-        removeRequest(id);
+        if (declineBookingRequest(id).ok) removeRequest(id);
         setDecliningRequest(null);
     }
 
@@ -59,13 +77,11 @@ export default function Dashboard({ onNavigate }) {
                 actionButton={<NewAppointmentButton />}
             />
             <OverviewHeader>
-                {OWNER_OVERVIEW_ITEMS.map(({ icon, title, subtitle, number }) => (
+                {OWNER_OVERVIEW_CARDS.map(({ key, ...card }) => (
                     <OverviewCard
-                        key={title}
-                        icon={icon}
-                        title={title}
-                        subtitle={subtitle}
-                        number={number}
+                        key={key}
+                        {...card}
+                        {...overviewValues[key]}
                     />
                 ))}
             </OverviewHeader>

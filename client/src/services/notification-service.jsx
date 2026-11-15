@@ -19,3 +19,40 @@ export const mockNotifications = [
     { id: 11, type: "receipt", title: "Receipt received", message: "Receipt for Luna's appointment (8/29)", time: "2 weeks ago", read: true, action: { label: "View Receipt", section: "payment" } },
     { id: 12, type: "appointment", title: "Upcoming appointment", message: "Upcoming appointment for Mochi (8/20)", time: "3 weeks ago", read: true, action: { label: "View appointment", section: "appointments" } },
 ];
+
+/**
+ * Fetches the temporary notification list for the signed-in customer.
+ * @returns {Object[]} Notifications, newest first.
+ */
+export function getNotifications() {
+    return mockNotifications.map((notification) => ({
+        ...notification,
+        action: { ...notification.action },
+    }));
+}
+
+/**
+ * Marks a temporary notification as read.
+ * @param {number|string} id The notification ID.
+ * @returns {{ok: boolean, id: number|string}} The result.
+ */
+export function markNotificationRead(id) {
+    return { ok: id !== null && id !== undefined, id };
+}
+
+/**
+ * Marks all temporary notifications as read.
+ * @returns {{ok: boolean}} The result.
+ */
+export function markAllNotificationsRead() {
+    return { ok: true };
+}
+
+/**
+ * Dismisses a temporary notification.
+ * @param {number|string} id The notification ID.
+ * @returns {{ok: boolean, id: number|string}} The result.
+ */
+export function dismissNotification(id) {
+    return { ok: id !== null && id !== undefined, id };
+}

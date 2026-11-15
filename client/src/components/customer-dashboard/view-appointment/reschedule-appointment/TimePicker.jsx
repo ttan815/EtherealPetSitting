@@ -1,5 +1,6 @@
 // Renders the time picker component.
 import { useEffect, useState } from "react";
+import { getEmployeesWithAvailability } from "../../../../services/availability-service";
 import "../../../../styles/customer-dashboard/view-appointment/RescheduleAppointment.css";
 
 function formatDateKey(date) {
@@ -7,28 +8,6 @@ function formatDateKey(date) {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
-}
-
-async function fetchEmployeesWithAvailability(date) {
-  const dateKey = formatDateKey(date);
-
-  // Replace with the backend availability request using dateKey as its date filter.
-  return [
-    {
-      id: "employee-1",
-      name: "Jordan Lee",
-      availability: [
-        { date: dateKey, times: ["8:00 AM", "10:00 AM", "12:00 PM"] },
-      ],
-    },
-    {
-      id: "employee-2",
-      name: "Taylor Morgan",
-      availability: [
-        { date: dateKey, times: ["9:00 AM", "1:00 PM", "3:00 PM"] },
-      ],
-    },
-  ];
 }
 
 /**
@@ -64,7 +43,7 @@ function TimePicker({ selectedDate, onAvailabilitySelect }) {
       setError("");
 
       try {
-        const availableEmployees = await fetchEmployeesWithAvailability(selectedDate);
+        const availableEmployees = await getEmployeesWithAvailability(formatDateKey(selectedDate));
         if (isCurrentRequest) setEmployees(availableEmployees);
       } catch {
         if (isCurrentRequest) {

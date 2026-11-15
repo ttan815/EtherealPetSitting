@@ -1,29 +1,11 @@
 // Renders the review section component.
 import SectionHeading from "./SectionHeading";
 import Button from "../form/Button";
+import { getHomepageReviews, getPublicReviewSummary } from "../../services/review-service";
 import topo1 from "../../assets/home/reviews-topo-1.svg";
 import topo2 from "../../assets/home/reviews-topo-2.svg";
 import topo3 from "../../assets/home/reviews-topo-3.svg";
 import "../../styles/homepage/ReviewSection.css";
-
-// Placeholder reviews copied from Figma, until real reviews come from the server
-const PLACEHOLDER_REVIEWS = [
-  {
-    id: 1,
-    text: "Angelena took such good care of our pup while we were away. We got updates after every visit and came home to a happy, relaxed dog.",
-    service: "Overnight Stays",
-  },
-  {
-    id: 2,
-    text: "Reliable, kind, and so organized. She remembered every detail of our cat's medication schedule and made us feel completely at ease.",
-    service: "Medication",
-  },
-  {
-    id: 3,
-    text: "Our dog lights up when she arrives. Booking is easy, and we never have to worry about whether our pets are in good hands.",
-    service: "Dog Walking",
-  },
-];
 
 // Home page reviews (Figma "Reviews"): rating summary, review cards, link to all reviews.
 /**
@@ -31,6 +13,8 @@ const PLACEHOLDER_REVIEWS = [
  * @returns {JSX.Element} The homepage review section.
  */
 export default function ReviewsSection() {
+  const reviews = getHomepageReviews();
+  const rating = getPublicReviewSummary();
   return (
     <section id="reviews" className="reviews-section" aria-labelledby="reviews-heading">
       <div className="reviews-topo" aria-hidden="true">
@@ -42,16 +26,16 @@ export default function ReviewsSection() {
       <div className="reviews-inner">
         <SectionHeading id="reviews-heading" eyebrow="Reviews" title="What Pet Parents Say">
           <div className="reviews-summary">
-            <p className="reviews-score">5.0</p>
+            <p className="reviews-score">{rating.average.toFixed(1)}</p>
             <div>
-              <p className="reviews-stars" aria-label="5 out of 5 stars">★★★★★</p>
+              <p className="reviews-stars" aria-label={`${rating.average} out of 5 stars`}>★★★★★</p>
               <p className="reviews-summary-note">Average rating from completed visits</p>
             </div>
           </div>
         </SectionHeading>
 
         <ul className="reviews-cards">
-          {PLACEHOLDER_REVIEWS.map((review) => (
+          {reviews.map((review) => (
             <li key={review.id} className="reviews-card">
               <p className="reviews-card-stars" aria-label="5 out of 5 stars">★★★★★</p>
               <p className="reviews-card-text">{review.text}</p>

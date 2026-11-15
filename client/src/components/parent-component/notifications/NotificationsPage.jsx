@@ -1,10 +1,9 @@
 // Renders the full Notifications page with pagination.
 import { useEffect, useState } from "react";
 import { ArrowRight, X } from "lucide-react";
-import { useNotifications, NOTIFICATION_ICONS } from "./NotificationsContext";
+import { getNotificationIcon, NOTIFICATION_PAGE_SIZE } from "../../../constants/notifications";
+import { useNotifications } from "./NotificationsContext";
 import "../../../styles/parent-component/Notifications.css"
-
-const PAGE_SIZE = 5;
 
 /**
  * Shows every notification as a paginated list with actions, dismiss, and unread dots.
@@ -15,14 +14,14 @@ export default function NotificationsPage({ onBack }) {
     const { notifications, unreadCount, markRead, markAllRead, dismiss, openAction } = useNotifications();
     const [page, setPage] = useState(1);
 
-    const totalPages = Math.max(1, Math.ceil(notifications.length / PAGE_SIZE));
+    const totalPages = Math.max(1, Math.ceil(notifications.length / NOTIFICATION_PAGE_SIZE));
 
     // If dismissing empties the last page, step back a page.
     useEffect(() => {
         if (page > totalPages) setPage(totalPages);
     }, [page, totalPages]);
 
-    const visible = notifications.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+    const visible = notifications.slice((page - 1) * NOTIFICATION_PAGE_SIZE, page * NOTIFICATION_PAGE_SIZE);
 
     return (
         <section className="nt-page">
@@ -52,7 +51,7 @@ export default function NotificationsPage({ onBack }) {
             ) : (
                 <ul className="nt-list">
                     {visible.map((n) => {
-                        const Icon = NOTIFICATION_ICONS[n.type];
+                        const Icon = getNotificationIcon(n.type);
                         return (
                             <li key={n.id} className={`nt-item${n.read ? "" : " unread"}`}>
                                 <span className="nt-icon nt-icon-square" aria-hidden="true">

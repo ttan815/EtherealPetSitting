@@ -1,10 +1,9 @@
 // Renders the bell button and its notifications popup.
 import { useEffect, useRef, useState } from "react";
 import { Bell } from "lucide-react";
-import { useNotifications, NOTIFICATION_ICONS } from "./NotificationsContext";
+import { getNotificationIcon, NOTIFICATION_POPUP_LIMIT } from "../../../constants/notifications";
+import { useNotifications } from "./NotificationsContext";
 import "../../../styles/parent-component/Notifications.css";
-
-const POPUP_LIMIT = 4;
 
 /**
  * Bell button that opens a popup with the latest notifications, "Mark all as read", and "View all activity".
@@ -43,7 +42,7 @@ export default function NotificationBell({ className = "" }) {
     }
 
     const { notifications, unreadCount, markAllRead, openAction, viewAll } = ctx;
-    const latest = notifications.slice(0, POPUP_LIMIT);
+    const latest = notifications.slice(0, NOTIFICATION_POPUP_LIMIT);
 
     function handleViewAll() {
         setOpen(false);
@@ -88,7 +87,7 @@ export default function NotificationBell({ className = "" }) {
                     ) : (
                         <ul className="nt-popup-list">
                             {latest.map((n) => {
-                                const Icon = NOTIFICATION_ICONS[n.type];
+                                const Icon = getNotificationIcon(n.type);
                                 return (
                                     <li key={n.id}>
                                         <button

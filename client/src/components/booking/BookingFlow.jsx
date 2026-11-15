@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router";
 import { useBooking } from "../../hooks/useBooking";
-import { BOOKING_SERVICES } from "../../constants/booking-services";
-import { BOOKING_SITTERS, NO_PREFERENCE_SITTER_ID } from "../../constants/booking-sitters";
+import { NO_PREFERENCE_SITTER_ID } from "../../constants/booking-sitters";
 import BookAppointmentPage from "../../pages/BookAppointmentPage";
 import SelectDateTimePage from "../../pages/SelectDateTimePage";
 import PetCareDetailsPage from "../../pages/PetCareDetailsPage";
 import BookingConfirmation from "./confirmation/BookingConfirmation";
 import { getServiceIdsFromQuery } from "../../utils/service-query";
+import { getBookingServices, getBookingSitters } from "../../services/booking-service";
 
 /**
  * Renders booking stages and routes the payment stage separately.
@@ -23,10 +23,10 @@ export default function BookingFlow() {
     const serviceIdsFromUrl = getServiceIdsFromQuery(searchParams);
     return serviceIdsFromUrl.length > 0 ? serviceIdsFromUrl : booking.serviceIds;
   });
-  const services = BOOKING_SERVICES.filter((service) => booking.serviceIds.includes(service.id));
+  const services = getBookingServices().filter((service) => booking.serviceIds.includes(service.id));
 
   function continueFromServices(serviceIds) {
-    const compatibleSitter = BOOKING_SITTERS.some(
+    const compatibleSitter = getBookingSitters().some(
       (sitter) =>
         sitter.id === booking.sitterId &&
         (!sitter.serviceIds || serviceIds.every((serviceId) => sitter.serviceIds.includes(serviceId)))

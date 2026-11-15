@@ -2,13 +2,8 @@
 import pawIcon from "../../../assets/owner-dashboard/schedule-paw.svg";
 import checkIcon from "../../../assets/owner-dashboard/status-check.svg";
 import arrowIcon from "../../../assets/owner-dashboard/link-arrow.svg";
+import { OWNER_VISIT_STATUS_LABELS } from "../../../constants/owner-dashboard";
 import "../../../styles/owner-dashboard/TodaysSchedule.css";
-
-const STATUS_LABELS = {
-  completed: "Completed",
-  "in-progress": "In progress",
-  upcoming: "Upcoming",
-};
 
 /**
  * Renders today's visits with their status; visits that aren't done can be marked complete.
@@ -65,7 +60,7 @@ export default function TodaysSchedule({ visits, onMarkComplete, onViewCalendar 
               <div className="schedule-visit-status">
                 <span className={`schedule-status schedule-status-${visit.status}`}>
                   {isCompleted && <img src={checkIcon} alt="" />}
-                  {STATUS_LABELS[visit.status]}
+                  {OWNER_VISIT_STATUS_LABELS[visit.status]}
                 </span>
 
                 {!isCompleted && (

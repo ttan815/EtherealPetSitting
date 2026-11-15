@@ -5,32 +5,22 @@ import { useCallback, useEffect, useState } from "react";
 import PageHeader from "../../parent-component/PageHeader";
 import OverviewHeader from "../../parent-component/OverviewHeader";
 import OverviewCard from "../../parent-component/OverviewCard";
-import AvailabilityFilter, { getAvailability, filterAvailability } from "./AvailabilityFilter";
+import AvailabilityFilter, { filterAvailability } from "./AvailabilityFilter";
 import AvailabilityTable from "./AvailabilityTable";
-import { approveAvailability, disapproveAvailability, updateAvailability, removeAvailability } from "./AvailabilityRowActions";
-import AvailabilityPopup, { addAvailability, assignCustomer } from "./AvailabilityPopup";
+import AvailabilityPopup from "./AvailabilityPopup";
 import NewAppointmentButton from "../../action-button/NewAppointmentButton";
+import {
+    addAvailability,
+    approveAvailability,
+    assignCustomer,
+    disapproveAvailability,
+    getAvailability,
+    getAvailabilityOptions,
+    removeAvailability,
+    updateAvailability,
+} from "../../../services/availability-service";
+import { DEFAULT_OWNER_AVAILABILITY_FILTERS } from "../../../constants/availability";
 import "../../../styles/owner-dashboard/availability/Availability.css";
-
-const DEFAULT_FILTERS = { search: "", admin: "all", service: "all" };
-
-/**
- * Temporary method that fetches the admin, service and customer lists used by the filters and forms.
- * @returns {Object} Lists of admins, services and customers.
- */
-export function getAvailabilityOptions() {
-    const temp = {
-        admins: ["Jamie Rivera", "Priya Shah", "Marcus Lee"],
-        services: ["Dog Walking", "Drop-in Care", "Overnight Stay", "Pet Sitting"],
-        customers: [
-            { id: 1, name: "Maria G.", pets: "Coco · Poodle" },
-            { id: 2, name: "Kevin P.", pets: "Max · Labrador" },
-            { id: 3, name: "Lisa W.", pets: "Nala · Siamese Cat" },
-            { id: 4, name: "Daniel K.", pets: "Biscuit · Corgi" },
-        ],
-    }; // Result from fetch("/api/availability/options")
-    return temp;
-}
 
 function hoursBetween(start, end) {
     const [sh, sm] = start.split(":").map(Number);
@@ -46,7 +36,7 @@ export default function Availability() {
     const [options] = useState(getAvailabilityOptions);
     const [slots, setSlots] = useState([]);
     const [activeChip, setActiveChip] = useState("requests");
-    const [filters, setFilters] = useState(DEFAULT_FILTERS);
+    const [filters, setFilters] = useState(DEFAULT_OWNER_AVAILABILITY_FILTERS);
     const [popup, setPopup] = useState(null); // { mode, slot }
     const [toast, setToast] = useState("");
 

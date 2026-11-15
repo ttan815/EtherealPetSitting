@@ -6,7 +6,7 @@ import BookingReviewCard from "../components/booking/review-and-pay/BookingRevie
 import PaymentMethodSelector from "../components/booking/review-and-pay/PaymentMethodSelector";
 import PriceDetailsCard from "../components/booking/review-and-pay/PriceDetailsCard";
 import ReviewPayHeader from "../components/booking/review-and-pay/ReviewPayHeader";
-import { getSavedPets } from "../utils/placeholder-pets";
+import { getSavedPets } from "../services/pet-service";
 import "../styles/booking/ReviewPayDeposit.css";
 
 /**

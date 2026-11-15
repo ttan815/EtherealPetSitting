@@ -1,10 +1,9 @@
 // Renders the availability calendar component.
 import { formatMonthYear, formatWeekdayDate, getCalendarWeeks, toDateKey } from "../../../utils/calendar-dates";
+import { BOOKING_WEEKDAY_LABELS } from "../../../constants/booking-ui";
 import previousIcon from "../../../assets/booking/calendar-prev.svg";
 import nextIcon from "../../../assets/booking/calendar-next.svg";
 import "../../../styles/booking/AvailabilityCalendar.css";
-
-const WEEKDAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 // Month calendar on booking step 2. Days with open times are tan buttons;
 // every other day is plain text and can't be picked.
@@ -54,7 +53,7 @@ function AvailabilityCalendar({
       </div>
 
       <div className="availability-calendar-grid">
-        {WEEKDAY_LABELS.map((weekday) => (
+        {BOOKING_WEEKDAY_LABELS.map((weekday) => (
           <span key={weekday} className="availability-calendar-weekday" aria-hidden="true">
             {weekday}
           </span>

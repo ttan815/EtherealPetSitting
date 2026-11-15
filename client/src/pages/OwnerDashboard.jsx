@@ -16,25 +16,8 @@ import AuditLog from "../components/owner-dashboard/audit-log/AuditLog"
 import Settings from "../components/owner-dashboard/settings/Settings"
 import SidebarProfile from "../components/parent-component/SidebarProfile";
 import { NewAppointmentProvider } from "../context/NewAppointmentProvider";
-
-const SECTION_TITLES = {
-    dashboard: "Dashboard",
-    calender: "Calender",
-    appointments: "Appointments",
-    customers_and_pets: "Customers And Pets",
-    reviews: "Reviews",
-    availability: "Availability",
-    revenue: "Revenue",
-    manage_admins: "Manage Admins",
-    audit_log: "Audit Log",
-    settings: "Settings"
-};
-
-// Temporary placeholder until pending appointment and availability requests come from the API.
-function getPendingRequestCount() {
-    const pendingCount = [1,10]; // [Appointment, Availability]
-    return pendingCount;
-}
+import { OWNER_SECTION_TITLES } from "../constants/owner-dashboard";
+import { getPendingOwnerRequestCounts } from "../services/dashboard-service";
 
 // Temporary placeholder for Logging out
 function logout() {
@@ -48,7 +31,7 @@ function OwnerDashboard() {
         location.state?.section === "appointments" ? "appointments" : "dashboard"
     );  
     const [previousSection, setPreviousSection] = useState("dashboard");
-    const pendingRequestCount = getPendingRequestCount();
+    const pendingRequestCount = getPendingOwnerRequestCounts();
     const openNotifications = () => {
         setPreviousSection(activeSection);
         setActiveSection("notifications");
@@ -88,7 +71,7 @@ function OwnerDashboard() {
             default:
                 return (
                     <section>
-                        <h1>{SECTION_TITLES[activeSection]}</h1>
+                        <h1>{OWNER_SECTION_TITLES[activeSection]}</h1>
                         <p>This section is not available yet.</p>
                     </section>
                 );

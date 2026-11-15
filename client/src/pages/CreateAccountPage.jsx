@@ -12,21 +12,10 @@ import PolicyConsent from "../components/create-account/PolicyConsent";
 import userIcon from "../assets/icons/user.svg";
 import mailIcon from "../assets/icons/mail.svg";
 import phoneIcon from "../assets/icons/phone.svg";
-import { API_BASE_URL, NETWORK_ERROR_MESSAGE, GENERIC_ERROR_MESSAGE } from "../constants/api";
+import { CREATE_ACCOUNT_URL, NETWORK_ERROR_MESSAGE } from "../constants/api";
+import { EMPTY_CREATE_ACCOUNT_FORM } from "../constants/auth-forms";
+import { createAccount as createAccountRequest } from "../services/auth-service";
 import "../styles/create-account/CreateAccountPage.css";
-
-const DEFAULT_API_URL = `${API_BASE_URL}/create-account`;
-
-// Keys match what the server expects in the request body
-const EMPTY_FORM = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phoneNumber: "",
-  password: "",
-  retypedPassword: "",
-  hasAcceptTerm: false,
-};
 
 // Visitor sign up screen. All checks happen on the server; this page only
 // shows what the server sends back.
@@ -37,8 +26,8 @@ const EMPTY_FORM = {
  * @param {Function} [props.onSuccess] - Called with the successful API response.
  * @returns {JSX.Element} The account-creation page.
  */
-function CreateAccountPage({ apiUrl = DEFAULT_API_URL, onSuccess }) {
-  const [form, setForm] = useState(EMPTY_FORM);
+function CreateAccountPage({ apiUrl = CREATE_ACCOUNT_URL, onSuccess }) {
+  const [form, setForm] = useState(EMPTY_CREATE_ACCOUNT_FORM);
   // Field errors, keyed like EMPTY_FORM, e.g. { email: "Please enter your email address." }
   const [errors, setErrors] = useState({});
   // Error that isn't tied to one field, e.g. the server couldn't be reached
@@ -69,32 +58,19 @@ function CreateAccountPage({ apiUrl = DEFAULT_API_URL, onSuccess }) {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", // keep the session cookie from the auto login
-        body: JSON.stringify(form),
-      });
-
-      let result = {};
-      try {
-        result = await response.json();
-      } catch {
-        /* non-JSON response */
-      }
-
-      if (!response.ok) {
+      const result = await createAccountRequest(form, apiUrl);
+      if (!result.ok) {
         // { errors: { field: message } } goes under each field; anything
         // else (e.g. a server error) shows above the button.
-        setErrors(result.errors ?? {});
-        if (result.Message || !result.errors) {
-          setFormError(result.Message || GENERIC_ERROR_MESSAGE);
+        setErrors(result.errors);
+        if (result.message || Object.keys(result.errors).length === 0) {
+          setFormError(result.message);
         }
         return;
       }
 
       // The server logs the visitor in after creating the account
-      onSuccess?.(result);
+      onSuccess?.(result.data);
       navigate("/");
     } catch {
       setFormError(NETWORK_ERROR_MESSAGE);

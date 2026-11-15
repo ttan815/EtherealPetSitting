@@ -2,20 +2,20 @@
 import { useMemo, useState } from "react";
 import { FileText } from "lucide-react";
 import AuditLogHeader from "./AuditLogHeader";
-import AuditLogFilters, { DEFAULT_FILTERS, getAuditLog } from "./AuditLogFilters";
+import AuditLogFilters from "./AuditLogFilters";
 import ActivityTable from "./ActivityTable";
 import useExportButton from "./ExportButton";
+import { AUDIT_LOG_PAGE_SIZE, DEFAULT_AUDIT_LOG_FILTERS } from "../../../constants/audit-log";
+import { getAuditLog } from "../../../services/audit-log-service";
 import "../../../styles/owner-dashboard/audit-log/AuditLog.css";
-
-const PAGE_SIZE = 8;
 
 /**
  * Renders the audit log page with filters, the grouped activity table, load more, and an empty state.
  * @returns {JSX.Element} The audit log page.
  */
 export default function AuditLog() {
-    const [filters, setFilters] = useState(DEFAULT_FILTERS);
-    const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+    const [filters, setFilters] = useState(DEFAULT_AUDIT_LOG_FILTERS);
+    const [visibleCount, setVisibleCount] = useState(AUDIT_LOG_PAGE_SIZE);
 
     const entries = useMemo(() => getAuditLog(filters), [filters]);
     const visible = entries.slice(0, visibleCount);
@@ -24,7 +24,7 @@ export default function AuditLog() {
     // go back to the first page whenever the filters change
     function handleFilterChange(next) {
         setFilters(next);
-        setVisibleCount(PAGE_SIZE);
+        setVisibleCount(AUDIT_LOG_PAGE_SIZE);
     }
 
     return (
@@ -40,7 +40,7 @@ export default function AuditLog() {
                         </span>
                         <p className="al-empty-title">No activity found</p>
                         <p className="al-empty-text">Try a different search or a longer date range.</p>
-                        <button type="button" className="al-outline-button" onClick={() => handleFilterChange(DEFAULT_FILTERS)}>
+                        <button type="button" className="al-outline-button" onClick={() => handleFilterChange(DEFAULT_AUDIT_LOG_FILTERS)}>
                             Clear filters
                         </button>
                     </div>
@@ -53,7 +53,7 @@ export default function AuditLog() {
                                 <button
                                     type="button"
                                     className="al-outline-button"
-                                    onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+                                    onClick={() => setVisibleCount((count) => count + AUDIT_LOG_PAGE_SIZE)}
                                 >
                                     Load more
                                 </button>

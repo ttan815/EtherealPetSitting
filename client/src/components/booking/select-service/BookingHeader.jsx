@@ -1,15 +1,8 @@
 // Renders the booking header component.
 import BookingSteps from "./BookingSteps";
 import { BOOKING_STEPS } from "../../../constants/booking-steps";
-import topo1 from "../../../assets/booking/title-topo-1.svg";
-import topo2 from "../../../assets/booking/title-topo-2.svg";
-import topo3 from "../../../assets/booking/title-topo-3.svg";
-import topo4 from "../../../assets/booking/title-topo-4.svg";
-import topo5 from "../../../assets/booking/title-topo-5.svg";
-import topo6 from "../../../assets/booking/title-topo-6.svg";
+import { BOOKING_HEADER_TOPO_LINES } from "../../../constants/booking-ui";
 import "../../../styles/booking/BookingHeader.css";
-
-const TOPO_LINES = [topo1, topo2, topo3, topo4, topo5, topo6];
 
 // Brown title band at the top of every booking step (Figma "Title Band").
 // currentStep: 1-based step number, shown as "Step 1 of 4" and in the step tracker
@@ -25,7 +18,7 @@ function BookingHeader({ currentStep, title, description }) {
   return (
     <header className="booking-header">
       <div className="booking-header-topo" aria-hidden="true">
-        {TOPO_LINES.map((line, index) => (
+        {BOOKING_HEADER_TOPO_LINES.map((line, index) => (
           <img key={line} className={`booking-header-topo-line booking-header-topo-line-${index + 1}`} src={line} alt="" />
         ))}
       </div>

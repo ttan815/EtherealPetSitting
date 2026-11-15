@@ -1,34 +1,11 @@
 // Renders the Add / Edit / Assign / Remove / Disapprove popups for the owner's Availability section (DT-325).
 import { useEffect, useState } from "react";
 import { formatDate, formatTime } from "./AvailabilityTable";
+import { AVAILABILITY_EMPTY_FORM, AVAILABILITY_ICON_PROPS } from "../../../constants/availability";
 
-/**
- * Temporary method that creates a new availability slot.
- * @param {Object} data The admin, service, date, times, price and customer.
- * @returns {Object} The created slot with its new id.
- */
-export function addAvailability(data) {
-    const temp = { ...data, id: Date.now(), status: "awaiting_admin" }; // Result from fetch("/api/availability", { method: "POST" })
-    return temp;
-}
-
-/**
- * Temporary method that assigns a customer to an availability slot.
- * @param {number} id The availability slot id.
- * @param {number} customerId The customer to assign.
- * @returns {Object} The backend result.
- */
-export function assignCustomer(id, customerId) {
-    const temp = { ok: true, id, customerId }; // Result from fetch(`/api/availability/${id}/assign`, { method: "POST" })
-    return temp;
-}
-
-const ICON_PROPS = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
-const CalendarIcon = () => <svg {...ICON_PROPS}><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M16 3v4M8 3v4M3 10h18" /></svg>;
-const UserIcon = () => <svg {...ICON_PROPS}><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>;
-const XCircleIcon = () => <svg {...ICON_PROPS}><circle cx="12" cy="12" r="9" /><path d="m15 9-6 6M9 9l6 6" /></svg>;
-
-const EMPTY_FORM = { admin: "", service: "", date: "", start: "", end: "", price: "", booking: "open", customerId: "" };
+const CalendarIcon = () => <svg {...AVAILABILITY_ICON_PROPS}><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M16 3v4M8 3v4M3 10h18" /></svg>;
+const UserIcon = () => <svg {...AVAILABILITY_ICON_PROPS}><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>;
+const XCircleIcon = () => <svg {...AVAILABILITY_ICON_PROPS}><circle cx="12" cy="12" r="9" /><path d="m15 9-6 6M9 9l6 6" /></svg>;
 
 /**
  * Checks the Add/Edit form for missing fields, bad values and overlapping times.
@@ -100,8 +77,8 @@ function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
     const isEdit = Boolean(slot);
     const [form, setForm] = useState(() =>
         isEdit
-            ? { ...EMPTY_FORM, ...slot, price: String(slot.price), booking: slot.customer ? "customer" : "open", customerId: slot.customer ? String(slot.customer.id) : "" }
-            : EMPTY_FORM
+            ? { ...AVAILABILITY_EMPTY_FORM, ...slot, price: String(slot.price), booking: slot.customer ? "customer" : "open", customerId: slot.customer ? String(slot.customer.id) : "" }
+            : AVAILABILITY_EMPTY_FORM
     );
     const [errors, setErrors] = useState({});
 

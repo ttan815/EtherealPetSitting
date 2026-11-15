@@ -5,62 +5,9 @@ import BusinessInfo from "./BusinessInfo";
 import ServicePrices from "./ServicePrices";
 import Deposits from "./Deposits";
 import NotificationSettings from "./NotificationSettings";
+import { EMAIL_PATTERN } from "../../../constants/validation";
+import { getSettings, saveSettings } from "../../../services/settings-service";
 import "../../../styles/owner-dashboard/settings/Settings.css";
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// sample data until the backend is ready
-const SAMPLE_SETTINGS = {
-    info: {
-        name: "Ethereal Pet Sitting & Care",
-        email: "hello@example.com",
-        phone: "(555) 555-0123",
-        instagram: "",
-        facebook: "",
-    },
-    services: [
-        { id: "drop-in", name: "Drop-in Care", enabled: true, price: "" },
-        { id: "whole-day", name: "Whole Day Care", enabled: true, price: "" },
-        { id: "overnight", name: "Overnight Stays", enabled: true, price: "" },
-        { id: "dog-walking", name: "Dog Walking", enabled: true, price: "" },
-        { id: "grooming", name: "Grooming Care", enabled: true, price: "" },
-        { id: "medication", name: "Medication", enabled: true, price: "" },
-    ],
-    deposits: [
-        { days: 30, amount: "20" },
-        { days: 60, amount: "50" },
-        { days: 90, amount: "100" },
-    ],
-    notifications: {
-        newBookings: true,
-        rescheduled: true,
-        cancelled: true,
-        serviceUpdates: true,
-        newReviews: true,
-        weeklyEarnings: false,
-    },
-};
-
-/**
- * Gets the saved business settings.
- * @returns {Object} The { info, services, deposits, notifications } settings.
- */
-export function getSettings() {
-    // TODO: replace with backend call
-    const temp = structuredClone(SAMPLE_SETTINGS);
-    return temp;
-}
-
-/**
- * Saves the business settings.
- * @param {Object} settings The { info, services, deposits, notifications } settings.
- * @returns {boolean} True when the settings were saved.
- */
-export function saveSettings(settings) {
-    // TODO: replace with backend call
-    const temp = Boolean(settings);
-    return temp;
-}
 
 /**
  * Checks every field and returns error messages for anything invalid.

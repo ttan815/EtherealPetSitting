@@ -1,22 +1,7 @@
 // activity table for the audit log, rows are grouped by day
 import { useState } from "react";
+import { getAuditLogDetails, getAuditLogPeople } from "../../../services/audit-log-service";
 import "../../../styles/owner-dashboard/audit-log/AuditLog.css";
-
-const PEOPLE = {
-    you: { initials: "SA", owner: true },
-    adrian: { initials: "AP", owner: false },
-};
-
-/**
- * Gets the full details for one log entry, shown when a row is opened.
- * @param {string} id The log entry id.
- * @returns {Object} The details { id, changedBy, device }.
- */
-export function getNotification(id) {
-    // TODO: replace with backend call
-    const temp = { id, changedBy: "Signed in account", device: "Web browser" };
-    return temp;
-}
 
 /**
  * Turns a date into the day heading, like "Today", "Yesterday", or "Sat, Sep 26".
@@ -56,13 +41,14 @@ function groupByDay(entries) {
 export default function ActivityTable({ entries }) {
     const [openId, setOpenId] = useState(null);
     const [details, setDetails] = useState(null);
+    const people = getAuditLogPeople();
 
     function toggleRow(id) {
         if (openId === id) {
             setOpenId(null);
             return;
         }
-        setDetails(getNotification(id));
+        setDetails(getAuditLogDetails(id));
         setOpenId(id);
     }
 
@@ -73,7 +59,7 @@ export default function ActivityTable({ entries }) {
                     <h2 className="al-day-label">{group.label}</h2>
                     <ul className="al-rows">
                         {group.entries.map((entry) => {
-                            const person = PEOPLE[entry.person] ?? { initials: "?", owner: false };
+                            const person = people[entry.person] ?? { initials: "?", owner: false };
                             const isOpen = openId === entry.id;
                             return (
                                 <li key={entry.id}>

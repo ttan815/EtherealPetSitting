@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import BookingLayout from "../components/booking/select-service/BookingLayout";
 import BookingServiceCard from "../components/booking/select-service/BookingServiceCard";
 import Button from "../components/form/Button";
-import { BOOKING_SERVICES } from "../constants/booking-services";
+import { getBookingServices } from "../services/booking-service";
 import arrowBackIcon from "../assets/booking/arrow-back.svg";
 import "../styles/booking/BookAppointmentPage.css";
 
@@ -17,6 +17,7 @@ import "../styles/booking/BookAppointmentPage.css";
  */
 export default function BookAppointmentPage({ selectedServiceIds, onSelectionChange, onContinue }) {
   const navigate = useNavigate();
+  const services = getBookingServices();
   const hasSelectedService = selectedServiceIds.length > 0;
 
   function toggleService(serviceId) {
@@ -50,7 +51,7 @@ export default function BookAppointmentPage({ selectedServiceIds, onSelectionCha
       actions={actions}
     >
       <div className="book-appointment-services" role="group" aria-label="Services">
-        {BOOKING_SERVICES.map((service) => (
+        {services.map((service) => (
           <BookingServiceCard
             key={service.id}
             service={service}

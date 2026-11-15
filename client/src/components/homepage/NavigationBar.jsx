@@ -3,16 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router";
 import ProfileMenu from "./ProfileMenu";
 import BrandLogo from "./BrandLogo";
+import { HOMEPAGE_SECTION_LINKS } from "../../constants/homepage";
 import "../../styles/homepage/NavigationBar.css";
-
-// Section links every role sees. Each href matches a section id on the home page
-// (<section id="home">, <section id="services">, ...).
-const SECTION_LINKS = [
-  { label: "Home", href: "/#home" },
-  { label: "Services", href: "/#services" },
-  { label: "About", href: "/#about" },
-  { label: "Reviews", href: "/#reviews" },
-];
 
 // role: "visitor" | "customer" | "admin"
 // user: { name: "Example Name" } for logged-in users (used for initials)
@@ -60,7 +52,7 @@ function NavigationBar({ role = "visitor", user, onLogout }) {
 
         <nav className={`navigation-menu ${isMenuOpen ? "is-open" : ""}`}>
           <ul className="navigation-links">
-            {SECTION_LINKS.map((link) => (
+            {HOMEPAGE_SECTION_LINKS.map((link) => (
               <li key={link.label}>
                 <Link to={link.href} onClick={closeMenu}>
                   {link.label}

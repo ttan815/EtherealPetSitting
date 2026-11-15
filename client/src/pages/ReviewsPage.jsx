@@ -13,16 +13,9 @@ import { useAuth } from "../context/AuthContext";
 import OverallRating from "../components/reviews/OverallRating";
 import ReviewCard from "../components/reviews/ReviewCard";
 import WriteReviewModal from "../components/reviews/WriteReviewModal";
+import { getPublicReviews } from "../services/review-service";
 // styles for this page
 import "../styles/reviews/ReviewsPage.css";
-
-// sample reviews until real reviews come from the server
-const SAMPLE_REVIEWS = [
-  // first sample review
-  { id: 1, initials: "TT", petName: "Oreo Cat", rating: 4, date: "August 15, 2026", comment: "I had a really great experience. They provided a comprehensive checkup and care for our two cats!" },
-  // second sample review
-  { id: 2, initials: "AP", petName: "Bean Cat", rating: 4, date: "August 15, 2026", comment: "Very professional service. It was quick, and the appointment setup was very easy." },
-];
 
 /**
  * Renders the full customer reviews page and review submission entry point.
@@ -31,6 +24,7 @@ const SAMPLE_REVIEWS = [
 function ReviewsPage() {
   // who is logged in, same pattern as the home page
   const { user, loading } = useAuth();
+  const reviews = getPublicReviews();
   // true when the write a review popup is showing
   const [isWriting, setIsWriting] = useState(false);
 
@@ -51,11 +45,11 @@ function ReviewsPage() {
         </header>
 
         {/* rating summary with the write a review button */}
-        <OverallRating reviews={SAMPLE_REVIEWS} onWriteReview={() => setIsWriting(true)} />
+        <OverallRating reviews={reviews} onWriteReview={() => setIsWriting(true)} />
 
         {/* list of reviews */}
         <div className="reviews-page-list">
-          {SAMPLE_REVIEWS.map((review) => (
+          {reviews.map((review) => (
             <ReviewCard key={review.id} review={review} />
           ))}
         </div>

@@ -13,7 +13,7 @@ import {
     getPetsByCustomer,
     toggleExtraTask,
     updateCustomer,
-} from "../../../constants/customerData";
+} from "../../../services/customer-service";
 import "../../../styles/owner-dashboard/mannage-customer-and-pet/CustomerAndPet.css";
 
 /**

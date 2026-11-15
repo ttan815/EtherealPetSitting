@@ -1,20 +1,8 @@
 // Renders the brand medallion component.
 import { BUSINESS_NAME, BUSINESS_SUBTITLE } from "../../constants/site-info";
+import { BRAND_MEDALLION_LAYERS } from "../../constants/brand";
 import logoScriptDog from "../../assets/brand/logo-script-dog.svg";
-import panelGlow from "../../assets/brand/medallion-glow.svg";
-import panelRing from "../../assets/brand/medallion-ring.svg";
-import panelInnerCircle from "../../assets/brand/medallion-inner-circle.svg";
-import heroGlow from "../../assets/home/hero-glow.svg";
-import heroRing from "../../assets/home/hero-ring.svg";
-import heroInnerCircle from "../../assets/home/hero-inner-circle.svg";
 import "../../styles/homepage/BrandMedallion.css";
-
-// The two Figma medallions use different glow/ring artwork, so each
-// variant picks its own images; the logo and text are shared.
-const LAYERS = {
-  panel: { glow: panelGlow, ring: panelRing, innerCircle: panelInnerCircle },
-  hero: { glow: heroGlow, ring: heroRing, innerCircle: heroInnerCircle },
-};
 
 // Round logo badge: glow, ring, inner circle, then the script logo and wordmark.
 // variant: "panel" (brown side of the auth pages) | "hero" (home page hero, larger)
@@ -27,7 +15,7 @@ const LAYERS = {
  * @returns {JSX.Element} The branded medallion.
  */
 function BrandMedallion({ variant = "panel", children }) {
-  const layers = LAYERS[variant];
+  const layers = BRAND_MEDALLION_LAYERS[variant];
 
   return (
     <div className={`brand-medallion brand-medallion-${variant}`}>

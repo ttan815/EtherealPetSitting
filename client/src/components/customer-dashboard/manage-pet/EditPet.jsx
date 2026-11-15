@@ -1,25 +1,8 @@
 import { useState } from "react";
+import { getEditablePetProfile } from "../../../services/pet-service";
 import "../../../styles/customer-dashboard/manage-pet/EditPet.css";
 
-const initialPet = {
-  name: "Mochi",
-  age: "4 years",
-  breed: "Golden Retriever",
-  medication: "Apoquel - 16 mg with breakfast during allergy flare-ups",
-  diet: "2 cups sensitive-stomach kibble · twice daily",
-  allergy: "Chicken protein and seasonal grass pollen",
-  instructions:
-    "Breakfast at 7:30 AM, dinner at 6:00 PM, and a 25-minute evening walk. Wipe paws after outdoor play and leave fresh water by the kitchen door.",
-  likes:
-    "Tennis balls, chest scratches, slow introductions, and sniffing walks.",
-  dislikes:
-    "Thunder, vacuum cleaners, and dogs approaching quickly during meals.",
-  veterinarian: "Dr. Lena Cho",
-  clinic: "Juniper Veterinary Center",
-  phone: "(503) 555-0148",
-  notes:
-    "Mochi settles best with his blue blanket nearby. His emergency contact is Daniel Rivera at (503) 555-0182.",
-};
+const initialPet = getEditablePetProfile();
 
 function SectionHeading({ icon, title, subtitle }) {
   return (

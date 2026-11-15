@@ -7,8 +7,7 @@ import SitterPicker from "../components/booking/availability/SitterPicker";
 import AvailabilityCalendar from "../components/booking/availability/AvailabilityCalendar";
 import AvailableTimes from "../components/booking/availability/AvailableTimes";
 import Button from "../components/form/Button";
-import { BOOKING_SERVICES } from "../constants/booking-services";
-import { BOOKING_SITTERS, NO_PREFERENCE_SITTER_ID } from "../constants/booking-sitters";
+import { NO_PREFERENCE_SITTER_ID } from "../constants/booking-sitters";
 import {
   DATE_RANGE_OPTIONS,
   DEFAULT_AVAILABILITY_FILTERS,
@@ -23,7 +22,8 @@ import {
   getStartOfMonth,
   getToday,
 } from "../utils/calendar-dates";
-import { getAvailableTimes } from "../utils/placeholder-availability";
+import { getAvailableTimes } from "../services/availability-service";
+import { getBookingServices, getBookingSitters } from "../services/booking-service";
 import "../styles/booking/SelectDateTimePage.css";
 
 // Bookable days for a Date dropdown choice: starts tomorrow, lasts `days` days
@@ -47,11 +47,13 @@ function isTimeInPartOfDay(time, partOfDay) {
 export default function SelectDateTimePage({ booking, updateBooking, onBack, onContinue }) {
   const [filters, setFilters] = useState(DEFAULT_AVAILABILITY_FILTERS);
   const [shownMonth, setShownMonth] = useState(null); // null = first month of the date range
+  const bookingServices = getBookingServices();
+  const bookingSitters = getBookingSitters();
 
-  const services = BOOKING_SERVICES.filter((service) => booking.serviceIds.includes(service.id));
+  const services = bookingServices.filter((service) => booking.serviceIds.includes(service.id));
 
   // Only sitters who offer every picked service can be chosen
-  const sitters = BOOKING_SITTERS.filter(
+  const sitters = bookingSitters.filter(
     (sitter) => !sitter.serviceIds || booking.serviceIds.every((serviceId) => sitter.serviceIds.includes(serviceId))
   );
   // Falls back to "No preference" if the services changed and the saved sitter no longer fits

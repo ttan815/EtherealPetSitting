@@ -3,30 +3,18 @@ import { useCallback, useState } from "react";
 import ReasonPopup from "../../popup/ReasonPopup";
 import Toast from "../../popup/Toast";
 import rejectIcon from "../../../assets/owner-dashboard/reject-review-icon.svg";
+import {
+  approveReview as approveReviewInService,
+  getAverageRating,
+  getPendingReviews,
+  rejectReview as rejectReviewInService,
+} from "../../../services/review-service";
+import { REVIEW_DAY_MS } from "../../../constants/reviews";
 import "../../../styles/owner-dashboard/ReviewsToApprove.css";
-
-const DAY_MS = 24 * 60 * 60 * 1000;
-
-// Temporary placeholder reviews waiting for approval (Figma "Admin — Dashboard").
-// BACKEND: replace with the pending reviews from the API, in the same shape.
-function getPendingReviews() {
-  const now = Date.now();
-  return [
-    { id: "review-sarah", rating: 5, text: "Took such good care of our pup. Updates after every visit!", customerName: "Sarah M.", service: "Dog Walking", submittedAt: new Date(now - 2 * DAY_MS) },
-    { id: "review-priya", rating: 5, text: "So organized with our cat’s medication. Highly recommend.", customerName: "Priya K.", service: "Medication", submittedAt: new Date(now - 5 * DAY_MS) },
-    { id: "review-kevin", rating: 4, text: "Great with our anxious lab. Would book again.", customerName: "Kevin P.", service: "Overnight Stay", submittedAt: new Date(now - 6 * DAY_MS) },
-  ];
-}
-
-// Temporary placeholder: average of the approved reviews and how many there are.
-// BACKEND: replace with the rating summary from the API.
-function getAverageRating() {
-  return { average: 5, count: 24 };
-}
 
 // "Today", "1 day ago", "5 days ago"
 function formatTimeAgo(date) {
-  const days = Math.floor((Date.now() - date.getTime()) / DAY_MS);
+  const days = Math.floor((Date.now() - date.getTime()) / REVIEW_DAY_MS);
   if (days < 1) return "Today";
   return days === 1 ? "1 day ago" : `${days} days ago`;
 }
@@ -57,26 +45,24 @@ export default function ReviewsToApprove() {
 
   const closeToast = useCallback(() => setToastMessage(null), []);
 
-  function removeReview(id) {
-    setReviews((current) => current.filter((review) => review.id !== id));
-  }
-
   // Temporary: only updates the page; the approved review joins the average.
   // BACKEND: also tell the API the review is approved, so it shows on the website.
   function approveReview(id) {
-    const review = reviews.find((pendingReview) => pendingReview.id === id);
+    const review = approveReviewInService(id);
+    if (!review) return;
     setRating((current) => ({
       average: (current.average * current.count + review.rating) / (current.count + 1),
       count: current.count + 1,
     }));
-    removeReview(id);
+    setReviews((current) => current.filter((pendingReview) => pendingReview.id !== id));
     setToastMessage("Review approved");
   }
 
   // Temporary: only updates the page.
   // BACKEND: also tell the API the review is rejected, and send the popup's reason to the customer.
-  function rejectReview(id) {
-    removeReview(id);
+  function handleRejectReview(id, reason) {
+    if (!rejectReviewInService(id, reason)) return;
+    setReviews((current) => current.filter((review) => review.id !== id));
     setRejectingReviewId(null);
   }
 
@@ -142,7 +128,7 @@ export default function ReviewsToApprove() {
           isRequired
           confirmLabel="Reject review"
           onCancel={() => setRejectingReviewId(null)}
-          onConfirm={() => rejectReview(rejectingReviewId)}
+          onConfirm={(reason) => handleRejectReview(rejectingReviewId, reason)}
         />
       )}
 

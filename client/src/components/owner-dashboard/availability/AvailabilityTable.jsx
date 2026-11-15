@@ -1,12 +1,6 @@
 // Renders the availability table for the owner's Availability section (DT-323).
 import AvailabilityRowActions from "./AvailabilityRowActions";
-
-const STATUS_LABELS = {
-    pending: "Request",
-    awaiting_admin: "Awaiting admin",
-    approved: "Approved",
-    disapproved: "Disapproved",
-};
+import { AVAILABILITY_STATUS_LABELS } from "../../../constants/availability";
 
 /**
  * Turns a 24-hour "HH:MM" string into "9:00 AM".
@@ -80,7 +74,7 @@ export default function AvailabilityTable({ slots, handlers }) {
                             <td>
                                 {/* TODO: reusable <StatusBadge> component not available */}
                                 <span className={`av-badge av-badge-${slot.status}`} title={slot.reason || undefined}>
-                                    {STATUS_LABELS[slot.status]}
+                                    {AVAILABILITY_STATUS_LABELS[slot.status]}
                                 </span>
                             </td>
                             <td className="av-td-actions">

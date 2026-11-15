@@ -6,11 +6,9 @@
 import { useEffect, useState } from "react";
 // shared star row
 import StarRating from "./StarRating";
+import { WRITE_REVIEW_MAX_LENGTH } from "../../constants/reviews";
 // styles for the popup
 import "../../styles/reviews/WriteReviewModal.css";
-
-// longest comment allowed
-const MAX_LENGTH = 400;
 
 // open shows or hides the popup, on close hides it, on submit gets the new review
 /**
@@ -87,12 +85,14 @@ function WriteReviewModal({ open, onClose, onSubmit }) {
               id="write-review-comment"
               className="write-review-textarea"
               placeholder="Write your review..."
-              maxLength={MAX_LENGTH}
+              maxLength={WRITE_REVIEW_MAX_LENGTH}
               value={comment}
               onChange={(event) => setComment(event.target.value)}
             />
             {/* how many characters are left */}
-            <p className="write-review-counter">{MAX_LENGTH - comment.length}/{MAX_LENGTH} characters left</p>
+            <p className="write-review-counter">
+              {WRITE_REVIEW_MAX_LENGTH - comment.length}/{WRITE_REVIEW_MAX_LENGTH} characters left
+            </p>
 
             {/* cancel and post buttons */}
             <div className="write-review-actions">

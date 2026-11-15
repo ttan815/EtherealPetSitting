@@ -2,28 +2,13 @@
 import { QRCodeSVG } from "qrcode.react";
 import BrandLogo from "./BrandLogo";
 import { SUPPORT_EMAIL, SUPPORT_PHONE } from "../../constants/site-info";
-import instagramIcon from "../../assets/icons/instagram.svg";
-import facebookIcon from "../../assets/icons/facebook.svg";
+import { HOMEPAGE_QUICK_LINKS, HOMEPAGE_SOCIAL_LINKS } from "../../constants/homepage";
 import emailIcon from "../../assets/icons/email.svg";
 import phoneIcon from "../../assets/icons/phone-light.svg";
 import topo1 from "../../assets/home/footer-topo-1.svg";
 import topo2 from "../../assets/home/footer-topo-2.svg";
 import topo3 from "../../assets/home/footer-topo-3.svg";
 import "../../styles/homepage/Footer.css";
-
-const QUICK_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Our Services", href: "#services" },
-  { label: "About Angelena", href: "#about" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Log In", href: "/login" },
-  { label: "Create Account", href: "/create-account" },
-];
-// TODO: replace with the product owner's real social media pages
-const SOCIAL_LINKS = [
-  { label: "Instagram", href: "#", icon: instagramIcon },
-  { label: "Facebook", href: "#", icon: facebookIcon },
-];
 
 /**
  * Renders the site's shared footer and supporting navigation.
@@ -53,7 +38,7 @@ function Footer() {
               our own.
             </p>
             <div className="footer-social">
-              {SOCIAL_LINKS.map((link) => (
+              {HOMEPAGE_SOCIAL_LINKS.map((link) => (
                 <a key={link.label} href={link.href} aria-label={link.label}>
                   <img src={link.icon} alt="" />
                 </a>
@@ -64,7 +49,7 @@ function Footer() {
           <nav className="footer-section" aria-label="Quick links">
             <h2 className="footer-heading">Quick Links</h2>
             <ul className="footer-links">
-              {QUICK_LINKS.map((link) => (
+              {HOMEPAGE_QUICK_LINKS.map((link) => (
                 <li key={link.label}>
                   <a href={link.href}>{link.label}</a>
                 </li>

@@ -2,48 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Temporary method that approves an admin's availability request.
- * @param {number} id The availability slot id.
- * @returns {Object} The backend result.
- */
-export function approveAvailability(id) {
-    const temp = { ok: true, id, status: "approved" }; // Result from fetch(`/api/availability/${id}/approve`)
-    return temp;
-}
-
-/**
- * Temporary method that disapproves an admin's availability request.
- * @param {number} id The availability slot id.
- * @param {string} reason Why the owner disapproved it; sent to the admin.
- * @returns {Object} The backend result.
- */
-export function disapproveAvailability(id, reason) {
-    const temp = { ok: true, id, status: "disapproved", reason }; // Result from fetch(`/api/availability/${id}/disapprove`)
-    return temp;
-}
-
-/**
- * Temporary method that saves the owner's edits to an availability slot.
- * @param {number} id The availability slot id.
- * @param {Object} data The updated admin, service, date, times, price and customer.
- * @returns {Object} The updated slot.
- */
-export function updateAvailability(id, data) {
-    const temp = { ...data, id, status: "awaiting_admin", reason: undefined }; // Result from fetch(`/api/availability/${id}`, { method: "PUT" })
-    return temp;
-}
-
-/**
- * Temporary method that deletes an availability slot.
- * @param {number} id The availability slot id.
- * @returns {Object} The backend result.
- */
-export function removeAvailability(id) {
-    const temp = { ok: true, id }; // Result from fetch(`/api/availability/${id}`, { method: "DELETE" })
-    return temp;
-}
-
-/**
  * Renders the action buttons for one availability row.
  * Pending rows get Approve/Disapprove; every other status gets Edit/Remove. All rows get the "⋯" menu.
  * @param {Object} slot The availability slot for this row.

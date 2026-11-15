@@ -18,78 +18,7 @@ import shape3 from '../../assets/home/services-shape-3.svg';
 import shape4 from '../../assets/home/services-shape-4.svg';
 import shape5 from '../../assets/home/services-shape-5.svg';
 
-// bring in the icon image for each service
-import dropInIcon from '../../assets/icons/drop-in.svg';
-import wholeDayIcon from '../../assets/icons/whole-day.svg';
-import overnightIcon from '../../assets/icons/overnight.svg';
-import dogWalkingIcon from '../../assets/icons/dog-walking.svg';
-import groomingIcon from '../../assets/icons/grooming.svg';
-import medicationIcon from '../../assets/icons/medication.svg';
-
-// list of services ethereal pet sitting provides
-// image is null for now so a placeholder box shows until the admin adds pictures
-const DEFAULT_SERVICES = [
-  // first service card
-  {
-    id: 'drop-in-care', // unique id used in the booking link
-    name: 'Drop-in Care', // service name shown on the card
-    icon: dropInIcon, // icon image shown in the small circle
-    description:
-      "Quick visits for feeding, potty breaks, and playtime while you're away during the day.", // short description
-    image: null, // picture set by the admin later
-    photoLabel: 'Pet at home', // what the placeholder says until there is a picture
-  },
-  // second service card
-  {
-    id: 'whole-day-care', // unique id used in the booking link
-    name: 'Whole Day Care', // service name shown on the card
-    icon: wholeDayIcon, // icon image shown in the small circle
-    description:
-      'Extended care throughout the day with meals, walks, and company, so your pet is never alone for long.', // short description
-    image: null, // picture set by the admin later
-    photoLabel: 'Pet playing', // what the placeholder says until there is a picture
-  },
-  // third service card
-  {
-    id: 'overnight-stays', // unique id used in the booking link
-    name: 'Overnight Stays', // service name shown on the card
-    icon: overnightIcon, // icon image shown in the small circle
-    description:
-      'In-home overnight care so your pet can sleep comfortably in their own environment.', // short description
-    image: null, // picture set by the admin later
-    photoLabel: 'Pet sleeping', // what the placeholder says until there is a picture
-  },
-  // fourth service card
-  {
-    id: 'dog-walking', // unique id used in the booking link
-    name: 'Dog Walking', // service name shown on the card
-    icon: dogWalkingIcon, // icon image shown in the small circle
-    description:
-      'Structured walks to keep your dog active, stimulated, and healthy. Choose your duration.', // short description
-    image: null, // picture set by the admin later
-    photoLabel: 'Dog on a walk', // what the placeholder says until there is a picture
-  },
-  // fifth service card groups the small grooming services together
-  {
-    id: 'grooming-care', // unique id used in the booking link
-    name: 'Grooming Care', // service name shown on the card
-    icon: groomingIcon, // icon image shown in the small circle
-    description:
-      'Gentle, stress-free nail trims, ear cleaning, and anal gland expression to keep your pet comfortable and healthy.', // short description
-    image: null, // picture set by the admin later
-    photoLabel: 'Pet being groomed', // what the placeholder says until there is a picture
-  },
-  // sixth service card
-  {
-    id: 'medication', // unique id used in the booking link
-    name: 'Medication', // service name shown on the card
-    icon: medicationIcon, // icon image shown in the small circle
-    description:
-      'Safe and timely administration of medications, including pills, drops, and injections, following your care instructions.', // short description
-    image: null, // picture set by the admin later
-    photoLabel: 'Pet being cared for', // what the placeholder says until there is a picture
-  },
-]; // end of the services list
+import { getHomepageServices } from "../../services/booking-service";
 
 // builds one service card
 // service holds the card info and the logged in flag tells us if the user is a customer
@@ -143,7 +72,8 @@ function ServiceCard({ service, isLoggedIn }) {
  * @param {boolean} [props.isLoggedIn] - Whether the visitor has an active session.
  * @returns {JSX.Element} The homepage services section.
  */
-export default function ServiceSection({ services = DEFAULT_SERVICES, isLoggedIn = false }) {
+export default function ServiceSection({ services, isLoggedIn = false }) {
+  const serviceOptions = services ?? getHomepageServices();
   // what the section looks like on the page
   return (
     // id services lets the navigation bar scroll to this section
@@ -170,7 +100,7 @@ export default function ServiceSection({ services = DEFAULT_SERVICES, isLoggedIn
         {/* grid that holds all the service cards */}
         <div className="svc-grid">
           {/* make one card for every service in the list */}
-          {services.map((service) => (
+          {serviceOptions.map((service) => (
             <ServiceCard key={service.id} service={service} isLoggedIn={isLoggedIn} />
           ))}
         </div>

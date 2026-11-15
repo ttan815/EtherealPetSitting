@@ -7,7 +7,7 @@ import PetCareForm from "../components/booking/select-pet/PetCareForm";
 import Button from "../components/form/Button";
 import { BOOKING_SERVICES } from "../constants/booking-services";
 import { fromDateKey } from "../utils/calendar-dates";
-import { getSavedHouseEntry, getSavedPets } from "../utils/placeholder-pets";
+import { getSavedHouseEntry, getSavedPets } from "../services/pet-service";
 import "../styles/booking/PetCareDetailsPage.css";
 
 function createNewPet() {

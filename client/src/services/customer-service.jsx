@@ -352,3 +352,44 @@ export function createCustomer(data) {
     customers.push(customer);
     return cloneCustomer(customer);
 }
+
+const customerProfile = {
+    fullName: "Maya Elena Rivera",
+    preferredName: "Maya",
+    email: "maya.rivera@gmail.com",
+    phone: "(510) 555-0182",
+    address: "1427 Willow Street · Oakland, CA 94607",
+    emergencyContact: "Elena Rivera · (510) 555-0168",
+    verified: true,
+    memberSince: "March 2024",
+    serviceArea: "Oakland",
+    primaryPet: "Mochi",
+    passwordLastChanged: "4 months ago",
+};
+
+/**
+ * Fetches the temporary profile for the signed-in customer.
+ * @returns {Object} The customer's profile.
+ */
+export function getCustomerProfile() {
+    return { ...customerProfile };
+}
+
+/**
+ * Saves temporary changes to the signed-in customer's profile.
+ * @param {Object} changes Profile fields to update.
+ * @returns {Object} The updated profile.
+ */
+export function updateCustomerProfile(changes) {
+    Object.assign(customerProfile, changes);
+    return getCustomerProfile();
+}
+
+/**
+ * Updates the signed-in customer's password timestamp.
+ * @returns {Object} The updated profile.
+ */
+export function changeCustomerPassword() {
+    customerProfile.passwordLastChanged = "just now";
+    return getCustomerProfile();
+}

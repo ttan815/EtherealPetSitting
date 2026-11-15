@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useBooking } from "../hooks/useBooking";
-import { BOOKING_SERVICES } from "../constants/booking-services";
+import { getBookingServices } from "../services/booking-service";
 import BookingConfirmation from "../components/booking/confirmation/BookingConfirmation";
 import ReviewPayDeposit from "./ReviewPayDepositPage";
 
@@ -14,7 +14,7 @@ export default function PaymentPage() {
   const navigate = useNavigate();
   const { booking, updateBooking } = useBooking();
   const [isConfirmed, setIsConfirmed] = useState(false);
-  const services = BOOKING_SERVICES.filter((service) => booking.serviceIds.includes(service.id));
+  const services = getBookingServices().filter((service) => booking.serviceIds.includes(service.id));
   const isNewBooking = id === "new-booking";
 
   if (isConfirmed) {

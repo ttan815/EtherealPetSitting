@@ -1,7 +1,6 @@
 // Renders the Change password popup on the Manage Personal Information section.
 import { useEffect, useRef, useState } from "react";
-
-const EMPTY_FORM = { oldPassword: "", newPassword: "", confirmPassword: "" };
+import { EMPTY_PASSWORD_CHANGE_FORM } from "../../../constants/customer-forms";
 
 /**
  * Checks the new password against the rules shown in the hint.
@@ -27,14 +26,14 @@ export function validatePasswordForm({ oldPassword, newPassword, confirmPassword
  * @returns {JSX.Element|null} The popup, or nothing when closed.
  */
 export default function ChangePasswordModal({ open, onCancel, onUpdate }) {
-    const [form, setForm] = useState(EMPTY_FORM);
+    const [form, setForm] = useState(EMPTY_PASSWORD_CHANGE_FORM);
     const [error, setError] = useState("");
     const firstInput = useRef(null);
 
     // Reset the form and focus the first field each time the popup opens.
     useEffect(() => {
         if (!open) return undefined;
-        setForm(EMPTY_FORM);
+        setForm(EMPTY_PASSWORD_CHANGE_FORM);
         setError("");
         firstInput.current?.focus();
 

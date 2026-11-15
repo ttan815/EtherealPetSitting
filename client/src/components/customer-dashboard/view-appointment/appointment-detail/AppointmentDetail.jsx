@@ -7,30 +7,7 @@ import PaymentInfo from "./PaymentInfo";
 import RescheduleAppointButton from "../../../action-button/RescheduleAppointmentButton";
 import DownloadReceiptButton from "../../../action-button/DownloadReceiptButton";
 import CancelAppointmentButton from "../../../action-button/CancelAppointmentButton";
-
-function fetchAppointmentId(appointmentId) {
-    {/* Fetch here */ }
-    /**
-     * Temp Database Structure:
-     * Sitter Assigned: Angelena
-     * service: Dog Walking
-     * petId: 101
-     * date: Oct 26, 2026
-     * time: 10:00 AM
-     * transactionId: 1001
-     */
-    const appointment = {
-        id: appointmentId,
-        sitter: "Owner",
-        service: "Trim",
-        petId: 101,
-        date: "Oct 26, 2026",
-        time: "10:00 AM",
-        transactionId: 1001
-    }
-
-    return appointment;
-};
+import { getAppointmentById } from "../../../../services/appointment-service";
 
 
 /**
@@ -43,7 +20,7 @@ function fetchAppointmentId(appointmentId) {
  * @returns {JSX.Element} The appointment detail view.
  */
 function AppointmentDetail({ activeFilter, setCurrentView, appointmentId, onReschedule }) {
-    const appointment = fetchAppointmentId(appointmentId);
+    const appointment = getAppointmentById(appointmentId);
 
     return (
         <div className="page-content">

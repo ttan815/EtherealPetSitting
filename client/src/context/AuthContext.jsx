@@ -1,5 +1,6 @@
 // Provides shared auth context state to the React application.
 import { createContext, useState, useContext, useEffect } from 'react'
+import { getCurrentSession } from "../services/auth-service";
 const AuthContext = createContext()
 /**
  * Provides the current authentication session to descendant components.
@@ -15,20 +16,16 @@ export function AuthProvider({ children }) {
     async function refreshSession() {
         try {
             setLoading(true)
-            const response = await fetch("http://localhost:5002/api/login-account/session",
-                {
-                    method: "GET",
-                    credentials: "include",
-                })
-            if (!response.ok) {
+            const userData = await getCurrentSession();
+            if (!userData) {
                 setUser(null)
                 return false
             }
-            const userData = await response.json()
             setUser(userData)
             return true
         } catch (error) {
             setUser(null)
+            console.error("Unable to refresh the authentication session.", error)
             return false
         }
         finally {

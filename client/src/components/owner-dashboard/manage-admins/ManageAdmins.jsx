@@ -5,107 +5,17 @@ import EmployeeList from "./EmployeeList";
 import RolesPermissionInfo from "./RolesPermissionInfo";
 import AutoAssign from "./AutoAssign";
 import { AdminFormPopup, RemoveAdminPopup } from "./AdminPopups";
+import {
+    cancelInvite,
+    getAdmins,
+    getBackupSettings,
+    inviteAdmin,
+    removeAdmin,
+    resendInvite,
+    saveBackupSettings,
+    updateAdmin,
+} from "../../../services/admin-service";
 import "../../../styles/owner-dashboard/manage-admins/ManageAdmins.css";
-
-// sample data until the backend is ready, names are made up
-const SAMPLE_TEAM = [
-    { id: "owner", name: "You", initials: "SA", email: "", role: "owner", status: "active", visitsThisWeek: 0 },
-    { id: "a1", name: "Adrian P.", email: "adrian.p@email.com", phone: "", role: "admin", status: "active", visitsThisWeek: 7 },
-    { id: "a2", name: "", email: "sitter.jamie@email.com", role: "admin", status: "pending", invitedOn: "Sep 26" },
-];
-
-/**
- * Gets the owner, admins, and pending invites.
- * @returns {Array} The team members.
- */
-export function getAdmins() {
-    // TODO: replace with backend call
-    const temp = SAMPLE_TEAM;
-    return temp;
-}
-
-/**
- * Sends an invite email to a new admin.
- * @param {Object} details The new admin's { name, email, phone }.
- * @returns {Object} The pending team member that was created.
- */
-export function inviteAdmin(details) {
-    // TODO: replace with backend call
-    const temp = {
-        id: `invite-${Date.now()}`,
-        ...details,
-        role: "admin",
-        status: "pending",
-        invitedOn: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-    };
-    return temp;
-}
-
-/**
- * Saves changes to an existing admin.
- * @param {string} id The admin's id.
- * @param {Object} changes The updated { name, phone }.
- * @returns {boolean} True when the update worked.
- */
-export function updateAdmin(id, changes) {
-    // TODO: replace with backend call
-    const temp = Boolean(id && changes);
-    return temp;
-}
-
-/**
- * Removes an admin's access.
- * @param {string} id The admin's id.
- * @returns {boolean} True when the admin was removed.
- */
-export function removeAdmin(id) {
-    // TODO: replace with backend call
-    const temp = Boolean(id);
-    return temp;
-}
-
-/**
- * Sends a pending invite email again.
- * @param {string} id The pending invite's id.
- * @returns {boolean} True when the email was sent.
- */
-export function resendInvite(id) {
-    // TODO: replace with backend call
-    const temp = Boolean(id);
-    return temp;
-}
-
-/**
- * Cancels a pending invite so the link stops working.
- * @param {string} id The pending invite's id.
- * @returns {boolean} True when the invite was cancelled.
- */
-export function cancelInvite(id) {
-    // TODO: replace with backend call
-    const temp = Boolean(id);
-    return temp;
-}
-
-/**
- * Gets the owner's backup admin settings.
- * @returns {Object} The settings { enabled, backupId }.
- */
-export function getBackupSettings() {
-    // TODO: replace with backend call
-    const temp = { enabled: true, backupId: "a1" };
-    return temp;
-}
-
-/**
- * Saves the owner's backup admin settings.
- * @param {Object} settings The new { enabled, backupId }.
- * @returns {boolean} True when the settings were saved.
- */
-export function saveBackupSettings(settings) {
-    // TODO: replace with backend call
-    const temp = Boolean(settings);
-    return temp;
-}
 
 /**
  * Renders the manage admins page with the team list, roles info, backup card, and popups.

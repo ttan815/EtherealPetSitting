@@ -1,6 +1,15 @@
 import { useCallback, useMemo, useState } from "react";
-import { NEW_APPOINTMENT_POPUP_PROPS, NewAppointmentContext } from "./NewAppointmentContext";
-import { getInitialVisits } from "../constants/NewAppointmentData";
+import { NewAppointmentContext } from "./NewAppointmentContext";
+import { NEW_APPOINTMENT_COPY, OWNER_APPOINTMENT_OPTION } from "../constants/appointment-copy";
+import {
+    createAppointmentRecord,
+    getAppointmentAdmins,
+    getAppointmentCustomers,
+    getAppointmentPets,
+    getAppointmentServices,
+    getInitialVisits,
+    updateAppointmentStatus,
+} from "../services/appointment-service";
 
 /**
  * Provides shared appointment-popup options and dashboard appointment state.
@@ -12,42 +21,33 @@ export function NewAppointmentProvider({ children }) {
     const [visits, setVisits] = useState(getInitialVisits);
 
     const addAppointment = useCallback((appointment) => {
-        const dateLabel = appointment.date.toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-        });
-
-        setVisits((current) => [
-            ...current,
-            {
-                id: `new-appointment-${Date.now()}`,
-                time: appointment.startTimeLabel,
-                endTime: appointment.endTimeLabel,
-                dateLabel,
-                duration: "",
-                petName: appointment.petName || appointment.customerName || NEW_APPOINTMENT_POPUP_PROPS.copy.openBookingLabel,
-                breed: appointment.petBreed,
-                service: appointment.serviceLabel,
-                customerName: appointment.customerName || NEW_APPOINTMENT_POPUP_PROPS.copy.openBookingLabel,
-                sitterName: appointment.adminName || NEW_APPOINTMENT_POPUP_PROPS.copy.ownerLabel,
-                status: "upcoming",
-                approvalRequired: appointment.approvalRequired,
-                note: appointment.note,
-            },
-        ]);
+        setVisits((current) => [...current, createAppointmentRecord(appointment)]);
     }, []);
 
     const markAppointmentComplete = useCallback((id) => {
-        setVisits((current) => current.map((visit) => (visit.id === id ? { ...visit, status: "completed" } : visit)));
+        const result = updateAppointmentStatus(id, "completed");
+        if (result.ok) {
+            setVisits((current) => current.map((visit) => (
+                visit.id === id ? { ...visit, status: result.status } : visit
+            )));
+        }
     }, []);
 
+    const popupProps = useMemo(() => ({
+        adminId: "owner",
+        ownerOption: OWNER_APPOINTMENT_OPTION,
+        services: getAppointmentServices(),
+        copy: NEW_APPOINTMENT_COPY,
+        getListOfAdmin: getAppointmentAdmins,
+        getListOfCustomer: getAppointmentCustomers,
+        getListOfPets: getAppointmentPets,
+    }), []);
     const value = useMemo(() => ({
         visits,
         addAppointment,
         markAppointmentComplete,
-        popupProps: NEW_APPOINTMENT_POPUP_PROPS,
-    }), [addAppointment, markAppointmentComplete, visits]);
+        popupProps,
+    }), [addAppointment, markAppointmentComplete, popupProps, visits]);
 
     return (
         <NewAppointmentContext.Provider value={value}>

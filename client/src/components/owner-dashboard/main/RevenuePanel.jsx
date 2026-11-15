@@ -2,96 +2,14 @@
 import { useState } from "react";
 import downloadIcon from "../../../assets/owner-dashboard/export-download.svg";
 import arrowIcon from "../../../assets/owner-dashboard/link-arrow.svg";
+import { DASHBOARD_REVENUE_RANGE_OPTIONS, REVENUE_BAR_MAX_HEIGHT } from "../../../constants/revenue";
+import {
+  exportDashboardRevenue,
+  getEarningsByService,
+  getRevenueByWeek,
+  getRevenueSummary,
+} from "../../../services/revenue-service";
 import "../../../styles/owner-dashboard/RevenuePanel.css";
-
-const RANGE_OPTIONS = [
-  { id: "week", label: "Week" },
-  { id: "month", label: "Month" },
-  { id: "custom", label: "Custom" },
-];
-
-// Temporary placeholder numbers for each range (Figma "Admin — Dashboard" shows Month).
-// BACKEND: the get... methods below should load these from the API instead.
-// Week: this week compared with last week; the chart shows the last 4 weeks.
-// Custom: TODO add a date picker; for now it shows a sample custom range.
-const PLACEHOLDER_REVENUE = {
-  week: {
-    summary: { total: 1240, periodLabel: "This week", changePercent: -7, comparedTo: "last week", unpaidVisitCount: 3, unpaidAmount: 180 },
-    weeks: [
-      { label: "Sep 1", amount: 980 },
-      { label: "Sep 8", amount: 1310 },
-      { label: "Sep 15", amount: 1330 },
-      { label: "Sep 22", amount: 1240, isCurrent: true },
-    ],
-    services: [
-      { name: "Dog Walking", amount: 470 },
-      { name: "Overnight Stays", amount: 340 },
-      { name: "Drop-in Care", amount: 225 },
-      { name: "Whole Day Care", amount: 125 },
-      { name: "Medication", amount: 60 },
-      { name: "Nail Trims", amount: 20 },
-    ],
-  },
-  month: {
-    summary: { total: 4860, periodLabel: "September 2026", changePercent: 8, comparedTo: "August", unpaidVisitCount: 3, unpaidAmount: 180 },
-    weeks: [
-      { label: "Wk 1", amount: 980 },
-      { label: "Wk 2", amount: 1310 },
-      { label: "Wk 3", amount: 1330 },
-      { label: "Wk 4", amount: 1240, isCurrent: true },
-    ],
-    services: [
-      { name: "Dog Walking", amount: 1850 },
-      { name: "Overnight Stays", amount: 1310 },
-      { name: "Drop-in Care", amount: 875 },
-      { name: "Whole Day Care", amount: 485 },
-      { name: "Medication", amount: 240 },
-      { name: "Nail Trims", amount: 100 },
-    ],
-  },
-  custom: {
-    summary: { total: 7700, periodLabel: "Custom range (Aug 18 – Sep 27)", changePercent: 5, comparedTo: "the 6 weeks before", unpaidVisitCount: 3, unpaidAmount: 180 },
-    weeks: [
-      { label: "Aug 18", amount: 1120 },
-      { label: "Aug 25", amount: 1290 },
-      { label: "Sep 1", amount: 1410 },
-      { label: "Sep 8", amount: 1310 },
-      { label: "Sep 15", amount: 1330 },
-      { label: "Sep 22", amount: 1240, isCurrent: true },
-    ],
-    services: [
-      { name: "Dog Walking", amount: 2930 },
-      { name: "Overnight Stays", amount: 2080 },
-      { name: "Drop-in Care", amount: 1390 },
-      { name: "Whole Day Care", amount: 770 },
-      { name: "Medication", amount: 380 },
-      { name: "Nail Trims", amount: 150 },
-    ],
-  },
-};
-
-// Temporary: total earnings, % change, and unpaid visits for the range
-function getRevenueSummary(range) {
-  return PLACEHOLDER_REVENUE[range].summary;
-}
-
-// Temporary: earnings per week for the chart; isCurrent marks this week
-function getRevenueByWeek(range) {
-  return PLACEHOLDER_REVENUE[range].weeks;
-}
-
-// Temporary: earnings per service, largest first
-function getEarningsByService(range) {
-  return PLACEHOLDER_REVENUE[range].services;
-}
-
-// Temporary: does nothing yet.
-// BACKEND: download the revenue report for this range.
-function exportRevenue(range) {
-  console.log("Export revenue:", range);
-}
-
-const BAR_MAX_HEIGHT = 150; // px, the tallest week (Figma)
 
 // "$4,860"
 function formatMoney(amount) {
@@ -124,7 +42,7 @@ export default function RevenuePanel({ onNavigate }) {
 
         <div className="revenue-panel-controls">
           <div className="revenue-panel-range" role="group" aria-label="Date range">
-            {RANGE_OPTIONS.map((option) => (
+            {DASHBOARD_REVENUE_RANGE_OPTIONS.map((option) => (
               <button
                 key={option.id}
                 type="button"
@@ -137,7 +55,7 @@ export default function RevenuePanel({ onNavigate }) {
             ))}
           </div>
 
-          <button type="button" className="revenue-panel-export" onClick={() => exportRevenue(range)}>
+          <button type="button" className="revenue-panel-export" onClick={() => exportDashboardRevenue(range)}>
             <img src={downloadIcon} alt="" />
             Export
           </button>
@@ -159,7 +77,7 @@ export default function RevenuePanel({ onNavigate }) {
                 <span className="revenue-chart-amount">{formatMoney(week.amount)}</span>
                 <span
                   className={`revenue-chart-bar${week.isCurrent ? " revenue-chart-bar-current" : ""}`}
-                  style={{ height: `${(week.amount / highestWeek) * BAR_MAX_HEIGHT}px` }}
+                  style={{ height: `${(week.amount / highestWeek) * REVENUE_BAR_MAX_HEIGHT}px` }}
                 />
                 <span className="revenue-chart-label">{week.label}</span>
               </li>
