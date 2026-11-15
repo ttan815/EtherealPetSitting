@@ -5,39 +5,69 @@ import { NO_PREFERENCE_SITTER_ID } from "../../constants/booking/booking-sitters
 import BookAppointmentPage from "../../pages/BookAppointmentPage";
 import SelectDateTimePage from "../../pages/SelectDateTimePage";
 import PetCareDetailsPage from "../../pages/PetCareDetailsPage";
-import BookingConfirmation from "./confirmation/BookingConfirmation";
 import { getServiceIdsFromQuery } from "../../utils/service-query";
-import { getBookingServices, getBookingSitters } from "../../services/booking/booking-service";
 
 /**
  * Renders booking stages and routes the payment stage separately.
  * @returns {JSX.Element} The active booking stage.
  */
 export default function BookingFlow() {
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
   const { booking, updateBooking } = useBooking();
   const [searchParams] = useSearchParams();
   const [step, setStep] = useState(() => location.state?.step ?? 1);
   const [serviceSelection, setServiceSelection] = useState(() => {
     const serviceIdsFromUrl = getServiceIdsFromQuery(searchParams);
-    return serviceIdsFromUrl.length > 0 ? serviceIdsFromUrl : booking.serviceIds;
+    return location.state?.addAnotherService ? [] : serviceIdsFromUrl.length > 0 ? serviceIdsFromUrl : booking.serviceIds;
   });
-  const services = getBookingServices().filter((service) => booking.serviceIds.includes(service.id));
+  const legacyAppointments = booking.serviceIds.map((serviceId) => ({
+    id: serviceId,
+    serviceId,
+    sitterId: booking.sitterId,
+    dateKey: booking.dateKey,
+    time: booking.time,
+    pets: booking.pets,
+    houseEntry: booking.houseEntry,
+    additionalTasks: booking.additionalTasks,
+  }));
+  const appointments = booking.appointments?.length ? booking.appointments : legacyAppointments;
+  const activeAppointmentIndex = Math.min(booking.activeAppointmentIndex ?? 0, Math.max(appointments.length - 1, 0));
+  const activeAppointment = appointments[activeAppointmentIndex];
+
+  function updateAppointment(index, changes) {
+    const nextAppointments = [...appointments];
+    nextAppointments[index] = { ...nextAppointments[index], ...changes };
+    updateBooking({ appointments: nextAppointments });
+  }
 
   function continueFromServices(serviceIds) {
-    const compatibleSitter = getBookingSitters().some(
-      (sitter) =>
-        sitter.id === booking.sitterId &&
-        (!sitter.serviceIds || serviceIds.every((serviceId) => sitter.serviceIds.includes(serviceId)))
-    );
-    updateBooking({
-      serviceIds,
-      sitterId: compatibleSitter ? booking.sitterId : NO_PREFERENCE_SITTER_ID,
-      dateKey: null,
-      time: null,
-    });
+    const serviceId = serviceIds[0];
+    const existingAppointments = booking.appointments?.length ? booking.appointments : legacyAppointments;
+    const existingIndex = existingAppointments.findIndex((item) => item.serviceId === serviceId);
+    const nextAppointments = [...existingAppointments];
+    const appointment = existingIndex >= 0
+      ? nextAppointments[existingIndex]
+      : { id: `${serviceId}-${Date.now()}`, serviceId, sitterId: NO_PREFERENCE_SITTER_ID, dateKey: null, time: null, pets: null, houseEntry: null, additionalTasks: "" };
+    const nextIndex = existingIndex >= 0 ? existingIndex : nextAppointments.length;
+    if (existingIndex < 0) nextAppointments.push(appointment);
+    updateBooking({ appointments: nextAppointments, activeAppointmentIndex: nextIndex });
     setStep(2);
+  }
+
+  function startAnotherService() {
+    setServiceSelection([]);
+    setStep(1);
+  }
+
+  function finishAppointment() {
+    updateBooking({
+      serviceIds: appointments.map((item) => item.serviceId),
+      dateKey: appointments[0]?.dateKey ?? null,
+      time: appointments[0]?.time ?? null,
+      pets: appointments[0]?.pets ?? null,
+    });
+    navigate("/payment/new-booking");
   }
 
   if (step === 1) {
@@ -51,10 +81,11 @@ export default function BookingFlow() {
   }
 
   if (step === 2) {
+    if (!activeAppointment) return null;
     return (
       <SelectDateTimePage
-        booking={booking}
-        updateBooking={updateBooking}
+        booking={{ ...booking, ...activeAppointment, serviceIds: [activeAppointment.serviceId] }}
+        updateBooking={(changes) => updateAppointment(activeAppointmentIndex, changes)}
         onBack={() => setStep(1)}
         onContinue={() => setStep(3)}
       />
@@ -62,15 +93,17 @@ export default function BookingFlow() {
   }
 
   if (step === 3) {
+    if (!activeAppointment) return null;
     return (
       <PetCareDetailsPage
-        booking={booking}
-        updateBooking={updateBooking}
+        booking={{ ...booking, ...activeAppointment, serviceIds: [activeAppointment.serviceId] }}
+        updateBooking={(changes) => updateAppointment(activeAppointmentIndex, changes)}
         onBack={() => setStep(2)}
-        onContinue={() => navigate("/payment/new-booking")}
+        onContinue={finishAppointment}
+        onAddAnother={startAnotherService}
       />
     );
   }
 
-  return <BookingConfirmation booking={booking} services={services} />;
+  return null;
 }

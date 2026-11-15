@@ -5,8 +5,18 @@ import { getBookingPrice, formatBookingAmount } from "../../../utils/booking-pri
  * @param {{services: Array<Object>, dateKey: string|null}} props - Selected services and appointment date.
  * @returns {JSX.Element} The price-details and deposit cards.
  */
-function PriceDetailsCard({ services, dateKey }) {
-  const { total, deposit, balance } = getBookingPrice(services, dateKey);
+function PriceDetailsCard({ services, dateKey, appointments }) {
+  const hasAppointments = appointments?.length > 0;
+  const breakdowns = hasAppointments
+    ? appointments.map((appointment) =>
+        getBookingPrice(services.filter((service) => service.id === appointment.serviceId), appointment.dateKey)
+      )
+    : [getBookingPrice(services, dateKey)];
+  const total = breakdowns.some((item) => item.total === null)
+    ? null
+    : breakdowns.reduce((sum, item) => sum + item.total, 0);
+  const deposit = breakdowns.reduce((sum, item) => sum + item.deposit, 0);
+  const balance = total === null ? null : Math.max(total - deposit, 0);
   const depositWindow = deposit === 20 ? "within 30 days" : deposit === 50 ? "within 60 days" : "within 90 days";
 
   return (
@@ -33,7 +43,7 @@ function PriceDetailsCard({ services, dateKey }) {
         </div>
         <div>
           <p className="flex-info-spec-deposit">
-            {dateKey
+            {(hasAppointments ? appointments.every((item) => item.dateKey) : dateKey)
               ? `You're booking ${depositWindow}, so your deposit is ${formatBookingAmount(deposit)}. The remaining balance is due after the visit, in cash or online.`
               : "Select an appointment date to calculate the required deposit."}
           </p>

@@ -6,7 +6,6 @@ import BookingReviewCard from "../components/booking/review-and-pay/BookingRevie
 import PaymentMethodSelector from "../components/booking/review-and-pay/PaymentMethodSelector";
 import PriceDetailsCard from "../components/booking/review-and-pay/PriceDetailsCard";
 import ReviewPayHeader from "../components/booking/review-and-pay/ReviewPayHeader";
-import { getSavedPets } from "../services/customer-dashboard/pet-service";
 import "../styles/booking/ReviewPayDeposit.css";
 
 /**
@@ -14,9 +13,9 @@ import "../styles/booking/ReviewPayDeposit.css";
  * @param {{booking: Object, services: Array<Object>, updateBooking: Function, onBack: Function, onContinue: Function}} props - Booking data and step controls.
  * @returns {JSX.Element} The review-and-payment page.
  */
-function ReviewPayDeposit({ booking, services, updateBooking, onBack, onContinue }) {
+function ReviewPayDeposit({ booking, services, appointments = [], updateBooking, onBack, onContinue, onAddAnother, onDeleteAppointment }) {
   const { user } = useAuth();
-  const pets = booking.pets ?? getSavedPets();
+  const serviceById = new Map(services.map((service) => [service.id, service]));
 
   return (
     <div className="review-pay-page">
@@ -25,17 +24,42 @@ function ReviewPayDeposit({ booking, services, updateBooking, onBack, onContinue
       <main>
         <section className="review-pay-information-container" aria-label="Booking and payment summary">
           <div className="booking-pet-summaries">
-            {pets.map((pet) => (
-              <BookingReviewCard key={pet.id} booking={booking} services={services} pet={pet} />
-            ))}
+            {appointments.length > 0
+              ? appointments.map((appointment) => {
+                  const service = serviceById.get(appointment.serviceId);
+                  const appointmentPets = appointment.pets ?? [];
+                  return appointmentPets.map((pet) => (
+                    <BookingReviewCard
+                      key={`${appointment.id}-${pet.id}`}
+                      booking={appointment}
+                      services={service ? [service] : []}
+                      pet={pet}
+                      onDelete={onDeleteAppointment ? () => onDeleteAppointment(appointment.id) : undefined}
+                    />
+                  ));
+                })
+              : (booking.pets ?? []).map((pet) => (
+                  <BookingReviewCard
+                    key={pet.id}
+                    booking={booking}
+                    services={services}
+                    pet={pet}
+                    onDelete={onDeleteAppointment ? () => onDeleteAppointment(booking.serviceIds[0]) : undefined}
+                  />
+                ))}
           </div>
           <div className="spacing-padding">
-            <PriceDetailsCard services={services} dateKey={booking.dateKey} />
+            <PriceDetailsCard services={services} dateKey={booking.dateKey} appointments={appointments} />
             <PaymentMethodSelector
               paymentMethod={booking.paymentMethod ?? "card"}
               onChange={(paymentMethod) => updateBooking({ paymentMethod })}
             />
           </div>
+          {onAddAnother && (
+            <button type="button" className="back-btn add-another-service-button" onClick={onAddAnother}>
+              Add Another Service
+            </button>
+          )}
           <img src={circleBackground} className="circleRight" alt="" />
         </section>
         <div className="navigation-buttons">

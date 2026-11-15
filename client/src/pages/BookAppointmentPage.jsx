@@ -7,12 +7,12 @@ import { getBookingServices } from "../services/booking/booking-service";
 import arrowBackIcon from "../assets/booking/arrow-back.svg";
 import "../styles/booking/BookAppointmentPage.css";
 
-// Step 1 of booking: the customer picks one or more services (Figma "Customer - Book a Service").
+// Step 1 of booking: the customer picks one service (Figma "Customer - Book a Service").
 // Starts with the services in the URL (e.g. from the home page "Book this service"),
 // otherwise with the ones already in the booking (e.g. after "Back" from step 2).
 /**
  * Renders the service-selection step of the booking flow.
- * @param {{selectedServiceIds: string[], onSelectionChange: Function, onContinue: Function}} props - Selected services and step callbacks.
+ * @param {{selectedServiceIds: string[], onSelectionChange: Function, onContinue: Function}} props - Selected service and step callbacks.
  * @returns {JSX.Element} The booking service-selection page.
  */
 export default function BookAppointmentPage({ selectedServiceIds, onSelectionChange, onContinue }) {
@@ -22,7 +22,7 @@ export default function BookAppointmentPage({ selectedServiceIds, onSelectionCha
 
   function toggleService(serviceId) {
     onSelectionChange((serviceIds) =>
-      serviceIds.includes(serviceId) ? serviceIds.filter((id) => id !== serviceId) : [...serviceIds, serviceId]
+      serviceIds.includes(serviceId) ? [] : [serviceId]
     );
   }
 
@@ -47,7 +47,7 @@ export default function BookAppointmentPage({ selectedServiceIds, onSelectionCha
     <BookingLayout
       currentStep={1}
       title="Book Pet Care"
-      description="Select one or more services you need for your pet. Angelena provides personalized care designed to keep your pet happy, safe, and comfortable."
+      description="Choose a service to add to your appointment cart. Each service gets its own date, time, and pet details."
       actions={actions}
     >
       <div className="book-appointment-services" role="group" aria-label="Services">

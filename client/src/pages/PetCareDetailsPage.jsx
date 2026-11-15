@@ -39,7 +39,7 @@ function isPetComplete(pet) {
  * @param {{booking: Object, updateBooking: Function, onBack: Function, onContinue: Function}} props - Booking data and step controls.
  * @returns {JSX.Element} The pet-care details page.
  */
-export default function PetCareDetailsPage({ booking, updateBooking, onBack, onContinue }) {
+export default function PetCareDetailsPage({ booking, updateBooking, onBack, onContinue, onAddAnother }) {
   const [activePetId, setActivePetId] = useState(null);
 
   const services = BOOKING_SERVICES.filter((service) => booking.serviceIds.includes(service.id));
@@ -63,13 +63,23 @@ export default function PetCareDetailsPage({ booking, updateBooking, onBack, onC
     updatePets(pets.map((pet) => (pet.id === activePet.id ? { ...pet, ...changes } : pet)));
   }
 
+  function continueWithSelectedPets() {
+    updatePets(pets);
+    onContinue();
+  }
+
   const actions = (
     <>
       <Button variant="outline" type="button" onClick={onBack}>
         Back
       </Button>
-      <Button type="button" disabled={!canContinue} onClick={onContinue}>
-        Continue to Review
+      {onAddAnother && (
+        <Button variant="outline" type="button" onClick={onAddAnother}>
+          Add Another Service
+        </Button>
+      )}
+      <Button type="button" disabled={!canContinue} onClick={continueWithSelectedPets}>
+        {onAddAnother ? "Continue to Cart" : "Continue to Review"}
       </Button>
     </>
   );

@@ -160,6 +160,28 @@
     min-width: 0;
 }
 
+.booking-pet-summaries .infoContainer {
+    position: relative;
+}
+
+.booking-summary-delete {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    border: 1px solid #84704c;
+    border-radius: 20px;
+    background: transparent;
+    color: #705930;
+    cursor: pointer;
+    z-index: 16;
+}
+
+.booking-summary-delete:hover {
+    background: #705930;
+    color: #f9efed;
+}
+
 .infoContainer {
     background-color: #fffdfb;
     padding: 15px;
@@ -243,6 +265,11 @@
     justify-content: center;
     flex-direction: column;
     gap: 30px;
+}
+
+.add-another-service-button {
+    justify-self: start;
+    width: fit-content;
 }
 
 .navigation-buttons {

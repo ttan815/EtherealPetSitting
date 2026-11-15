@@ -8,6 +8,8 @@ export const BOOKING_STORAGE_KEY = "ethereal-booking";
  * @type {Object}
  */
 export const EMPTY_BOOKING = {
+    appointments: [],
+    activeAppointmentIndex: 0,
     serviceIds: [],
     sitterId: NO_PREFERENCE_SITTER_ID,
     dateKey: null,

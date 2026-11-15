@@ -31,9 +31,6 @@ function BookingServiceCard({ service, isSelected, onToggle }) {
       </span>
 
       <span className="booking-service-card-footer">
-        <span className="booking-service-card-price">
-          From {formatServicePrice(service)}
-        </span>
         <span className="booking-service-card-action">
           Select this
           <img src={arrowIcon} alt="" />
