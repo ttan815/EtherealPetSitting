@@ -1,0 +1,411 @@
+/* Owner Dashboard — Appointments (DT-299). Colors sampled from the Figma admin screens. */
+.ap-page {
+    --ap-ink: #2f1f04;
+    --ap-brown: #705930;
+    --ap-text: #645642;
+    --ap-muted: #7c6741;
+    --ap-line: #e8dcca;
+    --ap-card: #fffdfb;
+    --ap-blush: #f7ecea;
+    --ap-page-bg: #f9efed;
+    --ap-input-bg: #fbf4f2;
+    --ap-input-line: #dcc6ab;
+    --ap-danger: #a2412a;
+    --ap-danger-bg: #f3e6e1;
+    --ap-serif: "Playfair Display", Georgia, serif;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    color: var(--ap-ink);
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ---------- Buttons ---------- */
+.ap-btn {
+    border-radius: 999px;
+    padding: 12px 24px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+}
+.ap-btn-sm { padding: 7px 16px; font-size: 13px; }
+.ap-btn-primary { background: var(--ap-brown); color: #fff; }
+.ap-btn-primary:hover { background: #5d4826; }
+.ap-btn-outline { background: transparent; color: var(--ap-ink); border-color: var(--ap-brown); }
+.ap-btn-outline:hover { background: var(--ap-line); }
+.ap-btn-danger { background: var(--ap-danger); color: #fff; }
+.ap-btn-danger:hover { background: #8a3522; }
+.ap-link {
+    background: none;
+    border: none;
+    padding: 6px 4px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ap-ink);
+    cursor: pointer;
+}
+.ap-link:hover { text-decoration: underline; }
+.ap-link-danger { color: var(--ap-danger); }
+
+/* ---------- Tabs & filter ---------- */
+.ap-filter { display: flex; flex-direction: column; gap: 16px; }
+.ap-tabs, .ap-filter-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.ap-filter-row { gap: 12px; }
+
+.ap-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--ap-line);
+    background: var(--ap-card);
+    color: var(--ap-ink);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+}
+.ap-tab:hover { border-color: var(--ap-brown); }
+.ap-tab-active { background: var(--ap-brown); border-color: var(--ap-brown); color: #fff; }
+.ap-tab-count {
+    min-width: 22px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--ap-line);
+    color: var(--ap-ink);
+    font-size: 12px;
+    text-align: center;
+}
+.ap-tab-active .ap-tab-count { background: rgba(255, 255, 255, 0.22); color: #fff; }
+
+.ap-search {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    height: 42px;
+    min-width: 234px;
+    border: 1px solid var(--ap-input-line);
+    border-radius: 12px;
+    background: var(--ap-card);
+    color: var(--ap-muted);
+}
+.ap-search input { border: none; outline: none; background: transparent; font: inherit; font-size: 15px; color: var(--ap-ink); width: 100%; }
+.ap-search input::placeholder { color: var(--ap-muted); }
+.ap-search:focus-within { border-color: var(--ap-brown); }
+
+.ap-select {
+    height: 42px;
+    padding: 0 36px 0 16px;
+    border: 1px solid var(--ap-input-line);
+    border-radius: 12px;
+    background: var(--ap-card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%232f1f04' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;
+    appearance: none;
+    font: inherit;
+    font-size: 15px;
+    color: var(--ap-ink);
+    cursor: pointer;
+}
+
+/* ---------- Table ---------- */
+.ap-table-card {
+    background: var(--ap-card);
+    border: 1px solid var(--ap-line);
+    border-radius: 24px;
+    padding: 12px 26px 4px;
+}
+.ap-table { width: 100%; border-collapse: collapse; }
+.ap-table th {
+    text-align: left;
+    padding: 18px 12px 18px 0;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ap-text);
+    border-bottom: 1px solid var(--ap-line);
+    white-space: nowrap;
+}
+.ap-table td {
+    padding: 16px 12px 16px 0;
+    border-bottom: 1px solid var(--ap-line);
+    vertical-align: middle;
+    font-size: 15px;
+}
+.ap-table tbody tr:last-child td { border-bottom: none; }
+.ap-table .ap-th-actions, .ap-table .ap-td-actions { text-align: right; padding-right: 0; }
+.ap-row { cursor: pointer; }
+.ap-row:hover td { background: #fcf7f5; }
+.ap-row:focus-visible { outline: 2px solid var(--ap-brown); outline-offset: -2px; }
+
+.ap-owner-tag {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--ap-line);
+    color: var(--ap-text);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.ap-pet { display: flex; align-items: center; gap: 14px; }
+.ap-avatar {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--ap-line);
+    color: var(--ap-brown);
+    display: grid;
+    place-items: center;
+}
+.ap-avatar-lg { width: 48px; height: 48px; }
+.ap-cell-main { display: block; color: var(--ap-ink); font-weight: 500; }
+.ap-cell-normal { font-weight: 400; }
+.ap-cell-sub { display: block; color: var(--ap-muted); font-size: 14px; margin-top: 2px; }
+.ap-cell-text { color: var(--ap-ink); }
+.ap-cell-muted { color: var(--ap-muted); }
+.ap-empty { text-align: center; padding: 56px 0 !important; cursor: default; }
+.ap-empty-title { font-family: var(--ap-serif); font-size: 20px; margin-bottom: 4px; }
+
+.ap-pill {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.ap-pill-request { background: var(--ap-line); color: var(--ap-ink); }
+.ap-pill-in_progress { background: #e3d5bf; color: var(--ap-ink); }
+.ap-pill-confirmed { background: #f4ead9; color: var(--ap-muted); }
+.ap-pill-completed { background: transparent; border: 1px solid var(--ap-line); color: var(--ap-text); }
+.ap-pill-cancelled { background: var(--ap-danger-bg); color: var(--ap-danger); }
+
+/* ---------- Row actions ---------- */
+.ap-row-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.ap-menu { position: relative; }
+.ap-menu-trigger {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--ap-ink);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+}
+.ap-menu-trigger:hover, .ap-menu-trigger[aria-expanded="true"] { background: var(--ap-line); }
+.ap-menu-list {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    z-index: 20;
+    min-width: 160px;
+    padding: 6px;
+    background: var(--ap-card);
+    border: 1px solid var(--ap-line);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(47, 31, 4, 0.12);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.ap-menu-list button {
+    text-align: left;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ap-ink);
+    cursor: pointer;
+}
+.ap-menu-list button:hover { background: var(--ap-page-bg); }
+.ap-menu-list .ap-menu-danger { color: var(--ap-danger); }
+
+/* ---------- Popups ---------- */
+.ap-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(47, 31, 4, 0.28);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+.ap-popup {
+    position: relative;
+    width: min(640px, 100%);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 32px 36px;
+    background: var(--ap-card);
+    border-radius: 28px;
+    box-shadow: 0 24px 60px rgba(47, 31, 4, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.ap-popup-wide { width: min(900px, 100%); }
+.ap-popup-close {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--ap-input-line);
+    background: var(--ap-input-bg);
+    color: var(--ap-ink);
+    font-size: 20px;
+    cursor: pointer;
+}
+.ap-popup-head { display: flex; align-items: flex-start; gap: 16px; padding-right: 48px; }
+.ap-popup-icon {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+.ap-popup-icon-danger { background: var(--ap-danger-bg); color: var(--ap-danger); }
+.ap-popup-title { margin: 0 0 6px; font-family: var(--ap-serif); font-weight: 400; font-size: 28px; color: var(--ap-ink); }
+.ap-popup-subtitle { margin: 0 0 8px; font-size: 15px; line-height: 1.5; color: var(--ap-muted); }
+.ap-popup-actions { display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+.ap-popup-actions-split { justify-content: space-between; }
+
+.ap-field { display: flex; flex-direction: column; gap: 8px; }
+.ap-field-label { font-size: 15px; font-weight: 500; color: var(--ap-ink); }
+.ap-optional { font-size: 13px; font-weight: 400; color: var(--ap-muted); margin-left: 4px; }
+.ap-input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 46px;
+    padding: 0 16px;
+    border: 1px solid var(--ap-input-line);
+    border-radius: 14px;
+    background: var(--ap-input-bg);
+    font: inherit;
+    font-size: 15px;
+    color: var(--ap-ink);
+    outline: none;
+}
+.ap-input:focus { border-color: var(--ap-brown); }
+select.ap-input {
+    appearance: none;
+    padding-right: 40px;
+    background: var(--ap-card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%232f1f04' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center;
+}
+.ap-textarea { height: 110px; padding: 14px 16px; resize: vertical; }
+.ap-error { margin: 0; font-size: 14px; color: var(--ap-danger); }
+
+/* Appointment Details */
+.ap-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ap-details-col { display: flex; flex-direction: column; gap: 16px; }
+.ap-card { background: var(--ap-blush); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+.ap-card-title { margin: 0 0 2px; font-size: 15px; font-weight: 600; color: var(--ap-ink); }
+.ap-info-row { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; }
+.ap-info-label { display: block; color: var(--ap-muted); font-size: 14px; }
+.ap-info-value { color: var(--ap-ink); font-weight: 500; text-align: right; }
+.ap-care { margin: 0; font-size: 14px; color: var(--ap-ink); line-height: 1.5; }
+.ap-alert { align-self: flex-start; padding: 5px 12px; border-radius: 999px; background: var(--ap-line); font-size: 13px; font-weight: 500; }
+.ap-task { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+.ap-task input { accent-color: var(--ap-brown); width: 18px; height: 18px; }
+
+/* Reschedule */
+.ap-popup:has(.ap-reschedule-grid) { background: var(--ap-page-bg); }
+.ap-current {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border: 1px solid var(--ap-line);
+    border-radius: 16px;
+    background: var(--ap-card);
+    font-size: 14px;
+}
+.ap-current-dot { flex: none; width: 34px; height: 34px; border-radius: 50%; background: #d8c3a0; box-shadow: inset 0 0 0 9px #d8c3a0, inset 0 0 0 11px var(--ap-ink); }
+.ap-reschedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.ap-panel { background: var(--ap-card); border: 1px solid var(--ap-line); border-radius: 20px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; }
+.ap-panel-title { margin: 0; font-family: var(--ap-serif); font-weight: 400; font-size: 22px; }
+.ap-cal-head { display: flex; justify-content: space-between; align-items: center; }
+.ap-cal-nav { display: flex; gap: 8px; }
+.ap-cal-nav button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--ap-line); background: var(--ap-card); color: var(--ap-ink); font-size: 18px; cursor: pointer; }
+.ap-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px 4px; text-align: center; }
+.ap-cal-weekday { font-size: 13px; color: var(--ap-text); padding: 6px 0; }
+.ap-cal-day {
+    justify-self: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: var(--ap-line);
+    font: inherit;
+    font-size: 14px;
+    color: var(--ap-ink);
+    cursor: pointer;
+}
+.ap-cal-day:hover:not(:disabled) { background: #dccab0; }
+.ap-cal-day:disabled { background: transparent; color: #b8a88d; cursor: default; }
+.ap-cal-day-selected, .ap-cal-day-selected:hover:not(:disabled) { background: var(--ap-brown); color: #fff; }
+.ap-times { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.ap-times-label { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ap-text); }
+.ap-times-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.ap-time {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--ap-brown);
+    background: transparent;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ap-ink);
+    cursor: pointer;
+}
+.ap-time-selected { background: var(--ap-brown); color: #fff; }
+.ap-time:disabled { background: var(--ap-line); border-color: var(--ap-line); color: var(--ap-muted); cursor: not-allowed; }
+
+/* ---------- Toast ---------- */
+.ap-toast {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px 14px 16px;
+    border-radius: 16px;
+    background: var(--ap-ink);
+    color: #fff;
+    font-size: 15px;
+    box-shadow: 0 12px 30px rgba(47, 31, 4, 0.25);
+}
+.ap-toast-check {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+    .ap-table-card { overflow-x: auto; }
+    .ap-details-grid, .ap-reschedule-grid { grid-template-columns: 1fr; }
+}

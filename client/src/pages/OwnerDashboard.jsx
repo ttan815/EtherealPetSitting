@@ -1,6 +1,6 @@
 import "../styles/customer-dashboard/CustomerDashboard.css";
 import { useLocation } from "react-router";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import NotificationsPage from "../components/customer-dashboard/notifications/NotificationsPage";
 import { NotificationsProvider } from "../components/customer-dashboard/notifications/NotificationsContext";
 import OwnerSidebarNav from "../components/owner-dashboard/OwnerSidebarNav";
@@ -47,11 +47,16 @@ function OwnerDashboard() {
         location.state?.section === "appointments" ? "appointments" : "dashboard"
     );  
     const [previousSection, setPreviousSection] = useState("dashboard");
-    const pendingRequestCount = getPendingRequestCount();
+    const [pendingRequestCount, setPendingRequestCount] = useState(getPendingRequestCount);
     const openNotifications = () => {
         setPreviousSection(activeSection);
         setActiveSection("notifications");
     };
+
+        // Appointments calls this when its request count changes so the sidebar badge updates live
+    const handleAppointmentRequestCount = useCallback((count) => {
+        setPendingRequestCount((prev) => (prev[0] === count ? prev : [count, prev[1]]));
+    }, []);
 
     function handleSelectSection(section) {
         setActiveSection(section);
@@ -64,7 +69,7 @@ function OwnerDashboard() {
             case "calender":
                 return <Calender/>;
             case "appointments":
-                return <Appointments/>;
+                return <Appointments onRequestCountChange={handleAppointmentRequestCount}/>;
             case "customers_and_pets":
                 return <CustomersAndPets/>
             case "reviews":
