@@ -1,52 +1,7 @@
 // Renders the appointment table and the Appointment Details popup for the owner's Appointments section.
 import AppointmentRowActions, { PopupFrame } from "./AppointmentRowActions";
-import { formatDay, formatTime } from "./AppointmentFilter";
-
-const STATUS_LABELS = {
-    request: "Request",
-    confirmed: "Confirmed",
-    in_progress: "In progress",
-    completed: "Completed",
-    cancelled: "Cancelled",
-};
-
-/**
- * Turns an appointment's payment fields into the text shown in the Payment column.
- * @param {Object} appointment The appointment.
- * @returns {string} e.g. "Deposit $20 paid", "Deposit not paid yet", "Paid in full" or "Balance unpaid".
- */
-export function paymentText(appointment) {
-    switch (appointment.payment) {
-        case "deposit_paid": return `Deposit $${appointment.deposit} paid`;
-        case "deposit_unpaid": return "Deposit not paid yet";
-        case "paid_full": return "Paid in full";
-        default: return "Balance unpaid";
-    }
-}
-
-/**
- * Builds the two lines for the Date & Time column.
- * @param {Object} appointment The appointment.
- * @returns {Array<string>} [dayLine, timeLine], e.g. ["Oct 3 – Oct 5", "6:00 PM check-in"].
- */
-export function dateLines(appointment) {
-    const day = appointment.endDate
-        ? `${formatDay(appointment.date, false)} – ${formatDay(appointment.endDate, false)}`
-        : formatDay(appointment.date);
-    const time = `${formatTime(appointment.time)}${appointment.checkIn ? " check-in" : ""}`;
-    return [day, time];
-}
-
-/**
- * Temporary method that assigns a sitter to an appointment.
- * @param {number} id The appointment id.
- * @param {string|null} sitter The sitter's name, "You", or null for unassigned.
- * @returns {Object} The backend result.
- */
-export function assignSitter(id, sitter) {
-    const temp = { ok: true, id, sitter }; // Result from fetch(`/api/appointments/${id}/sitter`)
-    return temp;
-}
+import { STATUS_LABELS } from "../../../constants/appointment";
+import { assignSitter, dateLines, formatDay, formatTime, paymentText } from "../../../services/appointment-service";
 
 const PawIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

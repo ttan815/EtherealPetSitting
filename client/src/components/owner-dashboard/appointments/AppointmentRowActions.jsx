@@ -1,74 +1,10 @@
 // Renders the per-row actions for the owner's Appointments table, plus the Decline Booking and Reschedule popups.
 import { useEffect, useRef, useState } from "react";
-import { dateFromToday, formatDay, formatTime, parseISODate, toISODate } from "./AppointmentFilter";
-
-/**
- * Temporary method that accepts a booking request.
- * @param {number} id The appointment id.
- * @returns {Object} The backend result.
- */
-export function acceptAppointment(id) {
-    const temp = { ok: true, id, status: "confirmed" }; // Result from fetch(`/api/appointments/${id}/accept`)
-    return temp;
-}
-
-/**
- * Temporary method that declines a booking request.
- * @param {number} id The appointment id.
- * @param {string} reason Optional message sent to the customer.
- * @returns {Object} The backend result.
- */
-export function declineAppointment(id, reason) {
-    const temp = { ok: true, id, status: "cancelled", reason }; // Result from fetch(`/api/appointments/${id}/decline`)
-    return temp;
-}
-
-/**
- * Temporary method that marks an in-progress visit as complete.
- * @param {number} id The appointment id.
- * @returns {Object} The backend result.
- */
-export function markAppointmentComplete(id) {
-    const temp = { ok: true, id, status: "completed" }; // Result from fetch(`/api/appointments/${id}/complete`)
-    return temp;
-}
-
-/**
- * Temporary method that moves an appointment to a new date and time.
- * @param {number} id The appointment id.
- * @param {Object} dateTime The new { date: "YYYY-MM-DD", time: "HH:MM" }.
- * @returns {Object} The backend result.
- */
-export function rescheduleAppointment(id, dateTime) {
-    const temp = { ok: true, id, ...dateTime }; // Result from fetch(`/api/appointments/${id}/reschedule`)
-    return temp;
-}
-
-/**
- * Temporary method that cancels a confirmed or in-progress visit.
- * @param {number} id The appointment id.
- * @returns {Object} The backend result.
- */
-export function cancelAppointment(id) {
-    const temp = { ok: true, id, status: "cancelled" }; // Result from fetch(`/api/appointments/${id}/cancel`)
-    return temp;
-}
-
-/**
- * Temporary method that fetches open time slots for a date.
- * @param {string} date The date as "YYYY-MM-DD".
- * @returns {Array<Object>} Slots like { time: "08:00", period: "morning", available: true }.
- */
-export function getAvailableTimes(date) {
-    const weekend = [0, 6].includes(parseISODate(date).getDay());
-    const temp = [
-        { time: "08:00", period: "morning", available: true },
-        { time: "10:00", period: "morning", available: true },
-        { time: "12:00", period: "afternoon", available: true },
-        { time: "15:00", period: "afternoon", available: !weekend },
-    ]; // Result from fetch(`/api/availability/times?date=${date}`)
-    return temp;
-}
+import {
+    acceptAppointment, cancelAppointment, dateFromToday, declineAppointment, formatDay, formatTime,
+    getAvailableTimes, markAppointmentComplete, parseISODate, rescheduleAppointment, toISODate,
+} from "../../../services/appointment-service";
+import { WEEKDAYS } from "../../../constants/appointment";
 
 /**
  * Renders the buttons for one appointment row, based on its status.
@@ -221,8 +157,6 @@ export function DeclineBookingPopup({ appointment, onClose, onConfirm }) {
         </PopupFrame>
     );
 }
-
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 // Builds the 6-week grid for a month, starting on Monday
 function monthGrid(year, month) {

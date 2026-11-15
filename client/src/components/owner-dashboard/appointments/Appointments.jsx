@@ -2,23 +2,17 @@
 // Owners review new booking requests and track every visit in one filterable list.
 import { useCallback, useEffect, useState } from "react";
 import PageHeader from "../../parent-component/PageHeader";
-import AppointmentFilter, { getAppointments, getAppointmentCounts, getSitters, getServices, filterAppointments, parseISODate, toISODate } from "./AppointmentFilter";
+import AppointmentFilter from "./AppointmentFilter";
 import AppointmentTable, { AppointmentDetails } from "./AppointmentTable";
 import {
-    acceptAppointment, declineAppointment, markAppointmentComplete, rescheduleAppointment, cancelAppointment,
-    DeclineBookingPopup, RescheduleModal,
-} from "./AppointmentRowActions";
+    acceptAppointment, cancelAppointment, declineAppointment, filterAppointments, getAppointmentCounts,
+    getAppointments, getServices, getSitters, markAppointmentComplete, parseISODate, rescheduleAppointment,
+    shiftDate,
+} from "../../../services/appointment-service";
+import { DEFAULT_FILTERS } from "../../../constants/appointment";
+import { DeclineBookingPopup, RescheduleModal } from "./AppointmentRowActions";
 import "../../../styles/owner-dashboard/appointments/Appointments.css";
-
-const DEFAULT_FILTERS = { search: "", sitter: "all", service: "all" };
-
-// Moves an end date by the same number of days the start date moved
-function shiftDate(iso, fromIso, toIso) {
-    const days = Math.round((parseISODate(toIso) - parseISODate(fromIso)) / 86400000);
-    const d = parseISODate(iso);
-    d.setDate(d.getDate() + days);
-    return toISODate(d);
-}
+import NewAppointmentButton from "../../action-button/NewAppointmentButton";
 
 /**
  * Renders the Appointments section: header, status tabs, filters, table, popups and toast.
@@ -102,11 +96,6 @@ export default function Appointments({ onRequestCountChange }) {
         finish("Appointment rescheduled");
     }
 
-    function handleNewAppointment() {
-        // TODO: reusable <NewAppointmentButton> component not available
-        setToast("New appointment form coming soon");
-    }
-
     const visible = filterAppointments(appointments, activeTab, filters);
     const detailsAppointment = appointments.find((a) => a.id === detailsId);
     const popupAppointment = appointments.find((a) => a.id === popup?.id);
@@ -117,8 +106,7 @@ export default function Appointments({ onRequestCountChange }) {
             <PageHeader
                 title="Appointments"
                 subtitle="Review new requests and keep track of every visit."
-                actionLabel="+ New Appointment"
-                onAction={handleNewAppointment}
+                actionButton={<NewAppointmentButton />}
             />
 
             <AppointmentFilter
