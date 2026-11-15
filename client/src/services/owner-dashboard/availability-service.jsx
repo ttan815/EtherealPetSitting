@@ -1,4 +1,38 @@
 // Temporary availability data and service adapters.
+import { formatDate, formatTime } from "../../components/owner-dashboard/availability/AvailabilityTable";
+
+/**
+ * Validates availability form values and checks for overlapping slots.
+ * @param {Object} form Form fields including admin, service, date, start, end, booking, customerId, and petId.
+ * @param {Object[]} slots Existing availability slots to check for overlaps.
+ * @param {number|string|null} editingId ID of the slot being edited, or null when adding a slot.
+ * @returns {Object<string, string>} Validation error messages keyed by field name; empty when valid.
+ */
+export function validateAvailability(form, slots, editingId) {
+  const errors = {};
+  if (!form.admin) errors.admin = "Choose an admin.";
+  if (!form.service) errors.service = "Choose a service.";
+  if (!form.date) errors.date = "Pick a date.";
+  if (!form.start) errors.start = "Pick a start time.";
+  if (!form.end) errors.end = "Pick an end time.";
+  if (form.start && form.end && form.end <= form.start) errors.end = "End time must be after the start time.";
+  if (form.booking === "customer" && !form.customerId) errors.customerId = "Choose a customer.";
+  else if (form.booking === "customer" && !form.petId) errors.petId = "Choose a pet.";
+
+  if (!errors.admin && !errors.date && !errors.start && !errors.end) {
+    const clash = slots.find((slot) =>
+      slot.id !== editingId &&
+      slot.status !== "disapproved" &&
+      slot.admin === form.admin &&
+      slot.date === form.date &&
+      form.start < slot.end && slot.start < form.end
+    );
+    if (clash) {
+      errors.overlap = `Overlaps with ${clash.admin}'s ${formatTime(clash.start)} – ${formatTime(clash.end)} slot on ${formatDate(clash.date)}.`;
+    }
+  }
+  return errors;
+}
 
 // workDays: 0 = Sunday ... 6 = Saturday
 // times: start times in minutes after midnight (540 = 9:00 AM)
@@ -36,9 +70,9 @@ function isPretendBooked(date, slotIndex) {
 
 // Open start times on this date for any of the given sitters, earliest first
 /**
- * Gets the placeholder start times available from the selected sitters on a date.
- * @param {Date} date - The date to check.
- * @param {string[]} sitterIds - IDs of sitters whose schedules should be combined.
+ * Gets the placeholder start times available from selected sitters on a date.
+ * @param {Date} date The date to check.
+ * @param {string[]} sitterIds IDs of sitters whose schedules should be combined.
  * @returns {number[]} Available start times in minutes after midnight, sorted earliest first.
  */
 export function getAvailableTimes(date, sitterIds) {
@@ -61,8 +95,8 @@ export function getAvailableTimes(date, sitterIds) {
 }
 
 /**
- * Fetches temporary admin, service and customer options for availability forms.
- * @returns {Object} Availability form options.
+ * Returns temporary admin, service, and customer options for availability forms.
+ * @returns {{admins: string[], services: string[], customers: Object[]}} Availability form options.
  */
 export function getAvailabilityOptions() {
   return {
@@ -76,9 +110,9 @@ export function getAvailabilityOptions() {
 }
 
 /**
- * Fetches temporary availability slots.
- * @param {Object} filters Query filters reserved for the availability API.
- * @returns {Object[]} Availability slots.
+ * Returns copies of the temporary availability slots.
+ * @param {Object} [filters={}] Query filters reserved for the availability API.
+ * @returns {Object[]} Copies of the current availability slots.
  */
 export function getAvailability(filters = {}) {
   void filters;
@@ -89,9 +123,9 @@ export function getAvailability(filters = {}) {
 }
 
 /**
- * Creates a temporary availability slot.
- * @param {Object} data Slot values.
- * @returns {Object} The created slot.
+ * Creates and stores a temporary availability slot.
+ * @param {Object} data Availability slot values to create.
+ * @returns {Object} A copy of the created slot, including its ID and status.
  */
 export function addAvailability(data) {
   const slot = { ...data, id: Date.now(), status: "awaiting_admin" };
@@ -100,10 +134,11 @@ export function addAvailability(data) {
 }
 
 /**
- * Assigns a temporary customer to an availability slot.
+ * Assigns a temporary customer and pet to an availability slot.
  * @param {number|string} id Availability slot ID.
  * @param {number|string} customerId Customer ID.
- * @returns {{ok: boolean, id: number|string, customerId: number|string}} The result.
+ * @param {number|string} petId Pet ID to assign to the slot.
+ * @returns {{ok: boolean, id: number|string, customerId: number|string, petId: number|string}} Whether the assignment succeeded and the assigned identifiers.
  */
 export function assignCustomer(id, customerId, petId) {
   const slot = availabilitySlots.find((item) => String(item.id) === String(id));
@@ -123,7 +158,7 @@ export function assignCustomer(id, customerId, petId) {
 /**
  * Approves a temporary availability request.
  * @param {number|string} id Availability slot ID.
- * @returns {{ok: boolean, id: number|string, status?: string}} The result.
+ * @returns {{ok: boolean, id: number|string, status?: string}} Whether the slot was found and its resulting status when found.
  */
 export function approveAvailability(id) {
   const slot = availabilitySlots.find((item) => String(item.id) === String(id));
@@ -136,10 +171,10 @@ export function approveAvailability(id) {
 }
 
 /**
- * Disapproves a temporary availability request.
+ * Disapproves a temporary availability request with a reason.
  * @param {number|string} id Availability slot ID.
  * @param {string} reason Reason provided by the owner.
- * @returns {{ok: boolean, id: number|string, status?: string, reason?: string}} The result.
+ * @returns {{ok: boolean, id: number|string, status?: string, reason?: string}} Whether the slot was disapproved and its resulting status and reason when successful.
  */
 export function disapproveAvailability(id, reason) {
   const slot = availabilitySlots.find((item) => String(item.id) === String(id));
@@ -152,10 +187,10 @@ export function disapproveAvailability(id, reason) {
 }
 
 /**
- * Updates a temporary availability slot.
+ * Updates a temporary availability slot and returns its updated value.
  * @param {number|string} id Availability slot ID.
- * @param {Object} data Updated slot values.
- * @returns {Object|null} The updated slot, or null when it was not found.
+ * @param {Object} data Updated availability slot values.
+ * @returns {Object|null} A copy of the updated slot, or null when the slot was not found.
  */
 export function updateAvailability(id, data) {
   const index = availabilitySlots.findIndex((slot) => String(slot.id) === String(id));
@@ -171,7 +206,7 @@ export function updateAvailability(id, data) {
 /**
  * Removes a temporary availability slot.
  * @param {number|string} id Availability slot ID.
- * @returns {{ok: boolean, id: number|string}} The result.
+ * @returns {{ok: boolean, id: number|string}} Whether a slot was removed and its ID.
  */
 export function removeAvailability(id) {
   const previousCount = availabilitySlots.length;
@@ -180,9 +215,9 @@ export function removeAvailability(id) {
 }
 
 /**
- * Fetches employees and their temporary availability for a selected date.
- * @param {string} dateKey The selected date in YYYY-MM-DD format.
- * @returns {Promise<Object[]>} Employees and their available times.
+ * Returns temporary employee availability for the selected date.
+ * @param {string} dateKey Selected date in YYYY-MM-DD format.
+ * @returns {Promise<Object[]>} A promise resolving to employees and their available times.
  */
 export async function getEmployeesWithAvailability(dateKey) {
   return [

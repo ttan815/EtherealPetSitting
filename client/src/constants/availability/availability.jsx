@@ -40,6 +40,7 @@ export const AVAILABILITY_EMPTY_FORM = {
     price: "",
     booking: "open",
     customerId: "",
+    petId: "",
 };
 
 /**

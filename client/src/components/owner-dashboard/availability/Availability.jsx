@@ -7,7 +7,7 @@ import OverviewHeader from "../../parent-component/OverviewHeader";
 import OverviewCard from "../../parent-component/OverviewCard";
 import AvailabilityFilter, { filterAvailability } from "./AvailabilityFilter";
 import AvailabilityTable from "./AvailabilityTable";
-import AvailabilityPopup from "./AvailabilityPopup";
+import AvailabilityPopup from "../../popup/AdminAvailabilityPopup";
 import NewAppointmentButton from "../../action-button/NewAppointmentButton";
 import {
     addAvailability,
@@ -127,9 +127,6 @@ export default function Availability() {
                 subtitle="Review the times your admins send. Only approved times appear on the booking page."
                 actionButton={<NewAppointmentButton />}
             >
-                <button type="button" className="av-btn av-btn-outline av-btn-header" onClick={() => setPopup({ mode: "add", slot: null })}>
-                    + Add availability
-                </button>
             </PageHeader>
 
             <OverviewHeader>

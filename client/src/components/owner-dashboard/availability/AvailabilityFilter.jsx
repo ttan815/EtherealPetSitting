@@ -1,13 +1,7 @@
 // Renders the status chips and search/dropdown filters for the owner's Availability section (DT-322).
+import { AVAILABILITY_CHIPS } from "../../../constants/availability/availability";
 
-/** Chip definitions in display order. `status` is matched against each availability slot. */
-export const AVAILABILITY_CHIPS = [
-    { key: "requests", label: "Requests", status: "pending", showCount: true },
-    { key: "awaiting", label: "Awaiting admin", status: "awaiting_admin", showCount: true },
-    { key: "approved", label: "Approved", status: "approved", showCount: false },
-    { key: "disapproved", label: "Disapproved", status: "disapproved", showCount: false },
-    { key: "all", label: "All", status: null, showCount: false },
-];
+export { AVAILABILITY_CHIPS } from "../../../constants/availability/availability";
 
 // Temporary data until the API is connected
 const TEMP_AVAILABILITY = [

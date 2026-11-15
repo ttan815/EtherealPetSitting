@@ -1,69 +1,13 @@
 // Renders the Add / Edit / Assign / Remove / Disapprove popups for the owner's Availability section (DT-325).
 import { useEffect, useState } from "react";
-import { formatDate, formatTime } from "./AvailabilityTable";
-import { AVAILABILITY_EMPTY_FORM, AVAILABILITY_ICON_PROPS } from "../../../constants/availability/availability";
+import { formatDate, formatTime } from "../owner-dashboard/availability/AvailabilityTable";
+import { AVAILABILITY_EMPTY_FORM, AVAILABILITY_ICON_PROPS } from "../../constants/availability/availability";
+import { validateAvailability } from "../../services/owner-dashboard/availability-service";
 
-/**
- * Temporary method that creates a new availability slot.
- * @param {Object} data The admin, service, date, times, customer and pet. Price is set by the backend from Settings.
- * @returns {Object} The created slot with its new id.
- */
-export function addAvailability(data) {
-    const temp = { ...data, id: Date.now(), status: "awaiting_admin" }; // Result from fetch("/api/availability", { method: "POST" })
-    return temp;
-}
+const CalendarIcon = () => <svg {...AVAILABILITY_ICON_PROPS}><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M16 3v4M8 3v4M3 10h18" /></svg>;
+const UserIcon = () => <svg {...AVAILABILITY_ICON_PROPS}><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>;
+const XCircleIcon = () => <svg {...AVAILABILITY_ICON_PROPS}><circle cx="12" cy="12" r="9" /><path d="m15 9-6 6M9 9l6 6" /></svg>;
 
-/**
- * Temporary method that assigns a customer to an availability slot.
- * @param {number} id The availability slot id.
- * @param {number} customerId The customer to assign.
- * @param {number} petId The customer's pet for this visit.
- * @returns {Object} The backend result.
- */
-export function assignCustomer(id, customerId, petId) {
-    const temp = { ok: true, id, customerId, petId }; // Result from fetch(`/api/availability/${id}/assign`, { method: "POST" })
-    return temp;
-}
-
-const ICON_PROPS = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
-const CalendarIcon = () => <svg {...ICON_PROPS}><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M16 3v4M8 3v4M3 10h18" /></svg>;
-const UserIcon = () => <svg {...ICON_PROPS}><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>;
-const XCircleIcon = () => <svg {...ICON_PROPS}><circle cx="12" cy="12" r="9" /><path d="m15 9-6 6M9 9l6 6" /></svg>;
-
-const EMPTY_FORM = { admin: "", service: "", date: "", start: "", end: "", booking: "open", customerId: "", petId: "" };
-
-/**
- * Checks the Add/Edit form for missing fields, bad values and overlapping times.
- * @param {Object} form The form values.
- * @param {Array<Object>} slots Existing slots, used to find overlaps.
- * @param {number|null} editingId The slot being edited, so it isn't compared with itself.
- * @returns {Object} Error messages keyed by field name; empty when the form is valid.
- */
-export function validateAvailability(form, slots, editingId) {
-    const errors = {};
-    if (!form.admin) errors.admin = "Choose an admin.";
-    if (!form.service) errors.service = "Choose a service.";
-    if (!form.date) errors.date = "Pick a date.";
-    if (!form.start) errors.start = "Pick a start time.";
-    if (!form.end) errors.end = "Pick an end time.";
-    if (form.start && form.end && form.end <= form.start) errors.end = "End time must be after the start time.";
-    if (form.booking === "customer" && !form.customerId) errors.customerId = "Choose a customer.";
-    else if (form.booking === "customer" && !form.petId) errors.petId = "Choose a pet.";
-
-    if (!errors.admin && !errors.date && !errors.start && !errors.end) {
-        const clash = slots.find((s) =>
-            s.id !== editingId &&
-            s.status !== "disapproved" &&
-            s.admin === form.admin &&
-            s.date === form.date &&
-            form.start < s.end && s.start < form.end
-        );
-        if (clash) {
-            errors.overlap = `Overlaps with ${clash.admin}'s ${formatTime(clash.start)} – ${formatTime(clash.end)} slot on ${formatDate(clash.date)}.`;
-        }
-    }
-    return errors;
-}
 
 // Shared popup frame: icon, title, subtitle and close button.
 // TODO: reusable <Modal> component not available
@@ -105,8 +49,8 @@ function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
     const isEdit = Boolean(slot);
     const [form, setForm] = useState(() =>
         isEdit
-            ? { ...EMPTY_FORM, ...slot, booking: slot.customer ? "customer" : "open", customerId: slot.customer ? String(slot.customer.id) : "", petId: slot.customer?.pet ? String(slot.customer.pet.id) : "" }
-            : EMPTY_FORM
+            ? { ...AVAILABILITY_EMPTY_FORM, ...slot, booking: slot.customer ? "customer" : "open", customerId: slot.customer ? String(slot.customer.id) : "", petId: slot.customer?.pet ? String(slot.customer.pet.id) : "" }
+            : AVAILABILITY_EMPTY_FORM
     );
     const [errors, setErrors] = useState({});
 
