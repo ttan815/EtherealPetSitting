@@ -1,9 +1,9 @@
-import { CALENDAR_VIEWS } from "../../../constants/owner/calender/calendar";
+import { CALENDAR_VIEWS } from "../../../constants/owner/calendar";
 import {
   formatCalendarDate,
   getAdjacentCalendarDate,
   getSitters
-} from "../../../services/owner-dashboard/calender/calendar-service";
+} from "../../../services/owner-dashboard/calendar-service";
 import "../../../styles/owner-dashboard/calender/Calender.css";
 
 /**

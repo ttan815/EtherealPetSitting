@@ -3,6 +3,9 @@ import { useCallback, useState } from "react";
 import PageHeader from "../../parent-component/PageHeader";
 import Toast from "../../popup/Toast";
 import RevenueOverview from "./RevenueOverview";
+import RevenueChart from "./RevenueChart";
+import RevenueByService from "./RevenueByService";
+import StillOwedTable from "./StillOwedTable";
 import { REVENUE_VIEW_OPTIONS } from "../../../constants/owner/revenue";
 import { exportRevenueSummary, getRevenueView } from "../../../services/owner-dashboard/revenue-service";
 import exportIcon from "../../../assets/owner-dashboard/export-summary.svg";
@@ -62,6 +65,19 @@ export default function Revenue() {
             </PageHeader>
 
             <RevenueOverview unitDate={view.unit} />
+
+            <br/>
+
+            {/* Revenue Chart and Revenue by Service */}
+            <div className="revenue-dashboard-top">
+                <RevenueChart
+                    unitDate={view.unit}
+                    currentView={viewBy}
+                />
+                <RevenueByService unitDate={viewBy} />
+            </div>
+                {/* Still Owed Table */}
+                <StillOwedTable />
 
             {toastMessage && <Toast message={toastMessage} icon={toastDownloadIcon} onClose={closeToast} />}
         </section>

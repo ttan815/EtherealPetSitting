@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import EventBlock from "./EventBlock";
-import { getEvent } from "./getEvent";
-import { CALENDAR_WEEKDAY_LABELS } from "../../../constants/owner/calender/calendar";
-import { filterCalendarEvents, getMonthDates } from "../../../services/owner-dashboard/calender/calendar-service";
+import { CALENDAR_WEEKDAY_LABELS } from "../../../constants/owner/calendar";
+import { filterCalendarEvents, getMonthDates, getEvent } from "../../../services/owner-dashboard/calendar-service";
 import "../../../styles/owner-dashboard/calender/Calender.css";
 
 /**

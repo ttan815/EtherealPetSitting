@@ -69,3 +69,412 @@
 .revenue-page-export:hover {
   background: rgba(164, 140, 101, 0.12);
 }
+
+
+/* =========================================
+   REVENUE SHARED COLORS
+========================================= */
+
+:root {
+  --revenue-background: #f8efeb;
+  --revenue-card: #fffdfa;
+  --revenue-border: #eadbc9;
+  --revenue-text: #382710;
+  --revenue-muted: #806a47;
+  --revenue-brown: #755d35;
+  --revenue-light-brown: #d1b993;
+  --revenue-track: #f1e8dc;
+}
+
+
+/* =========================================
+   SHARED REVENUE CARD
+========================================= */
+
+.revenue-card {
+  background: var(--revenue-card);
+  border: 1px solid var(--revenue-border);
+  border-radius: 15px;
+  padding: 17px;
+  box-sizing: border-box;
+  min-width: 0;
+  color: var(--revenue-text);
+}
+
+.revenue-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.revenue-section-heading h2 {
+  margin: 0;
+  color: var(--revenue-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.revenue-section-heading p {
+  margin: 3px 0 0;
+  color: var(--revenue-muted);
+  font-size: 13px;
+}
+
+
+/* =========================================
+   DT-331: REVENUE CHART
+========================================= */
+
+.revenue-chart-card {
+  width: 100%;
+  min-height: 360px;
+  padding: 24px;
+}
+
+.revenue-chart {
+  width: 100%;
+  height: 270px;
+  box-sizing: border-box;
+  padding-top: 8px;
+}
+
+.revenue-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+}
+
+.revenue-chart-column {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.revenue-bar-value {
+  min-height: 19px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: var(--revenue-text);
+  white-space: nowrap;
+}
+
+.revenue-bar-container {
+  width: 100%;
+  max-width: 56px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.revenue-bar {
+  width: 100%;
+  min-height: 3px;
+  background: var(--revenue-light-brown);
+  border-radius: 8px 8px 0 0;
+  transition: height 0.3s ease;
+}
+
+.revenue-bar-current {
+  background: var(--revenue-brown);
+}
+
+.revenue-bar-label {
+  margin-top: 6px;
+  color: var(--revenue-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.revenue-chart-message {
+  min-height: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--revenue-muted);
+  font-size: 14px;
+}
+
+.revenue-error {
+  color: #a44a36;
+}
+
+
+/* =========================================
+   DT-333: REVENUE BY SERVICE
+========================================= */
+
+.revenue-service-card {
+  width: 100%;
+  min-height: 360px;
+  padding: 24px;
+}
+
+.revenue-service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.revenue-service-item {
+  width: 100%;
+}
+
+.revenue-service-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  color: var(--revenue-text);
+  font-size: 13px;
+}
+
+.revenue-service-info span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.revenue-service-info span:last-child {
+  flex-shrink: 0;
+}
+
+.revenue-service-track {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  background: var(--revenue-track);
+  border-radius: 10px;
+}
+
+.revenue-service-fill {
+  height: 100%;
+  background: var(--revenue-brown);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+
+/* =========================================
+   DT-334: STILL OWED TABLE
+========================================= */
+
+.revenue-owed-card {
+  width: 100%;
+  margin-top: 16px;
+  padding: 24px;
+}
+
+.revenue-owed-card .revenue-section-heading {
+  margin-bottom: 10px;
+}
+
+.revenue-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.revenue-owed-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.revenue-owed-table thead th {
+  padding: 0 14px 14px;
+  color: #80643b;
+  border-bottom: 1px solid #eee2d4;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+}
+
+.revenue-owed-table thead th:first-child {
+  padding-left: 0;
+}
+
+.revenue-owed-table tbody td {
+  padding: 14px;
+  border-bottom: 1px solid #eee2d4;
+  color: var(--revenue-text);
+  font-size: 13px;
+}
+
+.revenue-owed-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.revenue-customer-cell {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 145px;
+}
+
+.revenue-customer-avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: var(--revenue-light-brown);
+  color: #382710;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.revenue-customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.revenue-customer-info strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.revenue-customer-info span {
+  color: var(--revenue-muted);
+  font-size: 11px;
+}
+
+.revenue-owed-amount {
+  font-weight: 600;
+}
+
+.revenue-table-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 9px;
+}
+
+.revenue-reminder-button {
+  border: none;
+  background: transparent;
+  color: #755d35;
+  padding: 5px 2px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.revenue-reminder-button:hover {
+  text-decoration: underline;
+}
+
+.revenue-paid-button {
+  min-width: 112px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  background: var(--revenue-brown);
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.revenue-paid-button:hover {
+  background: #594426;
+}
+
+.revenue-reminder-button:disabled,
+.revenue-paid-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.revenue-empty-table {
+  text-align: center;
+  padding: 30px !important;
+  color: var(--revenue-muted) !important;
+}
+
+.revenue-table-message {
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  background: #f5eee4;
+  color: var(--revenue-text);
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+  .revenue-dashboard-top {
+    grid-template-columns: 1fr;
+  }
+
+  .revenue-chart-bars {
+    gap: 7px;
+  }
+
+  .revenue-owed-table {
+    min-width: 680px;
+  }
+}
+
+@media (max-width: 600px) {
+  .revenue-card {
+    padding: 13px;
+  }
+
+  .revenue-chart {
+    height: 210px;
+  }
+
+  .revenue-bar-value {
+    font-size: 8px;
+  }
+
+  .revenue-service-list {
+    gap: 12px;
+  }
+}
+
+/* Earnings by period and service are peers in a responsive two-column layout. */
+.revenue-dashboard-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: stretch;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.revenue-dashboard-top > .revenue-card {
+  height: 100%;
+}
+
+.revenue-bar-label-current {
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: var(--revenue-brown);
+  color: #fffdfa;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .revenue-dashboard-top {
+    grid-template-columns: 1fr;
+  }
+}

@@ -6,15 +6,11 @@ import { DASHBOARD_REVENUE_RANGE_OPTIONS, REVENUE_BAR_MAX_HEIGHT } from "../../.
 import {
   exportDashboardRevenue,
   getEarningsByService,
+  formatRevenueTotal,
   getRevenueByWeek,
   getRevenueSummary,
 } from "../../../services/owner-dashboard/revenue-service";
 import "../../../styles/owner-dashboard/RevenuePanel.css";
-
-// "$4,860"
-function formatMoney(amount) {
-  return `$${amount.toLocaleString("en-US")}`;
-}
 
 /**
  * Renders the owner's earnings for a Week / Month / Custom range: total, weekly chart, and earnings by service.
@@ -64,7 +60,7 @@ export default function RevenuePanel({ onNavigate }) {
 
       <div className="revenue-panel-body">
         <div className="revenue-panel-totals">
-          <p className="revenue-panel-total">{formatMoney(summary.total)}</p>
+          <p className="revenue-panel-total">{formatRevenueTotal(summary.total)}</p>
           <p className="revenue-panel-period">Total earnings · {summary.periodLabel}</p>
           <p className="revenue-panel-change">
             {changeSign}
@@ -74,7 +70,7 @@ export default function RevenuePanel({ onNavigate }) {
           <ul className="revenue-chart" aria-label="Earnings by week">
             {weeks.map((week) => (
               <li key={week.label} className="revenue-chart-week">
-                <span className="revenue-chart-amount">{formatMoney(week.amount)}</span>
+                <span className="revenue-chart-amount">{formatRevenueTotal(week.amount)}</span>
                 <span
                   className={`revenue-chart-bar${week.isCurrent ? " revenue-chart-bar-current" : ""}`}
                   style={{ height: `${(week.amount / highestWeek) * REVENUE_BAR_MAX_HEIGHT}px` }}
@@ -93,7 +89,7 @@ export default function RevenuePanel({ onNavigate }) {
               <li key={service.name} className="revenue-service">
                 <div className="revenue-service-labels">
                   <span>{service.name}</span>
-                  <span className="revenue-service-amount">{formatMoney(service.amount)}</span>
+                  <span className="revenue-service-amount">{formatRevenueTotal(service.amount)}</span>
                 </div>
                 {/* Bar length = this service's share of total earnings */}
                 <span className="revenue-service-track">
@@ -107,7 +103,7 @@ export default function RevenuePanel({ onNavigate }) {
           </ul>
 
           <button type="button" className="revenue-panel-unpaid" onClick={() => onNavigate("revenue")}>
-            View {summary.unpaidVisitCount} unpaid visits ({formatMoney(summary.unpaidAmount)})
+            View {summary.unpaidVisitCount} unpaid visits ({formatRevenueTotal(summary.unpaidAmount)})
             <img src={arrowIcon} alt="" />
           </button>
         </div>

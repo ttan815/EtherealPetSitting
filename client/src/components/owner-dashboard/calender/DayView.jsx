@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import EventBlock from "./EventBlock";
-import { getEvent } from "./getEvent";
-import { CALENDAR_END_HOUR, CALENDAR_HOUR_HEIGHT, CALENDAR_HOURS, CALENDAR_START_HOUR } from "../../../constants/owner/calender/calendar";
-import { filterCalendarEvents, formatCalendarHour } from "../../../services/owner-dashboard/calender/calendar-service";
+import { CALENDAR_END_HOUR, CALENDAR_HOUR_HEIGHT, CALENDAR_HOURS, CALENDAR_START_HOUR } from "../../../constants/owner/calendar";
+import { filterCalendarEvents, formatCalendarHour, getEvent } from "../../../services/owner-dashboard/calendar-service";
 import "../../../styles/owner-dashboard/calender/Calender.css";
 
 /**

@@ -1,5 +1,4 @@
-import { CALENDAR_SITTERS } from "../../../constants/owner/calender/calendar";
-import { getEvent } from "../../../components/owner-dashboard/calender/getEvent";
+import { CALENDAR_SITTERS, MOCK_EVENTS } from "../../constants/owner/calendar";
 
 /**
  * Returns the Monday of the selected week.
@@ -14,6 +13,28 @@ export function getMonday(date) {
   result.setHours(0, 0, 0, 0);
 
   return result;
+}
+
+/**
+ * Fetches calendar events for a specific date.
+ * @param {Date|string} date Selected date
+ * @returns {Promise<Array>} Calendar events for the selected date
+ */
+export async function getEvent(date) {
+  // TODO: Replace with backend API fetch().
+  // Example: GET /api/calendar/events?date=YYYY-MM-DD
+
+  const selectedDate = new Date(date);
+
+  const formattedDate = [
+    selectedDate.getFullYear(),
+    String(selectedDate.getMonth() + 1).padStart(2, "0"),
+    String(selectedDate.getDate()).padStart(2, "0")
+  ].join("-");
+
+  return MOCK_EVENTS.filter(
+    (event) => event.date === formattedDate
+  );
 }
 
 /**
