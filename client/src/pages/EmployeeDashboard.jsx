@@ -1,5 +1,5 @@
 import "../styles/customer-dashboard/CustomerDashboard.css";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useCallback, useState } from "react";
 import NotificationsPage from "../components/parent-component/notifications/NotificationsPage";
 import { NotificationsProvider } from "../components/parent-component/notifications/NotificationsContext";
@@ -13,11 +13,7 @@ import Availability from "../components/employee-dashboard/availability/Availabi
 import SidebarProfile from "../components/parent-component/SidebarProfile";
 import { NewAppointmentProvider } from "../context/NewAppointmentProvider";
 import { getPendingOwnerRequestCounts } from "../services/owner-dashboard/dashboard-service";
-
-// Temporary placeholder for Logging out
-function logout() {
-    console.log("Logged out")
-}
+import { useAuth } from "../context/AuthContext";
 
 
 /**
@@ -26,6 +22,8 @@ function logout() {
  */
 function EmployeeDashboard() {
     const location = useLocation();
+    const navigate = useNavigate();
+    const { logout } = useAuth();
     const [activeSection, setActiveSection] = useState(() =>
         location.state?.section === "appointments" ? "appointments" : "dashboard"
     );  
@@ -76,7 +74,7 @@ function EmployeeDashboard() {
                                 onSelect={handleSelectSection}
                                 pendingRequestCount={pendingRequestCount}
                             />
-                            <SidebarProfile name="Angelena Chantengco" role="Admin" onLogout={logout}/>
+                            <SidebarProfile name="Angelena Chantengco" role="Admin" onLogout={() => { logout(); navigate("/login"); }}/>
                         </aside>
                         <div className="customer-dashboard-content">
                             {renderSection()}

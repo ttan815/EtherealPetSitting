@@ -15,6 +15,7 @@ async function readJson(response) {
  * Fetches the currently authenticated user, or null when no session exists.
  * @returns {Promise<Object|null>} The session user.
  */
+// Backend session fetch: keep for when cookie-based authentication is enabled.
 export async function getCurrentSession() {
     const response = await fetch(LOGIN_SESSION_URL, {
         method: "GET",
@@ -28,6 +29,7 @@ export async function getCurrentSession() {
  * @param {{email: string, password: string, rememberMe: boolean}} credentials Login form values.
  * @returns {Promise<{ok: boolean, status: number, data: Object|null}>} The login response.
  */
+// Backend login fetch: retained for the future backend-authentication flow.
 export async function loginAccount(credentials) {
     const response = await fetch(LOGIN_ACCOUNT_URL, {
         method: "POST",

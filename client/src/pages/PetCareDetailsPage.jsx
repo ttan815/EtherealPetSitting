@@ -33,7 +33,7 @@ function isPetComplete(pet) {
 }
 
 // Step 3 of booking: care details for each pet (Figma "Customer - Pet & Care Details").
-// Starts with all of the customer's saved pets; they can take pets out, add them back, or add a new pet.
+// Starts with one saved pet; customers can add more saved pets or a new pet if needed.
 /**
  * Renders the pet-care details step of the booking flow.
  * @param {{booking: Object, updateBooking: Function, onBack: Function, onContinue: Function}} props - Booking data and step controls.
@@ -44,7 +44,7 @@ export default function PetCareDetailsPage({ booking, updateBooking, onBack, onC
 
   const services = BOOKING_SERVICES.filter((service) => booking.serviceIds.includes(service.id));
   const savedPets = getSavedPets();
-  const pets = booking.pets ?? savedPets;
+  const pets = booking.pets ?? savedPets.slice(0, 1);
   const activePet = pets.find((pet) => pet.id === activePetId) ?? pets[0];
   const addablePets = savedPets.filter((savedPet) => !pets.some((pet) => pet.id === savedPet.id));
   const completedPetIds = pets.filter(isPetComplete).map((pet) => pet.id);

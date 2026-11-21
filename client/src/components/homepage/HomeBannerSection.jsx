@@ -8,6 +8,7 @@ import pawIcon from "../../assets/icons/paw.svg";
 import cameraIcon from "../../assets/icons/camera.svg";
 import cameraLightIcon from "../../assets/icons/camera-light.svg";
 import "../../styles/homepage/HomeBannerSection.css";
+import { useAuth } from "../../context/AuthContext";
 
 // Background colors of the three pet avatars in the "Trusted by" row
 // Home page hero (Figma "Hero"): headline, call-to-action buttons and the
@@ -17,6 +18,9 @@ import "../../styles/homepage/HomeBannerSection.css";
  * @returns {JSX.Element} The homepage hero section.
  */
 export default function HomeBannerSection() {
+  const { user } = useAuth();
+  const bookingHref = user?.role === "customer" ? "/book-appointment" : "/login?redirect=/book-appointment";
+
   return (
     <section id="home" className="hero" aria-labelledby="hero-title">
       <img className="hero-topo hero-topo-left" src={topoLeft} alt="" />
@@ -35,10 +39,10 @@ export default function HomeBannerSection() {
           </p>
 
           <div className="hero-buttons">
-            <Button variant="tan" href="#" className="hero-button">
+            <Button variant="tan" href={bookingHref} className="hero-button">
               Book an Appointment
             </Button>
-            <Button variant="outline-light" href="#" className="hero-button">
+            <Button variant="outline-light" href="/create-account" className="hero-button">
               Create Account
             </Button>
           </div>
