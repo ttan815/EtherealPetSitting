@@ -20,6 +20,7 @@ function createNewPet() {
     medication: "",
     diet: "",
     allergies: "",
+    medicalConditions: "",
     careInstructions: "",
     saveToProfile: true,
   };
