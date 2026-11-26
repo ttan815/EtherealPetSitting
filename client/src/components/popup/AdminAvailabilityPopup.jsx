@@ -45,12 +45,12 @@ function normalizeCustomerPets(customer) {
     return Array.isArray(customer?.pets) ? customer.pets : [];
 }
 
-function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
+function AvailabilityForm({ slot, slots, options, onClose, onSave, isRequest = false }) {
     const isEdit = Boolean(slot);
     const [form, setForm] = useState(() =>
         isEdit
             ? { ...AVAILABILITY_EMPTY_FORM, ...slot, booking: slot.customer ? "customer" : "open", customerId: slot.customer ? String(slot.customer.id) : "", petId: slot.customer?.pet ? String(slot.customer.pet.id) : "" }
-            : AVAILABILITY_EMPTY_FORM
+            : { ...AVAILABILITY_EMPTY_FORM, admin: isRequest ? options.currentAdmin ?? "" : "", booking: "open" }
     );
     const [errors, setErrors] = useState({});
 
@@ -151,7 +151,7 @@ function AvailabilityForm({ slot, slots, options, onClose, onSave }) {
 
                 <div className="av-popup-actions av-field-wide">
                     <button type="button" className="av-btn av-btn-outline" onClick={onClose}>Cancel</button>
-                    <button type="submit" className="av-btn av-btn-primary">{isEdit ? "Save changes" : "Add availability"}</button>
+                    <button type="submit" className="av-btn av-btn-primary">{isRequest ? "Send request" : isEdit ? "Save changes" : "Add availability"}</button>
                 </div>
             </form>
         </PopupShell>
