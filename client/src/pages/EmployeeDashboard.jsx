@@ -5,9 +5,9 @@ import NotificationsPage from "../components/parent-component/notifications/Noti
 import { NotificationsProvider } from "../components/parent-component/notifications/NotificationsContext";
 import EmployeeSidebarNav from "../components/employee-dashboard/EmployeeSidebarNav";
 import Dashboard from "../components/employee-dashboard/main/Dashboard";
-import Calender  from "../components/employee-dashboard/calender/Calender";
+import Calender from "../components/employee-dashboard/calender/Calender";
 import Appointments from "../components/employee-dashboard/appointments/Appointment"
-import CustomersAndPets from "../components/employee-dashboard/customers-and-pets/CustomersAndPets"
+import CustomersAndPets from "../components/owner-dashboard/customers-and-pets/CustomersAndPets";
 import Reviews from "../components/employee-dashboard/reviews/Review"
 import Availability from "../components/employee-dashboard/availability/Availability"
 import SidebarProfile from "../components/parent-component/SidebarProfile";
@@ -17,8 +17,8 @@ import { useAuth } from "../context/AuthContext";
 
 
 /**
- * Renders the owner dashboard and its selected section.
- * @returns {JSX.Element} The owner dashboard page.
+ * Renders the emplyoee dashboard and its selected section.
+ * @returns {JSX.Element} The employee dashboard page.
  */
 function EmployeeDashboard() {
     const location = useLocation();
@@ -26,7 +26,7 @@ function EmployeeDashboard() {
     const { logout } = useAuth();
     const [activeSection, setActiveSection] = useState(() =>
         location.state?.section === "appointments" ? "appointments" : "dashboard"
-    );  
+    );
     const [previousSection, setPreviousSection] = useState("dashboard");
     const [pendingRequestCount, setPendingRequestCount] = useState(getPendingOwnerRequestCounts);
     const openNotifications = () => {
@@ -34,7 +34,7 @@ function EmployeeDashboard() {
         setActiveSection("notifications");
     };
 
-        // Appointments calls this when its request count changes so the sidebar badge updates live
+    // Appointments calls this when its request count changes so the sidebar badge updates live
     const handleAppointmentRequestCount = useCallback((count) => {
         setPendingRequestCount((prev) => (prev[0] === count ? prev : [count, prev[1]]));
     }, []);
@@ -46,17 +46,17 @@ function EmployeeDashboard() {
     function renderSection() {
         switch (activeSection) {
             case "dashboard":
-                return <Dashboard onNavigate={handleSelectSection}/>;
+                return <Dashboard onNavigate={handleSelectSection} />;
             case "calender":
-                return <Calender/>;
+                return <Calender />;
             case "appointments":
-                return <Appointments onRequestCountChange={handleAppointmentRequestCount}/>;
+                return <Appointments onRequestCountChange={handleAppointmentRequestCount} />;
             case "customers_and_pets":
-                return <CustomersAndPets/>
+                return <CustomersAndPets readOnly />;
             case "reviews":
-                return <Reviews/>
+                return <Reviews />
             case "availability":
-                return <Availability/>;
+                return <Availability />;
             case "notifications":
                 return <NotificationsPage onBack={() => setActiveSection(previousSection)} />;
         }
@@ -69,12 +69,12 @@ function EmployeeDashboard() {
                     <div className="customer-dashboard-layout">
                         <aside className="customer-sidebar">
                             {/*Side Bar*/}
-                            <EmployeeSidebarNav 
+                            <EmployeeSidebarNav
                                 activeSection={activeSection}
                                 onSelect={handleSelectSection}
                                 pendingRequestCount={pendingRequestCount}
                             />
-                            <SidebarProfile name="Angelena Chantengco" role="Admin" onLogout={() => { logout(); navigate("/login"); }}/>
+                            <SidebarProfile name="Angelena Chantengco" role="Admin" onLogout={() => { logout(); navigate("/login"); }} />
                         </aside>
                         <div className="customer-dashboard-content">
                             {renderSection()}

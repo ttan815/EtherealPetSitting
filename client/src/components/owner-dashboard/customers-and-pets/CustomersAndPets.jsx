@@ -16,11 +16,13 @@ import {
 } from "../../../services/customer-dashboard/customer-service";
 import "../../../styles/owner-dashboard/mannage-customer-and-pet/CustomerAndPet.css";
 
+
 /**
- * Renders the owner customer list and the selected customer's details.
+ * Displays the searchable customer list and the selected customer's details.
+ * @param {{readOnly?: boolean}} props Controls whether management actions are available.
  * @returns {JSX.Element} The customers and pets page.
  */
-export default function CustomersAndPets() {
+export default function CustomersAndPets({ readOnly = false }) {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCustomerId, setSelectedCustomerId] = useState(() => getCustomers("")[0]?.id ?? null);
     const [, setDataRevision] = useState(0);
@@ -79,7 +81,9 @@ export default function CustomersAndPets() {
             <PageHeader
                 title="Customers & Pets"
                 subtitle="Everything customers share about their pets and home."
-                actionButton={<AddCustomerButton onCreateCustomer={handleCreateCustomer} />}
+                actionButton={
+                    readOnly ? null : <AddCustomerButton onCreateCustomer={handleCreateCustomer} />
+                }
             />
             <div className="customerPetContainer">
                 <aside>
@@ -97,8 +101,9 @@ export default function CustomersAndPets() {
                             <CustomerProfile
                                 key={selectedCustomer.id}
                                 customer={selectedCustomer}
-                                onUpdate={handleUpdateCustomer}
-                                onDelete={handleDeleteCustomer}
+                                readOnly={readOnly}
+                                onUpdate={readOnly ? undefined : handleUpdateCustomer}
+                                onDelete={readOnly ? undefined : handleDeleteCustomer}
                             />
                             <HomeAccessInstruction customer={selectedCustomer} onToggleTask={handleToggleTask} />
                             <PetsProfile pets={getPetsByCustomer(selectedCustomer.id)} />
