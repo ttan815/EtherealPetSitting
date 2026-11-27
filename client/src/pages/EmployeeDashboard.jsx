@@ -51,14 +51,14 @@ function EmployeeDashboard() {
                 return <Calender />;
             case "appointments":
                 return <Appointments onRequestCountChange={handleAppointmentRequestCount} />;
-            case "customers_and_pets":
-                return <CustomersAndPets readOnly />;
             case "reviews":
                 return <Reviews />
             case "availability":
                 return <Availability />;
             case "notifications":
                 return <NotificationsPage onBack={() => setActiveSection(previousSection)} />;
+            case "customers_and_pets":
+                return <CustomersAndPets readOnly canEditPetCareNotes={true} />;
         }
     }
 

@@ -13,16 +13,21 @@ import {
     getPetsByCustomer,
     toggleExtraTask,
     updateCustomer,
+    updatePetCareNotes,
 } from "../../../services/customer-dashboard/customer-service";
+import { recordPetCareUpdate } from "../../../services/owner-dashboard/audit-log-service";
 import "../../../styles/owner-dashboard/mannage-customer-and-pet/CustomerAndPet.css";
 
 
 /**
  * Displays the searchable customer list and the selected customer's details.
- * @param {{readOnly?: boolean}} props Controls whether management actions are available.
+ * @param {{readOnly?: boolean, canEditPetCareNotes?: boolean}} "props" Customer and pet editing options.
  * @returns {JSX.Element} The customers and pets page.
  */
-export default function CustomersAndPets({ readOnly = false }) {
+export default function CustomersAndPets({
+    readOnly = false,
+    canEditPetCareNotes = false,
+}) {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCustomerId, setSelectedCustomerId] = useState(() => getCustomers("")[0]?.id ?? null);
     const [, setDataRevision] = useState(0);
@@ -76,6 +81,16 @@ export default function CustomersAndPets({ readOnly = false }) {
         }
     }
 
+    function handleSavePetCareNotes(petId, data) {
+        const updatedPet = updatePetCareNotes(petId, data);
+        if (!updatedPet) return false;
+
+        // Change this part once backend is up.
+        recordPetCareUpdate("Bobby", "Bobby P.", updatedPet.name);
+        refreshCustomerData();
+        return true;
+    }
+
     return (
         <>
             <PageHeader
@@ -106,7 +121,10 @@ export default function CustomersAndPets({ readOnly = false }) {
                                 onDelete={readOnly ? undefined : handleDeleteCustomer}
                             />
                             <HomeAccessInstruction customer={selectedCustomer} onToggleTask={handleToggleTask} />
-                            <PetsProfile pets={getPetsByCustomer(selectedCustomer.id)} />
+                            <PetsProfile
+                                pets={getPetsByCustomer(selectedCustomer.id)}
+                                onSavePetCareNotes={canEditPetCareNotes ? handleSavePetCareNotes : undefined}
+                            />
                         </>
                     ) : (
                         <div className="customerDetailsEmpty" role="status">

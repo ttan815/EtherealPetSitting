@@ -279,6 +279,25 @@ export function getPetsByCustomer(customerId) {
 }
 
 /**
+ * Updates a pet's medications, diet, and care notes.
+ * @param {number|string} "petID" ID of the pet being updated.
+ * @param {{medications: string, diet: string, careNotes: string}} "data" Values from the edit form.
+ * @returns {Object|null} The updated pet, or null if the pet was not found.
+ */
+export function updatePetCareNotes(petId, data) {
+    for (const customer of customers) {
+        const pet = customer.pets.find((item) => String(item.id) === String(petId));
+        if (pet) {
+            pet.medications = data.medications;
+            pet.diet = data.diet;
+            pet.careNotes = data.careNotes;
+            return clonePet(pet);
+        }
+    }
+    return null;
+}
+
+/**
  * Adds a temporary pet record to a customer.
  * @param {number|string} customerId Customer ID.
  * @param {{name: string, breed: string, age?: string, weight?: string, allergies?: string}} pet New pet details.

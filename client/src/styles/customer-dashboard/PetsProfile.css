@@ -33,7 +33,7 @@
     margin-bottom: 18px;
 }
 
-.petProfileCard + .petProfileCard {
+.petProfileCard+.petProfileCard {
     border-top: 1px solid #e8d8ca;
     margin-top: 20px;
     padding-top: 20px;
@@ -127,6 +127,111 @@
 
 .petVetCard {
     grid-column: 1 / -1;
+}
+
+.editCareNotesContainer {
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+}
+
+/* Pet care editor */
+.petCareEditor {
+    display: grid;
+    gap: 18px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: clamp(16px, 3vw, 28px);
+    background: #fffdfb;
+    border: 1px solid #e5d4bd;
+    border-radius: 14px;
+    color: #392914;
+}
+
+.petCareEditor h2 {
+    margin: 0;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #eee3d6;
+    font-size: 1.5rem;
+    line-height: 1.25;
+}
+
+.petCareField {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    color: #574126;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.petCareField input,
+.petCareField textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid #d8c5ab;
+    border-radius: 8px;
+    background: #fff;
+    color: #352919;
+    font: inherit;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.petCareField textarea {
+    min-height: 7rem;
+    resize: vertical;
+}
+
+.petCareField input:focus-visible,
+.petCareField textarea:focus-visible {
+    border-color: #806133;
+    outline: 2px solid #a5824e;
+    outline-offset: 2px;
+}
+
+.petCareEditorActions,
+.editCareNotesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.petCareEditorActions {
+    padding-top: 16px;
+    border-top: 1px solid #eee3d6;
+}
+
+.editCareNotesContainer:not(:empty) {
+    margin-top: 14px;
+}
+
+.petCareEditorActions button,
+.editCareNotesContainer button {
+    width: auto;
+    margin: 0;
+}
+
+.petCareEditorActions button[type="button"] {
+    background: #f5eee5;
+    border: 1px solid #d8c5ab;
+    color: #574126;
+    box-shadow: none;
+}
+
+.petCareEditorActions button[type="button"]:hover {
+    background: #eadfce;
+}
+
+.petCareEditor [role="alert"] {
+    margin: 0;
+    color: #943c2d;
+    font-size: 0.9rem;
 }
 
 @media (max-width: 480px) {

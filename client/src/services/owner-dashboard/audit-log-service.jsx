@@ -26,6 +26,27 @@ const AUDIT_LOG_PEOPLE = {
 };
 
 /**
+ * Records a successful update to one pet's care information.
+ * @param {string} personId Admin ID used by the audit log.
+ * @param {string} personName Admin name displayed in the entry.
+ * @param {string} petName Name of the pet whose care information was saved.
+ * @returns {void}
+ */
+export function recordPetCareUpdate(personId, personName, petName) {
+    AUDIT_LOG_ENTRIES.push({
+        id: crypto.randomUUID(),
+        time: new Date().toISOString(),
+        person: personId,
+        area: "Customers & Pets",
+        parts: [
+            { text: personName, bold: true },
+            { text: " updated care information... " },
+            { text: petName, bold: true },
+        ],
+    });
+}
+
+/**
  * Fetches audit entries matching the supplied filters, newest first.
  * @param {Object} filters Search, person, area and date-range filters.
  * @returns {Object[]} Matching audit entries.
