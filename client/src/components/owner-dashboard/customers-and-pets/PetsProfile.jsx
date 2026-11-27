@@ -1,5 +1,6 @@
+import { useState } from "react";
+import Button from "../../form/Button";
 import "../../../styles/customer-dashboard/PetsProfile.css";
-
 function PawIcon({ size = 26 }) {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -27,11 +28,23 @@ function InfoTile({ title, text, className = "" }) {
 }
 
 /**
- * Renders every pet and its care information for the selected customer.
- * @param {{pets: Object[]}} props Pet records for the selected customer.
+ * Renders the selected customer's pets and their care information.
+ * @param {{pets: Object[], onSavePetCareNotes?: Function}} "props" Pet records and optional save handler.
  * @returns {JSX.Element} The pet profile section.
  */
-function PetsProfile({ pets }) {
+function PetsProfile({ pets, onSavePetCareNotes }) {
+    const [editingPetId, setEditingPetId] = useState(null);
+    const editingPet = pets.find((pet) => pet.id === editingPetId);
+    if (editingPet && onSavePetCareNotes) {
+        return (
+            <PetCareNotesEditor
+                key={editingPet.id}
+                pet={editingPet}
+                onSave={onSavePetCareNotes}
+                onCancel={() => setEditingPetId(null)}
+            />
+        );
+    }
     return (
         <div className="petsProfileContainer">
             <div className="petsProfileHeader">
@@ -46,6 +59,7 @@ function PetsProfile({ pets }) {
                         </div>
                         <div className="petProfileDetails">
                             <h2>{pet.name}</h2>
+
                             <p className="petProfileDescription">
                                 {pet.breed} · {pet.age} · {pet.weight}
                             </p>
@@ -63,6 +77,7 @@ function PetsProfile({ pets }) {
                         <InfoTile title="Medications" text={pet.medications} />
                         <InfoTile title="Diet" text={pet.diet} />
                         <InfoTile title="Allergies" text={pet.allergies || "None known"} />
+                        <InfoTile title="Medical conditions" text={pet.medicalConditions || "None provided"} />
                         <InfoTile title="Care notes" text={pet.careNotes} />
                         <InfoTile
                             title="Vet"
@@ -70,13 +85,75 @@ function PetsProfile({ pets }) {
                             className="petVetCard"
                         />
                     </div>
+                    <div className="editCareNotesContainer">
+                        {onSavePetCareNotes && (
+                            <Button type="button" onClick={() => setEditingPetId(pet.id)}>
+                                Edit care notes
+                            </Button>
+                        )}
+                    </div>
                 </article>
             ))}
             {pets.length === 0 && <p className="petsProfileEmpty">No pets listed for this customer.</p>}
         </div>
     );
 }
+function PetCareNotesEditor({ pet, onSave, onCancel }) {
+    const [medications, setMedications] = useState(pet.medications ?? "");
+    const [diet, setDiet] = useState(pet.diet ?? "");
+    const [careNotes, setCareNotes] = useState(pet.careNotes ?? "");
+    const [error, setError] = useState("");
 
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        const saved = onSave(pet.id, { medications, diet, careNotes });
+
+        if (saved) {
+            onCancel();
+        } else {
+            setError("Could not save the changes. Please try again.");
+        }
+    }
+
+    return (
+        <form className="petCareEditor" onSubmit={handleSubmit}>
+            <h2>Edit {pet.name}’s care notes</h2>
+
+            <label className="petCareField">
+                Medication
+                <input
+                    value={medications}
+                    onChange={(event) => setMedications(event.target.value)}
+                />
+            </label>
+
+            <label className="petCareField">
+                Diet
+                <input
+                    value={diet}
+                    onChange={(event) => setDiet(event.target.value)}
+                />
+            </label>
+
+            <label className="petCareField">
+                Pet care instruction
+                <textarea
+                    rows={4}
+                    value={careNotes}
+                    onChange={(event) => setCareNotes(event.target.value)}
+                />
+            </label>
+
+            {error && <p role="alert">{error}</p>}
+
+            <div className="petCareEditorActions">
+                <Button type="button" onClick={onCancel}>Cancel</Button>
+                <Button type="submit">Save changes</Button>
+            </div>
+        </form>
+    );
+}
 /**
  * Exports the PetsProfile component.
  * @returns {Function} The pet profile component.

@@ -77,14 +77,32 @@ function ManagePet({ pets = getCustomerPets() }) {
   const petCountLabel = `${pets.length} ${pets.length === 1 ? "pet" : "pets"}`;
   // Initialize Views Content
   const [currentView, setCurrentView] = useState("main");
+  const [petList, setPetList] = useState(pets);
+  const [editing, setEditing] = useState(false);
+
+  function handlePetAdded() {
+    setPetList(getCustomerPets());
+    setCurrentView("main");
+  }
+
+  function openEditor() {
+    setEditing(true);
+    setCurrentView("edit");
+  }
+
+  function closeEditor() {
+    setEditing(false);
+    setPetList(getCustomerPets());
+    setCurrentView("main");
+  }
 
   // what the page looks like
   if(currentView === "main")
-    return <MainContent pets={pets} petCountLabel={petCountLabel} setCurrentView={setCurrentView}/>;
+    return <MainContent pets={petList} petCountLabel={`${petList.length} ${petList.length === 1 ? "pet" : "pets"}`} setCurrentView={openEditor}/>;
   else if(currentView === "add")
-    return <AddPet setCurrentView={setCurrentView}/>
+    return <AddPet setCurrentView={handlePetAdded}/>
   else if(currentView === "edit")
-    return <EditPet setCurrentView={setCurrentView}/>
+    return <EditPet key={editing ? "editing" : "view"} setCurrentView={closeEditor}/>
 }
 
 export default ManagePet;

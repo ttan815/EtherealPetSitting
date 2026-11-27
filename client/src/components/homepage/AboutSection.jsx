@@ -11,6 +11,8 @@ import '../../styles/homepage/AboutSection.css';
 
 // bring in the camera icon for the photo placeholder
 import cameraIcon from '../../assets/icons/camera-large.svg';
+import pawIcon from '../../assets/icons/paw.svg';
+import { BOOKING_SITTERS } from '../../constants/booking/booking-sitters';
 
 // bring in the soft background shapes from the figma prototype
 import shape1 from '../../assets/home/about-shape-1.svg';
@@ -31,6 +33,7 @@ import shape4 from '../../assets/home/about-shape-4.svg';
 export default function AboutSection({ isLoggedIn = false, ownerPhoto = null }) {
   // customers go to the booking page, visitors go to the login page
   const bookingLink = isLoggedIn ? '/book-appointment' : '/login';
+  const teamMembers = BOOKING_SITTERS.filter((sitter) => sitter.id !== 'no-preference');
 
   // what the section looks like on the page
   return (
@@ -101,6 +104,27 @@ export default function AboutSection({ isLoggedIn = false, ownerPhoto = null }) 
           <Button href={bookingLink} className="about-section__button">
             Book an Appointment
           </Button>
+        </div>
+      </div>
+
+      <div className="about-section__team">
+        <SectionHeading
+          id="team-heading"
+          eyebrow="The people behind the paws"
+          title="Meet the team."
+          subtitle="Get to know the caring people who make every visit feel personal."
+        />
+        <div className="about-section__team-grid">
+          {teamMembers.map((member, index) => (
+            <article className="about-section__team-card" key={member.id}>
+              <div className={`about-section__team-avatar about-section__team-avatar--${index % 3}`} aria-hidden="true">
+                <span>{member.initials}</span>
+                <img src={pawIcon} alt="" />
+              </div>
+              <h3>{member.name}</h3>
+              <p className="about-section__team-role">{member.description.split(' · ')[0]}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -13,14 +13,21 @@ import {
     getPetsByCustomer,
     toggleExtraTask,
     updateCustomer,
+    updatePetCareNotes,
 } from "../../../services/customer-dashboard/customer-service";
+import { recordPetCareUpdate } from "../../../services/owner-dashboard/audit-log-service";
 import "../../../styles/owner-dashboard/mannage-customer-and-pet/CustomerAndPet.css";
 
+
 /**
- * Renders the owner customer list and the selected customer's details.
+ * Displays the searchable customer list and the selected customer's details.
+ * @param {{readOnly?: boolean, canEditPetCareNotes?: boolean}} "props" Customer and pet editing options.
  * @returns {JSX.Element} The customers and pets page.
  */
-export default function CustomersAndPets() {
+export default function CustomersAndPets({
+    readOnly = false,
+    canEditPetCareNotes = false,
+}) {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCustomerId, setSelectedCustomerId] = useState(() => getCustomers("")[0]?.id ?? null);
     const [, setDataRevision] = useState(0);
@@ -74,12 +81,24 @@ export default function CustomersAndPets() {
         }
     }
 
+    function handleSavePetCareNotes(petId, data) {
+        const updatedPet = updatePetCareNotes(petId, data);
+        if (!updatedPet) return false;
+
+        // Change this part once backend is up.
+        recordPetCareUpdate("Bobby", "Bobby P.", updatedPet.name);
+        refreshCustomerData();
+        return true;
+    }
+
     return (
         <>
             <PageHeader
                 title="Customers & Pets"
                 subtitle="Everything customers share about their pets and home."
-                actionButton={<AddCustomerButton onCreateCustomer={handleCreateCustomer} />}
+                actionButton={
+                    readOnly ? null : <AddCustomerButton onCreateCustomer={handleCreateCustomer} />
+                }
             />
             <div className="customerPetContainer">
                 <aside>
@@ -97,11 +116,15 @@ export default function CustomersAndPets() {
                             <CustomerProfile
                                 key={selectedCustomer.id}
                                 customer={selectedCustomer}
-                                onUpdate={handleUpdateCustomer}
-                                onDelete={handleDeleteCustomer}
+                                readOnly={readOnly}
+                                onUpdate={readOnly ? undefined : handleUpdateCustomer}
+                                onDelete={readOnly ? undefined : handleDeleteCustomer}
                             />
                             <HomeAccessInstruction customer={selectedCustomer} onToggleTask={handleToggleTask} />
-                            <PetsProfile pets={getPetsByCustomer(selectedCustomer.id)} />
+                            <PetsProfile
+                                pets={getPetsByCustomer(selectedCustomer.id)}
+                                onSavePetCareNotes={canEditPetCareNotes ? handleSavePetCareNotes : undefined}
+                            />
                         </>
                     ) : (
                         <div className="customerDetailsEmpty" role="status">

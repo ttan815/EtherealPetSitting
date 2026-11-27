@@ -24,11 +24,7 @@ function PriceDetailsCard({ services, dateKey, appointments }) {
       <div className="infoContainer">
         <p className="title-info">Price Details</p>
         <div className="flex-info">
-          <p>Service Fee</p>
-          <p className="flex-desc">{formatBookingAmount(total)}</p>
-        </div>
-        <div className="flex-info">
-          <p>Required Deposit</p>
+          <p>Deposit Amount</p>
           <p className="flex-desc">{formatBookingAmount(deposit)}</p>
         </div>
         <div className="flex-info">

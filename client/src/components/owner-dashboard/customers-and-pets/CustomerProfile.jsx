@@ -3,11 +3,11 @@ import ManageCustomerPopup from "../../popup/ManageCustomerPopup";
 import "../../../styles/owner-dashboard/mannage-customer-and-pet/CustomerProfile.css";
 
 /**
- * Shows the selected customer's contact details and edit/delete actions.
- * @param {{customer: Object, onUpdate: Function, onDelete: Function}} props Customer data and update handlers.
- * @returns {JSX.Element} The customer profile and its dialogs.
+ * Displays a customer's contact details and optional management actions.
+ * @param {{customer: Object, readOnly?: boolean, onUpdate?: Function, onDelete?: Function}} props Customer and available actions.
+ * @returns {JSX.Element} The customer profile.
  */
-function CustomerProfile({ customer, onUpdate, onDelete }) {
+function CustomerProfile({ customer, readOnly = false, onUpdate, onDelete }) {
     const deleteDialogId = useId();
     const [editStatus, setEditStatus] = useState(false);
     const [deleteStatus, setDeleteStatus] = useState(false);
@@ -20,7 +20,7 @@ function CustomerProfile({ customer, onUpdate, onDelete }) {
 
     return (
         <>
-            {editStatus && (
+            {!readOnly && editStatus && (
                 <ManageCustomerPopup
                     mode="edit"
                     customer={customer}
@@ -29,7 +29,7 @@ function CustomerProfile({ customer, onUpdate, onDelete }) {
                 />
             )}
 
-            {deleteStatus && (
+            {!readOnly && deleteStatus && (
                 <div className="deleteCustomerOverlay">
                     <div className="deleteCustomerModal" role="dialog" aria-modal="true" aria-labelledby={`${deleteDialogId}-title`}>
                         <div className="deleteCustomerHeader">
@@ -79,12 +79,13 @@ function CustomerProfile({ customer, onUpdate, onDelete }) {
                     </div>
                     <div className="customerActions">
                         <span className="customerRole">{customer.role}</span>
-                        <button className="customerEditButton" type="button" onClick={() => setEditStatus(true)}>
-                            Edit
-                        </button>
-                        <button className="customerDeleteButton" type="button" onClick={() => setDeleteStatus(true)}>
-                            Delete
-                        </button>
+                        {!readOnly && (<>
+                            <button className="customerEditButton" type="button" onClick={() => setEditStatus(true)}>
+                                Edit
+                            </button>
+                            <button className="customerDeleteButton" type="button" onClick={() => setDeleteStatus(true)}>
+                                Delete
+                            </button> </>)}
                     </div>
                 </div>
 

@@ -50,7 +50,7 @@ function BookingReviewCard({ booking, services, pet, onDelete }) {
       <div>
         <p className="flex-info-spec">SPECIAL INSTRUCTIONS SUMMARY</p>
         <p className="flex-info-spec">
-          {[pet.diet, pet.medication, pet.allergies, pet.careInstructions].filter(Boolean).join(" ") ||
+          {[pet.diet, pet.medication, pet.allergies, pet.medicalConditions, pet.careInstructions].filter(Boolean).join(" ") ||
             "No pet-care details provided."}
         </p>
         <p className="flex-info-spec">Home entry: {sharedHouseEntry || "No home-entry instructions provided."}</p>

@@ -161,6 +161,83 @@
   margin-top: 32px; /* space above the button */
 }
 
+/* Team members featured beneath the owner story. */
+.about-section__team {
+  position: relative;
+  max-width: 1050px;
+  margin: 112px auto 0;
+}
+
+.about-section__team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+  margin-top: 42px;
+}
+
+.about-section__team-card {
+  padding: 30px 24px;
+  text-align: center;
+  background: rgba(249, 239, 237, 0.78);
+  border: 1px solid rgba(47, 31, 4, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(47, 31, 4, 0.06);
+}
+
+.about-section__team-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  border: 1px solid rgba(47, 31, 4, 0.14);
+  border-radius: 50%;
+  background: #eadfc9;
+  color: var(--color-dark-brown);
+  font-family: var(--font-heading);
+  font-size: 30px;
+}
+
+.about-section__team-avatar--1 { background: #ead4cf; }
+.about-section__team-avatar--2 { background: #dce3d3; }
+
+.about-section__team-avatar img {
+  position: absolute;
+  right: 10px;
+  bottom: 9px;
+  width: 23px;
+  height: 23px;
+  padding: 4px;
+  border-radius: 50%;
+  background: rgba(249, 239, 237, 0.9);
+}
+
+.about-section__team-card h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.about-section__team-role {
+  margin: 8px 0 0;
+  color: var(--color-brown);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.about-section__team-services {
+  margin: 12px 0 0;
+  color: rgba(47, 31, 4, 0.76);
+  font-size: 14px;
+  line-height: 1.5;
+  text-transform: capitalize;
+}
+
 /* tablet and phone screens get less padding and a smaller photo */
 @media (max-width: 900px) {
   .about-section {
@@ -168,5 +245,8 @@
   }
   .about-section__photo-wrap {
     zoom: 0.7; /* shrinks the photo and outline together */
+  }
+  .about-section__team {
+    margin-top: 72px;
   }
 }

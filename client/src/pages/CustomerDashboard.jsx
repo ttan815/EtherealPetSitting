@@ -1,6 +1,7 @@
 // Renders the customer dashboard page.
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
 import ViewAppointmentSection from "../components/customer-dashboard/view-appointment/ViewAppointmentSection";
 import ManagePet from "../components/customer-dashboard/manage-pet/ManagePet";
 import "../styles/customer-dashboard/CustomerDashboard.css";
@@ -21,6 +22,7 @@ import { getCustomerDashboardData } from "../services/customer-dashboard/custome
 function CustomerDashboard() {
     const location = useLocation();
     const navigate = useNavigate();
+    const { logout } = useAuth();
     const [dashboardData] = useState(getCustomerDashboardData);
     const [activeSection, setActiveSection] = useState(() =>
         location.state?.section === "appointments" ? "appointments" : "dashboard"
@@ -93,7 +95,7 @@ function CustomerDashboard() {
                         activeSection={activeSection}
                         onSelect={handleSelectSection}
                     />
-                    <SidebarProfile name={dashboardData.customer.fullName} role="Customer account" />
+                    <SidebarProfile name={dashboardData.customer.fullName} role="Customer account" onLogout={() => { logout(); navigate("/login"); }} />
                 </aside>
                 <div className="customer-dashboard-content">
                     {renderSection()}
