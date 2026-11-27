@@ -63,6 +63,7 @@ function PetsProfile({ pets }) {
                         <InfoTile title="Medications" text={pet.medications} />
                         <InfoTile title="Diet" text={pet.diet} />
                         <InfoTile title="Allergies" text={pet.allergies || "None known"} />
+                        <InfoTile title="Medical conditions" text={pet.medicalConditions || "None provided"} />
                         <InfoTile title="Care notes" text={pet.careNotes} />
                         <InfoTile
                             title="Vet"
