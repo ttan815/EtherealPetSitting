@@ -11,25 +11,13 @@ import {
 } from "../../../services/reviews/review-service";
 import { REVIEW_DAY_MS } from "../../../constants/reviews/reviews";
 import "../../../styles/owner-dashboard/ReviewsToApprove.css";
+import StarRating from "../../parent-component/StarRating";
 
 // "Today", "1 day ago", "5 days ago"
 function formatTimeAgo(date) {
   const days = Math.floor((Date.now() - date.getTime()) / REVIEW_DAY_MS);
   if (days < 1) return "Today";
   return days === 1 ? "1 day ago" : `${days} days ago`;
-}
-
-// ★★★★☆: filled stars for the rating, faded stars for the rest
-function StarRating({ rating, className }) {
-  return (
-    <span className={`review-stars ${className}`} role="img" aria-label={`${rating} out of 5 stars`}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <span key={star} className={star <= rating ? "" : "review-star-empty"}>
-          ★
-        </span>
-      ))}
-    </span>
-  );
 }
 
 /**

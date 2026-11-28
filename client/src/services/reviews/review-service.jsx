@@ -30,6 +30,24 @@ const PENDING_REVIEWS = [
 ];
 let pendingReviewIds = PENDING_REVIEWS.map((review) => review.id);
 
+const APPROVED_REVIEWS = [
+    { id: "review-emma", rating: 5, petName: "Oliver", text: "Our cat was so relaxed when we got home. Thank you!", customerName: "Emma R.", service: "Drop-in Care", approvedAt: () => new Date(Date.now() - 1 * REVIEW_DAY_MS) },
+    { id: "review-jon", rating: 4, petName: "Biscuit", text: "Easy booking and great communication.", customerName: "Jon D.", service: "Dog Walking", approvedAt: () => new Date(Date.now() - 3 * REVIEW_DAY_MS) },
+];
+let approvedReviews = APPROVED_REVIEWS.map((review) => ({ ...review, approvedAt: review.approvedAt() }));
+
+/**
+ * Fetches the most recently approved reviews, newest first.
+ * @param {number} limit Maximum number of reviews to return.
+ * @returns {Object[]} Approved reviews with an approvedAt date.
+ */
+export function getApprovedReviews(limit = 5) {
+    const temp = [...approvedReviews]
+        .sort((a, b) => b.approvedAt - a.approvedAt)
+        .slice(0, limit); // Result from fetch()
+    return temp;
+}
+
 /**
  * Fetches temporary reviews for the homepage.
  * @returns {Object[]} Homepage review highlights.
@@ -83,6 +101,7 @@ export function approveReview(id) {
         return null;
     }
     pendingReviewIds = pendingReviewIds.filter((reviewId) => reviewId !== review.id);
+    approvedReviews.push({ ...review, approvedAt: new Date() });
     return review;
 }
 

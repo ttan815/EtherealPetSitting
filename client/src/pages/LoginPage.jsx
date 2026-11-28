@@ -2,13 +2,11 @@
 import AuthLayout from "../components/auth/AuthLayout";
 import TextField from "../components/form/TextField";
 import PasswordField from "../components/form/PasswordField";
-import Checkbox from "../components/form/Checkbox";
 import Button from "../components/form/Button";
 import mailIcon from "../assets/icons/mail.svg";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { loginAccount } from "../services/auth/auth-service";
 import "../styles/login/LoginPage.css";
 
 // Visitor log in screen. UI only: nothing is sent to the server yet.
@@ -19,19 +17,18 @@ import "../styles/login/LoginPage.css";
 function LoginPage() {
   // Stop the browser from reloading the page until login is wired up
   const navigate = useNavigate()
-  const { refreshSession } = useAuth()
-  async function handleSubmit(event) {
+  const location = useLocation()
+  const { loginTempAccount } = useAuth()
+  function handleSubmit(event) {
     event.preventDefault();
     try {
-      const result = await loginAccount({ email, password, rememberMe });
+      const result = loginTempAccount({ email, password });
       if (!result.ok) {
-        console.log(result.status)
+        console.error("Login failed:", result.status)
         return;
       }
-      const valid = await refreshSession()
-      if (valid) {
-        navigate("/")
-      }
+      const redirect = new URLSearchParams(location.search).get("redirect")
+      navigate(redirect?.startsWith("/") ? redirect : result.route)
     }
     catch (error) {
       console.log(error)
@@ -39,7 +36,6 @@ function LoginPage() {
   }
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [rememberMe, setRememberMe] = useState(false)
   return (
     <AuthLayout>
       <form className="login-page-form" onSubmit={handleSubmit}>
@@ -69,8 +65,6 @@ function LoginPage() {
             }
           />
         </div>
-
-        <Checkbox onChange={(e) => setRememberMe(e.target.checked)} id="login-remember" label="Keep me logged in" />
 
         <Button type="submit" className="login-page-submit">
           Log in

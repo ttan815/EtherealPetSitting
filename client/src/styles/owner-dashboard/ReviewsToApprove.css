@@ -42,21 +42,6 @@
   font-size: 14px;
 }
 
-.review-stars {
-  font-size: 14px;
-  letter-spacing: 1.4px;
-  color: var(--color-tan);
-}
-
-.review-stars-large {
-  font-size: 15px;
-  letter-spacing: 1.5px;
-}
-
-.review-star-empty {
-  opacity: 0.3;
-}
-
 .reviews-to-approve-empty {
   margin: 0;
   font-size: 15px;

@@ -34,12 +34,16 @@ export const EMPTY_PET_FORM = {
     medication: "",
     diet: "",
     allergy: "",
+    medicalConditions: "",
     instructions: "",
     likes: "",
     dislikes: "",
     veterinarian: "",
     clinic: "",
     phone: "",
+    emergencyVetName: "",
+    emergencyVetClinic: "",
+    emergencyVetPhone: "",
     notes: "",
 };
 

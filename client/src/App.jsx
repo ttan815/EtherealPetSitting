@@ -9,6 +9,7 @@ import BookingProvider from "./context/BookingProvider";
 import BookingFlow from "./components/booking/BookingFlow";
 import PaymentPage from "./pages/PaymentPage";
 import OwnerDashboard from "./pages/OwnerDashboard";
+import EmployeeDashboard from "./pages/EmployeeDashboard";
 
 /**
  * Renders the application's page routes and the shared booking-step provider.
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/payment/:id" element={<PaymentPage/>}/>
           <Route path="/book-appointment" element={<BookingFlow/>}/>
           <Route path="/owner-dashboard" element={<OwnerDashboard/>}/>
+          <Route path="/employee-dashboard" element={<EmployeeDashboard/>}/>
 
         </Routes>
       </BookingProvider>

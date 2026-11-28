@@ -51,6 +51,11 @@ function PetCareForm({ pet, houseEntry, additionalTasks, onPetChange, onSharedCh
         {...petField("allergies")}
       />
       <TextAreaField
+        label="Medical Conditions"
+        placeholder="List diagnosed conditions or important symptoms, such as seizures..."
+        {...petField("medicalConditions")}
+      />
+      <TextAreaField
         id="booking-house-entry"
         label="House-Entry / Lockbox Details"
         placeholder="Provide details on key location, alarm codes, or security notes..."

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getEditablePetProfile } from "../../../services/customer-dashboard/pet-service";
+import { getEditablePetProfile, updateEditablePetProfile } from "../../../services/customer-dashboard/pet-service";
 import "../../../styles/customer-dashboard/manage-pet/EditPet.css";
 
 const initialPet = getEditablePetProfile();
@@ -123,8 +123,12 @@ export default function EditPet( {setCurrentView} ) {
   );
 
   const saveChanges = () => {
+    updateEditablePetProfile(pet);
     setToast(true);
-    window.setTimeout(() => setToast(false), 3500);
+    window.setTimeout(() => {
+      setToast(false);
+      setCurrentView("main");
+    }, 1200);
   };
 
   const cancel = () => {
@@ -282,12 +286,45 @@ export default function EditPet( {setCurrentView} ) {
               />
 
               <Field
+                label="MEDICAL CONDITIONS"
+                textarea
+                placeholder="List ongoing or diagnosed conditions, such as seizures"
+                value={pet.medicalConditions}
+                onChange={(e) => update("medicalConditions", e.target.value)}
+              />
+
+              <Field
                 label="PET CARE INSTRUCTION"
                 required
                 textarea
                 rows={3}
                 value={pet.instructions}
                 onChange={(e) => update("instructions", e.target.value)}
+              />
+            </Panel>
+
+            <Panel
+              icon="✚"
+              title="Emergency vet"
+              subtitle={`An alternate veterinary contact for urgent situations involving ${pet.name}.`}
+            >
+              <Field
+                label="VETERINARIAN"
+                value={pet.emergencyVetName}
+                placeholder="Veterinarian's name"
+                onChange={(e) => update("emergencyVetName", e.target.value)}
+              />
+              <Field
+                label="CLINIC"
+                value={pet.emergencyVetClinic}
+                placeholder="Emergency clinic or hospital"
+                onChange={(e) => update("emergencyVetClinic", e.target.value)}
+              />
+              <Field
+                label="PHONE"
+                value={pet.emergencyVetPhone}
+                placeholder="(000) 000-0000"
+                onChange={(e) => update("emergencyVetPhone", e.target.value)}
               />
             </Panel>
 

@@ -77,6 +77,32 @@ const CUSTOMER_DASHBOARD_PETS = [
   },
 ];
 
+/** Adds a pet to the temporary customer profile used by the dashboard. */
+export function addCustomerPet(pet) {
+  const savedPet = {
+    id: Date.now(),
+    name: pet.name.trim(),
+    breed: pet.breed.trim(),
+    age: pet.age.trim(),
+    diet: pet.diet.trim(),
+    careInstructions: pet.instructions.trim(),
+    medication: pet.medication.trim(),
+    allergies: pet.allergy.trim(),
+    medicalConditions: pet.medicalConditions.trim(),
+    lastUpdated: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+    profileComplete: true,
+    photo: null,
+  };
+  CUSTOMER_DASHBOARD_PETS.push(savedPet);
+  return { ...savedPet };
+}
+
+/** Saves updates made in the customer dashboard pet editor. */
+export function updateEditablePetProfile(changes) {
+  Object.assign(EDITABLE_PET_PROFILE, changes);
+  return { ...EDITABLE_PET_PROFILE };
+}
+
 const EDITABLE_PET_PROFILE = {
   name: "Mochi",
   age: "4 years",
@@ -84,6 +110,7 @@ const EDITABLE_PET_PROFILE = {
   medication: "Apoquel - 16 mg with breakfast during allergy flare-ups",
   diet: "2 cups sensitive-stomach kibble · twice daily",
   allergy: "Chicken protein and seasonal grass pollen",
+  medicalConditions: "",
   instructions:
     "Breakfast at 7:30 AM, dinner at 6:00 PM, and a 25-minute evening walk. Wipe paws after outdoor play and leave fresh water by the kitchen door.",
   likes: "Tennis balls, chest scratches, slow introductions, and sniffing walks.",
@@ -91,6 +118,9 @@ const EDITABLE_PET_PROFILE = {
   veterinarian: "Dr. Lena Cho",
   clinic: "Juniper Veterinary Center",
   phone: "(503) 555-0148",
+  emergencyVetName: "",
+  emergencyVetClinic: "",
+  emergencyVetPhone: "",
   notes:
     "Mochi settles best with his blue blanket nearby. His emergency contact is Daniel Rivera at (503) 555-0182.",
 };
