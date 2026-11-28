@@ -1,0 +1,107 @@
+/* Recently approved section on the admin Reviews page (Figma "Admin — Reviews") */
+.recently-approved {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: var(--font-body);
+  color: var(--color-brown);
+}
+
+.recently-approved-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.recently-approved-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-dark-brown);
+}
+
+.recently-approved-subtitle {
+  margin: 0;
+  font-size: 13px;
+}
+
+.recently-approved-empty {
+  margin: 0;
+  font-size: 15px;
+}
+
+.recently-approved-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* One card per review */
+.recently-approved-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 24px;
+  background: var(--color-cream);
+  border: 1px solid rgba(206, 182, 144, 0.55);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -8px rgba(47, 31, 4, 0.04);
+}
+
+.recently-approved-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* "✓ Approved" pill */
+.recently-approved-pill {
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(164, 140, 101, 0.15);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-brown);
+}
+
+.recently-approved-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-dark-brown);
+}
+
+.recently-approved-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Initials circle */
+.recently-approved-avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(206, 182, 144, 0.8);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-dark-brown);
+}
+
+.recently-approved-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark-brown);
+}
+
+.recently-approved-meta {
+  margin: 0;
+  font-size: 12px;
+}

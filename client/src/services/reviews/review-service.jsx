@@ -31,8 +31,8 @@ const PENDING_REVIEWS = [
 let pendingReviewIds = PENDING_REVIEWS.map((review) => review.id);
 
 const APPROVED_REVIEWS = [
-    { id: "review-emma", rating: 5, text: "Our cat was so relaxed when we got home. Thank you!", customerName: "Emma R.", service: "Drop-in Care", approvedAt: () => new Date(Date.now() - 1 * REVIEW_DAY_MS) },
-    { id: "review-jon", rating: 4, text: "Easy booking and great communication.", customerName: "Jon D.", service: "Dog Walking", approvedAt: () => new Date(Date.now() - 3 * REVIEW_DAY_MS) },
+    { id: "review-emma", rating: 5, petName: "Oliver", text: "Our cat was so relaxed when we got home. Thank you!", customerName: "Emma R.", service: "Drop-in Care", approvedAt: () => new Date(Date.now() - 1 * REVIEW_DAY_MS) },
+    { id: "review-jon", rating: 4, petName: "Biscuit", text: "Easy booking and great communication.", customerName: "Jon D.", service: "Dog Walking", approvedAt: () => new Date(Date.now() - 3 * REVIEW_DAY_MS) },
 ];
 let approvedReviews = APPROVED_REVIEWS.map((review) => ({ ...review, approvedAt: review.approvedAt() }));
 

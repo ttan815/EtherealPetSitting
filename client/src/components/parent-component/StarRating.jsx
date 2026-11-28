@@ -1,3 +1,4 @@
+import "../../styles/parent-component/StarRating.css";
 /**
  * Renders filled and faded stars for a rating out of 5.
  * @param {number} rating Number of filled stars.
